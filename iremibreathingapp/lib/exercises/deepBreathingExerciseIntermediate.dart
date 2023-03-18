@@ -1,16 +1,18 @@
 import 'package:iremibreathingapp/exercises/deepBreathingExercise.dart';
 
 class DeepBreathingExerciseBeginner extends DeepBreathingExercise {
+  @override
+  Duration inhaleTime = Duration(seconds: 4);
 
   @override
-  double inhaleTime = 4;
+  Duration holdMiddleTime = Duration(seconds: 4);
 
   @override
-  double holdMiddleTime = 4;
+  Duration exhaleTime = Duration(seconds: 4);
 
   @override
-  double exhaleTime = 4;
+  Duration holdEndTime = Duration(seconds: 4);
 
   @override
-  double holdEndTime = 4;
+  int times = 5;
 }

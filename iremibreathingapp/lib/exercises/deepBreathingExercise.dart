@@ -11,5 +11,4 @@ abstract class DeepBreathingExercise extends Exercise {
     "Exhale slowly through your mouth, feeling your belly fall and contract.",
     "Repeat this process for several minutes, focusing on the sensation of your breath moving in and out of your body."
   ];
-
 }
