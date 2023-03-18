@@ -1,16 +1,13 @@
-# iremibreathingapp
+# Iremi - Breathing App
+App against Anxiety that gives breathing exercises
 
-App agianst Anxiety that gives breathing exercises
+## Todo list:
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [x] Theme and logo
+- [ ] Breathing Exercises
+- [ ] Dot that fills when you need to inhale, and goes back to normal when you need to exhale
+- [ ] AI calming voice
+- [ ] User friendly interface
+- [ ] Login
+- [ ] Database
+- [ ] Add all the languages, translated by AI
