@@ -1,4 +1,5 @@
 abstract class Exercise {
+  late String name;
   late String description;
   late String notes;
   late List<String> steps;

@@ -2,6 +2,9 @@ import 'package:iremibreathingapp/exercises/exercise.dart';
 
 abstract class DeepBreathingExercise extends Exercise {
   @override
+  String name = "Deep Breathing Exercise";
+
+  @override
   List<String> steps = [
     "Find a quiet and comfortable place where you won't be disturbed.",
     "Sit or lie down in a comfortable position with your back straight and your shoulders relaxed.",

@@ -1,17 +1,22 @@
-import 'package:iremibreathingapp/exercises/customExercise.dart';
-import 'package:iremibreathingapp/exercises/deepBreathingExerciseBeginner.dart';
-import 'package:iremibreathingapp/exercises/exercise.dart';
+import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/pages/mainPage.dart';
+import 'package:iremibreathingapp/utils/theme.dart';
 
 void main() {
-  Exercise deepBreathing = DeepBreathingExerciseBeginner();
-  Exercise customBreathing = CustomExercise(["s1", "s2"], 1, 1, 1, 1, 3);
+  runApp(const MyApp());
+}
 
-  deepBreathing.tellSteps();
-  customBreathing.tellSteps();
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  print("deepBeginner");
-//  deepBreathing.start();
-
-  print("custom");
-  customBreathing.start();
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: myBluLightMaterial,
+      ),
+      home: const MainPage(),
+    );
+  }
 }

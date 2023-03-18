@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/exercises/deepBreathingExerciseBeginner.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+import '../utils/myUtils.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class DemoPage extends StatelessWidget {
+  const DemoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +34,10 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       _counter++;
     });
+
+    if (_counter > 5){
+      navigateToExercisePage(this, DeepBreathingExerciseBeginner());
+    }
   }
 
   @override
