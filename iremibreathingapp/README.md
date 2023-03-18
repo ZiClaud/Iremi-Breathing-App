@@ -11,3 +11,4 @@ App against Anxiety that gives breathing exercises
 - [ ] Login
 - [ ] Database
 - [ ] Add all the languages, translated by AI
+- [ ] Insert "Quicksand" font
