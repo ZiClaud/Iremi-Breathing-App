@@ -33,5 +33,7 @@ const Map<int, Color> myColorMapDark = {
   900: Color.fromRGBO(0, 124, 154, 1.0),
 };
 
-const MaterialColor myBluLightMaterial = MaterialColor(0xFF3B44AC, myColorMapLight);
-const MaterialColor myBluDarkMaterial = MaterialColor(0xFF3B44AC, myColorMapDark);
+const MaterialColor myBluLightMaterial =
+    MaterialColor(0xFF3B44AC, myColorMapLight);
+const MaterialColor myBluDarkMaterial =
+    MaterialColor(0xFF3B44AC, myColorMapDark);

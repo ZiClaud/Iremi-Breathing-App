@@ -9,6 +9,7 @@ App against Anxiety that gives breathing exercises
 - [ ] AI calming voice
 - [ ] User friendly interface
 - [ ] Login
-- [ ] Database
+- [ ] Database - Tracks progress and saved custom exercises
 - [ ] Add all the languages, translated by AI
 - [ ] Insert "Quicksand" font
+- [ ] Check that every breathing exercise has the right steps, description and timing
