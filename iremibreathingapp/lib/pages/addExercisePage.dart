@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
-import 'package:iremibreathingapp/pages/page.dart';
 
 import '../utils/dfaultWidget.dart';
-import '../utils/myUtils.dart';
 import '../utils/theme.dart';
 
 class addCustomExercise extends StatefulWidget {

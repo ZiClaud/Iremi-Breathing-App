@@ -18,16 +18,15 @@ class _ExercisePageState extends State<ExercisePage> {
   Widget build(BuildContext context) {
     Exercise exercise = widget.exercise;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(exercise.name),
-        backgroundColor: myBluLight,
-      ),
-      body: FourStageAnimation(
-        durationA: exercise.inhaleTime,
-        durationB: exercise.holdMiddleTime,
-        durationC: exercise.exhaleTime,
-        durationD: exercise.holdEndTime,
-      )
-    );
+        appBar: AppBar(
+          title: Text(exercise.name),
+          backgroundColor: myBluLight,
+        ),
+        body: FourStageAnimation(
+          durationA: exercise.inhaleTime,
+          durationB: exercise.holdMiddleTime,
+          durationC: exercise.exhaleTime,
+          durationD: exercise.holdEndTime,
+        ));
   }
 }
