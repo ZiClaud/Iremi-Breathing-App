@@ -1,9 +1,11 @@
 import 'package:iremibreathingapp/basics/exercises/b478Exercise.dart';
+import 'package:iremibreathingapp/basics/exercises/boxBreathingExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 
+import '../basics/exercises/deepBreathingExerciseAvanced.dart';
 import '../basics/exercises/deepBreathingExerciseIntermediate.dart';
 
 class Getters {
@@ -11,7 +13,9 @@ class Getters {
     List<Exercise> ex = [
       DeepBreathingExerciseBeginner(),
       DeepBreathingExerciseIntermediate(),
+      DeepBreathingExerciseAvanced(),
       B478Exercise(),
+      BoxBreathingExercise(),
       /*
       CustomExercise("0001", "", "", [""], 0, 0, 0, 1, 1),
       CustomExercise("0010", "", "", [""], 0, 0, 1, 0, 1),
