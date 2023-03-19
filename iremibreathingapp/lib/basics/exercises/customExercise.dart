@@ -14,25 +14,33 @@ class CustomExercise extends Exercise {
   List<String> steps;
 
   @override
-  late Duration inhaleTime;
+  late Duration inhaleDuration;
 
   @override
-  late Duration holdMiddleTime;
+  late Duration holdMiddleDuration;
 
   @override
-  late Duration exhaleTime;
+  late Duration exhaleDuration;
 
   @override
-  late Duration holdEndTime;
+  late Duration holdEndDuration;
 
   @override
   int times;
 
   CustomExercise(this.name, this.description, this.notes, this.steps,
-      inhaleTime, holdMiddleTime, exhaleTime, holdEndTime, this.times) {
-    this.inhaleTime = Duration(seconds: inhaleTime);
-    this.holdMiddleTime = Duration(seconds: holdMiddleTime);
-    this.exhaleTime = Duration(seconds: exhaleTime);
-    this.holdEndTime = Duration(seconds: holdEndTime);
+      this.times, inhaleTime, holdMiddleTime, exhaleTime, holdEndTime,
+      {inhaleTimeMs = 0,
+      holdMiddleTimeMs = 0,
+      exhaleTimeMs = 0,
+      holdEndTimeMs = 0}) {
+    this.inhaleDuration =
+        Duration(seconds: inhaleTime, milliseconds: inhaleTimeMs);
+    this.holdMiddleDuration =
+        Duration(seconds: holdMiddleTime, milliseconds: holdMiddleTimeMs);
+    this.exhaleDuration =
+        Duration(seconds: exhaleTime, milliseconds: exhaleTimeMs);
+    this.holdEndDuration =
+        Duration(seconds: holdEndTime, milliseconds: holdEndTimeMs);
   }
 }

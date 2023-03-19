@@ -5,16 +5,16 @@ class DeepBreathingExerciseIntermediate extends DeepBreathingExercise {
   String name = "Deep Breathing Intermediate";
 
   @override
-  Duration inhaleTime = Duration(seconds: 4);
+  Duration inhaleDuration = Duration(seconds: 4);
 
   @override
-  Duration holdMiddleTime = Duration(seconds: 4);
+  Duration holdMiddleDuration = Duration(seconds: 4);
 
   @override
-  Duration exhaleTime = Duration(seconds: 4);
+  Duration exhaleDuration = Duration(seconds: 4);
 
   @override
-  Duration holdEndTime = Duration(seconds: 4);
+  Duration holdEndDuration = Duration(seconds: 4);
 
   @override
   int times = 5;

@@ -3,6 +3,7 @@ import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/pages/addExercisePage.dart';
 import 'package:iremibreathingapp/pages/profilePage.dart';
 import '../database/getters.dart';
+import '../utils/myUtils.dart';
 import '../utils/theme.dart';
 import 'exerciseDetailsPage.dart';
 import 'exercisePage.dart';
@@ -40,7 +41,7 @@ class _MainPageState extends State<MainPage> {
               ),
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ProfilePage()));
+                    MaterialPageRoute(builder: (context) => UserPage()));
               },
             ),
           ]),
@@ -58,7 +59,7 @@ class _MainPageState extends State<MainPage> {
               ),
               DataColumn(
                 label: Text(
-                  'Time',
+                  'Duration',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0),
                 ),
               ),
@@ -76,7 +77,7 @@ class _MainPageState extends State<MainPage> {
                         },
                         cells: <DataCell>[
                           DataCell(Text(exercise.name)),
-                          DataCell(Text("${exercise.getTime().inSeconds}s")),
+                          DataCell(Text(getTimeString(exercise))),
                         ])))
                 .toList(),
           );

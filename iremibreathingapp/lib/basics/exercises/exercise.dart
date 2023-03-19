@@ -3,10 +3,10 @@ abstract class Exercise {
   late String description;
   late String notes;
   late List<String> steps;
-  late Duration inhaleTime;
-  late Duration holdMiddleTime;
-  late Duration exhaleTime;
-  late Duration holdEndTime;
+  late Duration inhaleDuration;
+  late Duration holdMiddleDuration;
+  late Duration exhaleDuration;
+  late Duration holdEndDuration;
   late int times;
 
   void tellSteps() {
@@ -22,18 +22,18 @@ abstract class Exercise {
   void start2(int times) async {
     while (times-- > 0) {
       print('inhale');
-      await Future.delayed(inhaleTime);
+      await Future.delayed(inhaleDuration);
       print('hold');
-      await Future.delayed(holdMiddleTime);
+      await Future.delayed(holdMiddleDuration);
       print('exhale');
-      await Future.delayed(exhaleTime);
+      await Future.delayed(exhaleDuration);
       print('hold');
-      await Future.delayed(holdEndTime);
+      await Future.delayed(holdEndDuration);
     }
   }
 
   Duration getTime(){
-    return (inhaleTime + holdMiddleTime + exhaleTime + holdEndTime) * times;
+    return (inhaleDuration + holdMiddleDuration + exhaleDuration + holdEndDuration) * times;
   }
 
 /*

@@ -23,10 +23,10 @@ class _ExercisePageState extends State<ExercisePage> {
           backgroundColor: myBluLight,
         ),
         body: FourStageAnimation(
-          durationA: exercise.inhaleTime,
-          durationB: exercise.holdMiddleTime,
-          durationC: exercise.exhaleTime,
-          durationD: exercise.holdEndTime,
+          durationA: exercise.inhaleDuration,
+          durationB: exercise.holdMiddleDuration,
+          durationC: exercise.exhaleDuration,
+          durationD: exercise.holdEndDuration,
         ));
   }
 }

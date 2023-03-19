@@ -60,17 +60,17 @@ class _FourStageAnimationState extends State<FourStageAnimation>
     );
     _animation = TweenSequence([
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.zero, end: Size.square(100)),
+        tween: Tween<Size>(begin: Size.zero, end: Size.square(200)),
         weight: widget.durationA.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.square(100), end: Size.square(100)),
+        tween: Tween<Size>(begin: Size.square(200), end: Size.square(200)),
         weight: widget.durationB.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.square(100), end: Size.zero),
+        tween: Tween<Size>(begin: Size.square(200), end: Size.zero),
         weight: widget.durationC.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
