@@ -17,5 +17,5 @@ class DeepBreathingExerciseAvanced extends DeepBreathingExercise {
   Duration holdEndDuration = Duration(seconds: 4);
 
   @override
-  int times = 25;
+  int times = 30;
 }
