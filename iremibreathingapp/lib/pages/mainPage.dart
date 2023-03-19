@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/pages/addExercisePage.dart';
+import 'package:iremibreathingapp/pages/profilePage.dart';
 import '../database/getters.dart';
 import '../utils/theme.dart';
 import 'exercisePage.dart';
@@ -29,8 +30,7 @@ class _MainPageState extends State<MainPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            const addCustomExercise())); // TODO: Change
+                        builder: (context) => const addCustomExercise()));
               },
             ),
             IconButton(
@@ -38,7 +38,8 @@ class _MainPageState extends State<MainPage> {
                 Icons.person,
               ),
               onPressed: () {
-                // TODO?
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ProfilePage()));
               },
             ),
           ]),
