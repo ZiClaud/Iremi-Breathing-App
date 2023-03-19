@@ -22,7 +22,12 @@ class _ExercisePageState extends State<ExercisePage> {
         title: Text(exercise.name),
         backgroundColor: myBluLight,
       ),
-      body: BallAnimation(),
+      body: BallAnimation(
+        expansionDuration: exercise.inhaleTime,
+        holdMiddleDuration: exercise.holdMiddleTime,
+        contractionDuration: exercise.exhaleTime,
+        holdEndDuration: exercise.holdEndTime,
+      ),
     );
   }
 }
