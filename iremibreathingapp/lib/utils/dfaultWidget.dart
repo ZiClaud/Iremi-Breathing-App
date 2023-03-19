@@ -8,6 +8,7 @@ AppBar defaultAppBar(String title) {
   );
 }
 
+
 class BallAnimation extends StatefulWidget {
   final Duration expansionDuration;
   final Duration holdMiddleDuration;
@@ -40,15 +41,31 @@ class _BallAnimationState extends State<BallAnimation>
           widget.holdEndDuration,
       vsync: this,
     );
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
-      parent: _controller,
-      curve: Interval(
-        0.0,
-        (widget.expansionDuration.inMilliseconds /
-            _controller.duration!.inMilliseconds),
-        curve: Curves.easeInOut,
-      ),
-    ));
+    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      _controller.drive(CurveTween(
+        curve: Interval(
+          0.0,
+          widget.expansionDuration.inMilliseconds /
+              _controller.duration!.inMilliseconds,
+          curve: Curves.easeInOut,
+        ),
+      )).drive(CurveTween(
+        curve: Interval(
+          (widget.expansionDuration.inMilliseconds + widget.holdMiddleDuration.inMilliseconds) /
+              _controller.duration!.inMilliseconds,
+          (widget.expansionDuration.inMilliseconds + widget.holdMiddleDuration.inMilliseconds + widget.contractionDuration.inMilliseconds) /
+              _controller.duration!.inMilliseconds,
+          curve: Curves.easeInOut,
+        ),
+      )).drive(CurveTween(
+        curve: Interval(
+          (widget.expansionDuration.inMilliseconds + widget.holdMiddleDuration.inMilliseconds + widget.contractionDuration.inMilliseconds) /
+              _controller.duration!.inMilliseconds,
+          1.0,
+          curve: Curves.easeInOut,
+        ),
+      )),
+    );
     _controller.repeat(reverse: true);
   }
 
