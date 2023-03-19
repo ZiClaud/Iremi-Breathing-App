@@ -3,11 +3,12 @@ class MyUser {
   String name;
   String? surname;
   String? sex;
-  String exerciseHistory;
   String goal;
-  String settings;
   String badges;
+  String language;
+  String exerciseHistory;
+  String settings;
 
-  MyUser(this.username, this.name, this.surname, this.sex, this.exerciseHistory,
-      this.goal, this.settings, this.badges);
+  MyUser(this.username, this.name, this.surname, this.sex, this.goal,
+      this.badges, this.language, this.exerciseHistory, this.settings);
 }
