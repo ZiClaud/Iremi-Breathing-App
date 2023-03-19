@@ -1,6 +1,7 @@
 import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
+import 'package:iremibreathingapp/basics/user.dart';
 
 import '../basics/exercises/deepBreathingExerciseIntermediate.dart';
 
@@ -22,5 +23,9 @@ class Getters {
     ];
 
     return ex;
+  }
+  
+  static MyUser getUser(){
+    return MyUser("ZiCli", "name", "surname", "sex", "exerciseHistory", "goal", "settings", "badges");
   }
 }
