@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/mainPage.dart';
+import 'package:iremibreathingapp/pages/oldMainPage.dart';
+import 'package:iremibreathingapp/pages/page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: myBluLightMaterial,
       ),
-      home: const MainPage(),
+      home: const MainPage(), // TODO: Only change this
     );
   }
 }

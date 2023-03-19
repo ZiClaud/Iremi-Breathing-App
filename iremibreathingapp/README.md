@@ -9,7 +9,7 @@ App against Anxiety that gives breathing exercises
 - [x] Way to know for how long to inhale, exhale and hold
 - [ ] Dot that fills when you need to inhale, and goes back to normal when you need to exhale
 - [ ] AI calming voice
-- [ ] Way to choose what exercise to do
+- [x] Way to choose what exercise to do
 - [ ] Documentation, tips and tricks
 - [ ] User friendly interface
 - [ ] Login

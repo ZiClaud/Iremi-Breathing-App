@@ -32,6 +32,10 @@ abstract class Exercise {
     }
   }
 
+  Duration getTime(){
+    return (inhaleTime + holdMiddleTime + exhaleTime + holdEndTime) * times;
+  }
+
 /*
   void start2(int times) { // TODO: Put Async somewhere
     if (times > 0) {

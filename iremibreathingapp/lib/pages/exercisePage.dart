@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/exercises/exercise.dart';
 
+import '../utils/dfaultWidget.dart';
+import '../utils/theme.dart';
+
 class ExercisePage extends StatefulWidget {
   Exercise exercise;
+
   ExercisePage({Key? key, required Exercise this.exercise}) : super(key: key);
 
   @override
@@ -16,7 +20,9 @@ class _ExercisePageState extends State<ExercisePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(exercise.name),
+        backgroundColor: myBluLight,
       ),
+      body: BallAnimation(),
     );
   }
 }
