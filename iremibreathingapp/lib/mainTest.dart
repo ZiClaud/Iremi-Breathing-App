@@ -1,6 +1,6 @@
-import 'package:iremibreathingapp/exercises/customExercise.dart';
-import 'package:iremibreathingapp/exercises/deepBreathingExerciseBeginner.dart';
-import 'package:iremibreathingapp/exercises/exercise.dart';
+import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
+import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
+import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 
 void main() {
   Exercise deepBreathing = DeepBreathingExerciseBeginner();

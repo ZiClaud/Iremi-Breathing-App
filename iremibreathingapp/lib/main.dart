@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: myBluLightMaterial,
       ),
-      home: const MainPage(), // TODO: Only change this
+      home: const MainPage(),
     );
   }
 }
