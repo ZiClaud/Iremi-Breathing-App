@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
-import 'package:iremibreathingapp/pages/oldMainPage.dart';
+import 'package:iremibreathingapp/pages/addExercisePage.dart';
 import '../database/getters.dart';
 import '../utils/theme.dart';
 import 'exercisePage.dart';

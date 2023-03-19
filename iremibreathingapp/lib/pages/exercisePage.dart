@@ -31,12 +31,3 @@ class _ExercisePageState extends State<ExercisePage> {
     );
   }
 }
-
-/*
-BallAnimation(
-        expansionDuration: exercise.inhaleTime,
-        holdMiddleDuration: exercise.holdMiddleTime,
-        contractionDuration: exercise.exhaleTime,
-        holdEndDuration: exercise.holdEndTime,
-      ),
- */
