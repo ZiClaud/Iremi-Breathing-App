@@ -31,12 +31,14 @@ class FourStageAnimation extends StatefulWidget {
   final Duration durationB;
   final Duration durationC;
   final Duration durationD;
+  final int times;
 
   FourStageAnimation({
     required this.durationA,
     required this.durationB,
     required this.durationC,
     required this.durationD,
+    required this.times,
   });
 
   @override
@@ -47,6 +49,7 @@ class _FourStageAnimationState extends State<FourStageAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Size> _animation;
+  int _counter = 0;
 
   @override
   void initState() {
@@ -58,6 +61,7 @@ class _FourStageAnimationState extends State<FourStageAnimation>
           widget.durationC +
           widget.durationD,
     );
+
     _animation = TweenSequence([
       TweenSequenceItem(
         tween: Tween<Size>(begin: Size.zero, end: Size.square(200)),
@@ -80,6 +84,20 @@ class _FourStageAnimationState extends State<FourStageAnimation>
             _controller.duration!.inMilliseconds.toDouble(),
       ),
     ]).animate(_controller);
+/*
+TODO: Make it work
+    _controller.addStatusListener((status) {
+      print(status);
+      if (status == AnimationStatus.completed) {
+        if (_counter < widget.times) {
+          _counter++;
+          _controller.repeat();
+        } else {
+          _controller.stop();
+        }
+      }
+    });
+*/
     _controller.repeat();
   }
 
