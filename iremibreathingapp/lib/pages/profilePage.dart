@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 
 import '../basics/user.dart';
 import '../database/getters.dart';
-import '../utils/dfaultWidget.dart';
+import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -21,19 +20,31 @@ class _ProfilePageState extends State<ProfilePage> {
     MyUser user = widget.user;
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Profile"),
-          backgroundColor: myBluLight,
-        ),
+            title: const Text("Profile"),
+            backgroundColor: myBluLight,
+            actions: [
+              IconButton(
+                icon: const Icon(
+                  Icons.edit,
+                ),
+                onPressed: () {
+                  null; // TODO
+                },
+              ),
+            ]),
         body: ListView(
           children: [
-            Text(user.username),
-            Text(user.name),
-            Text(user.surname!),
-            Text(user.sex!),
-            Text(user.exerciseHistory),
-            Text(user.goal),
-            Text(user.settings),
-            Text(user.badges),
+            defaultTextFormField("Username", user.username, Icons.person),
+            defaultTextFormField("Name", user.name, Icons.nest_cam_wired_stand),
+            defaultTextFormField("Surname", user.surname!, Icons.surfing),
+            defaultTextFormField("Sex", user.sex!, Icons.male),
+            defaultTextFormField("Goal", user.goal, Icons.panorama_fish_eye),
+            defaultTextFormField("Badges", user.badges, Icons.badge),
+            defaultTextFormField(
+                "Language", user.language, Icons.laptop_chromebook_outlined),
+            defaultTextFormField(
+                "ExerciseHistory", user.exerciseHistory, Icons.book),
+            defaultTextFormField("Settings", user.settings, Icons.settings),
           ],
         ));
   }

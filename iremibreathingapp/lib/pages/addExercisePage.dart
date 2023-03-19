@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../utils/dfaultWidget.dart';
+import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
 
 class addCustomExercise extends StatefulWidget {

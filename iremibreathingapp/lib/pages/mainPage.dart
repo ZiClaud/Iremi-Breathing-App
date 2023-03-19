@@ -4,6 +4,7 @@ import 'package:iremibreathingapp/pages/addExercisePage.dart';
 import 'package:iremibreathingapp/pages/profilePage.dart';
 import '../database/getters.dart';
 import '../utils/theme.dart';
+import 'exerciseDetailsPage.dart';
 import 'exercisePage.dart';
 
 class MainPage extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MainPageState extends State<MainPage> {
             columns: const <DataColumn>[
               DataColumn(
                 label: Text(
-                  'Nome',
+                  'Exercise',
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0),
                 ),
               ),
@@ -66,10 +67,12 @@ class _MainPageState extends State<MainPage> {
                 .map(((exercise) => DataRow(
                         onSelectChanged: (bool) {
                           Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      ExercisePage(exercise: exercise)));
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ExerciseDetailsPage(exercise: exercise),
+                            ),
+                          );
                         },
                         cells: <DataCell>[
                           DataCell(Text(exercise.name)),

@@ -13,8 +13,14 @@ App against Anxiety that gives breathing exercises
 - [ ] Documentation, tips and tricks
 - [ ] User friendly interface
 - [ ] Login
+- [x] Add profile page
+- [ ] Add badges
+- [ ] Add settings
 - [ ] Database - Tracks progress and saved custom exercises - SqlLite
 - [ ] Add all the languages, translated using translator API
 - [ ] Insert "Quicksand" font
 - [ ] Check that every breathing exercise has the right steps, description and timing
 - [ ] Add chill music
+
+# Unsure
+- [ ] Loading screen with tips

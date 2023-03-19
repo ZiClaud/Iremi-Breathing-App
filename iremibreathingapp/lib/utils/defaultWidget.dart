@@ -8,6 +8,23 @@ AppBar defaultAppBar(String title) {
   );
 }
 
+TextFormField defaultTextFormField(String lable, String text, IconData icon) {
+  return TextFormField(
+    enabled: false,
+    initialValue: text,
+    decoration: InputDecoration(
+        label: Text(lable),
+        prefixIcon: Icon(
+          icon,
+          color: myBluLight,
+        ),
+        labelStyle: TextStyle(fontSize: 15, color: Colors.black)),
+  );
+}
+
+ButtonStyle defaultButtonStyle() {
+  return ButtonStyle();
+}
 
 class FourStageAnimation extends StatefulWidget {
   final Duration durationA;
