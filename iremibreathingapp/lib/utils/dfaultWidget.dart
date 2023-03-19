@@ -9,63 +9,60 @@ AppBar defaultAppBar(String title) {
 }
 
 
-class BallAnimation extends StatefulWidget {
-  final Duration expansionDuration;
-  final Duration holdMiddleDuration;
-  final Duration contractionDuration;
-  final Duration holdEndDuration;
+class FourStageAnimation extends StatefulWidget {
+  final Duration durationA;
+  final Duration durationB;
+  final Duration durationC;
+  final Duration durationD;
 
-  BallAnimation({
-    required this.expansionDuration,
-    required this.holdMiddleDuration,
-    required this.contractionDuration,
-    required this.holdEndDuration,
+  FourStageAnimation({
+    required this.durationA,
+    required this.durationB,
+    required this.durationC,
+    required this.durationD,
   });
 
   @override
-  _BallAnimationState createState() => _BallAnimationState();
+  _FourStageAnimationState createState() => _FourStageAnimationState();
 }
 
-class _BallAnimationState extends State<BallAnimation>
+class _FourStageAnimationState extends State<FourStageAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _animation;
+  late Animation<Size> _animation;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: widget.expansionDuration +
-          widget.holdMiddleDuration +
-          widget.contractionDuration +
-          widget.holdEndDuration,
       vsync: this,
+      duration: widget.durationA +
+          widget.durationB +
+          widget.durationC +
+          widget.durationD,
     );
-    _animation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      _controller.drive(CurveTween(
-        curve: Interval(
-          0.0,
-          widget.expansionDuration.inMilliseconds /
-              _controller.duration!.inMilliseconds,
-          curve: Curves.easeInOut,
-        ),
-      )).drive(CurveTween(
-        curve: Interval(
-          (widget.expansionDuration.inMilliseconds + widget.holdMiddleDuration.inMilliseconds) /
-              _controller.duration!.inMilliseconds,
-          (widget.expansionDuration.inMilliseconds + widget.holdMiddleDuration.inMilliseconds + widget.contractionDuration.inMilliseconds) /
-              _controller.duration!.inMilliseconds,
-          curve: Curves.easeInOut,
-        ),
-      )).drive(CurveTween(
-        curve: Interval(
-          (widget.expansionDuration.inMilliseconds + widget.holdMiddleDuration.inMilliseconds + widget.contractionDuration.inMilliseconds) /
-              _controller.duration!.inMilliseconds,
-          1.0,
-          curve: Curves.easeInOut,
-        ),
-      )),
-    );
+    _animation = TweenSequence([
+      TweenSequenceItem(
+        tween: Tween<Size>(begin: Size.zero, end: Size.square(100)),
+        weight: widget.durationA.inMilliseconds.toDouble() /
+            _controller.duration!.inMilliseconds.toDouble(),
+      ),
+      TweenSequenceItem(
+        tween: Tween<Size>(begin: Size.square(100), end: Size.square(100)),
+        weight: widget.durationB.inMilliseconds.toDouble() /
+            _controller.duration!.inMilliseconds.toDouble(),
+      ),
+      TweenSequenceItem(
+        tween: Tween<Size>(begin: Size.square(100), end: Size.zero),
+        weight: widget.durationC.inMilliseconds.toDouble() /
+            _controller.duration!.inMilliseconds.toDouble(),
+      ),
+      TweenSequenceItem(
+        tween: Tween<Size>(begin: Size.zero, end: Size.zero),
+        weight: widget.durationD.inMilliseconds.toDouble() /
+            _controller.duration!.inMilliseconds.toDouble(),
+      ),
+    ]).animate(_controller);
     _controller.repeat(reverse: true);
   }
 
@@ -78,48 +75,19 @@ class _BallAnimationState extends State<BallAnimation>
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SizedBox.fromSize(
-        size: Size.square(100),
-        child: AnimatedBuilder(
-          animation: _animation,
-          builder: (BuildContext context, Widget? child) {
-            return CustomPaint(
-              painter: BallPainter(
-                _animation.value,
-                Colors.blue,
-                Colors.red,
-              ),
-            );
-          },
-        ),
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (BuildContext context, Widget? child) {
+          return Container(
+            width: _animation.value.width,
+            height: _animation.value.height,
+            decoration: BoxDecoration(
+              color: myBluLight,
+              shape: BoxShape.circle,
+            ),
+          );
+        },
       ),
     );
   }
-}
-
-class BallPainter extends CustomPainter {
-  final double value;
-  final Color color;
-  final Color backgroundColor;
-
-  BallPainter(this.value, this.color, this.backgroundColor);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final backgroundPaint = Paint()..color = backgroundColor;
-    final fillPaint = Paint()..color = color;
-    canvas.drawCircle(
-      Offset(size.width / 2, size.height / 2),
-      size.width / 2,
-      backgroundPaint,
-    );
-    canvas.drawCircle(
-      Offset(size.width / 2, size.height / 2),
-      size.width / 2 * value,
-      fillPaint,
-    );
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }
