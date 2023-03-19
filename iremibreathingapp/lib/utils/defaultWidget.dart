@@ -84,21 +84,26 @@ class _FourStageAnimationState extends State<FourStageAnimation>
             _controller.duration!.inMilliseconds.toDouble(),
       ),
     ]).animate(_controller);
-/*
-TODO: Make it work
-    _controller.addStatusListener((status) {
-      print(status);
-      if (status == AnimationStatus.completed) {
-        if (_counter < widget.times) {
-          _counter++;
-          _controller.repeat();
-        } else {
-          _controller.stop();
-        }
+
+    // Start the loop
+    _loopAnimation();
+  }
+
+  void _loopAnimation() async {
+    while (_counter < widget.times) {
+      // Run the animation once
+      await _controller.forward().orCancel;
+
+      // Increment the counter
+      _counter++;
+
+      // Reset the animation if it's not the last iteration
+      if (_counter < widget.times) {
+        _controller.reset();
+      } else {
+        print("done");
       }
-    });
-*/
-    _controller.repeat();
+    }
   }
 
   @override
@@ -117,7 +122,7 @@ TODO: Make it work
             width: _animation.value.width,
             height: _animation.value.height,
             decoration: BoxDecoration(
-              color: myBluLight,
+              color: Colors.lightBlueAccent,
               shape: BoxShape.circle,
             ),
           );
