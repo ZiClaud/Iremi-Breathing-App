@@ -20,9 +20,9 @@ class Getters {
       */
       CustomExercise("1111", "", "", [""], 1, 1, 1, 1, 1),
       CustomExercise("1234", "", "", ["s1", "s2"], 1, 2, 3, 4, 5),
-      CustomExercise("Milliseconds", "", "", ["s1", "s2"], 1, 1, 1, 1, 10,
+      CustomExercise("Milliseconds", "", "", ["s1", "s2"], 10, 1, 1, 1, 1,
           inhaleTimeMs: 500),
-      CustomExercise("Milliseconds 2", "", "", ["s1", "s2"], 1, 1, 1, 1, 10,
+      CustomExercise("Milliseconds 2", "", "", ["s1", "s2"], 5, 1, 1, 1, 1,
           inhaleTimeMs: 500,
           holdMiddleTimeMs: 500,
           exhaleTimeMs: 500,

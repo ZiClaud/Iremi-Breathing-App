@@ -27,6 +27,7 @@ class _ExercisePageState extends State<ExercisePage> {
           durationB: exercise.holdMiddleDuration,
           durationC: exercise.exhaleDuration,
           durationD: exercise.holdEndDuration,
+          times: exercise.times,
         ));
   }
 }
