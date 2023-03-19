@@ -5,16 +5,16 @@ import '../database/getters.dart';
 import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
 
-class ProfilePage extends StatefulWidget {
+class UserPage extends StatefulWidget {
   MyUser user = Getters.getUser();
 
-  ProfilePage({Key? key}) : super(key: key);
+  UserPage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<UserPage> createState() => _UserPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     MyUser user = widget.user;
@@ -42,6 +42,8 @@ class _ProfilePageState extends State<ProfilePage> {
             defaultTextFormField("Badges", user.badges, Icons.badge),
             defaultTextFormField(
                 "Language", user.language, Icons.laptop_chromebook_outlined),
+            defaultTextFormField(
+                "Darkmode", user.darkmode, Icons.dark_mode),
             defaultTextFormField(
                 "ExerciseHistory", user.exerciseHistory, Icons.book),
             defaultTextFormField("Settings", user.settings, Icons.settings),

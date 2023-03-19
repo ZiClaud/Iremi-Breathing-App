@@ -20,7 +20,8 @@ App against Anxiety that gives breathing exercises
 - [ ] Add all the languages, translated using translator API
 - [ ] Insert "Quicksand" font
 - [ ] Check that every breathing exercise has the right steps, description and timing
-- [ ] Add chill music
+- [ ] Add darkmode
 
 # Unsure
+- [ ] Add chill music
 - [ ] Loading screen with tips

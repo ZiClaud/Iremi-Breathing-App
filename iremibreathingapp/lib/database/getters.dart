@@ -20,6 +20,13 @@ class Getters {
       */
       CustomExercise("1111", "", "", [""], 1, 1, 1, 1, 1),
       CustomExercise("1234", "", "", ["s1", "s2"], 1, 2, 3, 4, 5),
+      CustomExercise("Milliseconds", "", "", ["s1", "s2"], 1, 1, 1, 1, 10,
+          inhaleTimeMs: 500),
+      CustomExercise("Milliseconds 2", "", "", ["s1", "s2"], 1, 1, 1, 1, 10,
+          inhaleTimeMs: 500,
+          holdMiddleTimeMs: 500,
+          exhaleTimeMs: 500,
+          holdEndTimeMs: 500),
     ];
 
     return ex;
@@ -27,6 +34,6 @@ class Getters {
   
   static MyUser getUser(){
     return MyUser("ZiCli", "Claudio", "Di Maio", "M",
-        "5 min - day", "Badges", "Italian", "Exercise History", "Settings");
+        "5 min - day", "Badges", "Italian", "Off", "Exercise History", "Settings");
   }
 }
