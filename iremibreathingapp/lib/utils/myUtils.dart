@@ -27,16 +27,7 @@ void navigateToExercisePage(context, Exercise exercise) {
 }
 
 String getDurationString(Exercise exercise) {
-  String ris =
-      "${exercise.inhaleDuration.inSeconds}s ${exercise.inhaleDuration.inMilliseconds % 1000}ms, ";
-  ris =
-      "$ris ${exercise.holdMiddleDuration.inSeconds}s, ${exercise.holdMiddleDuration.inMilliseconds % 1000}ms, ";
-  ris =
-      "$ris ${exercise.exhaleDuration.inSeconds}s, ${exercise.exhaleDuration.inMilliseconds % 1000}ms, ";
-  ris =
-      "$ris ${exercise.holdEndDuration.inSeconds}s, ${exercise.holdEndDuration.inMilliseconds % 1000}ms";
-
-  return ris;
+  return "${exercise.inhaleDuration.inSeconds}s ${exercise.inhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdMiddleDuration.inSeconds}s, ${exercise.holdMiddleDuration.inMilliseconds % 1000}ms, ${exercise.exhaleDuration.inSeconds}s, ${exercise.exhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdEndDuration.inSeconds}s, ${exercise.holdEndDuration.inMilliseconds % 1000}ms";
 }
 
 String getTimeString(Exercise exercise) {

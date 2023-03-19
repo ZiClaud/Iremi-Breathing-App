@@ -16,8 +16,8 @@ abstract class DeepBreathingExercise extends Exercise {
   ];
 
   @override
-  String description = "Descrizione";
+  String description = "Also known as diaphragmatic breathing or belly breathing, involves taking slow, deep breaths through your nose and filling your lungs completely with air, allowing your abdomen to expand and contract with each inhale and exhale. It's a natural way of breathing that can help to calm the mind and body, reduce stress and anxiety, and promote relaxation.";
 
   @override
-  String notes = "Note";
+  String notes = "Deep breathing can be done for as long as you like, but it's often recommended to start with five to ten minutes of practice and gradually increase the duration as you become more comfortable with the technique. You can practice deep breathing several times a day, whenever you feel stressed or anxious, or as a daily relaxation practice.";
 }
