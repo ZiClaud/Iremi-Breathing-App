@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/exercises/deepBreathingExerciseBeginner.dart';
+import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
 import 'package:iremibreathingapp/pages/page.dart';
 
 import '../utils/dfaultWidget.dart';
 import '../utils/myUtils.dart';
 import '../utils/theme.dart';
 
-class OldMainPage extends StatefulWidget {
-  const OldMainPage({Key? key}) : super(key: key);
+class addCustomExercise extends StatefulWidget {
+  const addCustomExercise({Key? key}) : super(key: key);
 
   @override
-  State<OldMainPage> createState() => _OldMainPageState();
+  State<addCustomExercise> createState() => _addCustomExerciseState();
 }
 
-class _OldMainPageState extends State<OldMainPage> {
+class _addCustomExerciseState extends State<addCustomExercise> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: defaultAppBar("Welcome to Iremi"),
-      body: Center(
-        child: null//BallAnimation()
-      ),
+      appBar: defaultAppBar("Add custom exercise!"),
+      body: Center(child: Text("Page is in WIP!")),
       floatingActionButton: FloatingActionButton(
         onPressed: () => {
-          navigateToExercisePage(this, DeepBreathingExerciseBeginner())
+          null //TODO: Change
         },
         foregroundColor: myWhite,
         backgroundColor: myBluLight,
-        tooltip: 'Increment',
+        tooltip: 'Next',
         child: Icon(Icons.navigate_next),
       ),
     );
