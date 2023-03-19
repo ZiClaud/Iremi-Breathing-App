@@ -63,7 +63,7 @@ class _FourStageAnimationState extends State<FourStageAnimation>
             _controller.duration!.inMilliseconds.toDouble(),
       ),
     ]).animate(_controller);
-    _controller.repeat(reverse: true);
+    _controller.repeat();
   }
 
   @override
