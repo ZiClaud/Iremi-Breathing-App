@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
+import 'package:iremibreathingapp/database/dbTestShowPage.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPage.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
 
-import '../database/dbTestPage.dart';
+import '../database/dbTestAddPage.dart';
 import '../database/getters.dart';
 import '../utils/myUtils.dart';
 import '../utils/theme.dart';
@@ -25,6 +26,17 @@ class _MainPageState extends State<MainPage> {
           title: Text("Welcome to Iremi"),
           backgroundColor: myBluLight,
           actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.developer_mode,
+              ),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TestDBShowUserPage(userId: 1)));
+              },
+            ),
             IconButton(
               icon: const Icon(
                 Icons.cloud_circle,

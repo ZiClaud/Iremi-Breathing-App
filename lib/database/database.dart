@@ -32,11 +32,12 @@ class MyDatabase {
     await db.execute('''
 CREATE TABLE $tableUser ( 
   ${UserFields.id} $idType, 
+  ${UserFields.username} $textType,
   ${UserFields.name} $textType,
   ${UserFields.surname} $textType,
   ${UserFields.sex} $textType,
   ${UserFields.goal} $textType,
-  ${UserFields.badges} $textType,
+  ${UserFields.badges} $textType
   )
 ''');
   }
