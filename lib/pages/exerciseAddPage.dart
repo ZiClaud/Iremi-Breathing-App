@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 
 import '../utils/defaultWidget.dart';
 
-class exerciseAddPage extends StatefulWidget {
-  const exerciseAddPage({Key? key}) : super(key: key);
+class ExerciseAddPage extends StatefulWidget {
+  const ExerciseAddPage({Key? key}) : super(key: key);
 
   @override
-  State<exerciseAddPage> createState() => _exerciseAddPageState();
+  State<ExerciseAddPage> createState() => _ExerciseAddPageState();
 }
 
-class _exerciseAddPageState extends State<exerciseAddPage> {
+class _ExerciseAddPageState extends State<ExerciseAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
