@@ -3,7 +3,7 @@ import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPage.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
 
-import '../database/database.dart';
+import '../database/dbTestPage.dart';
 import '../database/getters.dart';
 import '../utils/myUtils.dart';
 import '../utils/theme.dart';
@@ -30,7 +30,10 @@ class _MainPageState extends State<MainPage> {
                 Icons.cloud_circle,
               ),
               onPressed: () {
-//                databaseTest();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => TestDBAddUserPage()));
               },
             ),
             IconButton(

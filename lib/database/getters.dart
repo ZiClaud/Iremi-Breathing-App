@@ -39,8 +39,13 @@ class Getters {
   }
 
   static MyUser getUser() {
-    return MyUser("ZiCli", "Claudio", "Di Maio", "M", "5 min - day", "Badges",
-        "Exercise History");
+    return MyUser(
+        username: "ZiCli",
+        name: "Claudio",
+        surname: "Di Maio",
+        sex: "M",
+        goal: "5 min - day",
+        badges: "Badges");
   }
 
   static MySettings getSettings() {
