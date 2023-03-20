@@ -3,6 +3,7 @@ import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPage.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
 
+import '../database/database.dart';
 import '../database/getters.dart';
 import '../utils/myUtils.dart';
 import '../utils/theme.dart';
@@ -24,6 +25,14 @@ class _MainPageState extends State<MainPage> {
           title: Text("Welcome to Iremi"),
           backgroundColor: myBluLight,
           actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.cloud_circle,
+              ),
+              onPressed: () {
+//                databaseTest();
+              },
+            ),
             IconButton(
               icon: const Icon(
                 Icons.add_circle,
