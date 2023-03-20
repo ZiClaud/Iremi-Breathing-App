@@ -18,6 +18,7 @@ App against anxiety that gives breathing exercises
 # Database
 - [x] Add profile page
 - [ ] Database - Tracks progress and saved custom exercises - SQLite
+- [ ] Backup/Restore
 
 
 # Profile - Most need database

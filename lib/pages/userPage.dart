@@ -32,6 +32,19 @@ class _UserPageState extends State<UserPage> {
                   null; // TODO
                 },
               ),
+              IconButton(
+                icon: const Icon(
+                  Icons.settings,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingsPage(),
+                    ),
+                  );
+                },
+              ),
             ]),
         body: ListView(
           children: [
@@ -43,18 +56,6 @@ class _UserPageState extends State<UserPage> {
             defaultShowTextFormField("Badges", user.badges, Icons.badge),
             defaultShowTextFormField(
                 "ExerciseHistory", user.exerciseHistory, Icons.book),
-            OutlinedButton(
-              onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SettingsPage(),
-                  ),
-                )
-              },
-              child: Text("Settings"),
-              style: defaultButtonStyle(),
-            )
           ],
         ));
   }
