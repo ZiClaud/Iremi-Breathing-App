@@ -17,7 +17,13 @@ class Getters {
       DeepBreathingExerciseAvanced(),
       B478Exercise(),
       BoxBreathingExercise(),
-      CustomExercise("1111", "", "", [""], 1, 1, 1, 1, 1),
+      CustomExercise("DEV: Fast", "Used by developer", "N/A", ["N/A"], 1, 1, 1, 1, 1),
+      CustomExercise("DEV: Faster", "Used by developer", "N/A", ["N/A"], 1, 0, 0, 0, 0,
+          inhaleTimeMs: 1,
+          holdMiddleTimeMs: 1,
+          exhaleTimeMs: 1,
+          holdEndTimeMs: 1),
+      /*
       CustomExercise("1234", "", "", ["s1", "s2"], 1, 2, 3, 4, 5),
       CustomExercise("Milliseconds", "", "", ["s1", "s2"], 10, 1, 1, 1, 1,
           inhaleTimeMs: 500),
@@ -26,6 +32,7 @@ class Getters {
           holdMiddleTimeMs: 500,
           exhaleTimeMs: 500,
           holdEndTimeMs: 500),
+      */
     ];
 
     return ex;
