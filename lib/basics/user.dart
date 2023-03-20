@@ -1,5 +1,3 @@
-import 'package:iremibreathingapp/basics/exerciseHistory.dart';
-
 class MyUser {
   String username;
   String name;

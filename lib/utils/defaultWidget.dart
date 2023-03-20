@@ -40,16 +40,16 @@ InputDecoration defaultInputDecoration(String label, IconData icon) {
 }
 
 TextStyle defaultTextStyle() {
-  return TextStyle(fontSize: 15, color: myBlack);
+  return const TextStyle(fontSize: 15, color: myBlack);
 }
 
 FloatingActionButton defaultFloatingActionButton(
     {required IconData icon, void Function()? onPressed}) {
   return FloatingActionButton(
     onPressed: onPressed,
-    child: Icon(icon),
     foregroundColor: myWhite,
     backgroundColor: myBluLight,
+    child: Icon(icon),
   );
 }
 

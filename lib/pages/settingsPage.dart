@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/settings.dart';
 
-import '../basics/settings.dart';
 import '../database/getters.dart';
 import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
