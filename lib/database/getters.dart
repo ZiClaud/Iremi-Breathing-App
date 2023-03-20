@@ -37,6 +37,6 @@ class Getters {
   }
 
   static MySettings getSettings() {
-    return MySettings("Italian", false, false, false, "Male");
+    return MySettings("Italian", false, false, true, "Male");
   }
 }
