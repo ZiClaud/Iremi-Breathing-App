@@ -1,14 +1,16 @@
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 
-class B478Exercise extends Exercise {
+class B478Exercise extends MyExercise {
   @override
   String name = "4-7-8";
 
   @override
-  String description = "The 4-7-8 breathing technique can be helpful for reducing stress and promoting relaxation, but it's important to remember that it may not be effective for everyone and should not be used as a substitute for medical treatment for anxiety or other mental health conditions.";
+  String description =
+      "The 4-7-8 breathing technique can be helpful for reducing stress and promoting relaxation, but it's important to remember that it may not be effective for everyone and should not be used as a substitute for medical treatment for anxiety or other mental health conditions.";
 
   @override
-  String notes = "The key is to maintain a steady rhythm and keep the counts accurate.";
+  String notes =
+      "The key is to maintain a steady rhythm and keep the counts accurate.";
 
   @override
   List<String> steps = [

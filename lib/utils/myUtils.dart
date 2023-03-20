@@ -17,7 +17,7 @@ class MyUtils {
   }
 }
 
-void navigateToExercisePage(context, Exercise exercise) {
+void navigateToExercisePage(context, MyExercise exercise) {
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -26,11 +26,15 @@ void navigateToExercisePage(context, Exercise exercise) {
   );
 }
 
-String getDurationString(Exercise exercise) {
-  return "${exercise.inhaleDuration.inSeconds}s ${exercise.inhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdMiddleDuration.inSeconds}s, ${exercise.holdMiddleDuration.inMilliseconds % 1000}ms, ${exercise.exhaleDuration.inSeconds}s, ${exercise.exhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdEndDuration.inSeconds}s, ${exercise.holdEndDuration.inMilliseconds % 1000}ms";
+String getDurationString(MyExercise exercise) {
+  return "${exercise.inhaleDuration.inSeconds}s, ${exercise.holdMiddleDuration.inSeconds}s, ${exercise.exhaleDuration.inSeconds}s, ${exercise.holdEndDuration.inSeconds}s";
 }
 
-String getTimeString(Exercise exercise) {
+String getAdvancedDurationString(MyExercise exercise) {
+  return "${exercise.inhaleDuration.inSeconds}s ${exercise.inhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdMiddleDuration.inSeconds}s ${exercise.holdMiddleDuration.inMilliseconds % 1000}ms, ${exercise.exhaleDuration.inSeconds}s ${exercise.exhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdEndDuration.inSeconds}s ${exercise.holdEndDuration.inMilliseconds % 1000}ms";
+}
+
+String getTimeString(MyExercise exercise) {
   if (exercise.getTime().inMinutes != 0 &&
       exercise.getTime().inSeconds % 60 != 0) {
     return "${exercise.getTime().inMinutes}min ${exercise.getTime().inSeconds % 60}s";

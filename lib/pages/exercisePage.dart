@@ -6,9 +6,9 @@ import '../utils/theme.dart';
 import 'exerciseDetailsPage.dart';
 
 class ExercisePage extends StatefulWidget {
-  Exercise exercise;
+  MyExercise exercise;
 
-  ExercisePage({Key? key, required Exercise this.exercise}) : super(key: key);
+  ExercisePage({Key? key, required MyExercise this.exercise}) : super(key: key);
 
   @override
   State<ExercisePage> createState() => _ExercisePageState();
@@ -17,7 +17,7 @@ class ExercisePage extends StatefulWidget {
 class _ExercisePageState extends State<ExercisePage> {
   @override
   Widget build(BuildContext context) {
-    Exercise exercise = widget.exercise;
+    MyExercise exercise = widget.exercise;
     return Scaffold(
         appBar: AppBar(
           title: Text(exercise.name),
@@ -28,7 +28,7 @@ class _ExercisePageState extends State<ExercisePage> {
 }
 
 class _FourStageAnimation extends StatefulWidget {
-  final Exercise exercise;
+  final MyExercise exercise;
 
   _FourStageAnimation({
     required this.exercise,

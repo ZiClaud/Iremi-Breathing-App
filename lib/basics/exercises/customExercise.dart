@@ -1,6 +1,6 @@
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 
-class CustomExercise extends Exercise {
+class CustomExercise extends MyExercise {
   @override
   String name;
 

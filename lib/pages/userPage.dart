@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/pages/settingsPage.dart';
 
 import '../basics/user.dart';
 import '../database/getters.dart';
@@ -34,19 +35,26 @@ class _UserPageState extends State<UserPage> {
             ]),
         body: ListView(
           children: [
-            defaultTextFormField("Username", user.username, Icons.person),
-            defaultTextFormField("Name", user.name, Icons.nest_cam_wired_stand),
-            defaultTextFormField("Surname", user.surname!, Icons.surfing),
-            defaultTextFormField("Sex", user.sex!, Icons.male),
-            defaultTextFormField("Goal", user.goal, Icons.panorama_fish_eye),
-            defaultTextFormField("Badges", user.badges, Icons.badge),
-            defaultTextFormField(
-                "Language", user.language, Icons.laptop_chromebook_outlined),
-            defaultTextFormField(
-                "Darkmode", user.darkmode, Icons.dark_mode),
-            defaultTextFormField(
+            defaultShowTextFormField("Username", user.username, Icons.person),
+            defaultShowTextFormField("Name", user.name, Icons.nest_cam_wired_stand),
+            defaultShowTextFormField("Surname", user.surname!, Icons.surfing),
+            defaultShowTextFormField("Sex", user.sex!, Icons.male),
+            defaultShowTextFormField("Goal", user.goal, Icons.circle_outlined),
+            defaultShowTextFormField("Badges", user.badges, Icons.badge),
+            defaultShowTextFormField(
                 "ExerciseHistory", user.exerciseHistory, Icons.book),
-            defaultTextFormField("Settings", user.settings, Icons.settings),
+            OutlinedButton(
+              onPressed: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsPage(),
+                  ),
+                )
+              },
+              child: Text("Settings"),
+              style: defaultButtonStyle(),
+            )
           ],
         ));
   }

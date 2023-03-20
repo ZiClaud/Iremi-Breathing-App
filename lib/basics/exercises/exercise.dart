@@ -1,4 +1,4 @@
-abstract class Exercise {
+abstract class MyExercise {
   late String name;
   late String description;
   late String notes;
@@ -20,7 +20,7 @@ abstract class Exercise {
   }
 
   void start2(int times) async {
-    while (times-- > 0) {
+    while (times > 0) {
       print('inhale');
       await Future.delayed(inhaleDuration);
       print('hold');
@@ -29,30 +29,11 @@ abstract class Exercise {
       await Future.delayed(exhaleDuration);
       print('hold');
       await Future.delayed(holdEndDuration);
+      times--;
     }
   }
 
   Duration getTime(){
     return (inhaleDuration + holdMiddleDuration + exhaleDuration + holdEndDuration) * times;
   }
-
-/*
-  void start2(int times) { // TODO: Put Async somewhere
-    if (times > 0) {
-      print('inhale');
-      Future.delayed(inhaleTime, () {
-        print('hold');
-        Future.delayed(holdMiddleTime, () {
-          print('exhale');
-          Future.delayed(exhaleTime, () {
-            print('hold');
-            Future.delayed(holdEndTime, () {
-              start2(times - 1);
-            });
-          });
-        });
-      });
-    }
-  }
- */
 }
