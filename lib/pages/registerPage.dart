@@ -28,7 +28,7 @@ class _RegisterPageState extends State<RegisterPage> {
       floatingActionButton: defaultFloatingActionButton(
         icon: Icons.navigate_next,
         onPressed: () => {
-          Navigator.push(context,
+          Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => const MainPage()))
         },
       ),
