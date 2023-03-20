@@ -62,9 +62,7 @@ ListTile defaultListTile(
 //    shape: defaultRoundedRectangleBorder(),
     title: defaultShowTextFormField(
         label,
-        val.toString(),
-//        val == true ? "On" : "Off",
-        icon),
+        (val is bool) ? (val == true ? "On" : "Off") : val.toString(), icon),
     trailing: mySwitch,
   );
 }
