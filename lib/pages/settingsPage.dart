@@ -26,16 +26,59 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         body: ListView(
           children: [
-            defaultShowTextFormField(
-                "Language", settings.language, Icons.language),
-            defaultShowTextFormField(
-                "Music", "${settings.music}", Icons.music_note),
-            defaultShowTextFormField(
-                "Dark Mode", "${settings.darkmode}", Icons.dark_mode),
-            defaultShowTextFormField(
-                "Voice", "${settings.voice}", Icons.keyboard_voice_rounded),
-            defaultShowTextFormField(
-                "Voice Type", "${settings.voiceType}", Icons.record_voice_over),
+/*            defaultShowTextFormField(
+                "Language", settings.language, Icons.language), */
+            defaultListTile(
+              icon: Icons.language,
+              label: "Language",
+              val: settings.language,
+              mySwitch: null,
+            ),
+            defaultListTile(
+              icon: Icons.music_note,
+              label: "Music",
+              val: settings.music,
+              mySwitch: Switch(
+                value: settings.music,
+                onChanged: (value) {
+                  setState(() {
+                    settings.music = value;
+                  });
+                },
+              ),
+            ),
+            defaultListTile(
+              icon: Icons.dark_mode,
+              label: "Dark Mode",
+              val: settings.darkmode,
+              mySwitch: Switch(
+                value: settings.darkmode,
+                onChanged: (value) {
+                  setState(() {
+                    settings.darkmode = value;
+                  });
+                },
+              ),
+            ),
+            defaultListTile(
+              icon: Icons.keyboard_voice_rounded,
+              label: "Voice",
+              val: settings.voice,
+              mySwitch: Switch(
+                value: settings.voice,
+                onChanged: (value) {
+                  setState(() {
+                    settings.voice = value;
+                  });
+                },
+              ),
+            ),
+            defaultListTile(
+              icon: Icons.record_voice_over,
+              label: "Voice Type",
+              val: settings.voiceType,
+              mySwitch: null,
+            ),
           ],
         ));
   }

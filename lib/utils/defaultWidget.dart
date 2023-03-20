@@ -35,6 +35,7 @@ InputDecoration defaultInputDecoration(String label, IconData icon) {
       color: myBluLight,
     ),
     labelStyle: defaultTextStyle(),
+    border: InputBorder.none,
   );
 }
 
@@ -50,6 +51,37 @@ FloatingActionButton defaultFloatingActionButton(
     foregroundColor: myWhite,
     backgroundColor: myBluLight,
   );
+}
+
+ListTile defaultListTile(
+    {required IconData icon,
+    required String label,
+    required val,
+    required Switch? mySwitch}) {
+  return ListTile(
+//    shape: defaultRoundedRectangleBorder(),
+    title: defaultShowTextFormField(
+        label,
+        val.toString(),
+//        val == true ? "On" : "Off",
+        icon),
+    trailing: mySwitch,
+  );
+}
+
+RoundedRectangleBorder defaultRoundedRectangleBorder() {
+  return RoundedRectangleBorder(
+    borderRadius: defaultBorderRadius(),
+    side: defaultBorderSide(),
+  );
+}
+
+BorderRadius defaultBorderRadius() {
+  return BorderRadius.circular(10.0);
+}
+
+BorderSide defaultBorderSide() {
+  return const BorderSide(color: myBluLight, width: 1.5);
 }
 
 /*
