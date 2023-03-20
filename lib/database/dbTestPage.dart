@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/database/database.dart';
+import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../utils/defaultWidget.dart';
 
@@ -40,10 +41,14 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          actions: [buildButton()],
-        ),
-        body: UserFormWidget(
+      appBar: AppBar(
+        title: Text("DEV - Database"),
+        backgroundColor: myBluLight,
+        actions: [buildButton()],
+      ),
+      body: Form(
+        key: _formKey,
+        child: UserFormWidget(
           username: username,
           name: name,
           surname: surname,
@@ -56,7 +61,7 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
           onChangedSex: (sex) => setState(() => this.sex = sex),
           onChangedGoal: (goal) => setState(() => this.goal = goal),
         ),
-      );
+      ));
 
   Widget buildButton() {
     final isFormValid = username.isNotEmpty && name.isNotEmpty;
@@ -147,21 +152,6 @@ class MyApp extends StatelessWidget {
       );
 }
 
-/*
-        Form(
-          key: _formKey,
-          child: ListView(
-            children: [
-              defaultEditTextFormField("Username", Icons.person),
-              defaultEditTextFormField(
-                  "Name (optional)", Icons.nest_cam_wired_stand),
-              defaultEditTextFormField("Surname (optional)", Icons.surfing),
-              defaultEditTextFormField("Sex", Icons.male),
-              defaultEditTextFormField("Goal", Icons.circle_outlined),
-            ],
-          ),
- */
-
 class UserFormWidget extends StatelessWidget {
   final String? username;
   final String? name;
@@ -195,19 +185,19 @@ class UserFormWidget extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
+              Column(
                 children: [
-                  defaultEditTextFormField(
-                      "Name (optional)", Icons.nest_cam_wired_stand),
-                  defaultEditTextFormField("Surname (optional)", Icons.surfing),
-                  defaultEditTextFormField("Sex", Icons.male),
-                  defaultEditTextFormField("Goal", Icons.circle_outlined),
                   TextFormField(
+                    // TODO: Error here
                     decoration:
                         defaultInputDecoration("Username", Icons.person),
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     onChanged: onChangedUsername,
+                    validator: (username) =>
+                        username != null && username.isEmpty
+                            ? 'The username cannot be empty'
+                            : null,
                   ),
                   TextFormField(
                     decoration: defaultInputDecoration(
@@ -215,6 +205,9 @@ class UserFormWidget extends StatelessWidget {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     onChanged: onChangedName,
+                    validator: (name) => name != null && name.isEmpty
+                        ? 'The username cannot be empty'
+                        : null,
                   ),
                   TextFormField(
                     decoration: defaultInputDecoration(
