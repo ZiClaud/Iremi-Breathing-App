@@ -7,9 +7,9 @@ import '../utils/theme.dart';
 import 'exercisePage.dart';
 
 class ExerciseDetailsPage extends StatefulWidget {
-  Exercise exercise;
+  MyExercise exercise;
 
-  ExerciseDetailsPage({Key? key, required Exercise this.exercise})
+  ExerciseDetailsPage({Key? key, required MyExercise this.exercise})
       : super(key: key);
 
   @override
@@ -19,7 +19,7 @@ class ExerciseDetailsPage extends StatefulWidget {
 class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   @override
   Widget build(BuildContext context) {
-    Exercise exercise = widget.exercise;
+    MyExercise exercise = widget.exercise;
     return Scaffold(
         appBar: AppBar(
           title: Text(exercise.name),
@@ -27,17 +27,17 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
         ),
         body: ListView(
           children: [
-            defaultTextFormField(
+            defaultShowTextFormField(
                 "Name", exercise.name, Icons.keyboard_double_arrow_up),
-            defaultTextFormField(
+            defaultShowTextFormField(
                 "Description", exercise.description, Icons.description),
-            defaultTextFormField("notes", exercise.notes, Icons.note),
-            defaultTextFormField("steps", "steps - TODO", Icons.select_all),
-            defaultTextFormField("Inhale, hold, exhale, hold",
+            defaultShowTextFormField("notes", exercise.notes, Icons.note),
+            defaultShowTextFormField("steps", "steps - TODO", Icons.select_all),
+            defaultShowTextFormField("Inhale, hold, exhale, hold",
                 getDurationString(exercise), Icons.book),
-            defaultTextFormField(
+            defaultShowTextFormField(
                 "Times", "${exercise.times}", Icons.repeat),
-            defaultTextFormField(
+            defaultShowTextFormField(
                 "Duration of exercise", getTimeString(exercise), Icons.timelapse_sharp),
             OutlinedButton(
               onPressed: () => {

@@ -1,3 +1,5 @@
+import 'package:iremibreathingapp/basics/exerciseHistory.dart';
+
 class MyUser {
   String username;
   String name;
@@ -5,11 +7,9 @@ class MyUser {
   String? sex;
   String goal;
   String badges;
-  String language;
-  String darkmode;
   String exerciseHistory;
-  String settings;
+//  ExerciseHistory exerciseHistory;
 
   MyUser(this.username, this.name, this.surname, this.sex, this.goal,
-      this.badges, this.language, this.darkmode, this.exerciseHistory, this.settings);
+      this.badges, this.exerciseHistory);
 }

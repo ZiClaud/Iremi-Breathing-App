@@ -3,8 +3,8 @@ import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 
 void main() {
-  Exercise deepBreathing = DeepBreathingExerciseBeginner();
-  Exercise customBreathing =
+  MyExercise deepBreathing = DeepBreathingExerciseBeginner();
+  MyExercise customBreathing =
       CustomExercise("Custom", "", "", ["s1", "s2"], 1, 1, 1, 1, 3);
 
   deepBreathing.tellSteps();

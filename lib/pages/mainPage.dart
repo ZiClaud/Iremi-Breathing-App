@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/pages/addExercisePage.dart';
-import 'package:iremibreathingapp/pages/profilePage.dart';
+import 'package:iremibreathingapp/pages/userPage.dart';
 import '../database/getters.dart';
 import '../utils/myUtils.dart';
 import '../utils/theme.dart';
@@ -18,7 +18,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    List<Exercise> exercises = Getters.getExercises();
+    List<MyExercise> exercises = Getters.getExercises();
     return Scaffold(
       appBar: AppBar(
           title: Text("Welcome to Iremi"),
