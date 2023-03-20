@@ -188,7 +188,6 @@ class UserFormWidget extends StatelessWidget {
               Column(
                 children: [
                   TextFormField(
-                    // TODO: Error here
                     decoration:
                         defaultInputDecoration("Username", Icons.person),
                     keyboardType: TextInputType.multiline,
