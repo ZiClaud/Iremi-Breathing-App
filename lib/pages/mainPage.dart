@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
           actions: [
             IconButton(
               icon: const Icon(
-                Icons.add_circle_outline,
+                Icons.add_circle,
               ),
               onPressed: () {
                 Navigator.push(
@@ -37,7 +37,7 @@ class _MainPageState extends State<MainPage> {
             ),
             IconButton(
               icon: const Icon(
-                Icons.person,
+                Icons.account_circle,
               ),
               onPressed: () {
                 Navigator.push(context,

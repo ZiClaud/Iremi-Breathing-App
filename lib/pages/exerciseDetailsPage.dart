@@ -39,19 +39,18 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
                 "Times", "${exercise.times}", Icons.repeat),
             defaultShowTextFormField(
                 "Duration of exercise", getTimeString(exercise), Icons.timelapse_sharp),
-            OutlinedButton(
-              onPressed: () => {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ExercisePage(exercise: exercise),
-                  ),
-                )
-              },
-              child: Text("Start"),
-              style: defaultButtonStyle(),
-            )
           ],
-        ));
+        ),
+      floatingActionButton: defaultFloatingActionButton(
+        icon: Icons.play_arrow,
+        onPressed: () => {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ExercisePage(exercise: exercise),
+            ),
+          )
+        },
+      ),);
   }
 }

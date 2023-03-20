@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../utils/defaultWidget.dart';
-import '../utils/theme.dart';
 
 class addCustomExercise extends StatefulWidget {
   const addCustomExercise({Key? key}) : super(key: key);
@@ -24,18 +23,16 @@ class _addCustomExerciseState extends State<addCustomExercise> {
           defaultEditTextFormField("InhaleDuration", Icons.circle),
           defaultEditTextFormField("HoldMiddleDuration", Icons.change_circle),
           defaultEditTextFormField("ExhaleDuration", Icons.circle_outlined),
-          defaultEditTextFormField("HoldEndDuration", Icons.change_circle_outlined),
+          defaultEditTextFormField(
+              "HoldEndDuration", Icons.change_circle_outlined),
           defaultEditTextFormField("Times", Icons.repeat),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: defaultFloatingActionButton(
+        icon: Icons.navigate_next,
         onPressed: () => {
           null //TODO: Change
         },
-        foregroundColor: myWhite,
-        backgroundColor: myBluLight,
-        tooltip: 'Next',
-        child: Icon(Icons.navigate_next),
       ),
     );
   }
