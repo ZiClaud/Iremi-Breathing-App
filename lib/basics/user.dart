@@ -5,19 +5,18 @@ class MyUser {
   String? surname;
   String? sex;
   String goal;
-  String badges;
 
-//  String exerciseHistory;
+//  List<Badge> badges;
 //  ExerciseHistory exerciseHistory;
 
-  MyUser(
-      {this.id,
-      required this.username,
-      required this.name,
-      required this.surname,
-      required this.sex,
-      required this.goal,
-      required this.badges});
+  MyUser({
+    this.id,
+    required this.username,
+    required this.name,
+    required this.surname,
+    required this.sex,
+    required this.goal,
+  });
 
   MyUser copy({
     int? id,
@@ -26,7 +25,6 @@ class MyUser {
     String? surname,
     String? sex,
     String? goal,
-    String? badges,
   }) =>
       MyUser(
         id: id ?? this.id,
@@ -35,7 +33,6 @@ class MyUser {
         surname: surname ?? this.surname,
         sex: sex ?? this.sex,
         goal: goal ?? this.goal,
-        badges: badges ?? this.badges,
       );
 
   static MyUser fromJson(Map<String, Object?> json) => MyUser(
@@ -45,7 +42,6 @@ class MyUser {
         surname: json[UserFields.surname] as String,
         sex: json[UserFields.sex] as String,
         goal: json[UserFields.goal] as String,
-        badges: json[UserFields.badges] as String,
       );
 
   Map<String, Object?> toJson() => {
@@ -55,14 +51,13 @@ class MyUser {
         UserFields.surname: surname,
         UserFields.sex: sex,
         UserFields.goal: goal,
-        UserFields.badges: badges,
       };
 }
 
 class UserFields {
   static final List<String> values = [
     /// Add all fields
-    id, username, name, surname, sex, goal, badges
+    id, username, name, surname, sex, goal
   ];
 
   static final String id = '_id';
@@ -71,17 +66,16 @@ class UserFields {
   static final String surname = 'surname';
   static final String sex = 'sex';
   static final String goal = 'goal';
-  static final String badges = 'badges';
 }
 
 MyUser getDefaultUser() {
   return MyUser(
-      username: "N/A",
-      name: "N/A",
-      surname: "N/A",
-      sex: "N/A",
-      goal: "N/A",
-      badges: "N/A");
+    username: "N/A",
+    name: "N/A",
+    surname: "N/A",
+    sex: "N/A",
+    goal: "N/A",
+  );
 }
 
 Future<MyUser> getUserOrDefault(Future<MyUser?> futureUser) async {

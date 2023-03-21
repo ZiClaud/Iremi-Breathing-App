@@ -49,7 +49,7 @@ class Getters {
         surname: "Di Maio",
         sex: "M",
         goal: "5 min - day",
-        badges: "Badges");
+        );
   }
 
   static Future<MyUser?> getUserDB(context) async {

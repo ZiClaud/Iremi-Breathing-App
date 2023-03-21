@@ -33,20 +33,20 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
     try {
       this.user = await MyDatabase.instance.getFirstUser() ??
           MyUser(
-              username: "N/A",
-              name: "N/A",
-              surname: "N/A",
-              sex: "N/A",
-              goal: "N/A",
-              badges: "N/A");
+            username: "N/A",
+            name: "N/A",
+            surname: "N/A",
+            sex: "N/A",
+            goal: "N/A",
+          );
     } catch (e) {
       this.user = MyUser(
-          username: "N/A",
-          name: "N/A",
-          surname: "N/A",
-          sex: "N/A",
-          goal: "N/A",
-          badges: "N/A");
+        username: "N/A",
+        name: "N/A",
+        surname: "N/A",
+        sex: "N/A",
+        goal: "N/A",
+      );
       showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -89,7 +89,6 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
                   defaultShowTextFormField("Sex", user.sex!, Icons.male),
                   defaultShowTextFormField(
                       "Goal", user.goal, Icons.circle_outlined),
-                  defaultShowTextFormField("Badges", user.badges, Icons.badge),
                 ],
               ),
       );

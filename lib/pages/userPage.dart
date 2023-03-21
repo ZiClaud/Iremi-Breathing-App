@@ -35,8 +35,6 @@ class _UserPageState extends State<UserPage> {
                       defaultShowTextFormField("Sex", user.sex!, Icons.male),
                       defaultShowTextFormField(
                           "Goal", user.goal, Icons.circle_outlined),
-                      defaultShowTextFormField(
-                          "Badges", user.badges, Icons.badge),
                     ],
                   ));
             } else {

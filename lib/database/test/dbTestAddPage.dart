@@ -25,7 +25,6 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
   late String? surname;
   late String? sex;
   late String goal;
-  late String badges;
 
   @override
   void initState() {
@@ -36,7 +35,6 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
     surname = widget.user?.surname ?? '';
     sex = widget.user?.sex ?? '';
     goal = widget.user?.goal ?? '';
-    badges = widget.user?.badges ?? '';
   }
 
   @override
@@ -54,14 +52,12 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
           surname: surname,
           sex: sex,
           goal: goal,
-          badge: badges,
           onChangedUsername: (username) =>
               setState(() => this.username = username),
           onChangedName: (name) => setState(() => this.name = name),
           onChangedSurname: (surname) => setState(() => this.surname = surname),
           onChangedSex: (sex) => setState(() => this.sex = sex),
           onChangedGoal: (goal) => setState(() => this.goal = goal),
-          onChangedBadge: (badge) => setState(() => this.badges = badge),
         ),
       ));
 
@@ -124,7 +120,6 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
       surname: surname,
       sex: sex,
       goal: goal,
-      badges: badges,
     );
 
     try {
@@ -157,7 +152,6 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
       surname: surname,
       sex: sex,
       goal: goal,
-      badges: badges,
     );
 
     try {
@@ -220,13 +214,11 @@ class UserFormWidget extends StatelessWidget {
   final String? surname;
   final String? sex;
   final String? goal;
-  final String? badge;
   final ValueChanged<String> onChangedUsername;
   final ValueChanged<String> onChangedName;
   final ValueChanged<String> onChangedSurname;
   final ValueChanged<String> onChangedSex;
   final ValueChanged<String> onChangedGoal;
-  final ValueChanged<String> onChangedBadge;
 
   const UserFormWidget({
     Key? key,
@@ -235,13 +227,11 @@ class UserFormWidget extends StatelessWidget {
     this.surname = '',
     this.sex = '',
     this.goal = '',
-    this.badge = '',
     required this.onChangedUsername,
     required this.onChangedName,
     required this.onChangedSurname,
     required this.onChangedSex,
     required this.onChangedGoal,
-    required this.onChangedBadge,
   }) : super(key: key);
 
   @override
@@ -294,13 +284,6 @@ class UserFormWidget extends StatelessWidget {
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     onChanged: onChangedGoal,
-                  ),
-                  TextFormField(
-                    decoration: defaultInputDecoration(
-                        "Badges (optional)", Icons.badge),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    onChanged: onChangedBadge,
                   ),
                 ],
               ),
