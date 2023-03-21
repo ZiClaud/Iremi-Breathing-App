@@ -7,13 +7,9 @@ import '../database/forms/userFormWidget.dart';
 import '../utils/defaultWidget.dart';
 
 class RegisterPageDB extends StatefulWidget {
-  MyUser user = MyUser(username: "",
-      name: "",
-      surname: "",
-      sex: "",
-      goal: "");
+  final MyUser? user;
 
-  RegisterPageDB({Key? key}) : super(key: key);
+  RegisterPageDB({Key? key, this.user}) : super(key: key);
 
   @override
   State<RegisterPageDB> createState() => _RegisterPageDBState();
@@ -31,41 +27,62 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
   void initState() {
     super.initState();
 
-    username = widget.user.username ?? '';
-    name = widget.user.name ?? '';
-    surname = widget.user.surname ?? '';
-    sex = widget.user.sex ?? '';
-    goal = widget.user.goal ?? '';
+    username = widget.user?.username ?? '';
+    name = widget.user?.name ?? '';
+    surname = widget.user?.surname ?? '';
+    sex = widget.user?.sex ?? '';
+    goal = widget.user?.goal ?? '';
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: defaultAppBar("Register"),
-      body: Form(
-        key: _formKey,
-        child: UserFormWidget(
-          username: username,
-          name: name,
-          surname: surname,
-          sex: sex,
-          goal: goal,
-          onChangedUsername: (username) =>
-              setState(() => this.username = username),
-          onChangedName: (name) => setState(() => this.name = name),
-          onChangedSurname: (surname) => setState(() => this.surname = surname),
-          onChangedSex: (sex) => setState(() => this.sex = sex),
-          onChangedGoal: (goal) => setState(() => this.goal = goal),
+        appBar: defaultAppBar("Register"),
+        body: Column(
+          children: [
+            Form(
+              key: _formKey,
+              child: UserFormWidget(
+                username: username,
+                name: name,
+                surname: surname,
+                sex: sex,
+                goal: goal,
+                onChangedUsername: (username) =>
+                    setState(() => this.username = username),
+                onChangedName: (name) => setState(() => this.name = name),
+                onChangedSurname: (surname) =>
+                    setState(() => this.surname = surname),
+                onChangedSex: (sex) => setState(() => this.sex = sex),
+                onChangedGoal: (goal) => setState(() => this.goal = goal),
+              ),
+            ),
+            if (widget.user == null)
+              defaultOutlinedButton(
+                onPressed: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const MainPage()));
+                },
+                child: defaultText("Continue without account"),
+              ),
+          ],
         ),
-      ),
-      floatingActionButton: defaultFloatingActionButton(
-        icon: Icons.navigate_next,
-        onPressed: () =>
-        {
-          addUser1(),
-        },
-      ),
-    );
+        floatingActionButton: defaultFloatingActionButton(
+          icon: Icons.navigate_next,
+          onPressed: () => {
+            addUser1(),
+          },
+        ));
+  }
+
+  Widget? continueWithNoAccount() {
+    if (widget.user == null) {
+      return defaultText("Continue without account");
+    } else {
+      return null;
+    }
   }
 
   Widget buildButton() {
@@ -78,6 +95,111 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
             addUser1;
           }
         }));
+  }
+
+  void addOrUpdateUser() async {
+    final isValid = _formKey.currentState!.validate();
+
+    if (isValid) {
+      final isUpdating = widget.user != null;
+
+      try {
+        if (isUpdating) {
+          await updateUser();
+        } else {
+          await addUser();
+        }
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Database error"),
+              content: Text(e.toString()),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Close"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+
+      Navigator.of(context).pop();
+    }
+  }
+
+  Future updateUser() async {
+    final user = widget.user!.copy(
+      username: username,
+      name: name,
+      surname: surname,
+      sex: sex,
+      goal: goal,
+    );
+
+    try {
+      await MyDatabase.instance.update(user);
+      Navigator.of(context).pop();
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Database error"),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Close"),
+              ),
+            ],
+          );
+        },
+      );
+    }
+  }
+
+  Future addUser() async {
+    final user = MyUser(
+      username: username,
+      name: name,
+      surname: surname,
+      sex: sex,
+      goal: goal,
+    );
+
+    try {
+      await MyDatabase.instance.create(user);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const MainPage()),
+      );
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Database error"),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Close"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   void addUser1() async {
