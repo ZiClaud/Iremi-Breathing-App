@@ -3,8 +3,8 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/utils/myUtils.dart';
 
-import '../utils/defaultWidget.dart';
-import '../utils/theme.dart';
+import '../../utils/defaultWidget.dart';
+import '../../utils/theme.dart';
 import 'dbTestAddPage.dart';
 
 class TestDBShowUserPage extends StatefulWidget {
