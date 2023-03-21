@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/database/database.dart';
+import 'package:iremibreathingapp/utils/myUtils.dart';
 
 import '../utils/defaultWidget.dart';
+import '../utils/theme.dart';
 import 'dbTestAddPage.dart';
 
 class TestDBShowUserPage extends StatefulWidget {
@@ -16,7 +18,7 @@ class TestDBShowUserPage extends StatefulWidget {
 }
 
 class _NoteDetailPageState extends State<TestDBShowUserPage> {
-  late MyUser? user;
+  late MyUser user;
   bool isLoading = false;
 
   @override
@@ -30,7 +32,14 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
     setState(() => isLoading = true);
 
     try {
-      this.user = await MyDatabase.instance.getFirstUser();
+      this.user = await MyDatabase.instance.getFirstUser() ??
+          MyUser(
+              username: "N/A",
+              name: "N/A",
+              surname: "N/A",
+              sex: "N/A",
+              goal: "N/A",
+              badges: "N/A");
     } catch (e) {
       this.user = MyUser(username: "N/A", name: "N/A", surname: "N/A", sex: "N/A", goal: "N/A", badges: "N/A");
       showDialog(
@@ -58,6 +67,8 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
+          title: Text("DEV - Database"),
+          backgroundColor: myBluLight,
           actions: [editButton(), deleteButton()],
         ),
         body: isLoading
@@ -65,15 +76,15 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
             : ListView(
                 children: [
                   defaultShowTextFormField(
-                      "Username", user!.username, Icons.person),
+                      "Username", user.username, Icons.person),
                   defaultShowTextFormField(
-                      "Name", user!.name, Icons.nest_cam_wired_stand),
+                      "Name", user.name, Icons.nest_cam_wired_stand),
                   defaultShowTextFormField(
-                      "Surname", user!.surname!, Icons.surfing),
-                  defaultShowTextFormField("Sex", user!.sex!, Icons.male),
+                      "Surname", user.surname!, Icons.surfing),
+                  defaultShowTextFormField("Sex", user.sex!, Icons.male),
                   defaultShowTextFormField(
-                      "Goal", user!.goal, Icons.circle_outlined),
-                  defaultShowTextFormField("Badges", user!.badges, Icons.badge),
+                      "Goal", user.goal, Icons.circle_outlined),
+                  defaultShowTextFormField("Badges", user.badges, Icons.badge),
                 ],
               ),
       );
@@ -93,8 +104,12 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
   Widget deleteButton() => IconButton(
         icon: Icon(Icons.delete),
         onPressed: () async {
-          await MyDatabase.instance.delete(user!.id!);
-
+          try {
+            await MyDatabase.instance.delete(user.id!);
+          } catch (e) {
+            printError(e.toString());
+            throw e;
+          }
           Navigator.of(context).pop();
         },
       );

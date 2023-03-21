@@ -83,7 +83,10 @@ BorderSide defaultBorderSide() {
 }
 
 Text defaultErrorText(String message) {
-  return Text(message);
+  return Text(
+    message,
+    style: defaultTextStyle(),
+  );
 }
 
 /*
