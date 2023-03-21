@@ -31,7 +31,7 @@ class B478Exercise extends MyExercise {
   Duration exhaleDuration = Duration(seconds: 8);
 
   @override
-  Duration holdEndDuration  = Duration(milliseconds: 1);
+  Duration holdEndDuration = Duration(milliseconds: 1);
 
   @override
   int times = 4;

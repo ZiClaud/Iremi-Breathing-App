@@ -19,8 +19,10 @@ class Getters {
       DeepBreathingExerciseAvanced(),
       B478Exercise(),
       BoxBreathingExercise(),
-      CustomExercise("DEV: Fast", "Used by developer", "N/A", ["N/A"], 1, 1, 1, 1, 1),
-      CustomExercise("DEV: Faster", "Used by developer", "N/A", ["N/A"], 1, 0, 0, 0, 0,
+      CustomExercise(
+          "DEV: Fast", "Used by developer", "N/A", ["N/A"], 1, 1, 1, 1, 1),
+      CustomExercise(
+          "DEV: Faster", "Used by developer", "N/A", ["N/A"], 1, 0, 0, 0, 0,
           inhaleTimeMs: 1,
           holdMiddleTimeMs: 1,
           exhaleTimeMs: 1,

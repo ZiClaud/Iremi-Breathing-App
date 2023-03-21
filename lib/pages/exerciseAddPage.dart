@@ -13,7 +13,8 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: defaultAppBar("Add custom exercise!"), // TODO: Add advanced - Shows milliseconds
+      appBar: defaultAppBar("Add custom exercise!"),
+      // TODO: Add advanced - Shows milliseconds
       body: ListView(
         children: [
           defaultEditTextFormField("Name", Icons.keyboard_double_arrow_up),

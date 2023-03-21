@@ -8,7 +8,6 @@ import '../../utils/theme.dart';
 import 'dbTestAddPage.dart';
 
 class TestDBShowUserPage extends StatefulWidget {
-
   const TestDBShowUserPage({
     Key? key,
   }) : super(key: key);
@@ -41,7 +40,13 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
               goal: "N/A",
               badges: "N/A");
     } catch (e) {
-      this.user = MyUser(username: "N/A", name: "N/A", surname: "N/A", sex: "N/A", goal: "N/A", badges: "N/A");
+      this.user = MyUser(
+          username: "N/A",
+          name: "N/A",
+          surname: "N/A",
+          sex: "N/A",
+          goal: "N/A",
+          badges: "N/A");
       showDialog(
         context: context,
         builder: (BuildContext context) {

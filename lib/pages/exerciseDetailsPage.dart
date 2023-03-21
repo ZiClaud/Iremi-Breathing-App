@@ -21,26 +21,25 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
   Widget build(BuildContext context) {
     MyExercise exercise = widget.exercise;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(exercise.name),
-          backgroundColor: myBluLight,
-        ),
-        body: ListView(
-          children: [
-            defaultShowTextFormField(
-                "Name", exercise.name, Icons.keyboard_double_arrow_up),
-            defaultShowTextFormField(
-                "Description", exercise.description, Icons.description),
-            defaultShowTextFormField("notes", exercise.notes, Icons.note),
-            defaultShowTextFormField("steps", "steps - TODO", Icons.select_all),
-            defaultShowTextFormField("Inhale, hold, exhale, hold",
-                getDurationString(exercise), Icons.book),
-            defaultShowTextFormField(
-                "Times", "${exercise.times}", Icons.repeat),
-            defaultShowTextFormField(
-                "Duration of exercise", getTimeString(exercise), Icons.timelapse_sharp),
-          ],
-        ),
+      appBar: AppBar(
+        title: Text(exercise.name),
+        backgroundColor: myBluLight,
+      ),
+      body: ListView(
+        children: [
+          defaultShowTextFormField(
+              "Name", exercise.name, Icons.keyboard_double_arrow_up),
+          defaultShowTextFormField(
+              "Description", exercise.description, Icons.description),
+          defaultShowTextFormField("notes", exercise.notes, Icons.note),
+          defaultShowTextFormField("steps", "steps - TODO", Icons.select_all),
+          defaultShowTextFormField("Inhale, hold, exhale, hold",
+              getDurationString(exercise), Icons.book),
+          defaultShowTextFormField("Times", "${exercise.times}", Icons.repeat),
+          defaultShowTextFormField("Duration of exercise",
+              getTimeString(exercise), Icons.timelapse_sharp),
+        ],
+      ),
       floatingActionButton: defaultFloatingActionButton(
         icon: Icons.play_arrow,
         onPressed: () => {
@@ -51,6 +50,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
             ),
           )
         },
-      ),);
+      ),
+    );
   }
 }

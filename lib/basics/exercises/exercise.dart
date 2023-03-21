@@ -33,7 +33,11 @@ abstract class MyExercise {
     }
   }
 
-  Duration getTime(){
-    return (inhaleDuration + holdMiddleDuration + exhaleDuration + holdEndDuration) * times;
+  Duration getTime() {
+    return (inhaleDuration +
+            holdMiddleDuration +
+            exhaleDuration +
+            holdEndDuration) *
+        times;
   }
 }

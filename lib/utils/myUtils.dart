@@ -1,7 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/pages/exercisePage.dart';
-import 'dart:math' as math;
 
 class MyUtils {
   static String getItalianDateFormat(DateTime dateTime) {

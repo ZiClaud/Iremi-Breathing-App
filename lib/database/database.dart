@@ -100,7 +100,7 @@ class MyDatabase {
         return allUsers.first;
       }
       return null;
-    } catch (e){
+    } catch (e) {
       printError('Error reading all users: $e');
       throw e;
     }
