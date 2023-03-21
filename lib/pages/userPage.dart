@@ -36,12 +36,13 @@ class _UserPageState extends State<UserPage> {
                       defaultShowTextFormField("Sex", user.sex!, Icons.male),
                       defaultShowTextFormField(
                           "Goal", user.goal, Icons.circle_outlined),
+                      // TODO: Add Delete User button
                     ],
                   ));
             } else {
               return Scaffold(
                 appBar: _appBar(context, null),
-                body: defaultErrorText('No user found'),
+                body: defaultText('No user found'),
               );
             }
           } else {

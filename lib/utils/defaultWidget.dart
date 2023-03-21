@@ -19,10 +19,18 @@ TextFormField defaultShowTextFormField(
   );
 }
 
-Text defaultText(String text) {
+Text defaultText(String message) {
   return Text(
-    text,
+    message,
     maxLines: null,
+    style: defaultTextStyle(),
+  );
+}
+
+Text defaultErrorText(String message) {
+  return Text(
+    message,
+    style: defaultTextStyle(),
   );
 }
 
@@ -91,13 +99,6 @@ BorderRadius defaultBorderRadius() {
 
 BorderSide defaultBorderSide() {
   return const BorderSide(color: myBluLight, width: 1.5);
-}
-
-Text defaultErrorText(String message) {
-  return Text(
-    message,
-    style: defaultTextStyle(),
-  );
 }
 
 /*

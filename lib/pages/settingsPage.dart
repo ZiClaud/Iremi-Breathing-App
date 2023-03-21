@@ -78,6 +78,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     val: settings.data?.voiceType,
                     mySwitch: null,
                   ),
+                  // TODO: Delete user
+                  // TODO: Backup db
+                  // TODO: Restore db
                 ],
               ));
         });

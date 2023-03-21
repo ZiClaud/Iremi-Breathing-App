@@ -17,11 +17,11 @@ class RegisterPageDB extends StatefulWidget {
 
 class _RegisterPageDBState extends State<RegisterPageDB> {
   final _formKey = GlobalKey<FormState>();
-  late String username;
-  late String name;
-  late String? surname;
-  late String? sex;
-  late String goal;
+  late String username = widget.user?.username ?? '';
+  late String name = widget.user?.name ?? '';
+  late String? surname = widget.user?.surname ?? '';
+  late String? sex = widget.user?.sex ?? '';
+  late String goal = widget.user?.goal ?? '';
 
   @override
   void initState() {
@@ -37,7 +37,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: defaultAppBar("Register"),
+        appBar: (widget.user == null) ? defaultAppBar("Register") : defaultAppBar("Edit user"),
         body: Column(
           children: [
             Form(
@@ -72,17 +72,9 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
         floatingActionButton: defaultFloatingActionButton(
           icon: Icons.navigate_next,
           onPressed: () => {
-            addUser1(),
+            addOrUpdateUser(),
           },
         ));
-  }
-
-  Widget? continueWithNoAccount() {
-    if (widget.user == null) {
-      return defaultText("Continue without account");
-    } else {
-      return null;
-    }
   }
 
   Widget buildButton() {
@@ -92,7 +84,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
         child: FloatingActionButton(onPressed: () {
           if (isFormValid) {
-            addUser1;
+            addOrUpdateUser();
           }
         }));
   }
@@ -105,9 +97,9 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
 
       try {
         if (isUpdating) {
-          await updateUser();
+          await _updateUser();
         } else {
-          await addUser();
+          await _addUser();
         }
       } catch (e) {
         showDialog(
@@ -133,7 +125,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
     }
   }
 
-  Future updateUser() async {
+  Future _updateUser() async {
     final user = widget.user!.copy(
       username: username,
       name: name,
@@ -166,71 +158,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
     }
   }
 
-  Future addUser() async {
-    final user = MyUser(
-      username: username,
-      name: name,
-      surname: surname,
-      sex: sex,
-      goal: goal,
-    );
-
-    try {
-      await MyDatabase.instance.create(user);
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
-      );
-    } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Database error"),
-            content: Text(e.toString()),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Close"),
-              ),
-            ],
-          );
-        },
-      );
-    }
-  }
-
-  void addUser1() async {
-    final isValid = _formKey.currentState!.validate();
-
-    if (isValid) {
-      try {
-        await addUser2();
-      } catch (e) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Database error"),
-              content: Text(e.toString()),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("Close"),
-                ),
-              ],
-            );
-          },
-        );
-      }
-    }
-  }
-
-  Future addUser2() async {
+  Future _addUser() async {
     final user = MyUser(
       username: username,
       name: name,
