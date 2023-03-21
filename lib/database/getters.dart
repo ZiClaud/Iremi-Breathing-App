@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercises/b478Exercise.dart';
 import 'package:iremibreathingapp/basics/exercises/boxBreathingExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
@@ -8,6 +9,7 @@ import 'package:iremibreathingapp/basics/user.dart';
 
 import '../basics/exercises/deepBreathingExerciseAvanced.dart';
 import '../basics/exercises/deepBreathingExerciseIntermediate.dart';
+import 'database.dart';
 
 class Getters {
   static List<MyExercise> getExercises() {
@@ -46,6 +48,30 @@ class Getters {
         sex: "M",
         goal: "5 min - day",
         badges: "Badges");
+  }
+
+  static Future<MyUser?> getUserDB(context) async {
+    try {
+      return await MyDatabase.instance.getFirstUser();
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Database error"),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Close"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   static MySettings getSettings() {

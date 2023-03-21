@@ -73,3 +73,12 @@ class UserFields {
   static final String goal = 'goal';
   static final String badges = 'badges';
 }
+
+MyUser getDefaultUser() {
+  return MyUser(username: "N/A", name: "N/A", surname: "N/A", sex: "N/A", goal: "N/A", badges: "N/A");
+}
+
+Future<MyUser> getUserOrDefault(Future<MyUser?> futureUser) async {
+  MyUser? user = await futureUser;
+  return user ?? getDefaultUser();
+}
