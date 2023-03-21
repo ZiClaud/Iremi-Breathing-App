@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/pages/mainPage.dart';
 import 'package:iremibreathingapp/pages/registerPage.dart';
+import 'package:iremibreathingapp/pages/registerPageDB.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
+import 'database/database.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +20,29 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: myBluLightMaterial,
       ),
-      home: const RegisterPage(),
+      home: FutureBuilder<Widget>(
+        future: getHomePage(),
+        builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+          if (snapshot.hasData) {
+            return snapshot.data!;
+          } else {
+            return CircularProgressIndicator();
+          }
+        },
+      ),
     );
+  }
+}
+
+Future<StatefulWidget> getHomePage() async {
+  try {
+    if (await MyDatabase.instance.getFirstUser() != null) {
+      return MainPage();
+    } else {
+      return RegisterPageDB();
+    }
+  } catch (e) {
+    print(e.toString());
+    return RegisterPageDB();
   }
 }

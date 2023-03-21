@@ -42,14 +42,14 @@ class Getters {
     return ex;
   }
 
-  static MyUser getUser() {
+  static Future<MyUser?> getUser() {
     return MyUser(
-        username: "ZiCli",
-        name: "Claudio",
-        surname: "Di Maio",
-        sex: "M",
-        goal: "5 min - day",
-        );
+      username: "ZiCli",
+      name: "Claudio",
+      surname: "Di Maio",
+      sex: "M",
+      goal: "5 min - day",
+    ) as Future<MyUser>;
   }
 
   static Future<MyUser?> getUserDB(context) async {
@@ -76,7 +76,31 @@ class Getters {
     }
   }
 
-  static MySettings getSettings() {
-    return MySettings("Italian", false, false, true, "Male");
+  static Future<MySettings?> getSettings() async {
+    return await MySettings("Italian", false, false, true, "Male");
+  }
+
+  static Future<MySettings?> getSettingsDB(context) async {
+    try {
+      return await MySettings("Italian", false, false, true, "Male");
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Database error"),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Close"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }

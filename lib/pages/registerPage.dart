@@ -15,7 +15,6 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: defaultAppBar("Register"),
-      // TODO: Add advanced - Shows milliseconds
       body: ListView(
         children: [
           defaultEditTextFormField("Username", Icons.person),
