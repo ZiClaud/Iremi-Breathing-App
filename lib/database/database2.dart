@@ -122,7 +122,6 @@ class MyUser2 {
   String? surname;
   String? sex;
   String goal;
-  String badges;
 
   MyUser2({
     required this.id,
@@ -131,7 +130,6 @@ class MyUser2 {
     required this.surname,
     required this.sex,
     required this.goal,
-    required this.badges,
   });
 
   Map<String, dynamic> toMap() {
@@ -142,7 +140,6 @@ class MyUser2 {
       'surname': surname,
       'sex': sex,
       'goal': goal,
-      'badges': badges,
     };
   }
 
@@ -154,7 +151,6 @@ class MyUser2 {
       surname: map['surname'],
       sex: map['sex'],
       goal: map['goal'],
-      badges: map['badges'],
     );
   }
 }

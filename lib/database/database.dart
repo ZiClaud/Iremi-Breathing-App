@@ -51,8 +51,7 @@ class MyDatabase {
           ${UserFields.name} $textType,
           ${UserFields.surname} $textType,
           ${UserFields.sex} $textType,
-          ${UserFields.goal} $textType,
-          ${UserFields.badges} $textType
+          ${UserFields.goal} $textType
           )''');
     } catch (e) {
       printError('Error creating table: $e');
