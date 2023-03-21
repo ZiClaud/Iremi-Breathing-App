@@ -19,7 +19,8 @@ class _RegisterPageState extends State<RegisterPage> {
       body: ListView(
         children: [
           defaultEditTextFormField("Username", Icons.person),
-          defaultEditTextFormField("Name (optional)", Icons.nest_cam_wired_stand),
+          defaultEditTextFormField(
+              "Name (optional)", Icons.nest_cam_wired_stand),
           defaultEditTextFormField("Surname (optional)", Icons.surfing),
           defaultEditTextFormField("Sex", Icons.male),
           defaultEditTextFormField("Goal", Icons.circle_outlined),

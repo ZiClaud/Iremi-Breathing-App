@@ -52,7 +52,7 @@ class _UserPageState extends State<UserPage> {
   }
 }
 
-AppBar _appBar(context){
+AppBar _appBar(context) {
   return AppBar(
       title: const Text("Profile"),
       backgroundColor: myBluLight,
