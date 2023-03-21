@@ -45,16 +45,15 @@ class MyDatabase {
 
     try {
       await db.execute('''
-CREATE TABLE $tableUser (
-${UserFields.id} $idType,
-${UserFields.username} $textType,
-${UserFields.name} $textType,
-${UserFields.surname} $textType,
-${UserFields.sex} $textType,
-${UserFields.goal} $textType,
-${UserFields.badges} $textType
-)
-''');
+          CREATE TABLE $tableUser (
+          ${UserFields.id} $idType,
+          ${UserFields.username} $textType,
+          ${UserFields.name} $textType,
+          ${UserFields.surname} $textType,
+          ${UserFields.sex} $textType,
+          ${UserFields.goal} $textType,
+          ${UserFields.badges} $textType
+          )''');
     } catch (e) {
       printError('Error creating table: $e');
       throw e;
