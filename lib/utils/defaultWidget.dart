@@ -82,6 +82,10 @@ BorderSide defaultBorderSide() {
   return const BorderSide(color: myBluLight, width: 1.5);
 }
 
+Text defaultErrorText(String message) {
+  return Text(message);
+}
+
 /*
 - Not used
 ButtonStyle defaultButtonStyle() {

@@ -87,10 +87,30 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
     if (isValid) {
       final isUpdating = widget.user != null;
 
-      if (isUpdating) {
-        await updateUser();
-      } else {
-        await addUser();
+      try {
+        if (isUpdating) {
+          await updateUser();
+        } else {
+          await addUser();
+        }
+      } catch (e) {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text("Database error"),
+              content: Text(e.toString()),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: Text("Close"),
+                ),
+              ],
+            );
+          },
+        );
       }
 
       Navigator.of(context).pop();
@@ -107,7 +127,27 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
       badges: badges,
     );
 
-    await MyDatabase.instance.update(user);
+    try {
+      await MyDatabase.instance.update(user);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Database error"),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Close"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   Future addUser() async {
@@ -120,7 +160,27 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
       badges: badges,
     );
 
-    await MyDatabase.instance.create(user);
+    try {
+      await MyDatabase.instance.create(user);
+    } catch (e) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Database error"),
+            content: Text(e.toString()),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text("Close"),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 }
 

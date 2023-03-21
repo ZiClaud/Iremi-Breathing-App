@@ -93,6 +93,19 @@ class MyDatabase {
     }
   }
 
+  Future<MyUser?> getFirstUser() async {
+    try {
+      final allUsers = await readAllUsers();
+      if (allUsers.isNotEmpty) {
+        return allUsers.first;
+      }
+      return null;
+    } catch (e){
+      printError('Error reading all users: $e');
+      throw e;
+    }
+  }
+
   Future<List<MyUser>> readAllUsers() async {
     try {
       final db = await instance.database;
