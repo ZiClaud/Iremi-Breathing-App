@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/pages/registerPageDB.dart';
 import 'package:iremibreathingapp/pages/settingsPage.dart';
 
 import '../basics/user.dart';
@@ -23,7 +24,7 @@ class _UserPageState extends State<UserPage> {
             if (snapshot.hasData && snapshot.data != null) {
               MyUser user = snapshot.data!;
               return Scaffold(
-                  appBar: _appBar(context),
+                  appBar: _appBar(context, user),
                   body: ListView(
                     children: [
                       defaultShowTextFormField(
@@ -39,7 +40,7 @@ class _UserPageState extends State<UserPage> {
                   ));
             } else {
               return Scaffold(
-                appBar: _appBar(context),
+                appBar: _appBar(context, null),
                 body: defaultErrorText('No user found'),
               );
             }
@@ -50,7 +51,7 @@ class _UserPageState extends State<UserPage> {
   }
 }
 
-AppBar _appBar(context) {
+AppBar _appBar(context, MyUser? user) {
   return AppBar(
       title: const Text("Profile"),
       backgroundColor: myBluLight,
@@ -60,7 +61,12 @@ AppBar _appBar(context) {
             Icons.edit,
           ),
           onPressed: () {
-            null; // TODO
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => RegisterPageDB(user: user),
+              ),
+            );
           },
         ),
         IconButton(

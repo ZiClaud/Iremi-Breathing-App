@@ -19,6 +19,13 @@ TextFormField defaultShowTextFormField(
   );
 }
 
+Text defaultText(String text) {
+  return Text(
+    text,
+    maxLines: null,
+  );
+}
+
 TextFormField defaultEditTextFormField(String label, IconData icon) {
   return TextFormField(
     decoration: defaultInputDecoration(label, icon),
@@ -51,6 +58,11 @@ FloatingActionButton defaultFloatingActionButton(
     backgroundColor: myBluLight,
     child: Icon(icon),
   );
+}
+
+OutlinedButton defaultOutlinedButton(
+    {void Function()? onPressed, required Widget? child}) {
+  return OutlinedButton(onPressed: onPressed, child: child);
 }
 
 ListTile defaultListTile(
