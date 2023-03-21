@@ -23,32 +23,7 @@ class _UserPageState extends State<UserPage> {
             if (snapshot.hasData && snapshot.data != null) {
               MyUser user = snapshot.data!;
               return Scaffold(
-                  appBar: AppBar(
-                      title: const Text("Profile"),
-                      backgroundColor: myBluLight,
-                      actions: [
-                        IconButton(
-                          icon: const Icon(
-                            Icons.edit,
-                          ),
-                          onPressed: () {
-                            null; // TODO
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(
-                            Icons.settings,
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SettingsPage(),
-                              ),
-                            );
-                          },
-                        ),
-                      ]),
+                  appBar: _appBar(context),
                   body: ListView(
                     children: [
                       defaultShowTextFormField(
@@ -65,11 +40,43 @@ class _UserPageState extends State<UserPage> {
                     ],
                   ));
             } else {
-              return defaultErrorText('No user found');
+              return Scaffold(
+                appBar: _appBar(context),
+                body: defaultErrorText('No user found'),
+              );
             }
           } else {
             return CircularProgressIndicator();
           }
         });
   }
+}
+
+AppBar _appBar(context){
+  return AppBar(
+      title: const Text("Profile"),
+      backgroundColor: myBluLight,
+      actions: [
+        IconButton(
+          icon: const Icon(
+            Icons.edit,
+          ),
+          onPressed: () {
+            null; // TODO
+          },
+        ),
+        IconButton(
+          icon: const Icon(
+            Icons.settings,
+          ),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SettingsPage(),
+              ),
+            );
+          },
+        ),
+      ]);
 }
