@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise.dart';
-import 'package:iremibreathingapp/database/dbTestShowPage.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPage.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
 
-import '../database/dbTestAddPage.dart';
+import '../database/test/dbTestAddPage.dart';
 import '../database/getters.dart';
+import '../database/test/dbTestShowPage.dart';
 import '../utils/myUtils.dart';
 import '../utils/theme.dart';
 import 'exerciseDetailsPage.dart';
