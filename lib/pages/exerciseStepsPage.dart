@@ -52,14 +52,6 @@ class _ExerciseStepsPageState extends State<ExerciseStepsPage> {
           );
         },
       ),
-      /*
-      ListView.builder(
-        itemBuilder: (BuildContext context, int index) {
-          defaultShowTextFormField(
-              "Steps", exercise.steps.elementAt(index), Icons.select_all);
-        },
-      ),
-      */
       floatingActionButton: defaultFloatingActionButton(
         icon: Icons.play_arrow,
         onPressed: () => {
