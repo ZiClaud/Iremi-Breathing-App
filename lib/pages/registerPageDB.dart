@@ -73,24 +73,12 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
         floatingActionButton: defaultFloatingActionButton(
           icon: Icons.navigate_next,
           onPressed: () => {
-            addOrUpdateUser(),
+            _addOrUpdateUser(),
           },
         ));
   }
 
-  Widget buildButton() {
-    final isFormValid = username.isNotEmpty && name.isNotEmpty;
-
-    return Padding(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-        child: FloatingActionButton(onPressed: () {
-          if (isFormValid) {
-            addOrUpdateUser();
-          }
-        }));
-  }
-
-  void addOrUpdateUser() async {
+  void _addOrUpdateUser() async {
     final isValid = _formKey.currentState!.validate();
 
     if (isValid) {
@@ -98,9 +86,21 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
 
       try {
         if (isUpdating) {
-          await _updateUser();
+          await MyDatabase.instance.updateUser(widget.user!.copy(
+            username: username,
+            name: name,
+            surname: surname,
+            sex: sex,
+            goal: goal,
+          ));
         } else {
-          await _addUser();
+          await MyDatabase.instance.createUser(MyUser(
+            username: username,
+            name: name,
+            surname: surname,
+            sex: sex,
+            goal: goal,
+          ));
         }
       } catch (e) {
         defaultDatabaseErrorDialog(context, e);
@@ -109,46 +109,6 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),
       );
-    }
-  }
-
-  Future _updateUser() async {
-    final user = widget.user!.copy(
-      username: username,
-      name: name,
-      surname: surname,
-      sex: sex,
-      goal: goal,
-    );
-
-    try {
-      await MyDatabase.instance.updateUser(user);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
-      );
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
-    }
-  }
-
-  Future _addUser() async {
-    final user = MyUser(
-      username: username,
-      name: name,
-      surname: surname,
-      sex: sex,
-      goal: goal,
-    );
-
-    try {
-      await MyDatabase.instance.createUser(user);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
-      );
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
     }
   }
 }

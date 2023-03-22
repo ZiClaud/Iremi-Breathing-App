@@ -81,9 +81,6 @@ class SettingsFormWidget extends StatelessWidget {
                     mySwitch: null,
 //                    onChanged: onChangedVoiceType,
                   ),
-                  // TODO: Delete user bt
-                  // TODO: Backup db bt
-                  // TODO: Restore db bt
                 ],
               ),
             ],

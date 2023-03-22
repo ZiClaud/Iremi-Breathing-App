@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/settings.dart';
 import 'package:iremibreathingapp/basics/user.dart';
@@ -57,21 +58,28 @@ class _SettingsPageDBState extends State<SettingsPageDB> {
                     Form(
                       key: _formKey,
                       child: SettingsFormWidget(
-                          language: settings.language,
-                          darkmode: settings.darkmode,
-                          music: settings.music,
-                          voice: settings.voice,
-                          voiceType: settings.voiceType,
-                          onChangedLanguage: (language) =>
-                              setState(() => this.language = language),
-                          onChangedDarkMode: (darkmode) =>
-                              setState(() => this.darkmode = darkmode),
-                          onChangedMusic: (music) =>
-                              setState(() => this.music = music),
-                          onChangedVoice: (voice) =>
-                              setState(() => this.voice = voice),
-                          onChangedVoiceType: (voiceType) =>
-                              setState(() => this.voiceType = voiceType)),
+                        language: settings.language,
+                        darkmode: settings.darkmode,
+                        music: settings.music,
+                        voice: settings.voice,
+                        voiceType: settings.voiceType,
+                        onChangedLanguage: (language) =>
+                            setState(() => this.language = language),
+                        onChangedDarkMode: (darkmode) =>
+                            setState(() => this.darkmode = darkmode),
+                        onChangedMusic: (music) =>
+                            setState(() => this.music = music),
+                        onChangedVoice: (voice) =>
+                            setState(() => this.voice = voice),
+                        onChangedVoiceType: (voiceType) =>
+                            setState(() => this.voiceType = voiceType),
+                      ),
+                    ),
+                    defaultOutlinedButton(
+                      onPressed: () {
+                        _updateSettings();
+                      },
+                      child: defaultText("Save"),
                     ),
                     defaultOutlinedButton(
                       onPressed: () {
@@ -90,7 +98,7 @@ class _SettingsPageDBState extends State<SettingsPageDB> {
                         onPressed: () async {
                           //  TODO: Put warning
                           try {
-                            await MyDatabase.instance.deleteUser(widget.user!);
+                            await MyDatabase.instance.deleteSettings(widget.settings!);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -115,4 +123,15 @@ class _SettingsPageDBState extends State<SettingsPageDB> {
           }
         });
   }
+
+  void _updateSettings() async {
+    await MyDatabase.instance.updateSettings(widget.settings!.copy(
+      language: language,
+      darkmode: darkmode,
+      music: music,
+      voice: voice,
+      voiceType: voiceType,
+    ));
+  }
 }
+*/
