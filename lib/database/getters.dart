@@ -89,7 +89,7 @@ class Getters {
   static MySettings getDefaultSettings() {
     return MySettings(
         language: getDefaultLanguage(),
-        darkmode: getDefaultTheme() == ThemeMode.dark ? true : false,
+        darkmode: getDefaultTheme(),
         music: true,
         voice: true,
         voiceType: "Male");
@@ -100,7 +100,7 @@ class Getters {
       // TODO: CHANGE
       return await MySettings(
           language: getDefaultLanguage(),
-          darkmode: getDefaultTheme() == ThemeMode.dark ? true : false,
+          darkmode: getDefaultTheme(),
           music: false,
           voice: true,
           voiceType: "Male");

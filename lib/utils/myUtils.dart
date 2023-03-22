@@ -69,8 +69,12 @@ String getDefaultLanguage() {
   return window.locale.languageCode;
 }
 
-ThemeMode getDefaultTheme() {
+ThemeMode _getDefaultTheme() {
   return ThemeMode.system;
+}
+
+bool getDefaultTheme() {
+  return _getDefaultTheme() == ThemeMode.dark ? true : false;
 }
 
 Future defaultDatabaseErrorDialog(context, message) {
