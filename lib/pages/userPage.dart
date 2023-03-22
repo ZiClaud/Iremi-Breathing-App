@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
-import 'package:iremibreathingapp/pages/settingsPage.dart';
+import 'package:iremibreathingapp/pages/settingsPageDB.dart';
 
 import '../basics/user.dart';
 import '../database/getters.dart';
@@ -77,7 +77,7 @@ AppBar _appBar(context, MyUser? user) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SettingsPage(),
+                builder: (context) => SettingsPageDB(),
               ),
             );
           },

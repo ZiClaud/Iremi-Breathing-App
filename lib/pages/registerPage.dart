@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/mainPage.dart';
 
@@ -35,3 +36,4 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
+*/
