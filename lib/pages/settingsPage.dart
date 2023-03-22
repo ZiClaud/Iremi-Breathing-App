@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/database/getters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
+
+// TODO: find out why it doesn't auto-refresh
 
 class SettingsPage extends StatefulWidget {
   SettingsPage({Key? key}) : super(key: key);
@@ -12,14 +15,14 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  late String _language;
   bool _music = false;
   bool _darkMode = false;
   bool _voice = false;
-  late String _language;
   late String _voiceType;
 
-  final List<String> languages = ['English', 'French', 'German', 'Spanish'];
-  final List<String> voiceTypes = ['Male', 'Female', 'Neutral'];
+  final List<String> languages = Getters.getAvailableLanguages();
+  final List<String> voiceTypes = Getters.getAvailableVoiceTypes();
 
   @override
   void initState() {
@@ -45,6 +48,7 @@ class _SettingsPageState extends State<SettingsPage> {
     await prefs.setBool('voice', _voice);
     await prefs.setString('language', _language);
     await prefs.setString('voiceType', _voiceType);
+    _loadSettings();
   }
 
   @override
