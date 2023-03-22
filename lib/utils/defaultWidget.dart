@@ -69,7 +69,7 @@ FloatingActionButton defaultFloatingActionButton(
 }
 
 OutlinedButton defaultOutlinedButton(
-    {void Function()? onPressed, required Widget? child}) {
+    {required void Function()? onPressed, required Widget? child}) {
   return OutlinedButton(onPressed: onPressed, child: child);
 }
 
