@@ -77,7 +77,7 @@ AppBar _appBar(context, MyUser? user) {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => SettingsPageDB(),
+                builder: (context) => SettingsPageDB(user: user, settings: null,), // TODO: REMOVE NULL
               ),
             );
           },

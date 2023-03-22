@@ -105,8 +105,10 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
       } catch (e) {
         defaultDatabaseErrorDialog(context, e);
       }
-
-      Navigator.pop(context);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MainPage()),
+      );
     }
   }
 
@@ -120,8 +122,11 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
     );
 
     try {
-      await MyDatabase.instance.update(user);
-      Navigator.pop(context);
+      await MyDatabase.instance.updateUser(user);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MainPage()),
+      );
     } catch (e) {
       defaultDatabaseErrorDialog(context, e);
     }
@@ -137,7 +142,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
     );
 
     try {
-      await MyDatabase.instance.create(user);
+      await MyDatabase.instance.createUser(user);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),

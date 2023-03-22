@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/settings.dart';
+import 'package:iremibreathingapp/basics/user.dart';
 
+import '../database/database.dart';
 import '../database/forms/settingsFormWidget.dart';
 import '../database/getters.dart';
 import '../utils/defaultWidget.dart';
+import '../utils/myUtils.dart';
+import 'mainPage.dart';
 
 class SettingsPageDB extends StatefulWidget {
   final MySettings? settings;
+  final MyUser? user;
 
-  SettingsPageDB({Key? key, this.settings}) : super(key: key);
+  SettingsPageDB({Key? key, required this.user, required this.settings})
+      : super(key: key);
 
   @override
   State<SettingsPageDB> createState() => _SettingsPageDBState();
@@ -38,129 +44,75 @@ class _SettingsPageDBState extends State<SettingsPageDB> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: defaultAppBar("Settings"),
-      body: Column(
-        children: [
-          Form(
-            key: _formKey,
-            child: SettingsFormWidget(
-                language: language,
-                darkmode: darkmode,
-                music: music,
-                voice: voice,
-                voiceType: voiceType,
-                onChangedLanguage: (language) =>
-                    setState(() => this.language = language),
-                onChangedDarkMode: (darkmode) =>
-                    setState(() => this.darkmode = darkmode),
-                onChangedMusic: (music) => setState(() => this.music = music),
-                onChangedVoice: (voice) => setState(() => this.voice = voice),
-                onChangedVoiceType: (voiceType) =>
-                    setState(() => this.voiceType = voiceType)),
-          ),
-          defaultOutlinedButton(
-            onPressed: () {
-              // TODO: Backup
-            },
-            child: defaultText("Backup"),
-          ),
-          defaultOutlinedButton(
-            onPressed: () {
-              // TODO: Restore
-            },
-            child: defaultText("Restore"),
-          ),
-          defaultOutlinedButton(
-            onPressed: () {
-              // TODO: DELETE USER
-              // TODO: NAVIGATE TO REGISTER PAGE?
-            },
-            child: defaultText("Delete user"),
-          ),
-          if (widget.settings == null)
-            defaultText("No settings found - Default settings are shown"),
-        ],
-      ),
-      /*
-      floatingActionButton: defaultFloatingActionButton(
-        icon: Icons.navigate_next,
-        onPressed: () => {
-          addOrUpdateUser(),
-        },
-      ),
-      */
-    );
-  }
-
-/*
-  Widget buildButton() {
-    final isFormValid = username.isNotEmpty && name.isNotEmpty;
-
-    return Padding(
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
-        child: FloatingActionButton(onPressed: () {
-          if (isFormValid) {
-            addOrUpdateUser();
+    return FutureBuilder(
+        future: Getters.getSettingsDB(context),
+        builder: (BuildContext context, AsyncSnapshot<MySettings?> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            if (snapshot.hasData && snapshot.data != null) {
+              MySettings settings = snapshot.data!;
+              return Scaffold(
+                appBar: defaultAppBar("Settings"),
+                body: Column(
+                  children: [
+                    Form(
+                      key: _formKey,
+                      child: SettingsFormWidget(
+                          language: settings.language,
+                          darkmode: settings.darkmode,
+                          music: settings.music,
+                          voice: settings.voice,
+                          voiceType: settings.voiceType,
+                          onChangedLanguage: (language) =>
+                              setState(() => this.language = language),
+                          onChangedDarkMode: (darkmode) =>
+                              setState(() => this.darkmode = darkmode),
+                          onChangedMusic: (music) =>
+                              setState(() => this.music = music),
+                          onChangedVoice: (voice) =>
+                              setState(() => this.voice = voice),
+                          onChangedVoiceType: (voiceType) =>
+                              setState(() => this.voiceType = voiceType)),
+                    ),
+                    defaultOutlinedButton(
+                      onPressed: () {
+                        // TODO: Backup
+                      },
+                      child: defaultText("Backup"),
+                    ),
+                    defaultOutlinedButton(
+                      onPressed: () {
+                        // TODO: Restore
+                      },
+                      child: defaultText("Restore"),
+                    ),
+                    if (widget.user != null)
+                      defaultOutlinedButton(
+                        onPressed: () async {
+                          //  TODO: Put warning
+                          try {
+                            await MyDatabase.instance.deleteUser(widget.user!);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const MainPage()));
+                          } catch (e) {
+                            defaultDatabaseErrorDialog(context, e);
+                          }
+                        },
+                        child: defaultText("Delete user"),
+                      ),
+                    if (widget.settings == null)
+                      defaultText(
+                          "No settings found - Default settings are shown"),
+                  ],
+                ),
+              );
+            } else {
+              return defaultLinearProgressIndicator();
+            }
+          } else {
+            return defaultLinearProgressIndicator();
           }
-        }));
+        });
   }
-
-  void addOrUpdateUser() async {
-    final isValid = _formKey.currentState!.validate();
-
-    if (isValid) {
-      final isUpdating = widget.user != null;
-
-      try {
-        if (isUpdating) {
-          await _updateUser();
-        } else {
-          await _addUser();
-        }
-      } catch (e) {
-        defaultDatabaseErrorDialog(context, e);
-      }
-
-      Navigator.of(context).pop();
-    }
-  }
-
-  Future _updateUser() async {
-    final user = widget.user!.copy(
-      username: username,
-      name: name,
-      surname: surname,
-      sex: sex,
-      goal: goal,
-    );
-
-    try {
-      await MyDatabase.instance.update(user);
-      Navigator.of(context).pop();
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
-    }
-  }
-
-  Future _addUser() async {
-    final user = MyUser(
-      username: username,
-      name: name,
-      surname: surname,
-      sex: sex,
-      goal: goal,
-    );
-
-    try {
-      await MyDatabase.instance.create(user);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
-      );
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
-    }
-  }
-  */
 }
