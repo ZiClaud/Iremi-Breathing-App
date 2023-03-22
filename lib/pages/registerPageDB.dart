@@ -58,10 +58,10 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
                 onChangedGoal: (goal) => setState(() => this.goal = goal),
               ),
             ),
-            if (widget.user == null)
+            if (widget.user == null && (username == "" || name == ""))
               defaultOutlinedButton(
                 onPressed: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const MainPage()));
@@ -138,7 +138,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
 
     try {
       await MyDatabase.instance.create(user);
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),
       );

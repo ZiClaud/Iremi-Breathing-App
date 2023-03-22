@@ -135,7 +135,7 @@ class _SettingsPageDBState extends State<SettingsPageDB> {
 
     try {
       await MyDatabase.instance.create(user);
-      Navigator.pushReplacement(
+      Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),
       );

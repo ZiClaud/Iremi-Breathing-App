@@ -21,6 +21,7 @@ class _MainPageState extends State<MainPage> {
     List<MyExercise> exercises = Getters.getExercises();
     return Scaffold(
       appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text("Welcome to Iremi"),
           backgroundColor: myBluLight,
           actions: [
