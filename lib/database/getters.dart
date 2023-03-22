@@ -83,6 +83,14 @@ class Getters {
       defaultDatabaseErrorDialog(context, e);
     }
   }
+
+  static List<String> getAvailableLanguages() {
+    return ['English', 'French', 'German', 'Spanish'];
+  }
+
+  static List<String> getAvailableVoiceTypes() {
+    return ['Male', 'Female', 'Neutral'];
+  }
 /*
   static MySettings getDefaultSettings() {
     return MySettings(
