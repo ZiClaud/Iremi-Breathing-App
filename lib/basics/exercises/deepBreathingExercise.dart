@@ -1,4 +1,4 @@
-import 'package:iremibreathingapp/basics/exercises/exercise.dart';
+import 'package:iremibreathingapp/basics/exercise.dart';
 
 abstract class DeepBreathingExercise extends MyExercise {
   @override

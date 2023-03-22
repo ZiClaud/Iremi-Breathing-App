@@ -6,6 +6,7 @@ App against anxiety that gives breathing exercises
 
 # Bare minimum
 
+- [x] Create basic classes
 - [x] Breathing exercises
 - [x] Add other breathing exercises
 - [ ] Add more breathing exercises
@@ -20,13 +21,13 @@ App against anxiety that gives breathing exercises
 
 - [x] Add profile page
 - [x] Database - SQLite
-- [ ] Add user to database
+- [x] Add user to database
 - [ ] Track progress and saves custom exercises
 - [ ] Backup/Restore database
 
 # Profile - Most need database
 
-- [ ] Login/Register
+- [x] Login/Register
 - [ ] Add settings
 - [ ] Add all the languages, translated using a translator API
 - [ ] Add badges
@@ -42,3 +43,4 @@ App against anxiety that gives breathing exercises
 - [ ] AI calming voice that reads the steps
 - [ ] Add chill music
 - [ ] Loading screen with tips
+- [x] In the same app there can be more users (Kinda useful for when I'll move the app on a server)

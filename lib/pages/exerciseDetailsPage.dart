@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/exercises/exercise.dart';
+import 'package:iremibreathingapp/basics/exercise.dart';
 
 import '../utils/defaultWidget.dart';
 import '../utils/myUtils.dart';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/mainPage.dart';
 import 'package:iremibreathingapp/pages/registerPage.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
+import 'package:iremibreathingapp/utils/defaultWidget.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
 import 'database/database.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           if (snapshot.hasData) {
             return snapshot.data!;
           } else {
-            return CircularProgressIndicator();
+            return defaultLinearProgressIndicator();
           }
         },
       ),

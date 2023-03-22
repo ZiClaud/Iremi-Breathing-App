@@ -1,4 +1,5 @@
 class MySettings {
+  final int? id;
   String language;
   bool darkmode;
   bool music;
@@ -6,5 +7,10 @@ class MySettings {
   String voiceType;
 
   MySettings(
-      this.language, this.darkmode, this.music, this.voice, this.voiceType);
+      {this.id,
+      required this.language,
+      required this.darkmode,
+      required this.music,
+      required this.voice,
+      required this.voiceType});
 }

@@ -15,6 +15,15 @@ abstract class MyExercise {
     }
   }
 
+  Duration getTime() {
+    return (inhaleDuration +
+            holdMiddleDuration +
+            exhaleDuration +
+            holdEndDuration) *
+        times;
+  }
+}
+/*
   void start() {
     start2(times);
   }
@@ -32,12 +41,4 @@ abstract class MyExercise {
       times--;
     }
   }
-
-  Duration getTime() {
-    return (inhaleDuration +
-            holdMiddleDuration +
-            exhaleDuration +
-            holdEndDuration) *
-        times;
-  }
-}
+  */
