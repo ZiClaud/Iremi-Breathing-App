@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
@@ -62,4 +63,32 @@ void printWarning(String text) {
 
 void printError(String text) {
   print('\x1B[31m$text\x1B[0m');
+}
+
+String getDefaultLanguage() {
+  return window.locale.languageCode;
+}
+
+ThemeMode getDefaultTheme() {
+  return ThemeMode.system;
+}
+
+Future defaultDatabaseErrorDialog(context, message) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Database error"),
+        content: Text(message.toString()),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("Close"),
+          ),
+        ],
+      );
+    },
+  );
 }

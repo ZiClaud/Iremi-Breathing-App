@@ -4,6 +4,7 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
+import '../../utils/myUtils.dart';
 import '../forms/userFormWidget.dart';
 
 class TestDBAddUserPage extends StatefulWidget {
@@ -90,23 +91,7 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
           await addUser();
         }
       } catch (e) {
-        showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Text("Database error"),
-              content: Text(e.toString()),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text("Close"),
-                ),
-              ],
-            );
-          },
-        );
+        defaultDatabaseErrorDialog(context, e);
       }
 
       Navigator.of(context).pop();
@@ -125,23 +110,7 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
     try {
       await MyDatabase.instance.update(user);
     } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Database error"),
-            content: Text(e.toString()),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Close"),
-              ),
-            ],
-          );
-        },
-      );
+      defaultDatabaseErrorDialog(context, e);
     }
   }
 
@@ -157,23 +126,7 @@ class _TestDBAddUserPageState extends State<TestDBAddUserPage> {
     try {
       await MyDatabase.instance.create(user);
     } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Database error"),
-            content: Text(e.toString()),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Close"),
-              ),
-            ],
-          );
-        },
-      );
+      defaultDatabaseErrorDialog(context, e);
     }
   }
 }
