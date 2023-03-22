@@ -1,6 +1,7 @@
-import 'package:iremibreathingapp/basics/exercises/exercise.dart';
+import 'package:iremibreathingapp/basics/exercise.dart';
 
 class CustomExercise extends MyExercise {
+  late final int? id; // TODO: stuff
   @override
   String name;
 
@@ -28,9 +29,18 @@ class CustomExercise extends MyExercise {
   @override
   int times;
 
-  CustomExercise(this.name, this.description, this.notes, this.steps,
-      this.times, inhaleTime, holdMiddleTime, exhaleTime, holdEndTime,
-      {inhaleTimeMs = 0,
+  CustomExercise(
+      {this.id,
+      required this.name,
+      required this.description,
+      required this.notes,
+      required this.steps,
+      required this.times,
+      required inhaleTime,
+      required holdMiddleTime,
+      required exhaleTime,
+      required holdEndTime,
+      inhaleTimeMs = 0,
       holdMiddleTimeMs = 0,
       exhaleTimeMs = 0,
       holdEndTimeMs = 0}) {

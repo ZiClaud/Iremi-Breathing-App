@@ -5,9 +5,8 @@ class MyUser {
   String? surname;
   String? sex;
   String goal;
-
-//  List<Badge> badges;
-//  ExerciseHistory exerciseHistory;
+//  List<Badge> badges; - TODO
+//  ExerciseHistory exerciseHistory; - TODO
 
   MyUser({
     this.id,
@@ -56,7 +55,6 @@ class MyUser {
 
 class UserFields {
   static final List<String> values = [
-    /// Add all fields
     id, username, name, surname, sex, goal
   ];
 
@@ -68,17 +66,3 @@ class UserFields {
   static final String goal = 'goal';
 }
 
-MyUser getDefaultUser() {
-  return MyUser(
-    username: "N/A",
-    name: "N/A",
-    surname: "N/A",
-    sex: "N/A",
-    goal: "N/A",
-  );
-}
-
-Future<MyUser> getUserOrDefault(Future<MyUser?> futureUser) async {
-  MyUser? user = await futureUser;
-  return user ?? getDefaultUser();
-}

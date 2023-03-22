@@ -101,6 +101,12 @@ BorderSide defaultBorderSide() {
   return const BorderSide(color: myBluLight, width: 1.5);
 }
 
+LinearProgressIndicator defaultLinearProgressIndicator() {
+  return LinearProgressIndicator(
+    backgroundColor: myBluLight,
+  );
+}
+
 /*
 - Not used
 ButtonStyle defaultButtonStyle() {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/exercises/exercise.dart';
+import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPage.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
 
@@ -26,6 +26,7 @@ class _MainPageState extends State<MainPage> {
           title: Text("Welcome to Iremi"),
           backgroundColor: myBluLight,
           actions: [
+            /*
             IconButton(
               icon: const Icon(
                 Icons.developer_mode,
@@ -48,6 +49,7 @@ class _MainPageState extends State<MainPage> {
                         builder: (context) => TestDBAddUserPage()));
               },
             ),
+            */
             IconButton(
               icon: const Icon(
                 Icons.add_circle,

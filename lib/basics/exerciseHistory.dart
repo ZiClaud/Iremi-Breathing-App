@@ -1,5 +1,8 @@
-class ExerciseHistory {
-//  List<Exercise, DateTime> exercise;
+import 'package:iremibreathingapp/basics/exercise.dart';
 
-//  ExerciseHistory(this.exercise);
+class ExerciseHistory {
+  final int? id;
+  Map<DateTime, MyExercise> exercises;
+
+  ExerciseHistory({this.id, required this.exercises});
 }

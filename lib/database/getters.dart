@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/basics/exercises/b478Exercise.dart';
 import 'package:iremibreathingapp/basics/exercises/boxBreathingExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
-import 'package:iremibreathingapp/basics/exercises/exercise.dart';
 import 'package:iremibreathingapp/basics/settings.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 
@@ -20,26 +20,51 @@ class Getters {
       B478Exercise(),
       BoxBreathingExercise(),
       CustomExercise(
-          "DEV: Fast", "Used by developer", "N/A", ["N/A"], 1, 1, 1, 1, 1),
+          name: "DEV: Fast",
+          description: "Used by developer",
+          notes: "N/A",
+          steps: ["N/A"],
+          times: 1,
+          inhaleTime: 1,
+          holdMiddleTime: 1,
+          exhaleTime: 1,
+          holdEndTime: 1),
       CustomExercise(
-          "DEV: Faster", "Used by developer", "N/A", ["N/A"], 1, 0, 0, 0, 0,
+          name: "DEV: Faster",
+          description: "Used by developer",
+          notes: "N/A",
+          steps: ["N/A"],
+          times: 1,
+          inhaleTime: 0,
+          holdMiddleTime: 0,
+          exhaleTime: 0,
+          holdEndTime: 0,
           inhaleTimeMs: 1,
           holdMiddleTimeMs: 1,
           exhaleTimeMs: 1,
           holdEndTimeMs: 1),
-      /*
-      CustomExercise("1234", "", "", ["s1", "s2"], 1, 2, 3, 4, 5),
-      CustomExercise("Milliseconds", "", "", ["s1", "s2"], 10, 1, 1, 1, 1,
-          inhaleTimeMs: 500),
-      CustomExercise("Milliseconds 2", "", "", ["s1", "s2"], 5, 1, 1, 1, 1,
-          inhaleTimeMs: 500,
-          holdMiddleTimeMs: 500,
-          exhaleTimeMs: 500,
-          holdEndTimeMs: 500),
-      */
     ];
 
     return ex;
+  }
+
+  static CustomExercise getCustomExercise() {
+    // TODO: REMOVE - Now it's replacing DB stuff
+    return CustomExercise(
+        name: "DEV: Fast",
+        description: "Used by developer",
+        notes: "N/A",
+        steps: ["N/A"],
+        times: 1,
+        inhaleTime: 1,
+        holdMiddleTime: 1,
+        exhaleTime: 1,
+        holdEndTime: 1);
+  }
+
+  static Future<List<CustomExercise?>> getCustomExercises() async {
+    // TODO: Replace with DB stuff
+    return await [getCustomExercise()];
   }
 
   static Future<MyUser?> getUser() {
@@ -77,12 +102,23 @@ class Getters {
   }
 
   static Future<MySettings?> getSettings() async {
-    return await MySettings("Italian", false, false, true, "Male");
+    return await MySettings(
+        language: 'Italian',
+        darkmode: false,
+        music: false,
+        voice: true,
+        voiceType: "Male");
   }
 
   static Future<MySettings?> getSettingsDB(context) async {
     try {
-      return await MySettings("Italian", false, false, true, "Male");
+      // TODO: CHANGE
+      return await MySettings(
+          language: 'Italian',
+          darkmode: false,
+          music: false,
+          voice: true,
+          voiceType: "Male");
     } catch (e) {
       showDialog(
         context: context,

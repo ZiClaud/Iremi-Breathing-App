@@ -16,7 +16,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: Getters.getSettings(),
+        future: Getters.getSettingsDB(context),
         builder: (BuildContext context, AsyncSnapshot<MySettings?> settings) {
           return Scaffold(
               appBar: AppBar(
@@ -78,9 +78,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     val: settings.data?.voiceType,
                     mySwitch: null,
                   ),
-                  // TODO: Delete user
-                  // TODO: Backup db
-                  // TODO: Restore db
+                  // TODO: Delete user bt
+                  // TODO: Backup db bt
+                  // TODO: Restore db bt
                 ],
               ));
         });
