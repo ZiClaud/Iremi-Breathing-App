@@ -27,7 +27,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
   void initState() {
     super.initState();
 
-    username = widget.user?.username ?? 'we';
+    username = widget.user?.username ?? '';
     name = widget.user?.name ?? '';
     surname = widget.user?.surname ?? '';
     sex = widget.user?.sex ?? '';
