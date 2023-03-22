@@ -3,7 +3,6 @@ import 'package:iremibreathingapp/basics/exercises/b478Exercise.dart';
 import 'package:iremibreathingapp/basics/exercises/boxBreathingExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
-import 'package:iremibreathingapp/basics/settings.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/utils/myUtils.dart';
 
@@ -84,7 +83,7 @@ class Getters {
       defaultDatabaseErrorDialog(context, e);
     }
   }
-
+/*
   static MySettings getDefaultSettings() {
     return MySettings(
         language: getDefaultLanguage(),
@@ -102,4 +101,5 @@ class Getters {
       return getDefaultSettings();
     }
   }
+  */
 }
