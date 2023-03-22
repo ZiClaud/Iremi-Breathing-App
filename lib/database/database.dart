@@ -59,7 +59,7 @@ class MyDatabase {
     }
   }
 
-  Future<MyUser> create(MyUser user) async {
+  Future<MyUser> _create(MyUser user) async {
     try {
       final db = await instance.database;
       final id = await db.insert(tableUser, user.toJson());
@@ -70,7 +70,7 @@ class MyDatabase {
     }
   }
 
-  Future<MyUser> readUser(int id) async {
+  Future<MyUser> _readUser(int id) async {
     try {
       final db = await instance.database;
 
@@ -92,9 +92,9 @@ class MyDatabase {
     }
   }
 
-  Future<MyUser?> getFirstUser() async {
+  Future<MyUser?> _getFirstUser() async {
     try {
-      final allUsers = await readAllUsers();
+      final allUsers = await _readAllUsers();
       if (allUsers.isNotEmpty) {
         return allUsers.first;
       }
@@ -105,7 +105,7 @@ class MyDatabase {
     }
   }
 
-  Future<List<MyUser>> readAllUsers() async {
+  Future<List<MyUser>> _readAllUsers() async {
     try {
       final db = await instance.database;
 
@@ -120,7 +120,7 @@ class MyDatabase {
     }
   }
 
-  Future<int> update(MyUser user) async {
+  Future<int> _update(MyUser user) async {
     try {
       final db = await instance.database;
 
@@ -136,7 +136,7 @@ class MyDatabase {
     }
   }
 
-  Future<int> delete(int id) async {
+  Future<int> _delete(int id) async {
     try {
       final db = await instance.database;
 
@@ -151,7 +151,7 @@ class MyDatabase {
     }
   }
 
-  Future close() async {
+  Future _close() async {
     try {
       final db = await instance.database;
 
@@ -160,5 +160,25 @@ class MyDatabase {
       printError('Error closing database: $e');
       throw e;
     }
+  }
+
+  Future<MyUser> createUser(MyUser user) async {
+    return _create(user);
+  }
+
+  Future<MyUser?> getFirstUser() async {
+    return _getFirstUser();
+  }
+
+  Future<List<MyUser>> readAllUsers() async {
+    return _readAllUsers();
+  }
+
+  Future updateUser(MyUser user) async {
+    _update(user);
+  }
+
+  Future deleteUser(MyUser user) async {
+    _delete(user.id!);
   }
 }
