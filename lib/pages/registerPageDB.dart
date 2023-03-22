@@ -17,17 +17,17 @@ class RegisterPageDB extends StatefulWidget {
 
 class _RegisterPageDBState extends State<RegisterPageDB> {
   final _formKey = GlobalKey<FormState>();
-  late String username = widget.user?.username ?? '';
-  late String name = widget.user?.name ?? '';
-  late String? surname = widget.user?.surname ?? '';
-  late String? sex = widget.user?.sex ?? '';
-  late String goal = widget.user?.goal ?? '';
+  late String username;
+  late String name;
+  late String? surname;
+  late String? sex;
+  late String goal;
 
   @override
   void initState() {
     super.initState();
 
-    username = widget.user?.username ?? '';
+    username = widget.user?.username ?? 'we';
     name = widget.user?.name ?? '';
     surname = widget.user?.surname ?? '';
     sex = widget.user?.sex ?? '';
