@@ -2,9 +2,11 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../basics/settings.dart';
 import '../utils/myUtils.dart';
 
 final String tableUser = 'user';
+final String tableSettings = 'settings';
 
 class MyDatabase {
   static final MyDatabase instance = MyDatabase._init();
@@ -17,7 +19,7 @@ class MyDatabase {
     if (_database != null) return _database!;
 
     try {
-      _database = await _initDB('user.db');
+      _database = await _initDB('myDatabase.db');
       return _database!;
     } catch (e) {
       printError('Error getting database: $e');
@@ -30,11 +32,16 @@ class MyDatabase {
     final path = join(dbPath, filePath);
 
     try {
-      return await openDatabase(path, version: 1, onCreate: _createUserTable);
+      return await openDatabase(path, version: 1, onCreate: _createAllTables);
     } catch (e) {
       printError('Error opening database: $e');
       throw e;
     }
+  }
+
+  Future _createAllTables(Database db, int version) async {
+    _createUserTable(db, version);
+    _createSettingsTable(db, version);
   }
 
   Future _createUserTable(Database db, int version) async {
@@ -54,18 +61,51 @@ class MyDatabase {
           ${UserFields.goal} $textType
           )''');
     } catch (e) {
-      printError('Error creating table: $e');
+      printError('Error creating table $tableSettings: $e');
       throw e;
     }
   }
 
-  Future<MyUser> _create(MyUser user) async {
+  Future _createSettingsTable(Database db, int version) async {
+    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    final textType = 'TEXT NOT NULL';
+    final boolType = 'BOOLEAN NOT NULL';
+    final integerType = 'INTEGER NOT NULL';
+
+    try {
+      await db.execute('''
+          CREATE TABLE $tableSettings (
+          ${SettingsFields.id} $idType,
+          ${SettingsFields.language} $textType,
+          ${SettingsFields.darkmode} $boolType,
+          ${SettingsFields.music} $boolType,
+          ${SettingsFields.voice} $boolType,
+          ${SettingsFields.voiceType} $textType
+          )''');
+    } catch (e) {
+      printError('Error creating table $tableSettings: $e');
+      throw e;
+    }
+  }
+
+  Future<MyUser> _createUser(MyUser user) async {
     try {
       final db = await instance.database;
       final id = await db.insert(tableUser, user.toJson());
       return user.copy(id: id);
     } catch (e) {
       printError('Error creating user: $e');
+      throw e;
+    }
+  }
+
+  Future<MySettings> _createSettings(MySettings settings) async {
+    try {
+      final db = await instance.database;
+      final id = await db.insert(tableSettings, settings.toJson());
+      return settings.copy(id: id);
+    } catch (e) {
+      printError('Error creating settings: $e');
       throw e;
     }
   }
@@ -92,6 +132,28 @@ class MyDatabase {
     }
   }
 
+  Future<MySettings> _readSettings(int id) async {
+    try {
+      final db = await instance.database;
+
+      final maps = await db.query(
+        tableSettings,
+        columns: SettingsFields.values,
+        where: '${SettingsFields.id} = ?',
+        whereArgs: [id],
+      );
+
+      if (maps.isNotEmpty) {
+        return MySettings.fromJson(maps.first);
+      } else {
+        throw Exception('ID $id not found');
+      }
+    } catch (e) {
+      printError('Error reading settings: $e');
+      throw e;
+    }
+  }
+
   Future<MyUser?> _getFirstUser() async {
     try {
       final allUsers = await _readAllUsers();
@@ -101,6 +163,19 @@ class MyDatabase {
       return null;
     } catch (e) {
       printError('Error reading all users: $e');
+      throw e;
+    }
+  }
+
+  Future<MySettings?> _getFirstSettings() async {
+    try {
+      final allSettings = await _readAllSettings();
+      if (allSettings.isNotEmpty) {
+        return allSettings.first;
+      }
+      return null;
+    } catch (e) {
+      printError('Error reading all settings: $e');
       throw e;
     }
   }
@@ -120,7 +195,22 @@ class MyDatabase {
     }
   }
 
-  Future<int> _update(MyUser user) async {
+  Future<List<MySettings>> _readAllSettings() async {
+    try {
+      final db = await instance.database;
+
+      final orderBy = '${SettingsFields.id} ASC';
+
+      final result = await db.query(tableSettings, orderBy: orderBy);
+
+      return result.map((json) => MySettings.fromJson(json)).toList();
+    } catch (e) {
+      printError('Error reading all settings: $e');
+      throw e;
+    }
+  }
+
+  Future<int> _updateUser(MyUser user) async {
     try {
       final db = await instance.database;
 
@@ -136,7 +226,23 @@ class MyDatabase {
     }
   }
 
-  Future<int> _delete(int id) async {
+  Future<int> _updateSettings(MySettings settings) async {
+    try {
+      final db = await instance.database;
+
+      return await db.update(
+        tableSettings,
+        settings.toJson(),
+        where: '${SettingsFields.id} = ?',
+        whereArgs: [settings.id],
+      );
+    } catch (e) {
+      printError('Error updating settings: $e');
+      throw e;
+    }
+  }
+
+  Future<int> _deleteUser(int id) async {
     try {
       final db = await instance.database;
 
@@ -147,6 +253,21 @@ class MyDatabase {
       );
     } catch (e) {
       printError('Error deleting user: $e');
+      throw e;
+    }
+  }
+
+  Future<int> _deleteSettings(int id) async {
+    try {
+      final db = await instance.database;
+
+      return await db.delete(
+        tableSettings,
+        where: '${SettingsFields.id} = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      printError('Error deleting settings: $e');
       throw e;
     }
   }
@@ -163,7 +284,7 @@ class MyDatabase {
   }
 
   Future<MyUser> createUser(MyUser user) async {
-    return _create(user);
+    return _createUser(user);
   }
 
   Future<MyUser?> getFirstUser() async {
@@ -175,10 +296,30 @@ class MyDatabase {
   }
 
   Future updateUser(MyUser user) async {
-    _update(user);
+    _updateUser(user);
   }
 
   Future deleteUser(MyUser user) async {
-    _delete(user.id!);
+    _deleteUser(user.id!);
+  }
+
+  Future<MySettings> createSettings(MySettings settings) async {
+    return _createSettings(settings);
+  }
+
+  Future<MySettings?> getFirstSettings() async {
+    return _getFirstSettings();
+  }
+
+  Future<List<MySettings>> readAllSettings() async {
+    return _readAllSettings();
+  }
+
+  Future updateSettings(MySettings settings) async {
+    _updateSettings(settings);
+  }
+
+  Future deleteSettings(MySettings settings) async {
+    _deleteSettings(settings.id!);
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/basics/exercises/b478Exercise.dart';
 import 'package:iremibreathingapp/basics/exercises/boxBreathingExercise.dart';
@@ -95,15 +94,9 @@ class Getters {
         voiceType: "Male");
   }
 
-  static Future<MySettings?> getSettingsDB(context) async {
+  static Future<MySettings> getSettingsDB(context) async {
     try {
-      // TODO: CHANGE
-      return await MySettings(
-          language: getDefaultLanguage(),
-          darkmode: getDefaultTheme(context),
-          music: false,
-          voice: true,
-          voiceType: "Male");
+      return await MyDatabase.instance.getFirstSettings() ?? getDefaultSettings();
     } catch (e) {
       defaultDatabaseErrorDialog(context, e);
       return getDefaultSettings();
