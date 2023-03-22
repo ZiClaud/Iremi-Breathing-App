@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/database/getters.dart';
-import 'package:iremibreathingapp/utils/myUtils.dart';
 
-import '../../utils/defaultWidget.dart';
+import '../../../utils/defaultWidget.dart';
 
 class SettingsFormWidget extends StatelessWidget {
   final String? language;
@@ -49,21 +48,21 @@ class SettingsFormWidget extends StatelessWidget {
                     //onChanged: onChangedLanguage, - todo, somewhere
                   ),
                   defaultListTile(
-                    icon: Icons.music_note,
-                    label: "Music",
-                    val: music,
-                    mySwitch: Switch(
-                      value: music ?? Getters.getDefaultSettings().music,
-                      onChanged: onChangedMusic,
-                    ),
-                  ),
-                  defaultListTile(
                     icon: Icons.dark_mode,
                     label: "Dark Mode",
                     val: darkmode ?? Getters.getDefaultSettings().darkmode,
                     mySwitch: Switch(
                       value: darkmode ?? Getters.getDefaultSettings().darkmode,
                       onChanged: onChangedDarkMode,
+                    ),
+                  ),
+                  defaultListTile(
+                    icon: Icons.music_note,
+                    label: "Music",
+                    val: music,
+                    mySwitch: Switch(
+                      value: music ?? Getters.getDefaultSettings().music,
+                      onChanged: onChangedMusic,
                     ),
                   ),
                   defaultListTile(
@@ -86,57 +85,6 @@ class SettingsFormWidget extends StatelessWidget {
                   // TODO: Backup db bt
                   // TODO: Restore db bt
                 ],
-                /*
-                [
-                  TextFormField(
-                    initialValue: language,
-                    decoration:
-                        defaultInputDecoration("Language", Icons.language),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    onChanged: onChangedLanguage,
-                    validator: (username) =>
-                        username != null && username.isEmpty
-                            ? 'The username cannot be empty'
-                            : null,
-                  ),
-                  TextFormField(
-                    initialValue: name,
-                    decoration: defaultInputDecoration(
-                        "Name", Icons.nest_cam_wired_stand),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    onChanged: onChangedName,
-                    validator: (name) => name != null && name.isEmpty
-                        ? 'The name cannot be empty'
-                        : null,
-                  ),
-                  TextFormField(
-                    initialValue: surname,
-                    decoration: defaultInputDecoration(
-                        "Surname (optional)", Icons.surfing),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    onChanged: onChangedSurname,
-                  ),
-                  TextFormField(
-                    initialValue: sex,
-                    decoration:
-                        defaultInputDecoration("Sex (optional)", Icons.male),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    onChanged: onChangedSex,
-                  ),
-                  TextFormField(
-                    initialValue: goal,
-                    decoration: defaultInputDecoration(
-                        "Goal (optional)", Icons.circle_outlined),
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    onChanged: onChangedGoal,
-                  ),
-                ],
-                */
               ),
             ],
           ),

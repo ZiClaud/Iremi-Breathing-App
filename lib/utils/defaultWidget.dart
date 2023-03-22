@@ -104,6 +104,7 @@ BorderSide defaultBorderSide() {
 LinearProgressIndicator defaultLinearProgressIndicator() {
   return LinearProgressIndicator(
     backgroundColor: myBluLight,
+    color: myBluLight,
   );
 }
 

@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/settings.dart';
 
@@ -86,3 +87,4 @@ class _SettingsPageState extends State<SettingsPage> {
         });
   }
 }
+*/
