@@ -47,23 +47,7 @@ class _NoteDetailPageState extends State<TestDBShowUserPage> {
         sex: "N/A",
         goal: "N/A",
       );
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Database error"),
-            content: Text(e.toString()),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Close"),
-              ),
-            ],
-          );
-        },
-      );
+      defaultDatabaseErrorDialog(context, e);
     }
 
     setState(() => isLoading = false);

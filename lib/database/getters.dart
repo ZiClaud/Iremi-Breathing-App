@@ -6,6 +6,7 @@ import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
 import 'package:iremibreathingapp/basics/settings.dart';
 import 'package:iremibreathingapp/basics/user.dart';
+import 'package:iremibreathingapp/utils/myUtils.dart';
 
 import '../basics/exercises/deepBreathingExerciseAvanced.dart';
 import '../basics/exercises/deepBreathingExerciseIntermediate.dart';
@@ -81,31 +82,15 @@ class Getters {
     try {
       return await MyDatabase.instance.getFirstUser();
     } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Database error"),
-            content: Text(e.toString()),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Close"),
-              ),
-            ],
-          );
-        },
-      );
+      defaultDatabaseErrorDialog(context, e);
     }
   }
 
-  static Future<MySettings?> getSettings() async {
-    return await MySettings(
-        language: 'Italian',
-        darkmode: false,
-        music: false,
+  static MySettings getDefaultSettings() {
+    return MySettings(
+        language: getDefaultLanguage(),
+        darkmode: getDefaultTheme() == ThemeMode.dark ? true : false,
+        music: true,
         voice: true,
         voiceType: "Male");
   }
@@ -114,29 +99,14 @@ class Getters {
     try {
       // TODO: CHANGE
       return await MySettings(
-          language: 'Italian',
-          darkmode: false,
+          language: getDefaultLanguage(),
+          darkmode: getDefaultTheme() == ThemeMode.dark ? true : false,
           music: false,
           voice: true,
           voiceType: "Male");
     } catch (e) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text("Database error"),
-            content: Text(e.toString()),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: Text("Close"),
-              ),
-            ],
-          );
-        },
-      );
+      defaultDatabaseErrorDialog(context, e);
+      return getDefaultSettings();
     }
   }
 }
