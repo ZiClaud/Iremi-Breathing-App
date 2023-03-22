@@ -38,6 +38,7 @@ class UserFormWidget extends StatelessWidget {
               Column(
                 children: [
                   TextFormField(
+                    initialValue: username,
                     decoration:
                         defaultInputDecoration("Username", Icons.person),
                     keyboardType: TextInputType.multiline,
@@ -49,6 +50,7 @@ class UserFormWidget extends StatelessWidget {
                             : null,
                   ),
                   TextFormField(
+                    initialValue: name,
                     decoration: defaultInputDecoration(
                         "Name", Icons.nest_cam_wired_stand),
                     keyboardType: TextInputType.multiline,
@@ -59,6 +61,7 @@ class UserFormWidget extends StatelessWidget {
                         : null,
                   ),
                   TextFormField(
+                    initialValue: surname,
                     decoration: defaultInputDecoration(
                         "Surname (optional)", Icons.surfing),
                     keyboardType: TextInputType.multiline,
@@ -66,6 +69,7 @@ class UserFormWidget extends StatelessWidget {
                     onChanged: onChangedSurname,
                   ),
                   TextFormField(
+                    initialValue: sex,
                     decoration:
                         defaultInputDecoration("Sex (optional)", Icons.male),
                     keyboardType: TextInputType.multiline,
@@ -73,6 +77,7 @@ class UserFormWidget extends StatelessWidget {
                     onChanged: onChangedSex,
                   ),
                   TextFormField(
+                    initialValue: goal,
                     decoration: defaultInputDecoration(
                         "Goal (optional)", Icons.circle_outlined),
                     keyboardType: TextInputType.multiline,

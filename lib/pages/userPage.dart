@@ -36,7 +36,6 @@ class _UserPageState extends State<UserPage> {
                       defaultShowTextFormField("Sex", user.sex!, Icons.male),
                       defaultShowTextFormField(
                           "Goal", user.goal, Icons.circle_outlined),
-                      // TODO: Add Delete User button
                     ],
                   ));
             } else {
