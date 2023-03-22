@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/mainPage.dart';
-import 'package:iremibreathingapp/pages/registerPage.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
 import 'package:iremibreathingapp/utils/defaultWidget.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
@@ -16,6 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: READ SETTINGS TABLE - IF IT DOESN'T EXIST CREATE ONE
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
