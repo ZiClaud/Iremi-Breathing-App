@@ -1,22 +1,27 @@
 import 'dart:async';
 
+import 'package:iremibreathingapp/utils/myUtils.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
 String dbName = "my_database.db";
 String tableName = "object_table";
 
-class MyDatabase {
-  static final MyDatabase instance = MyDatabase._init();
+class MyDatabase2 {
+  static final MyDatabase2 instance = MyDatabase2._init();
 
   static Database? _database;
 
-  MyDatabase._init();
+  MyDatabase2._init();
 
   Future<Database> get database async {
     if (_database != null) return _database!;
 
-    _database = await _initDB(dbName);
+    try {
+      _database = await _initDB(dbName);
+    } catch (e) {
+      throw Exception('Error 404: $e');
+    }
     return _database!;
   }
 
