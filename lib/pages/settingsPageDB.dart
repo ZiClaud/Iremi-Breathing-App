@@ -59,6 +59,25 @@ class _SettingsPageDBState extends State<SettingsPageDB> {
                 onChangedVoiceType: (voiceType) =>
                     setState(() => this.voiceType = voiceType)),
           ),
+          defaultOutlinedButton(
+            onPressed: () {
+              // TODO: Backup
+            },
+            child: defaultText("Backup"),
+          ),
+          defaultOutlinedButton(
+            onPressed: () {
+              // TODO: Restore
+            },
+            child: defaultText("Restore"),
+          ),
+          defaultOutlinedButton(
+            onPressed: () {
+              // TODO: DELETE USER
+              // TODO: NAVIGATE TO REGISTER PAGE?
+            },
+            child: defaultText("Delete user"),
+          ),
           if (widget.settings == null)
             defaultText("No settings found - Default settings are shown"),
         ],
