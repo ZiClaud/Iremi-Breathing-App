@@ -1,3 +1,4 @@
+/*
 class MySettings {
   final int? id;
   String language;
@@ -67,3 +68,4 @@ class SettingsFields {
   static final String voice = 'voice';
   static final String voiceType = 'voiceType';
 }
+*/

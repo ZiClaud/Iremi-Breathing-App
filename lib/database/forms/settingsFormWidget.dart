@@ -1,3 +1,4 @@
+/*
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/database/getters.dart';
 
@@ -42,15 +43,15 @@ class SettingsFormWidget extends StatelessWidget {
                 "Language", settings.language, Icons.language), */
                   defaultListTile(
                     icon: Icons.language,
-                    label: "Language",
-                    val: language ?? Getters.getDefaultSettings().language,
+                    title: "Language",
+                    subtitle: language ?? Getters.getDefaultSettings().language,
                     mySwitch: null,
                     //onChanged: onChangedLanguage, - todo, somewhere
                   ),
                   defaultListTile(
                     icon: Icons.dark_mode,
-                    label: "Dark Mode",
-                    val: darkmode ?? Getters.getDefaultSettings().darkmode,
+                    title: "Dark Mode",
+                    subtitle: darkmode ?? Getters.getDefaultSettings().darkmode,
                     mySwitch: Switch(
                       value: darkmode ?? Getters.getDefaultSettings().darkmode,
                       onChanged: onChangedDarkMode,
@@ -58,8 +59,8 @@ class SettingsFormWidget extends StatelessWidget {
                   ),
                   defaultListTile(
                     icon: Icons.music_note,
-                    label: "Music",
-                    val: music,
+                    title: "Music",
+                    subtitle: music,
                     mySwitch: Switch(
                       value: music ?? Getters.getDefaultSettings().music,
                       onChanged: onChangedMusic,
@@ -67,8 +68,8 @@ class SettingsFormWidget extends StatelessWidget {
                   ),
                   defaultListTile(
                     icon: Icons.keyboard_voice_rounded,
-                    label: "Voice",
-                    val: voice ?? Getters.getDefaultSettings().voice,
+                    title: "Voice",
+                    subtitle: voice ?? Getters.getDefaultSettings().voice,
                     mySwitch: Switch(
                       value: voice ?? Getters.getDefaultSettings().voice,
                       onChanged: onChangedVoice,
@@ -76,8 +77,9 @@ class SettingsFormWidget extends StatelessWidget {
                   ),
                   defaultListTile(
                     icon: Icons.record_voice_over,
-                    label: "Voice Type",
-                    val: voiceType ?? Getters.getDefaultSettings().voiceType,
+                    title: "Voice Type",
+                    subtitle:
+                        voiceType ?? Getters.getDefaultSettings().voiceType,
                     mySwitch: null,
 //                    onChanged: onChangedVoiceType,
                   ),
@@ -88,3 +90,4 @@ class SettingsFormWidget extends StatelessWidget {
         ),
       );
 }
+*/

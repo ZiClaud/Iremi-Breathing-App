@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/settings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../database/getters.dart';
 import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
 
@@ -17,6 +15,11 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _music = false;
   bool _darkMode = false;
   bool _voice = false;
+  late String _language;
+  late String _voiceType;
+
+  final List<String> languages = ['English', 'French', 'German', 'Spanish'];
+  final List<String> voiceTypes = ['Male', 'Female', 'Neutral'];
 
   @override
   void initState() {
@@ -30,6 +33,8 @@ class _SettingsPageState extends State<SettingsPage> {
       _music = prefs.getBool('music') ?? false;
       _darkMode = prefs.getBool('darkMode') ?? false;
       _voice = prefs.getBool('voice') ?? false;
+      _language = prefs.getString('language') ?? 'English';
+      _voiceType = prefs.getString('voiceType') ?? 'Male';
     });
   }
 
@@ -38,79 +43,138 @@ class _SettingsPageState extends State<SettingsPage> {
     await prefs.setBool('music', _music);
     await prefs.setBool('darkMode', _darkMode);
     await prefs.setBool('voice', _voice);
+    await prefs.setString('language', _language);
+    await prefs.setString('voiceType', _voiceType);
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: Getters.getSettingsDB(context),
-        builder: (BuildContext context, AsyncSnapshot<MySettings?> settings) {
-          return Scaffold(
-              appBar: AppBar(
-                title: const Text("Settings"),
-                backgroundColor: myBluLight,
+    return Scaffold(
+          appBar: AppBar(
+            title: const Text("Settings"),
+            backgroundColor: myBluLight,
+          ),
+          body: ListView(
+            children: [
+              defaultListTile(
+                icon: Icons.language,
+                title: 'Language',
+                subtitle: _language,
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () async {
+                  String? newLanguage = await showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Choose a Language'),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              for (String language in languages)
+                                RadioListTile<String>(
+                                  title: Text(language),
+                                  value: language,
+                                  groupValue: _language,
+                                  onChanged: (String? value) {
+                                    Navigator.of(context).pop(value);
+                                  },
+                                ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                  if (newLanguage != null) {
+                    setState(() {
+                      _language = newLanguage;
+                      _saveSettings();
+                    });
+                  }
+                },
               ),
-              body: ListView(
-                children: [
-                  defaultListTile(
-                    icon: Icons.language,
-                    label: "Language",
-                    val: settings.data?.language,
-                    mySwitch: null,
-                  ),
                   defaultListTile(
                     icon: Icons.music_note,
-                    label: "Music",
-                    val: _music,
-                    mySwitch: Switch(
-                      value: _music,
-                      onChanged: (value) {
-                        setState(() {
-                          _music = value;
-                          _saveSettings();
-                        });
-                      },
-                    ),
-                  ),
+                title: "Music",
+                subtitle: _music,
+                trailing: Switch(
+                  value: _music,
+                  onChanged: (value) {
+                    setState(() {
+                      _music = value;
+                      _saveSettings();
+                    });
+                  },
+                ),
+              ),
                   defaultListTile(
                     icon: Icons.dark_mode,
-                    label: "Dark Mode",
-                    val: _darkMode,
-                    mySwitch: Switch(
-                      value: _darkMode,
-                      onChanged: (value) {
-                        setState(() {
-                          _darkMode = value;
-                          _saveSettings();
-                        });
-                      },
-                    ),
-                  ),
+                title: "Dark Mode",
+                subtitle: _darkMode,
+                trailing: Switch(
+                  value: _darkMode,
+                  onChanged: (value) {
+                    setState(() {
+                      _darkMode = value;
+                      _saveSettings();
+                    });
+                  },
+                ),
+              ),
                   defaultListTile(
                     icon: Icons.keyboard_voice_rounded,
-                    label: "Voice",
-                    val: _voice,
-                    mySwitch: Switch(
-                      value: _voice,
-                      onChanged: (value) {
-                        setState(() {
-                          _voice = value;
-                          _saveSettings();
-                        });
-                      },
-                    ),
-                  ),
-                  defaultListTile(
-                    icon: Icons.record_voice_over,
-                    label: "Voice Type",
-                    val: settings.data?.voiceType,
-                    mySwitch: null,
-                  ),
-                  // TODO: Delete user bt
-                  // TODO: Backup db bt
-                  // TODO: Restore db bt
-                ],
+                title: "Voice",
+                subtitle: _voice,
+                trailing: Switch(
+                  value: _voice,
+                  onChanged: (value) {
+                    setState(() {
+                      _voice = value;
+                      _saveSettings();
+                    });
+                  },
+                ),
+              ),
+              defaultListTile(
+                icon: Icons.person,
+                title: 'Voice Type',
+                subtitle: _voiceType,
+                trailing: const Icon(Icons.arrow_forward_ios),
+                onTap: () async {
+                  String? newVoiceType = await showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Choose a Voice Type'),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              for (String voiceType in voiceTypes)
+                                RadioListTile<String>(
+                                  title: Text(voiceType),
+                                  value: voiceType,
+                                  groupValue: _voiceType,
+                                  onChanged: (String? value) {
+                                    Navigator.of(context).pop(value);
+                                  },
+                                ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                  if (newVoiceType != null) {
+                    setState(() {
+                      _voiceType = newVoiceType;
+                      _saveSettings();
+                    });
+                  }
+                },
+              ),
+            ],
               ));
-        });
   }
 }

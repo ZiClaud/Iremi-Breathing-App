@@ -73,16 +73,25 @@ OutlinedButton defaultOutlinedButton(
   return OutlinedButton(onPressed: onPressed, child: child);
 }
 
-ListTile defaultListTile(
-    {required IconData icon,
-    required String label,
-    required val,
-    required Switch? mySwitch}) {
+ListTile defaultListTile({
+  required IconData icon,
+  required String title,
+  required subtitle,
+  required trailing,
+  leading,
+  onTap,
+}) {
   return ListTile(
 //    shape: defaultRoundedRectangleBorder(),
-    title: defaultShowTextFormField(label,
-        (val is bool) ? (val == true ? "On" : "Off") : val.toString(), icon),
-    trailing: mySwitch,
+    title: defaultShowTextFormField(
+        title,
+        (subtitle is bool)
+            ? (subtitle == true ? "On" : "Off")
+            : subtitle.toString(),
+        icon),
+    trailing: trailing,
+    leading: leading,
+    onTap: onTap,
   );
 }
 
