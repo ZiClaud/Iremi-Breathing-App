@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
+import 'package:iremibreathingapp/pages/exerciseStepsPage.dart';
 
 import '../utils/defaultWidget.dart';
 import '../utils/myUtils.dart';
@@ -32,12 +33,19 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
           defaultShowTextFormField(
               "Description", exercise.description, Icons.description),
           defaultShowTextFormField("notes", exercise.notes, Icons.note),
-          defaultShowTextFormField("steps", "steps - TODO", Icons.select_all),
           defaultShowTextFormField("Inhale, hold, exhale, hold",
               getDurationString(exercise), Icons.book),
           defaultShowTextFormField("Times", "${exercise.times}", Icons.repeat),
           defaultShowTextFormField("Duration of exercise",
               getTimeString(exercise), Icons.timelapse_sharp),
+          defaultOutlinedButton(
+              child: defaultText("Steps"),
+              onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ExerciseStepsPage(exercise: exercise),
+                    ),
+                  ))
         ],
       ),
       floatingActionButton: defaultFloatingActionButton(

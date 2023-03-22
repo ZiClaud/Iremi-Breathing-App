@@ -106,7 +106,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
         defaultDatabaseErrorDialog(context, e);
       }
 
-      Navigator.of(context).pop();
+      Navigator.pop(context);
     }
   }
 
@@ -121,7 +121,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
 
     try {
       await MyDatabase.instance.update(user);
-      Navigator.of(context).pop();
+      Navigator.pop(context);
     } catch (e) {
       defaultDatabaseErrorDialog(context, e);
     }
