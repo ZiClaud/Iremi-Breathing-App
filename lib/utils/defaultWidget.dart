@@ -101,11 +101,27 @@ BorderSide defaultBorderSide() {
   return const BorderSide(color: myBluLight, width: 1.5);
 }
 
-LinearProgressIndicator defaultLinearProgressIndicator() {
+LinearProgressIndicator defaultLinearProgressIndicator2() {
   return LinearProgressIndicator(
     backgroundColor: myBluLight,
     color: myBluLight,
   );
+}
+
+Scaffold defaultLoadingScreen() {
+  return Scaffold(
+    backgroundColor: myWhite,
+    body: Center(
+      child: Image(
+        image: AssetImage('assets/icon/icon.png'),
+      ),
+    ),
+  );
+  /*
+  return Center(
+    child: Image.asset("../../../assets/icon/icon.png"),
+  );
+  */
 }
 
 /*

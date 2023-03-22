@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
       home: FutureBuilder<Widget>(
         future: getHomePage(),
         builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
-          if (snapshot.hasData) {
+          if (!snapshot.hasData) {
             return snapshot.data!;
           } else {
-            return defaultLinearProgressIndicator();
+            return defaultLoadingScreen();
           }
         },
       ),

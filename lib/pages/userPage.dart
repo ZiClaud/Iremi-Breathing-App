@@ -45,7 +45,7 @@ class _UserPageState extends State<UserPage> {
               );
             }
           } else {
-            return defaultLinearProgressIndicator();
+            return defaultLoadingScreen();
           }
         });
   }

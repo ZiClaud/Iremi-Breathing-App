@@ -25,30 +25,6 @@ class _MainPageState extends State<MainPage> {
           title: Text("Welcome to Iremi"),
           backgroundColor: myBluLight,
           actions: [
-            /*
-            IconButton(
-              icon: const Icon(
-                Icons.developer_mode,
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TestDBShowUserPage()));
-              },
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.cloud_circle,
-              ),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => TestDBAddUserPage()));
-              },
-            ),
-            */
             IconButton(
               icon: const Icon(
                 Icons.add_circle,

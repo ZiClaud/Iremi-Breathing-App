@@ -108,10 +108,10 @@ class _SettingsPageDBState extends State<SettingsPageDB> {
                 ),
               );
             } else {
-              return defaultLinearProgressIndicator();
+              return defaultLoadingScreen();
             }
           } else {
-            return defaultLinearProgressIndicator();
+            return defaultLoadingScreen();
           }
         });
   }
