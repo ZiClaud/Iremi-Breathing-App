@@ -28,8 +28,9 @@ class _UserPageState extends State<UserPage> {
                     children: [
                       defaultShowTextFormField(
                           "Username", user.username, Icons.person),
-                      defaultShowTextFormField(
-                          "Name (optional)", user.name, Icons.badge_outlined),
+                      if (user.name.isNotEmpty)
+                        defaultShowTextFormField(
+                            "Name", user.name, Icons.badge_outlined),
                       if (user.sex.isNotEmpty)
                       defaultShowTextFormField("Sex", user.sex, Icons.search),
                       if (user.goal.isNotEmpty)

@@ -32,7 +32,7 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
           defaultEditTextFormField("Name", Icons.keyboard_double_arrow_up),
           defaultEditTextFormField("Description", Icons.description),
           defaultEditTextFormField("Notes", Icons.note),
-          defaultEditTextFormField("Steps", Icons.square_foot), // TODO
+          defaultEditTextFormField("Steps - TODO", Icons.square_foot), // TODO - Change icon - Find a way to add steps
           defaultEditTextFormField("Times", Icons.incomplete_circle),
           defaultEditTextFormField("InhaleDuration", Icons.circle),
           if (_showComplex)
