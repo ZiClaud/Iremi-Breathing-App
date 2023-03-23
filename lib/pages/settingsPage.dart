@@ -76,7 +76,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   setState(() {
                     _darkMode = value;
                     _saveSettings();
-//                    IremiTheme().toggleTheme();
                   });
                 },
               ),
@@ -111,22 +110,22 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               defaultListTile(
                 icon: Icons.person,
-                title: 'Voice Type',
-                subtitle: _voiceType,
-                trailing: const Icon(Icons.arrow_forward_ios),
-                onTap: () async {
-                  String? newVoiceType = await showDialog<String>(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: const Text('Choose a Voice Type'),
-                        content: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              for (String voiceType in voiceTypes)
-                                RadioListTile<String>(
-                                  title: Text(voiceType),
+              title: 'Voice Type',
+              subtitle: _voiceType,
+              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark),
+              onTap: () async {
+                String? newVoiceType = await showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Choose a Voice Type'),
+                      content: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            for (String voiceType in voiceTypes)
+                              RadioListTile<String>(
+                                title: Text(voiceType),
                                 value: voiceType,
                                 groupValue: _voiceType,
                                 onChanged: (String? value) {
@@ -151,7 +150,7 @@ class _SettingsPageState extends State<SettingsPage> {
               icon: Icons.language,
               title: 'Language',
               subtitle: _language,
-              trailing: const Icon(Icons.arrow_forward_ios),
+              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark),
               onTap: () async {
                 String? newLanguage = await showDialog<String>(
                   context: context,
