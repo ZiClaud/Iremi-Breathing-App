@@ -6,10 +6,11 @@ import 'myUtils.dart';
 IremiTheme myTheme = IremiTheme();
 
 const Color _myBluLight = Color(0xFF07C2E6);
-const Color _myBlu = Color(0xFF01B3CA);
+const Color myBluNeutral = Color(0xFF01B3CA);
 const Color _myBluDark = Color(0xFF007C9A);
 
 Color myBluLightDark = IremiTheme.isDarkTheme() ? _myBluDark : _myBluLight;
+Color myBluLightDarkOpposite = IremiTheme.isDarkTheme() ? _myBluLight : _myBluDark;
 
 const Color _myWhite = Color(0xFFFFFFFF);
 const Color _myLightBackgroundColor = Color(0xFFFFFFFF);

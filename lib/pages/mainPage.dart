@@ -5,8 +5,7 @@ import 'package:iremibreathingapp/pages/userPage.dart';
 
 import '../database/getters.dart';
 import '../utils/myUtils.dart';
-import '../utils/theme.dart';
-import 'exerciseDetailsPage.dart';
+import 'exerciseDetailsPages.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -71,7 +70,7 @@ class _MainPageState extends State<MainPage> {
                             context,
                             MaterialPageRoute(
                               builder: (context) =>
-                                  ExerciseDetailsPage(exercise: exercise),
+                                  ExerciseDetailsPages(exercise: exercise),
                             ),
                           );
                         },
