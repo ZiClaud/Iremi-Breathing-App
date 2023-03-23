@@ -210,7 +210,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       defaultDatabaseErrorDialog(context, e);
                     }
                   },
-                  child: defaultText("Delete user"),
+                  child: defaultText("Delete User"),
                 ),
             ],
         ));

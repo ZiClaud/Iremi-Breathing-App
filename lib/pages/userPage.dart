@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/pages/settingsPage.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
+import 'package:iremibreathingapp/pages/settingsPage.dart';
 
 import '../basics/user.dart';
 import '../database/getters.dart';
@@ -30,9 +30,12 @@ class _UserPageState extends State<UserPage> {
                           "Username", user.username, Icons.person),
                       defaultShowTextFormField(
                           "Name", user.name, Icons.nest_cam_wired_stand),
-                      defaultShowTextFormField(
-                          "Surname", user.surname!, Icons.surfing),
+                      if (user.surname!.isNotEmpty)
+                        defaultShowTextFormField(
+                            "Surname", user.surname!, Icons.surfing),
+                      if (user.sex!.isNotEmpty)
                       defaultShowTextFormField("Sex", user.sex!, Icons.male),
+                      if (user.goal.isNotEmpty)
                       defaultShowTextFormField(
                           "Goal", user.goal, Icons.circle_outlined),
                     ],
@@ -40,7 +43,7 @@ class _UserPageState extends State<UserPage> {
             } else {
               return Scaffold(
                 appBar: _appBar(context, null),
-                body: defaultText('No user found'),
+                body: Center(child: defaultText('No user found')),
               );
             }
           } else {
