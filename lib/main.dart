@@ -3,6 +3,7 @@ import 'package:iremibreathingapp/pages/mainPage.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
 import 'package:iremibreathingapp/utils/defaultWidget.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database/database.dart';
@@ -11,37 +12,40 @@ import 'database/database.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences.getInstance().then((prefs) {
-    runApp(MyApp());
+    runApp(MyApp(prefs: prefs));
   });
 }
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  final SharedPreferences prefs;
+
+  const MyApp({Key? key, required this.prefs}) : super(key: key);
 
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
+  late bool _darkMode;
+
   @override
   void initState() {
     super.initState();
 
-    myTheme.addListener(() {
-      setState(() {});
-    });
-  }
+    _darkMode = widget.prefs.getBool('darkMode') ?? false;
 
-  void setTheme(value) {
-    bool? b = value.getBool('darkMode');
-    if (b != null) {
-      myTheme.setMode(b);
-    }
+    myTheme.setMode(_darkMode);
+
+    myTheme.addListener(() {
+      setState(() {
+        _darkMode = IremiTheme.isDarkTheme();
+      });
+      widget.prefs.setBool('darkMode', _darkMode);
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    SharedPreferences.getInstance().then(setTheme);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: _home(),

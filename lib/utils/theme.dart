@@ -56,12 +56,12 @@ class IremiTheme with ChangeNotifier {
 
   void toggleTheme() {
     _isDarkTheme = !_isDarkTheme;
-//    notifyListeners();
+    notifyListeners();
   }
 
   void setMode(bool darkmode) {
     _isDarkTheme = darkmode;
-//    notifyListeners();
+    notifyListeners();
   }
 
   static bool isDarkTheme() {
