@@ -70,7 +70,6 @@ class Getters {
     return MyUser(
       username: "ZiCli",
       name: "Claudio",
-      surname: "Di Maio",
       sex: "M",
       goal: "5 min - day",
     ) as Future<MyUser>;

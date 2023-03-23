@@ -20,8 +20,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
   final _formKey = GlobalKey<FormState>();
   late String username;
   late String name;
-  late String? surname;
-  late String? sex;
+  late String sex;
   late String goal;
 
   @override
@@ -30,7 +29,6 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
 
     username = widget.user?.username ?? '';
     name = widget.user?.name ?? '';
-    surname = widget.user?.surname ?? '';
     sex = widget.user?.sex ?? '';
     goal = widget.user?.goal ?? '';
   }
@@ -46,14 +44,11 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
               child: UserFormWidget(
                 username: username,
                 name: name,
-                surname: surname,
                 sex: sex,
                 goal: goal,
                 onChangedUsername: (username) =>
                     setState(() => this.username = username),
                 onChangedName: (name) => setState(() => this.name = name),
-                onChangedSurname: (surname) =>
-                    setState(() => this.surname = surname),
                 onChangedSex: (sex) => setState(() => this.sex = sex),
                 onChangedGoal: (goal) => setState(() => this.goal = goal),
               ),
@@ -72,7 +67,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.navigate_next),
+          child: const Icon(Icons.navigate_next),
           onPressed: () => {
             _addOrUpdateUser(),
           },
@@ -90,7 +85,6 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
           await MyDatabase.instance.updateUser(widget.user!.copy(
             username: username,
             name: name,
-            surname: surname,
             sex: sex,
             goal: goal,
           ));
@@ -98,7 +92,6 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
           await MyDatabase.instance.createUser(MyUser(
             username: username,
             name: name,
-            surname: surname,
             sex: sex,
             goal: goal,
           ));

@@ -53,7 +53,6 @@ class MyDatabase {
           ${UserFields.id} $idType,
           ${UserFields.username} $textType,
           ${UserFields.name} $textType,
-          ${UserFields.surname} $textType,
           ${UserFields.sex} $textType,
           ${UserFields.goal} $textType
           )''');
@@ -185,6 +184,4 @@ class MyDatabase {
   Future deleteUser(MyUser user) async {
     _deleteUser(user.id!);
   }
-
-
 }

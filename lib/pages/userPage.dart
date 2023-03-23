@@ -29,15 +29,12 @@ class _UserPageState extends State<UserPage> {
                       defaultShowTextFormField(
                           "Username", user.username, Icons.person),
                       defaultShowTextFormField(
-                          "Name", user.name, Icons.nest_cam_wired_stand),
-                      if (user.surname!.isNotEmpty)
-                        defaultShowTextFormField(
-                            "Surname", user.surname!, Icons.surfing),
-                      if (user.sex!.isNotEmpty)
-                      defaultShowTextFormField("Sex", user.sex!, Icons.male),
+                          "Name (optional)", user.name, Icons.badge_outlined),
+                      if (user.sex.isNotEmpty)
+                      defaultShowTextFormField("Sex", user.sex, Icons.search),
                       if (user.goal.isNotEmpty)
                       defaultShowTextFormField(
-                          "Goal", user.goal, Icons.circle_outlined),
+                          "Goal", user.goal, Icons.ads_click),
                     ],
                   ));
             } else {
