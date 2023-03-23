@@ -11,13 +11,35 @@ import '../basics/exercises/deepBreathingExerciseIntermediate.dart';
 import 'database.dart';
 
 class Getters {
-  static List<MyExercise> getExercises() {
+  static List<MyExercise> getDefaultExercises() {
     List<MyExercise> ex = [
       DeepBreathingExerciseBeginner(),
       DeepBreathingExerciseIntermediate(),
       DeepBreathingExerciseAvanced(),
       B478Exercise(),
       BoxBreathingExercise(),
+    ];
+
+    return ex;
+  }
+
+  static CustomExercise getCustomExercise() {
+    // TODO: REMOVE - Now it's replacing DB stuff
+    return CustomExercise(
+        name: "DEV: Fast",
+        description: "Used by developer",
+        notes: "N/A",
+        steps: ["N/A"],
+        times: 1,
+        inhaleTime: 1,
+        holdMiddleTime: 1,
+        exhaleTime: 1,
+        holdEndTime: 1);
+  }
+
+  static Future<List<CustomExercise?>> getCustomExercises() async {
+    // TODO: Replace with DB stuff
+    return await [
       CustomExercise(
           name: "DEV: Fast",
           description: "Used by developer",
@@ -43,27 +65,6 @@ class Getters {
           exhaleTimeMs: 1,
           holdEndTimeMs: 1),
     ];
-
-    return ex;
-  }
-
-  static CustomExercise getCustomExercise() {
-    // TODO: REMOVE - Now it's replacing DB stuff
-    return CustomExercise(
-        name: "DEV: Fast",
-        description: "Used by developer",
-        notes: "N/A",
-        steps: ["N/A"],
-        times: 1,
-        inhaleTime: 1,
-        holdMiddleTime: 1,
-        exhaleTime: 1,
-        holdEndTime: 1);
-  }
-
-  static Future<List<CustomExercise?>> getCustomExercises() async {
-    // TODO: Replace with DB stuff
-    return await [getCustomExercise()];
   }
 
   static Future<MyUser?> getUser() {

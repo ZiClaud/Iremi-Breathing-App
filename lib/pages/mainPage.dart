@@ -15,9 +15,23 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
+  List<MyExercise> exercises = Getters.getDefaultExercises();
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCustomExercises();
+  }
+
+  Future<void> _loadCustomExercises() async {
+    List<MyExercise?> customExercises = await Getters.getCustomExercises();
+    setState(() {
+      exercises.addAll(customExercises.whereType<MyExercise>());
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    List<MyExercise> exercises = Getters.getExercises();
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
@@ -43,6 +57,70 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => UserPage()));
+              },
+            ),
+          ]),
+      body: ListView.builder(
+        itemCount: exercises.length,
+        itemBuilder: (context, index) {
+          MyExercise exercise = exercises[index];
+          return ListTile(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(exercise.name),
+                Text(getTimeString(exercise)),
+              ],
+            ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ExerciseDetailsPages(exercise: exercise),
+                ),
+              );
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+/*
+class _MainPageState extends State<MainPage> {
+  @override
+  Widget build(BuildContext context) {
+    List<MyExercise> exercises = Getters.getDefaultExercises();
+    Future<List<MyExercise?>> customExercises = Getters.getCustomExercises();
+    return Scaffold(
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text("Welcome to Iremi"),
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.add_circle,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ExerciseAddPage(),
+                  ),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(
+                Icons.account_circle,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => UserPage()),
+                );
               },
             ),
           ]),
@@ -87,3 +165,4 @@ class _MainPageState extends State<MainPage> {
     );
   }
 }
+*/
