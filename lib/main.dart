@@ -3,7 +3,6 @@ import 'package:iremibreathingapp/pages/mainPage.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
 import 'package:iremibreathingapp/utils/defaultWidget.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database/database.dart';
@@ -28,7 +27,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    jemoreTheme.addListener(() {
+    myTheme.addListener(() {
       setState(() {});
     });
   }
@@ -36,7 +35,7 @@ class _MyAppState extends State<MyApp> {
   void setTheme(value) {
     bool? b = value.getBool('darkMode');
     if (b != null) {
-      jemoreTheme.setMode(b);
+      myTheme.setMode(b);
     }
   }
 
@@ -48,25 +47,7 @@ class _MyAppState extends State<MyApp> {
       home: _home(),
       theme: IremiTheme.lightTheme,
       darkTheme: IremiTheme.darkTheme,
-      themeMode: jemoreTheme.iremiTheme,
-    );
-  }
-}
-
-class MyApp2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider<IremiTheme>(
-      create: (_) => IremiTheme(),
-      builder: (context, child) {
-        final theme = Provider.of<IremiTheme>(context);
-        return MaterialApp(
-            theme: IremiTheme.lightTheme, // use the static getter here
-            darkTheme: IremiTheme.darkTheme, // use the static getter here
-            themeMode: theme.iremiTheme,
-            home: _home(),
-        );
-      },
+      themeMode: myTheme.iremiTheme,
     );
   }
 }
@@ -99,6 +80,26 @@ Future<StatefulWidget> _getFutureFirstPage() async {
 }
 
 /*
+
+class MyApp2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<IremiTheme>(
+      create: (_) => IremiTheme(),
+      builder: (context, child) {
+        final theme = Provider.of<IremiTheme>(context);
+        return MaterialApp(
+            theme: IremiTheme.lightTheme, // use the static getter here
+            darkTheme: IremiTheme.darkTheme, // use the static getter here
+            themeMode: theme.iremiTheme,
+            home: _home(),
+        );
+      },
+    );
+  }
+}
+
+
 class MyAppOld extends StatefulWidget {
   const MyAppOld({Key? key}) : super(key: key);
 

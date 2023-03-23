@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'myUtils.dart';
 
 
-IremiTheme jemoreTheme = IremiTheme();
+IremiTheme myTheme = IremiTheme();
 
 const Color _myBluLight = Color(0xFF07C2E6);
 const Color _myBlu = Color(0xFF01B3CA);
