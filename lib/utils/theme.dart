@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'myUtils.dart';
 
@@ -10,7 +9,7 @@ const Color _myBluLight = Color(0xFF07C2E6);
 const Color _myBlu = Color(0xFF01B3CA);
 const Color _myBluDark = Color(0xFF007C9A);
 
-Color myBluLightDark = _myBluLight ?? _myBluDark;
+Color myBluLightDark = IremiTheme.isDarkTheme() ? _myBluDark : _myBluLight;
 
 const Color _myWhite = Color(0xFFFFFFFF);
 const Color _myLightBackgroundColor = Color(0xFFFFFFFF);
@@ -53,24 +52,20 @@ MaterialColor(0xFF3B44AC, myColorMapDark);
 class IremiTheme with ChangeNotifier {
   static bool _isDarkTheme = isDefaultThemeDark2();
 
-  Future<void> init() async {
-    SharedPreferences prefs = await getSharedPreferences();
-    _isDarkTheme = prefs.getBool('darkMode') ?? isDefaultThemeDark2();
-  }
-
   ThemeMode get iremiTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
   void toggleTheme() {
     _isDarkTheme = !_isDarkTheme;
-    notifyListeners();
+//    notifyListeners();
+  }
+
+  void setMode(bool darkmode) {
+    _isDarkTheme = darkmode;
+//    notifyListeners();
   }
 
   static bool isDarkTheme() {
     return _isDarkTheme;
-  }
-
-  setMode(bool darkmode) {
-    _isDarkTheme = darkmode;
   }
 
   static ThemeData get lightTheme {
