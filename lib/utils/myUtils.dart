@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exercisePage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MyUtils {
   static String getItalianDateFormat(DateTime dateTime) {
@@ -104,4 +105,8 @@ Future defaultDatabaseErrorDialog(context, message) {
       );
     },
   );
+}
+
+Future<SharedPreferences> getSharedPreferences() async {
+  return await SharedPreferences.getInstance();
 }

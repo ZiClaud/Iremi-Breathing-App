@@ -6,7 +6,6 @@ import '../basics/user.dart';
 import '../database/database.dart';
 import '../utils/defaultWidget.dart';
 import '../utils/myUtils.dart';
-import '../utils/theme.dart';
 import 'mainPage.dart';
 
 // TODO: find out why it doesn't auto-refresh
@@ -37,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _loadSettings() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await getSharedPreferences();
     setState(() {
       _darkMode = prefs.getBool('darkMode') ?? false;
       _music = prefs.getBool('music') ?? false;
@@ -48,7 +47,7 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _saveSettings() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    SharedPreferences prefs = await getSharedPreferences();
     await prefs.setBool('darkMode', _darkMode);
     await prefs.setBool('music', _music);
     await prefs.setBool('voice', _voice);
@@ -60,7 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
+        appBar: AppBar(
             title: const Text("Settings"),
           ),
           body: ListView(

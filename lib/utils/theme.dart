@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'myUtils.dart';
+
+
+IremiTheme jemoreTheme = IremiTheme();
 
 const Color _myBluLight = Color(0xFF07C2E6);
 const Color _myBlu = Color(0xFF01B3CA);
@@ -40,20 +44,33 @@ const Map<int, Color> myColorMapDark = {
 };
 
 const MaterialColor myBluLightMaterial =
-    MaterialColor(0xFF3B44AC, myColorMapLight);
+MaterialColor(0xFF3B44AC, myColorMapLight);
 const MaterialColor myBluDarkMaterial =
-    MaterialColor(0xFF3B44AC, myColorMapDark);
+MaterialColor(0xFF3B44AC, myColorMapDark);
 
 /// ---------------------------
 
 class IremiTheme with ChangeNotifier {
   static bool _isDarkTheme = isDefaultThemeDark2();
 
+  Future<void> init() async {
+    SharedPreferences prefs = await getSharedPreferences();
+    _isDarkTheme = prefs.getBool('darkMode') ?? isDefaultThemeDark2();
+  }
+
   ThemeMode get iremiTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
   void toggleTheme() {
     _isDarkTheme = !_isDarkTheme;
     notifyListeners();
+  }
+
+  static bool isDarkTheme() {
+    return _isDarkTheme;
+  }
+
+  setMode(bool darkmode) {
+    _isDarkTheme = darkmode;
   }
 
   static ThemeData get lightTheme {
@@ -67,8 +84,8 @@ class IremiTheme with ChangeNotifier {
       iconTheme: const IconThemeData(
         color: _myBluLight,
       ),
-      floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: _myBluLight),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: _myBluLight),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: defaultLightButtonStyle(),
       ),
@@ -91,8 +108,8 @@ class IremiTheme with ChangeNotifier {
       iconTheme: const IconThemeData(
         color: _myBluDark,
       ),
-      floatingActionButtonTheme:
-          FloatingActionButtonThemeData(backgroundColor: _myBluDark),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+          backgroundColor: _myBluDark),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: defaultDarkButtonStyle(),
       ),
@@ -102,11 +119,8 @@ class IremiTheme with ChangeNotifier {
       dialogTheme: DialogTheme(backgroundColor: _myDarkBackgroundColor),
     );
   }
-
-  static bool isDarkTheme() {
-    return _isDarkTheme;
-  }
 }
+
 
 TextTheme defaultLightTextTheme() {
   return TextTheme(
