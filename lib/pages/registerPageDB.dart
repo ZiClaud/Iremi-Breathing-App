@@ -61,10 +61,11 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
             if (widget.user == null && (username == "" || name == ""))
               defaultOutlinedButton(
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const MainPage()));
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => const MainPage()),
+                    (route) => false,
+                  );
                 },
                 child: defaultText("Continue without account"),
               ),
@@ -105,9 +106,10 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
       } catch (e) {
         defaultDatabaseErrorDialog(context, e);
       }
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),
+            (route) => false,
       );
     }
   }
