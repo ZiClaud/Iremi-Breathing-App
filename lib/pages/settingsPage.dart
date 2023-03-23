@@ -66,10 +66,9 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           body: ListView(
             children: [
-              defaultListTile(
-              icon: Icons.dark_mode,
-              title: "Dark Mode",
-              subtitle: _darkMode,
+            ListTile(
+              title: defaultShowTextFormField(
+                  "Dark Mode", _getValueAsString(_darkMode), Icons.dark_mode),
               trailing: Switch(
                 value: _darkMode,
                 onChanged: (value) {
@@ -80,10 +79,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
             ),
-            defaultListTile(
-              icon: Icons.music_note,
-              title: "Music",
-              subtitle: _music,
+            ListTile(
+              title: defaultShowTextFormField(
+                "Music",
+                _getValueAsString(_music),
+                Icons.music_note,
+              ),
               trailing: Switch(
                 value: _music,
                 onChanged: (value) {
@@ -91,27 +92,31 @@ class _SettingsPageState extends State<SettingsPage> {
                     _music = value;
                     _saveSettings();
                   });
-                  },
-                ),
+                },
               ),
-                  defaultListTile(
-                    icon: Icons.keyboard_voice_rounded,
-                title: "Voice",
-                subtitle: _voice,
-                trailing: Switch(
-                  value: _voice,
-                  onChanged: (value) {
-                    setState(() {
-                      _voice = value;
-                      _saveSettings();
-                    });
-                  },
-                ),
+            ),
+            ListTile(
+              title: defaultShowTextFormField(
+                "Voice",
+                _getValueAsString(_voice),
+                Icons.keyboard_voice_rounded,
               ),
-              defaultListTile(
-                icon: Icons.person,
-              title: 'Voice Type',
-              subtitle: _voiceType,
+              trailing: Switch(
+                value: _voice,
+                onChanged: (value) {
+                  setState(() {
+                    _voice = value;
+                    _saveSettings();
+                  });
+                },
+              ),
+            ),
+            ListTile(
+              title: defaultShowTextFormField(
+                'Voice Type',
+                _getValueAsString(_voiceType),
+                Icons.person,
+              ),
               trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark),
               onTap: () async {
                 String? newVoiceType = await showDialog<String>(
@@ -146,10 +151,12 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
-            defaultListTile(
-              icon: Icons.language,
-              title: 'Language',
-              subtitle: _language,
+            ListTile(
+              title: defaultShowTextFormField(
+                'Language',
+                _getValueAsString(_language),
+                Icons.language,
+              ),
               trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark),
               onTap: () async {
                 String? newLanguage = await showDialog<String>(
@@ -184,35 +191,39 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
+            OutlinedButton(
+              onPressed: () {
+                // TODO: Backup
+              },
+              child: defaultText("Backup"),
+            ),
+            OutlinedButton(
+              onPressed: () {
+                // TODO: Restore
+              },
+              child: defaultText("Restore"),
+            ),
+            if (widget.user != null)
               OutlinedButton(
-                onPressed: () {
-                  // TODO: Backup
+                onPressed: () async {
+                  //  TODO: Put warning
+                  try {
+                    await MyDatabase.instance.deleteUser(widget.user!);
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MainPage()));
+                  } catch (e) {
+                    defaultDatabaseErrorDialog(context, e);
+                  }
                 },
-                child: defaultText("Backup"),
+                child: defaultText("Delete User"),
               ),
-              OutlinedButton(
-                onPressed: () {
-                  // TODO: Restore
-                },
-                child: defaultText("Restore"),
-              ),
-              if (widget.user != null)
-                OutlinedButton(
-                  onPressed: () async {
-                    //  TODO: Put warning
-                    try {
-                      await MyDatabase.instance.deleteUser(widget.user!);
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const MainPage()));
-                    } catch (e) {
-                      defaultDatabaseErrorDialog(context, e);
-                    }
-                  },
-                  child: defaultText("Delete User"),
-                ),
-            ],
+          ],
         ));
+  }
+
+  String _getValueAsString(value) {
+    return (value is bool) ? (value == true ? "On" : "Off") : value.toString();
   }
 }

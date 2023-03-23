@@ -44,28 +44,6 @@ InputDecoration defaultInputDecoration(String label, IconData icon) {
   );
 }
 
-ListTile defaultListTile({
-  required IconData icon,
-  required String title,
-  required subtitle,
-  required trailing,
-  leading,
-  onTap,
-}) {
-  return ListTile(
-//    shape: defaultRoundedRectangleBorder(),
-    title: defaultShowTextFormField(
-        title,
-        (subtitle is bool)
-            ? (subtitle == true ? "On" : "Off")
-            : subtitle.toString(),
-        icon),
-    trailing: trailing,
-    leading: leading,
-    onTap: onTap,
-  );
-}
-
 RoundedRectangleBorder defaultRoundedRectangleBorder() {
   return RoundedRectangleBorder(
     borderRadius: defaultBorderRadius(),
