@@ -81,7 +81,9 @@ class IremiTheme with ChangeNotifier {
         color: _myBluLight,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: _myBluLight),
+        backgroundColor: _myBluLight,
+        foregroundColor: _myWhite,
+      ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: defaultLightButtonStyle(),
       ),
@@ -99,13 +101,15 @@ class IremiTheme with ChangeNotifier {
       scaffoldBackgroundColor: _myDarkBackgroundColor,
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluDark,
+        foregroundColor: _myWhite,
       ),
       textTheme: defaultDarkTextTheme(),
       iconTheme: const IconThemeData(
         color: _myBluDark,
       ),
       floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: _myBluDark),
+        backgroundColor: _myBluDark,
+      ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: defaultDarkButtonStyle(),
       ),

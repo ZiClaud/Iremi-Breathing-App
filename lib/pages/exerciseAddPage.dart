@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/utils/myUtils.dart';
 
 import '../utils/defaultWidget.dart';
 
@@ -55,7 +56,7 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.navigate_next),
         onPressed: () => {
-          null //TODO: Change
+          defaultDatabaseErrorDialog(context, "Not connected to database, yet")
         },
       ),
     );
