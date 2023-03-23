@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/database/getters.dart';
+import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../basics/user.dart';
@@ -43,6 +44,7 @@ class _SettingsPageState extends State<SettingsPage> {
       _voice = prefs.getBool('voice') ?? false;
       _voiceType = prefs.getString('voiceType') ?? 'Male';
       _language = prefs.getString('language') ?? 'English';
+      myTheme.setMode(_darkMode);
     });
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/mainPage.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
 import 'package:iremibreathingapp/utils/defaultWidget.dart';
+import 'package:iremibreathingapp/utils/myUtils.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _darkMode = widget.prefs.getBool('darkMode') ?? false;
+    _darkMode = widget.prefs.getBool('darkMode') ?? isDefaultThemeDark2();
 
     myTheme.setMode(_darkMode);
 

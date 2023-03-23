@@ -54,7 +54,7 @@ class Getters {
           name: "DEV: Faster",
           description: "Used by developer",
           notes: "N/A",
-          steps: ["N/A"],
+          steps: [],
           times: 1,
           inhaleTime: 0,
           holdMiddleTime: 0,
