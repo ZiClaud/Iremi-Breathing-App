@@ -45,11 +45,11 @@ const MaterialColor myBluDarkMaterial =
 /// ---------------------------
 
 class IremiTheme with ChangeNotifier {
-  static bool _isDarkTheme = true;
+  static bool _isDarkTheme = true; // TODO: SWITCH THIS FOR STUFF
 
   ThemeMode get iremiTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
-  void toggleTheme() {
+  void toggleTheme() { // TODO: SWITCH THIS TO MAKE IT WORK
     _isDarkTheme = !_isDarkTheme;
     notifyListeners();
   }
@@ -66,7 +66,6 @@ class IremiTheme with ChangeNotifier {
       scaffoldBackgroundColor: _myLightBackgroundColor,
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluLight,
-//          foregroundColor: Colors.white,
       ),
       textTheme: defaultLightTextTheme(),
       iconTheme: const IconThemeData(
@@ -91,7 +90,6 @@ class IremiTheme with ChangeNotifier {
       scaffoldBackgroundColor: _myDarkBackgroundColor,
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluDark,
-//          foregroundColor: Colors.white,
       ),
       textTheme: defaultDarkTextTheme(),
       iconTheme: const IconThemeData(
@@ -116,35 +114,42 @@ class IremiTheme with ChangeNotifier {
 
 TextTheme defaultLightTextTheme() {
   return TextTheme(
-    headline1: defaultLightTextStyle(),
-    headline2: defaultLightTextStyle(),
-    headline3: defaultLightTextStyle(),
-    headline4: defaultLightTextStyle(),
-    headline5: defaultLightTextStyle(),
-    headline6: defaultLightTextStyle(),
-    bodyText1: defaultLightTextStyle(),
-    bodyText2: defaultLightTextStyle(),
-    subtitle1: defaultLightTextStyle(),
-    subtitle2: defaultLightTextStyle(),
-    caption: defaultLightTextStyle(),
-    button: defaultLightTextStyle(),
+    displayLarge: defaultLightTextStyle(),
+    displayMedium: defaultLightTextStyle(),
+    displaySmall: defaultLightTextStyle(),
+    headlineLarge: defaultLightTextStyle(),
+    headlineMedium: defaultLightTextStyle(),
+    headlineSmall: defaultLightTextStyle(),
+    titleLarge: defaultLightTextStyle(),
+    titleMedium: defaultLightTextStyle(),
+    titleSmall: defaultLightTextStyle(),
+    bodyLarge: defaultLightTextStyle(),
+    bodyMedium: defaultLightTextStyle(),
+    bodySmall: defaultLightTextStyle(),
+    labelLarge: defaultLightTextStyle(),
+    labelMedium: defaultLightTextStyle(),
+    labelSmall: defaultLightTextStyle(),
   );
 }
 
 TextTheme defaultDarkTextTheme() {
   return TextTheme(
-      headline1: defaultDarkTextStyle(),
-      headline2: defaultDarkTextStyle(),
-      headline3: defaultDarkTextStyle(),
-      headline4: defaultDarkTextStyle(),
-      headline5: defaultDarkTextStyle(),
-      headline6: defaultDarkTextStyle(),
-      bodyText1: defaultDarkTextStyle(),
-      bodyText2: defaultDarkTextStyle(),
-      subtitle1: defaultDarkTextStyle(),
-      subtitle2: defaultDarkTextStyle(),
-      caption: defaultDarkTextStyle(),
-      button: defaultDarkTextStyle());
+    displayLarge: defaultDarkTextStyle(),
+    displayMedium: defaultDarkTextStyle(),
+    displaySmall: defaultDarkTextStyle(),
+    headlineLarge: defaultDarkTextStyle(),
+    headlineMedium: defaultDarkTextStyle(),
+    headlineSmall: defaultDarkTextStyle(),
+    titleLarge: defaultDarkTextStyle(),
+    titleMedium: defaultDarkTextStyle(),
+    titleSmall: defaultDarkTextStyle(),
+    bodyLarge: defaultDarkTextStyle(),
+    bodyMedium: defaultDarkTextStyle(),
+    bodySmall: defaultDarkTextStyle(),
+    labelLarge: defaultDarkTextStyle(),
+    labelMedium: defaultDarkTextStyle(),
+    labelSmall: defaultDarkTextStyle(),
+  );
 }
 
 TextStyle defaultLightTextStyle() {
@@ -167,12 +172,22 @@ MaterialStateProperty<TextStyle> defaultDarkMSPTextStyle() {
 
 ButtonStyle defaultLightButtonStyle() {
   return ButtonStyle(
-    textStyle: defaultLightMSPTextStyle(), // TODO: CHANGE
+    textStyle: defaultLightMSPTextStyle(),
+    foregroundColor: defaultLightMSPTextColor(),
   );
 }
 
 ButtonStyle defaultDarkButtonStyle() {
   return ButtonStyle(
-    textStyle: defaultDarkMSPTextStyle(), // TODO: CHANGE
+    textStyle: defaultDarkMSPTextStyle(),
+    foregroundColor: defaultDarkMSPTextColor(),
   );
+}
+
+MaterialStateProperty<Color> defaultLightMSPTextColor(){
+  return MaterialStatePropertyAll(Colors.black);
+}
+
+MaterialStateProperty<Color> defaultDarkMSPTextColor(){
+  return MaterialStatePropertyAll(Colors.white);
 }
