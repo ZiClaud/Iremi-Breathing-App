@@ -5,11 +5,43 @@ import 'package:iremibreathingapp/utils/defaultWidget.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:provider/provider.dart';
+
 import 'database/database.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+class MyApp2 extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => IremiTheme(),
+      child: Consumer<IremiTheme>(
+        builder: (context, theme, _) {
+          return MaterialApp(
+            title: 'MyApp',
+            theme: IremiTheme.lightTheme,
+            darkTheme: IremiTheme.darkTheme,
+            themeMode: theme.iremiTheme,
+            home: FutureBuilder<Widget>(
+              future: getHomePage(),
+              builder: (BuildContext context, AsyncSnapshot<Widget> snapshot) {
+                if (snapshot.hasData) {
+                  return snapshot.data!;
+                } else {
+                  return defaultLoadingScreen();
+                }
+              },
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);

@@ -73,17 +73,17 @@ ThemeMode _getDefaultTheme() {
   return ThemeMode.system;
 }
 
-bool getDefaultTheme2() {
+bool isDefaultThemeDark2() {
   return _getDefaultTheme() == ThemeMode.dark ? true : false;
 }
 
-bool getDefaultTheme3(context) {
+bool isDefaultThemeDark3(context) {
   var brightness = MediaQuery.of(context).platformBrightness;
   return brightness == Brightness.dark;
 }
 
-bool getDefaultTheme(context) {
-  return getDefaultTheme2() || getDefaultTheme3(context);
+bool isDefaultThemeDark(context) {
+  return isDefaultThemeDark2() || isDefaultThemeDark3(context);
 }
 
 Future defaultDatabaseErrorDialog(context, message) {

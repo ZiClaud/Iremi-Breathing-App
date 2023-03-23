@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'myUtils.dart';
+
 const Color _myBluLight = Color(0xFF07C2E6);
 const Color _myBlu = Color(0xFF01B3CA);
 const Color _myBluDark = Color(0xFF007C9A);
@@ -45,18 +47,12 @@ const MaterialColor myBluDarkMaterial =
 /// ---------------------------
 
 class IremiTheme with ChangeNotifier {
-  static bool _isDarkTheme = true; // TODO: SWITCH THIS FOR STUFF
+  static bool _isDarkTheme = isDefaultThemeDark2();
 
   ThemeMode get iremiTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 
-  void toggleTheme() { // TODO: SWITCH THIS TO MAKE IT WORK
+  void toggleTheme() {
     _isDarkTheme = !_isDarkTheme;
-    notifyListeners();
-  }
-
-  setMode(bool darkmode) {
-    _isDarkTheme = darkmode;
-    IremiTheme().setMode(darkmode);
     notifyListeners();
   }
 

@@ -75,6 +75,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   setState(() {
                     _darkMode = value;
                     _saveSettings();
+//                    IremiTheme().toggleTheme();
                   });
                 },
               ),

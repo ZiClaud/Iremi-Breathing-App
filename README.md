@@ -35,8 +35,8 @@ App against anxiety that gives breathing exercises
 # Theme
 
 - [x] Theme and logo
-- [ ] Add darkmode
-- [ ] Insert "Quicksand" font or other, better font
+- [x] Add darkmode
+- [ ] Insert "Quicksand" font or some other better font
 
 # Extras
 
