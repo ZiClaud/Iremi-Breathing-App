@@ -85,7 +85,7 @@ class Getters {
   }
 
   static List<String> getAvailableLanguages() {
-    return ['English', 'French', 'German', 'Spanish'];
+    return ['English', 'Italian', 'Spanish', 'Chinese (Simplified)', 'Greek'];
   }
 
   static List<String> getAvailableVoiceTypes() {
