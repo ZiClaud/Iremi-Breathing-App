@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 
 import '../utils/defaultWidget.dart';
-import '../utils/theme.dart';
 import 'exercisePage.dart';
 
 class ExerciseStepsPage extends StatefulWidget {
@@ -22,7 +21,6 @@ class _ExerciseStepsPageState extends State<ExerciseStepsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(exercise.name),
-        backgroundColor: myBluLight,
       ),
       body: ListView.builder(
         itemCount: 1,
@@ -52,8 +50,8 @@ class _ExerciseStepsPageState extends State<ExerciseStepsPage> {
           );
         },
       ),
-      floatingActionButton: defaultFloatingActionButton(
-        icon: Icons.play_arrow,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.play_arrow),
         onPressed: () => {
           Navigator.push(
             context,

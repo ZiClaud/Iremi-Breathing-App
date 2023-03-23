@@ -38,7 +38,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: (widget.user == null) ? defaultAppBar("Register") : defaultAppBar("Edit user"),
+        appBar: AppBar(title: Text((widget.user == null) ? "Register" : "Edit user")),
         body: Column(
           children: [
             Form(
@@ -59,7 +59,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
               ),
             ),
             if (widget.user == null && (username == "" || name == ""))
-              defaultOutlinedButton(
+              OutlinedButton(
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
@@ -71,8 +71,8 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
               ),
           ],
         ),
-        floatingActionButton: defaultFloatingActionButton(
-          icon: Icons.navigate_next,
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.navigate_next),
           onPressed: () => {
             _addOrUpdateUser(),
           },

@@ -19,7 +19,6 @@ class _ExercisePageState extends State<ExercisePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(exercise.name),
-          backgroundColor: myBluLight,
         ),
         body: _FourStageAnimation(exercise: exercise));
   }
@@ -113,7 +112,6 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
             width: _animation.value.width,
             height: _animation.value.height,
             decoration: BoxDecoration(
-              color: myBluLight,
               shape: BoxShape.circle,
             ),
           );

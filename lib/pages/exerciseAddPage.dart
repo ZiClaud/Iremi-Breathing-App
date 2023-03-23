@@ -13,7 +13,7 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: defaultAppBar("Add custom exercise!"),
+      appBar: AppBar(title: Text("Add custom exercise")),
       // TODO: Add advanced - Shows milliseconds
       body: ListView(
         children: [
@@ -29,8 +29,8 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
           defaultEditTextFormField("Times", Icons.repeat),
         ],
       ),
-      floatingActionButton: defaultFloatingActionButton(
-        icon: Icons.navigate_next,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.navigate_next),
         onPressed: () => {
           null //TODO: Change
         },

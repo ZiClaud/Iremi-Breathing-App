@@ -24,7 +24,6 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(exercise.name),
-        backgroundColor: myBluLight,
       ),
       body: ListView(
         children: [
@@ -38,7 +37,7 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
           defaultShowTextFormField("Times", "${exercise.times}", Icons.repeat),
           defaultShowTextFormField("Duration of exercise",
               getTimeString(exercise), Icons.timelapse_sharp),
-          defaultOutlinedButton(
+          OutlinedButton(
               child: defaultText("Steps"),
               onPressed: () => Navigator.push(
                     context,
@@ -48,8 +47,8 @@ class _ExerciseDetailsPageState extends State<ExerciseDetailsPage> {
                   ))
         ],
       ),
-      floatingActionButton: defaultFloatingActionButton(
-        icon: Icons.play_arrow,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.play_arrow),
         onPressed: () => {
           Navigator.push(
             context,

@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/settings.dart';
 import 'package:iremibreathingapp/pages/settingsPage.dart';
 import 'package:iremibreathingapp/pages/registerPageDB.dart';
-import 'package:iremibreathingapp/pages/old/oldSettingsPageDB.dart';
 
 import '../basics/user.dart';
 import '../database/getters.dart';
 import '../utils/defaultWidget.dart';
-import '../utils/theme.dart';
 
 class UserPage extends StatefulWidget {
   UserPage({Key? key}) : super(key: key);
@@ -56,7 +53,6 @@ class _UserPageState extends State<UserPage> {
 AppBar _appBar(context, MyUser? user) {
   return AppBar(
       title: const Text("Profile"),
-      backgroundColor: myBluLight,
       actions: [
         IconButton(
           icon: const Icon(

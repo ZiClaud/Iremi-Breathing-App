@@ -62,7 +62,6 @@ class _SettingsPageState extends State<SettingsPage> {
     return Scaffold(
           appBar: AppBar(
             title: const Text("Settings"),
-            backgroundColor: myBluLight,
           ),
           body: ListView(
             children: [
@@ -184,20 +183,20 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
-              defaultOutlinedButton(
+              OutlinedButton(
                 onPressed: () {
                   // TODO: Backup
                 },
                 child: defaultText("Backup"),
               ),
-              defaultOutlinedButton(
+              OutlinedButton(
                 onPressed: () {
                   // TODO: Restore
                 },
                 child: defaultText("Restore"),
               ),
               if (widget.user != null)
-                defaultOutlinedButton(
+                OutlinedButton(
                   onPressed: () async {
                     //  TODO: Put warning
                     try {

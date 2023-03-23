@@ -23,7 +23,6 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
           automaticallyImplyLeading: false,
           title: Text("Welcome to Iremi"),
-          backgroundColor: myBluLight,
           actions: [
             IconButton(
               icon: const Icon(

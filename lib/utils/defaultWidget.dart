@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
-AppBar defaultAppBar(String title) {
-  return AppBar(
-    title: Text(title),
-    backgroundColor: myBluLight,
-  );
-}
-
 TextFormField defaultShowTextFormField(
     String label, String text, IconData icon) {
   return TextFormField(
@@ -23,14 +16,12 @@ Text defaultText(String message) {
   return Text(
     message,
     maxLines: null,
-    style: defaultTextStyle(),
   );
 }
 
 Text defaultErrorText(String message) {
   return Text(
     message,
-    style: defaultTextStyle(),
   );
 }
 
@@ -47,30 +38,10 @@ InputDecoration defaultInputDecoration(String label, IconData icon) {
     label: Text(label),
     prefixIcon: Icon(
       icon,
-      color: myBluLight,
+      color: myBluLightDark,
     ),
-    labelStyle: defaultTextStyle(),
     border: InputBorder.none,
   );
-}
-
-TextStyle defaultTextStyle() {
-  return const TextStyle(fontSize: 15, color: myBlack);
-}
-
-FloatingActionButton defaultFloatingActionButton(
-    {required IconData icon, void Function()? onPressed}) {
-  return FloatingActionButton(
-    onPressed: onPressed,
-    foregroundColor: myWhite,
-    backgroundColor: myBluLight,
-    child: Icon(icon),
-  );
-}
-
-OutlinedButton defaultOutlinedButton(
-    {required void Function()? onPressed, required Widget? child}) {
-  return OutlinedButton(onPressed: onPressed, child: child);
 }
 
 ListTile defaultListTile({
@@ -107,57 +78,15 @@ BorderRadius defaultBorderRadius() {
 }
 
 BorderSide defaultBorderSide() {
-  return const BorderSide(color: myBluLight, width: 1.5);
-}
-
-LinearProgressIndicator defaultLinearProgressIndicator2() {
-  return LinearProgressIndicator(
-    backgroundColor: myBluLight,
-    color: myBluLight,
-  );
+  return BorderSide(color: myBluLightDark, width: 1.5);
 }
 
 Scaffold defaultLoadingScreen() {
-  return Scaffold(
-    backgroundColor: myWhite,
+  return const Scaffold(
     body: Center(
       child: Image(
         image: AssetImage('assets/icon/icon.png'),
       ),
     ),
   );
-  /*
-  return Center(
-    child: Image.asset("../../../assets/icon/icon.png"),
-  );
-  */
 }
-
-/*
-- Not used
-ButtonStyle defaultButtonStyle() {
-  return OutlinedButton.styleFrom(
-    backgroundColor: myBluLight,
-    foregroundColor: myBlack,
-//    textStyle: defaultTextStyle(),
-    side: defaultBorderSide(),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(18.0),
-    ),
-  );
-}
-
-ButtonStyle defaultButtonStyle2() {
-  return ButtonStyle(
-    backgroundColor: MaterialStatePropertyAll<Color>(myBluLight),
-  );
-}
-
-BorderSide defaultBorderSide() {
-  return BorderSide(
-    width: 1.5,
-    color: myBluDark,
-    style: BorderStyle.solid,
-  );
-}
- */
