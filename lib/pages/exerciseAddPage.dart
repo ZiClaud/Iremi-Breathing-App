@@ -33,24 +33,29 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
           defaultEditTextFormField("Name", Icons.keyboard_double_arrow_up),
           defaultEditTextFormField("Description", Icons.description),
           defaultEditTextFormField("Notes", Icons.note),
-          defaultEditTextFormField("Steps - TODO", Icons.square_foot), // TODO - Change icon - Find a way to add steps
+          defaultEditTextFormField("Steps - TODO", Icons.square_foot),
+          // TODO - Change icon - Find a way to add steps
           defaultEditTextFormField("Times", Icons.incomplete_circle),
           defaultEditTextFormField("InhaleDuration", Icons.circle),
-          if (_showComplex)
-            defaultEditTextFormField("InhaleDuration (ms)", Icons.circle), // TODO: Make icon smaller
           defaultEditTextFormField("HoldMiddleDuration", Icons.change_circle),
-          if (_showComplex)
-            defaultEditTextFormField(
-                "HoldMiddleDuration (ms)", Icons.change_circle), // TODO: Make icon smaller
           defaultEditTextFormField("ExhaleDuration", Icons.circle_outlined),
-          if (_showComplex)
-            defaultEditTextFormField(
-                "ExhaleDuration (ms)", Icons.circle_outlined), // TODO: Make icon smaller
           defaultEditTextFormField(
               "HoldEndDuration", Icons.change_circle_outlined),
           if (_showComplex)
+            defaultEditTextFormField("InhaleDuration (ms)", Icons.circle),
+          // TODO: Make icon smaller
+          if (_showComplex)
             defaultEditTextFormField(
-                "HoldEndDuration (ms)", Icons.change_circle_outlined), // TODO: Make icon smaller
+                "HoldMiddleDuration (ms)", Icons.change_circle),
+          // TODO: Make icon smaller
+          if (_showComplex)
+            defaultEditTextFormField(
+                "ExhaleDuration (ms)", Icons.circle_outlined),
+          // TODO: Make icon smaller
+          if (_showComplex)
+            defaultEditTextFormField(
+                "HoldEndDuration (ms)", Icons.change_circle_outlined),
+          // TODO: Make icon smaller
         ],
       ),
       floatingActionButton: FloatingActionButton(

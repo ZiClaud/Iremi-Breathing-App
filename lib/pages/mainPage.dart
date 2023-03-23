@@ -64,105 +64,34 @@ class _MainPageState extends State<MainPage> {
         itemCount: exercises.length,
         itemBuilder: (context, index) {
           MyExercise exercise = exercises[index];
-          return ListTile(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(exercise.name),
-                Text(getTimeString(exercise)),
-              ],
-            ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) =>
-                      ExerciseDetailsPages(exercise: exercise),
-                ),
-              );
-            },
-          );
+          return _showExerciseWidget(exercise);
         },
       ),
     );
   }
-}
 
-/*
-class _MainPageState extends State<MainPage> {
-  @override
-  Widget build(BuildContext context) {
-    List<MyExercise> exercises = Getters.getDefaultExercises();
-    Future<List<MyExercise?>> customExercises = Getters.getCustomExercises();
-    return Scaffold(
-      appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: Text("Welcome to Iremi"),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.add_circle,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const ExerciseAddPage(),
-                  ),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.account_circle,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => UserPage()),
-                );
-              },
-            ),
-          ]),
-      body: ListView.builder(
-        itemCount: 1,
-        itemBuilder: (context, index) {
-          return DataTable(
-            showCheckboxColumn: false,
-            columns: const <DataColumn>[
-              DataColumn(
-                label: Text(
-                  'Exercise',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  'Duration',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0),
-                ),
-              ),
-            ],
-            rows: exercises
-                .map(((exercise) => DataRow(
-                        onSelectChanged: (bool) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) =>
-                                  ExerciseDetailsPages(exercise: exercise),
-                            ),
-                          );
-                        },
-                        cells: <DataCell>[
-                          DataCell(Text(exercise.name)),
-                          DataCell(Text(getTimeString(exercise))),
-                        ])))
-                .toList(),
-          );
-        },
-      ),
+  Widget _showExerciseWidget(MyExercise exercise) {
+    return ListTile(
+      title: _showExerciseModel(exercise),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ExerciseDetailsPages(exercise: exercise),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _showExerciseModel(MyExercise exercise) {
+    /// Graphics
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(exercise.name),
+        Text(getTimeString(exercise)),
+      ],
     );
   }
 }
-*/
