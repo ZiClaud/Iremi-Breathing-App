@@ -42,8 +42,8 @@ class _SettingsPageState extends State<SettingsPage> {
       _darkMode = prefs.getBool('darkMode') ?? false;
       _music = prefs.getBool('music') ?? false;
       _voice = prefs.getBool('voice') ?? false;
-      _voiceType = prefs.getString('voiceType') ?? 'Male';
-      _language = prefs.getString('language') ?? 'English';
+      _voiceType = prefs.getString('voiceType') ?? languages[0];
+      _language = prefs.getString('language') ?? voiceTypes[0];
       myTheme.setMode(_darkMode);
     });
   }
@@ -195,35 +195,56 @@ class _SettingsPageState extends State<SettingsPage> {
               onPressed: () {
                 // TODO: Backup
               },
-              child: defaultText("Backup"),
+              child: defaultButtonText("Backup"),
             ),
             OutlinedButton(
               onPressed: () {
                 // TODO: Restore
               },
-              child: defaultText("Restore"),
+              child: defaultButtonText("Restore"),
             ),
-            if (widget.user != null)
+            if (widget.user != null ||  1==1)
               OutlinedButton(
-                onPressed: () async {
-                  //  TODO: Put warning
-                  try {
-                    await MyDatabase.instance.deleteUser(widget.user!);
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const MainPage()));
-                  } catch (e) {
-                    defaultDatabaseErrorDialog(context, e);
-                  }
-                },
-                child: defaultText("Delete User"),
+                onPressed: () => _warning(context, _deleteUser),
+                child: defaultButtonText("Delete User"),
               ),
-          ],
+            ],
         ));
   }
 
   String _getValueAsString(value) {
     return (value is bool) ? (value == true ? "On" : "Off") : value.toString();
+  }
+
+  void _warning(BuildContext context, Function() onDelete) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Delete User?"),
+        content: const Text("Are you sure you want to delete this user? This action cannot be undone."),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: defaultButtonText("Cancel"),
+          ),
+          ElevatedButton(
+            onPressed: onDelete,
+            child: defaultButtonText("Delete"),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _deleteUser() async {
+    try {
+      await MyDatabase.instance.deleteUser(widget.user!);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MainPage()),
+      );
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e);
+    }
   }
 }

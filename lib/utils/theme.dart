@@ -2,22 +2,26 @@ import 'package:flutter/material.dart';
 
 import 'myUtils.dart';
 
-
 IremiTheme myTheme = IremiTheme();
-
-const Color _myBluLight = Color(0xFF07C2E6);
-const Color myBluNeutral = Color(0xFF01B3CA);
-const Color _myBluDark = Color(0xFF007C9A);
+Color _myBluLight = Color(0xFF07C2E6);
+Color myBluNeutral = Color(0xFF01B3CA);
+Color _myBluDark = Color(0xFF007C9A);
+//Color _myBluDark = Color(0xFFFF0000); - TODO: Used for Debugging
+// TODO: FIX BUG -> Doesn't update ICONS, they will be updated only on refresh
 
 Color myBluLightDark = IremiTheme.isDarkTheme() ? _myBluDark : _myBluLight;
-Color myBluLightDarkOpposite = IremiTheme.isDarkTheme() ? _myBluLight : _myBluDark;
+Color myBluLightDarkOpposite =
+    IremiTheme.isDarkTheme() ? _myBluLight : _myBluDark;
 
-const Color _myWhite = Color(0xFFFFFFFF);
-const Color _myLightBackgroundColor = Color(0xFFFFFFFF);
-const Color _myDarkBackgroundColor = Color(0xFF282828);
-const Color _myBlack = Color(0xFF000000);
 
-const Map<int, Color> myColorMapLight = {
+Color myButtonTextColor = Color(0xFFFFFFFF);
+
+Color _myWhite = Color(0xFFFFFFFF);
+Color _myLightBackgroundColor = Color(0xFFFFFFFF);
+Color _myDarkBackgroundColor = Color(0xFF282828);
+Color _myBlack = Color(0xFF000000);
+
+Map<int, Color> myColorMapLight = {
   50: Color.fromRGBO(7, 194, 230, .1),
   100: Color.fromRGBO(7, 194, 230, .2),
   200: Color.fromRGBO(7, 194, 230, .3),
@@ -29,8 +33,7 @@ const Map<int, Color> myColorMapLight = {
   800: Color.fromRGBO(7, 194, 230, .9),
   900: Color.fromRGBO(7, 194, 230, 1),
 };
-
-const Map<int, Color> myColorMapDark = {
+Map<int, Color> myColorMapDark = {
   50: Color.fromRGBO(0, 124, 154, .1),
   100: Color.fromRGBO(0, 124, 154, .2),
   200: Color.fromRGBO(0, 124, 154, .3),
@@ -42,11 +45,10 @@ const Map<int, Color> myColorMapDark = {
   800: Color.fromRGBO(0, 124, 154, .9),
   900: Color.fromRGBO(0, 124, 154, 1.0),
 };
+MaterialColor myBluLightMaterial = MaterialColor(0xFF3B44AC, myColorMapLight);
+MaterialColor myBluDarkMaterial = MaterialColor(0xFF3B44AC, myColorMapDark);
 
-const MaterialColor myBluLightMaterial =
-MaterialColor(0xFF3B44AC, myColorMapLight);
-const MaterialColor myBluDarkMaterial =
-MaterialColor(0xFF3B44AC, myColorMapDark);
+//ColorScheme myLightColorScheme = ColorScheme(brightness: Brightness.light, primary: _myBluLight, onPrimary: _myBlack, secondary: _myBluLight, onSecondary: _myBlack, error: myBluNeutral, onError: _myBlack, background: _myBluLight, onBackground: _myBluLight, surface: _myBluLight, onSurface: _myBluLight);
 
 /// ---------------------------
 
@@ -73,50 +75,63 @@ class IremiTheme with ChangeNotifier {
     return ThemeData(
       primarySwatch: myBluLightMaterial,
       scaffoldBackgroundColor: _myLightBackgroundColor,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: _myBluLight,
+        foregroundColor: myButtonTextColor,
       ),
       textTheme: defaultLightTextTheme(),
-      iconTheme: const IconThemeData(
+      iconTheme: IconThemeData(
         color: _myBluLight,
-      ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: _myBluLight,
-        foregroundColor: _myWhite,
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: defaultLightButtonStyle(),
       ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: defaultLightTextStyle(),
       ),
       dialogTheme: DialogTheme(backgroundColor: _myLightBackgroundColor),
+      buttonTheme: ButtonThemeData(),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: _myBluLight,
+        foregroundColor: myButtonTextColor,
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: defaultLightButtonStyle(),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: defaultLightButtonStyle(),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: defaultLightButtonStyle(),
+      ),
     );
   }
 
   static ThemeData get darkTheme {
     return ThemeData(
-      primarySwatch: myBluDarkMaterial,
-      backgroundColor: _myDarkBackgroundColor,
       scaffoldBackgroundColor: _myDarkBackgroundColor,
-      appBarTheme: const AppBarTheme(
+      appBarTheme: AppBarTheme(
         backgroundColor: _myBluDark,
-        foregroundColor: _myWhite,
+        foregroundColor: myButtonTextColor,
       ),
       textTheme: defaultDarkTextTheme(),
-      iconTheme: const IconThemeData(
+      iconTheme: IconThemeData(
         color: _myBluDark,
-      ),
-      floatingActionButtonTheme: FloatingActionButtonThemeData(
-        backgroundColor: _myBluDark,
-      ),
-      outlinedButtonTheme: OutlinedButtonThemeData(
-        style: defaultDarkButtonStyle(),
       ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: defaultDarkTextStyle(),
       ),
       dialogTheme: DialogTheme(backgroundColor: _myDarkBackgroundColor),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: _myBluDark,
+        foregroundColor: myButtonTextColor,
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: defaultDarkButtonStyle(),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: defaultDarkButtonStyle(),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: defaultDarkButtonStyle(),
+      ),
     );
   }
 }
@@ -163,13 +178,16 @@ TextTheme defaultDarkTextTheme() {
 }
 
 TextStyle defaultLightTextStyle() {
-  return const TextStyle(
-      color: Colors.black, fontSize: 20, fontFamily: 'Gotham');
+  return TextStyle(color: _myBlack, fontSize: 20, fontFamily: 'Gotham');
 }
 
 TextStyle defaultDarkTextStyle() {
-  return const TextStyle(
-      color: Colors.white, fontSize: 20, fontFamily: 'Gotham');
+  return TextStyle(color: _myWhite, fontSize: 20, fontFamily: 'Gotham');
+}
+
+TextStyle defaultButtonTextStyle() {
+  return TextStyle(
+      color: myButtonTextColor, fontSize: 20, fontFamily: 'Gotham');
 }
 
 MaterialStateProperty<TextStyle> defaultLightMSPTextStyle() {
@@ -180,24 +198,38 @@ MaterialStateProperty<TextStyle> defaultDarkMSPTextStyle() {
   return MaterialStatePropertyAll(defaultDarkTextStyle());
 }
 
+MaterialStateProperty<TextStyle> defaultButtonMSPTextStyle() {
+  return MaterialStatePropertyAll(defaultDarkTextStyle());
+}
+
 ButtonStyle defaultLightButtonStyle() {
   return ButtonStyle(
-    textStyle: defaultLightMSPTextStyle(),
+    textStyle: defaultButtonMSPTextStyle(),
+    backgroundColor: defaultLightBluMSPColor(),
     foregroundColor: defaultLightMSPTextColor(),
   );
 }
 
 ButtonStyle defaultDarkButtonStyle() {
   return ButtonStyle(
-    textStyle: defaultDarkMSPTextStyle(),
+    textStyle: defaultButtonMSPTextStyle(),
+    backgroundColor: defaultDarkBluMSPColor(),
     foregroundColor: defaultDarkMSPTextColor(),
   );
 }
 
-MaterialStateProperty<Color> defaultLightMSPTextColor(){
+MaterialStateProperty<Color> defaultLightMSPTextColor() {
   return MaterialStatePropertyAll(Colors.black);
 }
 
-MaterialStateProperty<Color> defaultDarkMSPTextColor(){
+MaterialStateProperty<Color> defaultDarkMSPTextColor() {
   return MaterialStatePropertyAll(Colors.white);
+}
+
+MaterialStateProperty<Color> defaultLightBluMSPColor() {
+  return MaterialStatePropertyAll(_myBluLight);
+}
+
+MaterialStateProperty<Color> defaultDarkBluMSPColor() {
+  return MaterialStatePropertyAll(_myBluDark);
 }

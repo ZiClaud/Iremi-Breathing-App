@@ -62,7 +62,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
                     (route) => false,
                   );
                 },
-                child: defaultText("Continue without account"),
+                child: defaultButtonText("Continue without account"),
               ),
           ],
         ),

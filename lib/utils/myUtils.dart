@@ -6,6 +6,8 @@ import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exercisePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'defaultWidget.dart';
+
 class MyUtils {
   static String getItalianDateFormat(DateTime dateTime) {
     if (dateTime.day < 10 && dateTime.month < 10) {
@@ -99,7 +101,7 @@ Future defaultDatabaseErrorDialog(context, message) {
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: Text("Close"),
+            child: defaultButtonText("Close"),
           ),
         ],
       );
