@@ -256,4 +256,13 @@ class _SettingsPageState extends State<SettingsPage> {
       defaultDatabaseErrorDialog(context, e);
     }
   }
+
+  /*
+  void _refresh(MyUser user){
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const SettingsPage(user: user)),
+    );
+  }
+  */
 }

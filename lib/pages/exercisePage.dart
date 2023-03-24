@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 
+import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
 
 class ExercisePage extends StatefulWidget {
@@ -54,17 +55,17 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
 
     _animation = TweenSequence([
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.zero, end: const Size.square(200)),
+        tween: Tween<Size>(begin: Size.zero, end: Size.square(defaultCircleSize())),
         weight: widget.exercise.inhaleDuration.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: const Size.square(200), end: const Size.square(200)),
+        tween: Tween<Size>(begin: Size.square(defaultCircleSize()), end: Size.square(defaultCircleSize())),
         weight: widget.exercise.holdMiddleDuration.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: const Size.square(200), end: Size.zero),
+        tween: Tween<Size>(begin: Size.square(defaultCircleSize()), end: Size.zero),
         weight: widget.exercise.exhaleDuration.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
@@ -105,18 +106,34 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: AnimatedBuilder(
-        animation: _animation,
-        builder: (BuildContext context, Widget? child) {
-          return Container(
-            width: _animation.value.width,
-            height: _animation.value.height,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: myBluLightDark,
+      child: Stack(
+        children: [
+          Center(
+            child: Container(
+              width: defaultCircleSize(),
+              height: defaultCircleSize(),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: myBluNeutral,
+              ),
             ),
-          );
-        },
+          ),
+          Center(
+            child: AnimatedBuilder(
+              animation: _animation,
+              builder: (BuildContext context, Widget? child) {
+                return Container(
+                  width: _animation.value.width,
+                  height: _animation.value.height,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: myBluLightDark,
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

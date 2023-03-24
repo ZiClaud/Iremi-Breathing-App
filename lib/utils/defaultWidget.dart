@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
+double defaultCircleSize() {
+//  double width = MediaQuery.of(context).size.width;
+//  double height = MediaQuery.of(context).size.height;
+//  return min(width, height) * 2 / 3;
+  return 200;
+}
+
 TextFormField defaultShowTextFormField(
     String label, String text, IconData icon) {
   return TextFormField(
