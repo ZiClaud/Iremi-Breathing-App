@@ -191,22 +191,31 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
-            OutlinedButton(
-              onPressed: () {
-                // TODO: Backup
-              },
-              child: defaultButtonText("Backup"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  // TODO: Backup
+                },
+                child: defaultButtonText("Backup"),
+              ),
             ),
-            OutlinedButton(
-              onPressed: () {
-                // TODO: Restore
-              },
-              child: defaultButtonText("Restore"),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  // TODO: Restore
+                },
+                child: defaultButtonText("Restore"),
+              ),
             ),
             if (widget.user != null ||  1==1)
-              OutlinedButton(
-                onPressed: () => _warning(context, _deleteUser),
-                child: defaultButtonText("Delete User"),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: OutlinedButton(
+                  onPressed: () => _warning(context, _deleteUser),
+                  child: defaultButtonText("Delete User"),
+                ),
               ),
             ],
         ));
