@@ -14,7 +14,7 @@ import 'mainPage.dart';
 class SettingsPage extends StatefulWidget {
   final MyUser? user;
 
-  SettingsPage({Key? key, required this.user}) : super(key: key);
+  const SettingsPage({Key? key, required this.user}) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();

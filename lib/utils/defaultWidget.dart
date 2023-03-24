@@ -77,12 +77,12 @@ Scaffold defaultLoadingScreen() {
   );
 }
 
-class defaultLoadingScreen2 extends StatefulWidget {
+class DefaultLoadingScreen2 extends StatefulWidget {
   @override
-  _defaultLoadingScreen2State createState() => _defaultLoadingScreen2State();
+  _DefaultLoadingScreen2State createState() => _DefaultLoadingScreen2State();
 }
 
-class _defaultLoadingScreen2State extends State<defaultLoadingScreen2>
+class _DefaultLoadingScreen2State extends State<DefaultLoadingScreen2>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _opacityAnimation;
@@ -108,7 +108,7 @@ class _defaultLoadingScreen2State extends State<defaultLoadingScreen2>
       body: Center(
         child: FadeTransition(
           opacity: _opacityAnimation,
-          child: Image(
+          child: const Image(
             image: AssetImage('assets/icon/icon.png'),
           ),
         ),

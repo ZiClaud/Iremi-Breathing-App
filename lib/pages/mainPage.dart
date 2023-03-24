@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: Text("Welcome to Iremi"),
+          title: const Text("Welcome to Iremi"),
           actions: [
             IconButton(
               icon: const Icon(

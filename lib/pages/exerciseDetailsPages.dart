@@ -136,7 +136,7 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
 
 FloatingActionButton _startExercise(MyExercise exercise, context){
   return  FloatingActionButton(
-    child: Icon(Icons.play_arrow),
+    child: const Icon(Icons.play_arrow),
     onPressed: () => {
       Navigator.push(
         context,

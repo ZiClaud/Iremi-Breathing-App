@@ -52,10 +52,10 @@ class UserFields {
     id, username, name, sex, goal
   ];
 
-  static final String id = '_id';
-  static final String username = 'username';
-  static final String name = 'name';
-  static final String sex = 'sex';
-  static final String goal = 'goal';
+  static const String id = '_id';
+  static const String username = 'username';
+  static const String name = 'name';
+  static const String sex = 'sex';
+  static const String goal = 'goal';
 }
 

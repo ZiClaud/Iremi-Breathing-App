@@ -44,13 +44,13 @@ class CustomExercise extends MyExercise {
       holdMiddleTimeMs = 0,
       exhaleTimeMs = 0,
       holdEndTimeMs = 0}) {
-    this.inhaleDuration =
+    inhaleDuration =
         Duration(seconds: inhaleTime, milliseconds: inhaleTimeMs);
-    this.holdMiddleDuration =
+    holdMiddleDuration =
         Duration(seconds: holdMiddleTime, milliseconds: holdMiddleTimeMs);
-    this.exhaleDuration =
+    exhaleDuration =
         Duration(seconds: exhaleTime, milliseconds: exhaleTimeMs);
-    this.holdEndDuration =
+    holdEndDuration =
         Duration(seconds: holdEndTime, milliseconds: holdEndTimeMs);
   }
 }

@@ -16,7 +16,7 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add custom exercise"),
+        title: const Text("Add custom exercise"),
         actions: [
           IconButton(
             icon: const Icon(Icons.lightbulb_circle),
@@ -59,7 +59,7 @@ class _ExerciseAddPageState extends State<ExerciseAddPage> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.navigate_next),
+        child: const Icon(Icons.navigate_next),
         onPressed: () => {
           defaultDatabaseErrorDialog(context, "Not connected to database, yet")
         },

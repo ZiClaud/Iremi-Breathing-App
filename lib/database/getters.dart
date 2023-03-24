@@ -81,6 +81,7 @@ class Getters {
       return await MyDatabase.instance.getFirstUser();
     } catch (e) {
       defaultDatabaseErrorDialog(context, e);
+      rethrow;
     }
   }
 

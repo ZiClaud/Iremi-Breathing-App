@@ -5,16 +5,16 @@ class DeepBreathingExerciseBeginner extends DeepBreathingExercise {
   String name = "Deep Breathing Beginner";
 
   @override
-  Duration inhaleDuration = Duration(seconds: 2);
+  Duration inhaleDuration = const Duration(seconds: 2);
 
   @override
-  Duration holdMiddleDuration = Duration(seconds: 2);
+  Duration holdMiddleDuration = const Duration(seconds: 2);
 
   @override
-  Duration exhaleDuration = Duration(seconds: 2);
+  Duration exhaleDuration = const Duration(seconds: 2);
 
   @override
-  Duration holdEndDuration = Duration(seconds: 2);
+  Duration holdEndDuration = const Duration(seconds: 2);
 
   @override
   int times = 5;

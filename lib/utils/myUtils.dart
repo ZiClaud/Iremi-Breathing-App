@@ -94,7 +94,7 @@ Future defaultDatabaseErrorDialog(context, message) {
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text("Database error"),
+        title: const Text("Database error"),
         content: Text(message.toString()),
         actions: [
           TextButton(

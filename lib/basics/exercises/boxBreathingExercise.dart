@@ -23,16 +23,16 @@ class BoxBreathingExercise extends MyExercise {
   ];
 
   @override
-  Duration inhaleDuration = Duration(seconds: 4);
+  Duration inhaleDuration = const Duration(seconds: 4);
 
   @override
-  Duration holdMiddleDuration = Duration(seconds: 4);
+  Duration holdMiddleDuration = const Duration(seconds: 4);
 
   @override
-  Duration exhaleDuration = Duration(seconds: 4);
+  Duration exhaleDuration = const Duration(seconds: 4);
 
   @override
-  Duration holdEndDuration = Duration(seconds: 4);
+  Duration holdEndDuration = const Duration(seconds: 4);
 
   @override
   int times = 4;

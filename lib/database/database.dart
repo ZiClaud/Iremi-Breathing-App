@@ -4,7 +4,7 @@ import 'package:sqflite/sqflite.dart';
 
 import '../utils/myUtils.dart';
 
-final String tableUser = 'user';
+const String tableUser = 'user';
 
 class MyDatabase {
   static final MyDatabase instance = MyDatabase._init();
@@ -21,7 +21,7 @@ class MyDatabase {
       return _database!;
     } catch (e) {
       printError('Error getting database: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -33,7 +33,7 @@ class MyDatabase {
       return await openDatabase(path, version: 1, onCreate: _createAllTables);
     } catch (e) {
       printError('Error opening database: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -42,10 +42,10 @@ class MyDatabase {
   }
 
   Future _createUserTable(Database db, int version) async {
-    final idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
-    final textType = 'TEXT NOT NULL';
-    final boolType = 'BOOLEAN NOT NULL';
-    final integerType = 'INTEGER NOT NULL';
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
 
     try {
       await db.execute('''
@@ -58,7 +58,7 @@ class MyDatabase {
           )''');
     } catch (e) {
       printError('Error creating table $tableUser: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -69,7 +69,7 @@ class MyDatabase {
       return user.copy(id: id);
     } catch (e) {
       printError('Error creating user: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -91,7 +91,7 @@ class MyDatabase {
       }
     } catch (e) {
       printError('Error reading user: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -104,7 +104,7 @@ class MyDatabase {
       return null;
     } catch (e) {
       printError('Error reading all users: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -112,14 +112,14 @@ class MyDatabase {
     try {
       final db = await instance.database;
 
-      final orderBy = '${UserFields.id} ASC';
+      const orderBy = '${UserFields.id} ASC';
 
       final result = await db.query(tableUser, orderBy: orderBy);
 
       return result.map((json) => MyUser.fromJson(json)).toList();
     } catch (e) {
       printError('Error reading all users: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -135,7 +135,7 @@ class MyDatabase {
       );
     } catch (e) {
       printError('Error updating user: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -150,7 +150,7 @@ class MyDatabase {
       );
     } catch (e) {
       printError('Error deleting user: $e');
-      throw e;
+      rethrow;
     }
   }
 
@@ -161,7 +161,7 @@ class MyDatabase {
       db.close();
     } catch (e) {
       printError('Error closing database: $e');
-      throw e;
+      rethrow;
     }
   }
 

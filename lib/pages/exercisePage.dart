@@ -54,17 +54,17 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
 
     _animation = TweenSequence([
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.zero, end: Size.square(200)),
+        tween: Tween<Size>(begin: Size.zero, end: const Size.square(200)),
         weight: widget.exercise.inhaleDuration.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.square(200), end: Size.square(200)),
+        tween: Tween<Size>(begin: const Size.square(200), end: const Size.square(200)),
         weight: widget.exercise.holdMiddleDuration.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.square(200), end: Size.zero),
+        tween: Tween<Size>(begin: const Size.square(200), end: Size.zero),
         weight: widget.exercise.exhaleDuration.inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
