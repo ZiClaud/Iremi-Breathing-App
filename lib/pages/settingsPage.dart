@@ -195,7 +195,8 @@ class _SettingsPageState extends State<SettingsPage> {
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
                 onPressed: () {
-                  // TODO: Backup
+                  // TODO: NEEDS TESTING
+                  backupDatabaseToInternalStorage(context);
                 },
                 child: defaultButtonText("Backup"),
               ),
@@ -203,8 +204,9 @@ class _SettingsPageState extends State<SettingsPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
+                // TODO: NEEDS TESTING
                 onPressed: () {
-                  // TODO: Restore
+                  restoreDatabaseFromInternalStorage(context);
                 },
                 child: defaultButtonText("Restore"),
               ),
@@ -257,7 +259,7 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
-  /*
+/*
   void _refresh(MyUser user){
     Navigator.push(
       context,

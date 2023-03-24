@@ -14,7 +14,7 @@ App against anxiety that gives breathing exercises
 - [x] Dot that fills when you need to inhale, and goes back to normal when you need to exhale
 - [x] Way to choose what exercise to do
 - [ ] Documentation, tips and tricks
-- [ ] User friendly interface
+- [x] User friendly interface
 - [ ] Check that every breathing exercise has the right steps, description and timing
 
 # Database
@@ -22,13 +22,14 @@ App against anxiety that gives breathing exercises
 - [x] Add profile page
 - [x] Database - SQLite
 - [x] Add user to database
-- [ ] Track progress and saves custom exercises
-- [ ] Backup/Restore database
+- [x] Backup/Restore database
+- [ ] Save custom exercises
+- [ ] Track progress
 
 # Profile - Most need database
 
 - [x] Login/Register
-- [ ] Add settings
+- [x] Add settings
 - [ ] Add all the languages, translated using a translator API
 - [ ] Add badges
 
@@ -42,5 +43,6 @@ App against anxiety that gives breathing exercises
 
 - [ ] AI calming voice that reads the steps
 - [ ] Add chill music
+- [x] Logo showing on loading screen
 - [ ] Loading screen with tips
-- [x] In the same app there can be more users (Kinda useful for when I'll move the app on a server)
+- [x] In the same app there can be more users (Kinda useful if I decide to move the app on a server)

@@ -1,5 +1,10 @@
+import 'dart:io';
+
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../utils/myUtils.dart';
@@ -17,7 +22,7 @@ class MyDatabase {
     if (_database != null) return _database!;
 
     try {
-      _database = await _initDB('myDatabase.db');
+      _database = await _initDB('IremiDatabase.db');
       return _database!;
     } catch (e) {
       printError('Error getting database: $e');
@@ -39,6 +44,31 @@ class MyDatabase {
 
   Future _createAllTables(Database db, int version) async {
     _createUserTable(db, version);
+  }
+
+  Future _close() async {
+    try {
+      final db = await instance.database;
+
+      db.close();
+    } catch (e) {
+      printError('Error closing database: $e');
+      rethrow;
+    }
+  }
+
+  Future deleteDB() async {
+    try {
+      final db = await instance.database;
+      await db.close();
+      final dbPath = await getDatabasesPath();
+      final path = join(dbPath, 'IremiDatabase.db');
+      await deleteDatabase(path);
+      _database = null;
+    } catch (e) {
+      printError('Error deleting database: $e');
+      rethrow;
+    }
   }
 
   Future _createUserTable(Database db, int version) async {
@@ -154,17 +184,6 @@ class MyDatabase {
     }
   }
 
-  Future _close() async {
-    try {
-      final db = await instance.database;
-
-      db.close();
-    } catch (e) {
-      printError('Error closing database: $e');
-      rethrow;
-    }
-  }
-
   Future<MyUser> createUser(MyUser user) async {
     return _createUser(user);
   }
@@ -183,5 +202,64 @@ class MyDatabase {
 
   Future deleteUser(MyUser user) async {
     _deleteUser(user.id!);
+  }
+}
+
+Future<void> backupDatabaseToInternalStorage(context) async {
+  try {
+    // Get the database path
+    final dbPath = await MyDatabase.instance.database.then((db) => db.path);
+
+    // Get the app's documents directory
+    final dir = await getApplicationDocumentsDirectory();
+
+    // Create a new file in the documents directory with the same name as the database file
+    final file = File('${dir.parent.parent.path}/IremiData/IremiDatabase.db');
+
+    // Copy the database file to the new file
+    await file.writeAsBytes(await File(dbPath).readAsBytes());
+
+    // Show a message to the user indicating that the database was saved
+    await defaultDialog(context, 'Database saved',
+        'The database was saved to internal storage.\n Path: ${file.path}');
+  } catch (e) {
+    defaultDatabaseErrorDialog(
+        context, 'Error saving database to internal storage: $e');
+  }
+}
+
+Future<void> restoreDatabaseFromInternalStorage(BuildContext context) async {
+  try {
+    // Get the app's documents directory
+    final dir = await getApplicationDocumentsDirectory();
+
+    // Allow the user to choose a file
+    final file = await FilePicker.platform.pickFiles();
+
+    if (file == null) {
+      // User cancelled the file picker
+      return;
+    }
+
+    // Get the chosen file path
+    final filePath = file.files.single.path!;
+
+    if (!filePath.endsWith('.db')){
+      throw Exception("File chosen is not a database");
+    }
+
+    // Delete the existing database
+    await MyDatabase.instance.deleteDB();
+
+    // Copy the chosen file to the app's documents directory with the same name as the database file
+    final newFile = File('${dir.path}/IremiDatabase.db');
+    await newFile.writeAsBytes(await File(filePath).readAsBytes());
+
+    // Show a message to the user indicating that the database was restored
+    await defaultDialog(context, 'Database restored',
+        'The database was restored from internal storage.');
+  } catch (e) {
+    defaultDatabaseErrorDialog(
+        context, 'Error restoring database from internal storage: \n$e');
   }
 }

@@ -90,11 +90,36 @@ bool isDefaultThemeDark(context) {
 }
 
 Future defaultDatabaseErrorDialog(context, message) {
+  return defaultDialog(context, "Database error", message);
+}
+
+Future defaultDatabaseErrorDialog2(context, message) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
         title: const Text("Database error"),
+        content: Text(message.toString()),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: defaultButtonText("Close"),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+Future defaultDialog(
+    context, String title, String message) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(title),
         content: Text(message.toString()),
         actions: [
           TextButton(
