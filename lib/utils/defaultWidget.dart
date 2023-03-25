@@ -53,7 +53,7 @@ InputDecoration defaultInputDecoration(String label, IconData icon) {
     label: Text(label),
     prefixIcon: Icon(
       icon,
-      color: myBluLightDark,
+      color: myBluLightDark(),
     ),
     border: InputBorder.none,
   );
@@ -71,7 +71,7 @@ BorderRadius defaultBorderRadius() {
 }
 
 BorderSide defaultBorderSide() {
-  return BorderSide(color: myBluLightDark, width: 1.5);
+  return BorderSide(color: myBluLightDark(), width: 1.5);
 }
 
 Scaffold defaultLoadingScreen() {

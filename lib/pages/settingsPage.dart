@@ -117,7 +117,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 _getValueAsString(_voiceType),
                 Icons.person,
               ),
-              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark),
+              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
               onTap: () async {
                 String? newVoiceType = await showDialog<String>(
                   context: context,
@@ -157,7 +157,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 _getValueAsString(_language),
                 Icons.language,
               ),
-              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark),
+              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
               onTap: () async {
                 String? newLanguage = await showDialog<String>(
                   context: context,

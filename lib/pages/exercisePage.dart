@@ -127,7 +127,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
                   height: _animation.value.height,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: myBluLightDark,
+                    color: myBluLightDark(),
                   ),
                 );
               },
