@@ -214,7 +214,7 @@ Future<void> backupDatabaseToInternalStorage(context) async {
     final dir = await getApplicationDocumentsDirectory();
 
     // Create a new file in the documents directory with the same name as the database file
-    final file = File('${dir.parent.parent.path}/IremiData/IremiDatabase.db');
+    final file = File('${dir.path}/IremiDatabase.db');
 
     // Copy the database file to the new file
     await file.writeAsBytes(await File(dbPath).readAsBytes());
@@ -244,7 +244,7 @@ Future<void> restoreDatabaseFromInternalStorage(BuildContext context) async {
     // Get the chosen file path
     final filePath = file.files.single.path!;
 
-    if (!filePath.endsWith('.db')){
+    if (!filePath.endsWith('.db')) {
       throw Exception("File chosen is not a database");
     }
 

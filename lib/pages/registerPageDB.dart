@@ -53,7 +53,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
                 onChangedGoal: (goal) => setState(() => this.goal = goal),
               ),
             ),
-            if (widget.user == null && (username == "" || name == ""))
+            if (widget.user == null && (username == ""))
               OutlinedButton(
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPage.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
+import 'package:path_provider/path_provider.dart';
 
+import '../database/database.dart';
 import '../database/getters.dart';
 import '../utils/myUtils.dart';
 import 'exerciseDetailsPages.dart';
@@ -36,7 +38,12 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text("Welcome to Iremi"),
-          actions: [
+          actions: [ // TODO: Remove
+            IconButton(icon: const Icon(Icons.code),
+              onPressed: () {
+                _getDBPath(context);
+              },
+            ),
             IconButton(
               icon: const Icon(
                 Icons.add_circle,
@@ -93,5 +100,14 @@ class _MainPageState extends State<MainPage> {
         Text(getTimeString(exercise)),
       ],
     );
+  }
+
+  Future<void> _getDBPath(context) async {
+    var dir = await getApplicationDocumentsDirectory();
+    defaultDialog(context, "Path:", "${dir.path}");
+
+
+    final dbPath = await MyDatabase.instance.database.then((db) => db.path);
+    defaultDialog(context, "DB Path:", "${dbPath}");
   }
 }
