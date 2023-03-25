@@ -26,15 +26,15 @@ class _UserPageState extends State<UserPage> {
                   appBar: _appBar(context, user),
                   body: ListView(
                     children: [
-                      defaultShowTextFormField(
+                      defaultInputDecorator(
                           "Username", user.username, Icons.person),
                       if (user.name.isNotEmpty)
-                        defaultShowTextFormField(
+                        defaultInputDecorator(
                             "Name", user.name, Icons.badge_outlined),
                       if (user.sex.isNotEmpty)
-                      defaultShowTextFormField("Sex", user.sex, Icons.search),
+                      defaultInputDecorator("Sex", user.sex, Icons.search),
                       if (user.goal.isNotEmpty)
-                      defaultShowTextFormField(
+                      defaultInputDecorator(
                           "Goal", user.goal, Icons.ads_click),
                     ],
                   ));

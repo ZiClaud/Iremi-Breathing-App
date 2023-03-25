@@ -2,20 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
 double defaultCircleSize() {
-//  double width = MediaQuery.of(context).size.width;
-//  double height = MediaQuery.of(context).size.height;
-//  return min(width, height) * 2 / 3;
+//  return getMinWindowSize(context) * 2 / 3;
   return 200;
 }
 
-TextFormField defaultShowTextFormField(
-    String label, String text, IconData icon) {
+TextFormField _defaultShowTextFormField2(
+    String label, String text, IconData icon, {TextEditingController? controller}) {
   return TextFormField(
     enabled: false,
     initialValue: text,
     decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
     keyboardType: TextInputType.multiline,
     maxLines: null,
+    controller: controller,
+  );
+}
+
+InputDecorator defaultInputDecorator(String label, String text, IconData icon){
+  return InputDecorator(
+    decoration: InputDecoration(
+      labelText: label,
+      icon: Icon(icon),
+    ),
+    child: Text(text),
   );
 }
 
@@ -74,6 +83,8 @@ Scaffold defaultLoadingScreen() {
 }
 
 class DefaultLoadingScreen2 extends StatefulWidget {
+  const DefaultLoadingScreen2({super.key});
+
   @override
   _DefaultLoadingScreen2State createState() => _DefaultLoadingScreen2State();
 }

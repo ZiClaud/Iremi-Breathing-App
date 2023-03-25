@@ -75,15 +75,15 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
     return Scaffold(
       body: ListView(
         children: [
-          defaultShowTextFormField(
+          defaultInputDecorator(
               "Name", exercise.name, Icons.keyboard_double_arrow_up),
-          defaultShowTextFormField(
+          defaultInputDecorator(
               "Description", exercise.description, Icons.description),
-          defaultShowTextFormField("notes", exercise.notes, Icons.note),
-          defaultShowTextFormField("Inhale, hold, exhale, hold",
+          defaultInputDecorator("notes", exercise.notes, Icons.note),
+          defaultInputDecorator("Inhale, hold, exhale, hold",
               getDurationString(exercise), Icons.book),
-          defaultShowTextFormField("Times", "${exercise.times}", Icons.repeat),
-          defaultShowTextFormField("Duration of exercise",
+          defaultInputDecorator("Times", "${exercise.times}", Icons.repeat),
+          defaultInputDecorator("Duration of exercise",
               getTimeString(exercise), Icons.timelapse_sharp),
         ],
       ),
@@ -113,7 +113,7 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
           String step = exercise.steps[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: defaultShowTextFormField(step, "", Icons.shape_line),
+            child: defaultInputDecorator(step, "", Icons.shape_line),
           );
         },
       ),

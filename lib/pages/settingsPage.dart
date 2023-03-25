@@ -9,8 +9,6 @@ import '../utils/defaultWidget.dart';
 import '../utils/myUtils.dart';
 import 'mainPage.dart';
 
-// TODO: find out why it doesn't auto-refresh
-
 class SettingsPage extends StatefulWidget {
   final MyUser? user;
 
@@ -24,8 +22,8 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _darkMode = false;
   bool _music = false;
   bool _voice = false;
-  late String _voiceType;
-  late String _language;
+  String _voiceType = Getters.getFirstVoiceType();
+  String _language = Getters.getFirstLanguage();
 
   final List<String> languages = Getters.getAvailableLanguages();
   final List<String> voiceTypes = Getters.getAvailableVoiceTypes();
@@ -42,8 +40,8 @@ class _SettingsPageState extends State<SettingsPage> {
       _darkMode = prefs.getBool('darkMode') ?? false;
       _music = prefs.getBool('music') ?? false;
       _voice = prefs.getBool('voice') ?? false;
-      _voiceType = prefs.getString('voiceType') ?? languages[0];
-      _language = prefs.getString('language') ?? voiceTypes[0];
+      _voiceType = prefs.getString('voiceType') ?? voiceTypes[0];
+      _language = prefs.getString('language') ?? languages[0];
       myTheme.setMode(_darkMode);
     });
   }
@@ -58,52 +56,87 @@ class _SettingsPageState extends State<SettingsPage> {
     _loadSettings();
   }
 
+  String _getValueAsString(value) {
+    return (value is bool) ? (value == true ? "On" : "Off") : value.toString();
+  }
+
+  void _warning(BuildContext context, Function() onDelete) {
+    showDialog(
+      context: context,
+      builder: (context) =>
+          AlertDialog(
+            title: const Text("Delete User?"),
+            content: const Text(
+                "Are you sure you want to delete this user? This action cannot be undone."),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: defaultButtonText("Cancel"),
+              ),
+              ElevatedButton(
+                onPressed: onDelete,
+                child: defaultButtonText("Delete"),
+              ),
+            ],
+          ),
+    );
+  }
+
+  void _deleteUser() async {
+    try {
+      await MyDatabase.instance.deleteUser(widget.user!);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MainPage()),
+      );
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            title: const Text("Settings"),
+      appBar: AppBar(
+        title: const Text("Settings"),
+      ),
+      body: ListView(
+        children: [
+          ListTile(
+            title: defaultInputDecorator(
+              "Dark Mode", _getValueAsString(_darkMode), Icons.dark_mode),
+            trailing: Switch(
+              value: _darkMode,
+              onChanged: (value) {
+                setState(() {
+                  _darkMode = value;
+                  _saveSettings();
+                });
+              },
+            ),
           ),
-          body: ListView(
-            children: [
-            ListTile(
-              title: defaultShowTextFormField(
-                  "Dark Mode", _getValueAsString(_darkMode), Icons.dark_mode),
-              trailing: Switch(
-                value: _darkMode,
-                onChanged: (value) {
-                  setState(() {
-                    _darkMode = value;
-                    _saveSettings();
-                  });
-                },
-              ),
+          ListTile(
+            title: defaultInputDecorator(
+              "Music", _getValueAsString(_music), Icons.music_note),
+            trailing: Switch(
+              value: _music,
+              onChanged: (value) {
+                setState(() {
+                  _music = value;
+                  _saveSettings();
+                });
+              },
             ),
-            ListTile(
-              title: defaultShowTextFormField(
-                "Music",
-                _getValueAsString(_music),
-                Icons.music_note,
-              ),
-              trailing: Switch(
-                value: _music,
-                onChanged: (value) {
-                  setState(() {
-                    _music = value;
-                    _saveSettings();
-                  });
-                },
-              ),
+          ),
+          ListTile(
+            title: defaultInputDecorator(
+              "Voice",
+              _getValueAsString(_voice),
+              Icons.keyboard_voice_rounded
             ),
-            ListTile(
-              title: defaultShowTextFormField(
-                "Voice",
-                _getValueAsString(_voice),
-                Icons.keyboard_voice_rounded,
-              ),
-              trailing: Switch(
-                value: _voice,
-                onChanged: (value) {
+            trailing: Switch(
+              value: _voice,
+              onChanged: (value) {
                   setState(() {
                     _voice = value;
                     _saveSettings();
@@ -112,10 +145,10 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             ),
             ListTile(
-              title: defaultShowTextFormField(
+              title: defaultInputDecorator(
                 'Voice Type',
                 _getValueAsString(_voiceType),
-                Icons.person,
+                Icons.person
               ),
               trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
               onTap: () async {
@@ -152,10 +185,10 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
             ListTile(
-              title: defaultShowTextFormField(
+              title: defaultInputDecorator(
                 'Language',
                 _getValueAsString(_language),
-                Icons.language,
+                Icons.language
               ),
               trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
               onTap: () async {
@@ -191,80 +224,36 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
-                onPressed: () {
-                  // TODO: NEEDS TESTING
-                  backupDatabaseToInternalStorage(context);
-                },
-                child: defaultButtonText("Backup"),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: OutlinedButton(
+              onPressed: () {
                 // TODO: NEEDS TESTING
-                onPressed: () {
-                  restoreDatabaseFromInternalStorage(context);
-                },
-                child: defaultButtonText("Restore"),
+                backupDatabaseToInternalStorage(context);
+              },
+              child: defaultButtonText("Backup"),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: OutlinedButton(
+              // TODO: NEEDS TESTING
+              onPressed: () {
+                restoreDatabaseFromInternalStorage(context);
+              },
+              child: defaultButtonText("Restore"),
+            ),
+          ),
+          if (widget.user != null)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(
+                onPressed: () => _warning(context, _deleteUser),
+                child: defaultButtonText("Delete User"),
               ),
             ),
-            if (widget.user != null)
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: OutlinedButton(
-                  onPressed: () => _warning(context, _deleteUser),
-                  child: defaultButtonText("Delete User"),
-                ),
-              ),
-            ],
-        ));
-  }
-
-  String _getValueAsString(value) {
-    return (value is bool) ? (value == true ? "On" : "Off") : value.toString();
-  }
-
-  void _warning(BuildContext context, Function() onDelete) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text("Delete User?"),
-        content: const Text("Are you sure you want to delete this user? This action cannot be undone."),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: defaultButtonText("Cancel"),
-          ),
-          ElevatedButton(
-            onPressed: onDelete,
-            child: defaultButtonText("Delete"),
-          ),
         ],
       ),
     );
   }
-
-  void _deleteUser() async {
-    try {
-      await MyDatabase.instance.deleteUser(widget.user!);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
-      );
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
-    }
-  }
-
-/*
-  void _refresh(MyUser user){
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const SettingsPage(user: user)),
-    );
-  }
-  */
 }

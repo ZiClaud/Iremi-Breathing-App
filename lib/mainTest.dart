@@ -1,16 +1,45 @@
-import 'package:iremibreathingapp/basics/exercise.dart';
-import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/pages/old/test/testPlayGround.dart';
+import 'package:iremibreathingapp/utils/theme.dart';
 
 void main() {
-  MyExercise deepBreathing = DeepBreathingExerciseBeginner();
-//  MyExercise customBreathing = CustomExercise("Custom", "", "", ["s1", "s2"], 1, 1, 1, 1, 3);
+  runApp(MyApp());
+}
 
-  deepBreathing.tellSteps();
-//  customBreathing.tellSteps();
 
-//  print("deepBeginner");
-//  deepBreathing.start();
+class MyApp extends StatefulWidget {
 
-//  print("custom");
-//  customBreathing.start();
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  late bool _darkMode = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    myTheme.setMode(_darkMode);
+
+    myTheme.addListener(() {
+      setState(() {
+        _darkMode = IremiTheme.isDarkTheme();
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: TestPlayGround(),
+      theme: IremiTheme.lightTheme,
+      darkTheme: IremiTheme.darkTheme,
+      themeMode: myTheme.iremiTheme,
+    );
+  }
 }

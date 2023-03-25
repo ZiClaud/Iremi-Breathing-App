@@ -89,8 +89,16 @@ class Getters {
     return ['English', 'Italian', 'Spanish', 'Chinese (Simplified)', 'Greek'];
   }
 
+  static String getFirstLanguage(){
+    return getAvailableLanguages().first;
+  }
+
   static List<String> getAvailableVoiceTypes() {
     return ['Male', 'Female', 'Neutral'];
+  }
+
+  static String getFirstVoiceType(){
+    return getAvailableVoiceTypes().first;
   }
 /*
   static MySettings getDefaultSettings() {

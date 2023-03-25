@@ -55,9 +55,8 @@ String getTimeString(MyExercise exercise) {
 }
 
 double getMinWindowSize(context) {
-  return math.min(MediaQuery.of(context).size.height,
-          MediaQuery.of(context).size.width) /
-      2;
+  return math.min((MediaQuery.of(context).size.height),
+      (MediaQuery.of(context).size.width) / 2);
 }
 
 void printWarning(String text) {
