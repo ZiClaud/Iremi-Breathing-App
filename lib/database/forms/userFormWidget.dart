@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/defaultWidget.dart';
-
 class UserFormWidget extends StatelessWidget {
   final String? username;
   final String? name;
@@ -35,8 +33,10 @@ class UserFormWidget extends StatelessWidget {
                 children: [
                   TextFormField(
                     initialValue: username,
-                    decoration:
-                        defaultInputDecoration("Username", Icons.person),
+                    decoration: const InputDecoration(
+                      label: Text("Username"),
+                      icon: Icon(Icons.person),
+                    ),
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     onChanged: onChangedUsername,
@@ -47,24 +47,30 @@ class UserFormWidget extends StatelessWidget {
                   ),
                   TextFormField(
                     initialValue: name,
-                    decoration: defaultInputDecoration(
-                        "Name (optional)", Icons.badge_outlined),
+                    decoration: const InputDecoration(
+                      label: Text("Name (optional)"),
+                      icon: Icon(Icons.badge_outlined),
+                    ),
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     onChanged: onChangedName,
                   ),
                   TextFormField(
                     initialValue: sex,
-                    decoration:
-                        defaultInputDecoration("Sex (optional)", Icons.search),
+                    decoration: const InputDecoration(
+                      label: Text("Sex (optional)"),
+                      icon: Icon(Icons.search),
+                    ),
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     onChanged: onChangedSex,
                   ),
                   TextFormField(
                     initialValue: goal,
-                    decoration: defaultInputDecoration(
-                        "Goal (optional)", Icons.ads_click),
+                    decoration: const InputDecoration(
+                      label: Text("Goal (optional)"),
+                      icon: Icon(Icons.ads_click),
+                    ),
                     keyboardType: TextInputType.multiline,
                     maxLines: null,
                     onChanged: onChangedGoal,

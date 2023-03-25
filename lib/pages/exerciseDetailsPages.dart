@@ -111,11 +111,9 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
         itemCount: exercise.steps.length,
         itemBuilder: (context, index) {
           String step = exercise.steps[index];
-          return Card(
-            child: Padding(
-              padding: EdgeInsets.all(8.0),
-              child: defaultShowTextFormField(step, "", Icons.shape_line),
-            ),
+          return Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: defaultShowTextFormField(step, "", Icons.shape_line),
           );
         },
       ),

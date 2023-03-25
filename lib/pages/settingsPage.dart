@@ -211,7 +211,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: defaultButtonText("Restore"),
               ),
             ),
-            if (widget.user != null ||  1==1)
+            if (widget.user != null)
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: OutlinedButton(

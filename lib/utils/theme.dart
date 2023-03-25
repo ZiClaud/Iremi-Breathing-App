@@ -88,6 +88,10 @@ class IremiTheme with ChangeNotifier {
       ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: defaultLightTextStyle(),
+        prefixIconColor: _myBluLight,
+        iconColor: _myBluLight,
+        fillColor: _myLightBackgroundColor,
+        border: InputBorder.none,
       ),
       dialogTheme: const DialogTheme(backgroundColor: _myLightBackgroundColor),
       buttonTheme: const ButtonThemeData(),
@@ -104,6 +108,7 @@ class IremiTheme with ChangeNotifier {
       textButtonTheme: TextButtonThemeData(
         style: defaultLightButtonStyle(),
       ),
+//        textFormField
     );
   }
 
@@ -120,6 +125,10 @@ class IremiTheme with ChangeNotifier {
       ),
       inputDecorationTheme: InputDecorationTheme(
         labelStyle: defaultDarkTextStyle(),
+        prefixIconColor: _myBluDark,
+        iconColor: _myBluDark,
+        fillColor: _myDarkBackgroundColor,
+        border: InputBorder.none,
       ),
       dialogTheme: const DialogTheme(backgroundColor: _myDarkBackgroundColor),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(

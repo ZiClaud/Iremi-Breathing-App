@@ -13,7 +13,7 @@ TextFormField defaultShowTextFormField(
   return TextFormField(
     enabled: false,
     initialValue: text,
-    decoration: defaultInputDecoration(label, icon),
+    decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
     keyboardType: TextInputType.multiline,
     maxLines: null,
   );
@@ -42,20 +42,9 @@ Text defaultErrorText(String message) {
 
 TextFormField defaultEditTextFormField(String label, IconData icon) {
   return TextFormField(
-    decoration: defaultInputDecoration(label, icon),
+    decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
     keyboardType: TextInputType.multiline,
     maxLines: null,
-  );
-}
-
-InputDecoration defaultInputDecoration(String label, IconData icon) {
-  return InputDecoration(
-    label: Text(label),
-    prefixIcon: Icon(
-      icon,
-      color: myBluLightDark(),
-    ),
-    border: InputBorder.none,
   );
 }
 
