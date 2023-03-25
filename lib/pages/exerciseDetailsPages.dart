@@ -108,24 +108,14 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
     MyExercise exercise = widget.exercise;
     return Scaffold(
       body: ListView.builder(
-        itemCount: 1,
+        itemCount: exercise.steps.length,
         itemBuilder: (context, index) {
-          return DataTable(
-            showCheckboxColumn: false,
-            columns: const <DataColumn>[
-              DataColumn(
-                label: Text(
-                  'Steps',
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18.0),
-                ),
-              ),
-            ],
-            rows: exercise.steps
-                .map(((steps) => DataRow(cells: <DataCell>[
-                      DataCell(defaultShowTextFormField(
-                          steps, "", Icons.shape_line)),
-                    ])))
-                .toList(),
+          String step = exercise.steps[index];
+          return Card(
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: defaultShowTextFormField(step, "", Icons.shape_line),
+            ),
           );
         },
       ),
