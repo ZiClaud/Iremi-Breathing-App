@@ -6,6 +6,17 @@ double defaultCircleSize() {
   return 200;
 }
 
+TabBar defaultTopBar(controller){
+  return TabBar(
+    controller: controller,
+    tabs: const [
+      Tab(text: 'Details'),
+      Tab(text: 'Steps'),
+    ],
+    indicatorColor: myBluNeutral,
+  );
+}
+
 TextFormField _defaultShowTextFormField2(
     String label, String text, IconData icon, {TextEditingController? controller}) {
   return TextFormField(

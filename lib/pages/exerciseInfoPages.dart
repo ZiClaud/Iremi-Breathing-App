@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
-import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../utils/defaultWidget.dart';
 import '../utils/myUtils.dart';
 import 'exercisePage.dart';
 
-class ExerciseDetailsPages extends StatefulWidget {
+class ExerciseInfoPages extends StatefulWidget {
   MyExercise exercise;
 
-  ExerciseDetailsPages({Key? key, required this.exercise}) : super(key: key);
+  ExerciseInfoPages({Key? key, required this.exercise}) : super(key: key);
 
   @override
-  State<ExerciseDetailsPages> createState() => _ExerciseDetailsPagesState();
+  State<ExerciseInfoPages> createState() => _ExerciseInfoPagesState();
 }
 
-class _ExerciseDetailsPagesState extends State<ExerciseDetailsPages>
+class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
     with SingleTickerProviderStateMixin {
   late final TabController _tabController;
   late final List<Widget> _pages;
@@ -41,19 +40,13 @@ class _ExerciseDetailsPagesState extends State<ExerciseDetailsPages>
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.exercise.name),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: const [
-            Tab(text: 'Details'),
-            Tab(text: 'Steps'),
-          ],
-          indicatorColor: myBluNeutral,
-        ),
+        bottom: defaultTopBar(_tabController),
       ),
       body: TabBarView(
         controller: _tabController,
         children: _pages,
       ),
+      floatingActionButton: _startExercise(widget.exercise, context),
     );
   }
 }
@@ -87,7 +80,6 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
               getTimeString(exercise), Icons.timelapse_sharp),
         ],
       ),
-      floatingActionButton: _startExercise(exercise, context),
     );
   }
 }
@@ -117,7 +109,6 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
           );
         },
       ),
-      floatingActionButton: _startExercise(exercise, context),
     );
   }
 }

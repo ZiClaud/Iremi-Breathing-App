@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
-import 'package:iremibreathingapp/pages/exerciseAddPage.dart';
+import 'package:iremibreathingapp/pages/exerciseAddPages.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../database/database.dart';
 import '../database/getters.dart';
 import '../utils/myUtils.dart';
-import 'exerciseDetailsPages.dart';
+import 'exerciseInfoPages.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -52,7 +52,7 @@ class _MainPageState extends State<MainPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ExerciseAddPage(),
+                    builder: (context) => const ExerciseAddPages(),
                   ),
                 );
               },
@@ -84,7 +84,7 @@ class _MainPageState extends State<MainPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ExerciseDetailsPages(exercise: exercise),
+            builder: (context) => ExerciseInfoPages(exercise: exercise),
           ),
         );
       },
