@@ -68,6 +68,16 @@ TextFormField defaultEditTextFormField(String label, IconData icon) {
   );
 }
 
+TextFormField defaultEditTextFormField2(String label, IconData icon, {required void Function(String?) onChanged}) {
+  return TextFormField(
+    decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
+    keyboardType: TextInputType.multiline,
+    maxLines: null,
+    onChanged: onChanged,
+  );
+}
+
+
 RoundedRectangleBorder defaultRoundedRectangleBorder() {
   return RoundedRectangleBorder(
     borderRadius: defaultBorderRadius(),

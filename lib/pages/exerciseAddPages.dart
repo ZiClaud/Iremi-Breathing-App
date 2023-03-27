@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/myUtils.dart';
 
+import '../database/forms/exerciseFormWidget.dart';
 import '../utils/defaultWidget.dart';
 
 class ExerciseAddPages extends StatefulWidget {
@@ -16,12 +17,14 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
   late final TabController _tabController;
   late final List<Widget> _pages;
 
+  final formData = ExerciseFormData();
+
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _pages = [
-      _ExerciseAddDetailsPage(),
+      _ExerciseAddDetailsPage(formData: formData,),
       _ExerciseAddStepsPage(),
     ];
   }
@@ -45,8 +48,7 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.navigate_next),
-        onPressed: () =>
-        {
+        onPressed: () => {
           defaultDatabaseErrorDialog(context, "Not connected to database, yet")
         },
       ),
@@ -56,11 +58,13 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
 
 class _ExerciseAddDetailsPage extends StatefulWidget {
   bool showComplex = false;
+  final ExerciseFormData formData;
 
-  _ExerciseAddDetailsPage({Key? key}) : super(key: key);
+  _ExerciseAddDetailsPage({Key? key, required this.formData}) : super(key: key);
 
   @override
-  State<_ExerciseAddDetailsPage> createState() => _ExerciseAddDetailsPageState();
+  State<_ExerciseAddDetailsPage> createState() =>
+      _ExerciseAddDetailsPageState();
 }
 
 class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
@@ -69,29 +73,65 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
     return Scaffold(
       body: ListView(
         children: [
-          defaultEditTextFormField("Name", Icons.keyboard_double_arrow_up),
-          defaultEditTextFormField("Description", Icons.description),
-          defaultEditTextFormField("Notes", Icons.note),
-          defaultEditTextFormField("Times", Icons.incomplete_circle),
-          defaultEditTextFormField("InhaleDuration", Icons.circle),
-          defaultEditTextFormField("HoldMiddleDuration", Icons.change_circle),
-          defaultEditTextFormField("ExhaleDuration", Icons.circle_outlined),
-          defaultEditTextFormField(
-              "HoldEndDuration", Icons.change_circle_outlined),
+          defaultEditTextFormField2("Name", Icons.keyboard_double_arrow_up,
+              onChanged: (value) {
+            widget.formData.name = value;
+          }),
+          defaultEditTextFormField2("Description", Icons.description,
+              onChanged: (value) {
+            widget.formData.description = value;
+          }),
+          defaultEditTextFormField2("Notes", Icons.note,
+              onChanged: (value) {
+                widget.formData.notes = value;
+              }),
+          defaultEditTextFormField2("Times", Icons.incomplete_circle,
+              onChanged: (value) {
+                widget.formData.times = int.tryParse(value!) ?? 0;
+              }),
+          defaultEditTextFormField2("InhaleDuration", Icons.circle,
+              onChanged: (value) {
+                widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
+              }),
+          defaultEditTextFormField2("HoldMiddleDuration", Icons.change_circle,
+              onChanged: (value) {
+                widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
+              }),
+          defaultEditTextFormField2("ExhaleDuration", Icons.circle_outlined,
+              onChanged: (value) {
+                widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
+              }),
+          defaultEditTextFormField2(
+              "HoldEndDuration", Icons.change_circle_outlined,
+              onChanged: (value) {
+                widget.formData.holdEndDuration = int.tryParse(value!) ?? 0;
+              }),
           if (widget.showComplex)
-            defaultEditTextFormField("InhaleDuration (ms)", Icons.circle),
+            defaultEditTextFormField2("InhaleDuration (ms)", Icons.circle,
+                onChanged: (value) {
+                  widget.formData.inhaleDurationMs = int.tryParse(value!) ?? 0;
+                }),
           // TODO: Make icon smaller
           if (widget.showComplex)
-            defaultEditTextFormField(
-                "HoldMiddleDuration (ms)", Icons.change_circle),
+            defaultEditTextFormField2(
+                "HoldMiddleDuration (ms)", Icons.change_circle,
+                onChanged: (value) {
+                  widget.formData.holdMiddleDurationMs = int.tryParse(value!) ?? 0;
+                }),
           // TODO: Make icon smaller
           if (widget.showComplex)
-            defaultEditTextFormField(
-                "ExhaleDuration (ms)", Icons.circle_outlined),
+            defaultEditTextFormField2(
+                "ExhaleDuration (ms)", Icons.circle_outlined,
+                onChanged: (value) {
+                  widget.formData.exhaleDurationMs = int.tryParse(value!) ?? 0;
+                }),
           // TODO: Make icon smaller
           if (widget.showComplex)
-            defaultEditTextFormField(
-                "HoldEndDuration (ms)", Icons.change_circle_outlined),
+            defaultEditTextFormField2(
+                "HoldEndDuration (ms)", Icons.change_circle_outlined,
+                onChanged: (value) {
+                  widget.formData.holdEndDurationMs = int.tryParse(value!) ?? 0;
+                }),
           // TODO: Make icon smaller
           if (!widget.showComplex)
             OutlinedButton(
