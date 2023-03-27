@@ -7,11 +7,24 @@ import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database/database.dart';
-
+import 'database/getters.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SharedPreferences.getInstance().then((prefs) {
+    bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
+    if (isFirstTime) {
+      // Set default settings for the first time
+      prefs.setBool('darkMode', isDefaultThemeDark2());
+      prefs.setBool('music', true);
+      prefs.setBool('voice', true);
+      prefs.setString('voiceType', Getters.getFirstVoiceType());
+      prefs.setString('language', Getters.getFirstLanguage()); // TODO: Change with user's language
+
+      // Set isFirstTime to false to indicate that the app has been opened before
+      prefs.setBool('isFirstTime', false);
+    }
     runApp(MyApp(prefs: prefs));
   });
 }

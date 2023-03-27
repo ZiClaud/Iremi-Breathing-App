@@ -24,8 +24,17 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
     _pages = [
-      _ExerciseAddDetailsPage(formData: formData,),
+      _ExerciseAddDetailsPage(
+        formData: formData,
+      ),
       _ExerciseAddStepsPage(),
+      /*
+      ExerciseFormWidget(
+        formData: formData,
+        onAddStep: () {},
+        onRemoveStep: (int) {},
+      ),
+      */
     ];
   }
 
