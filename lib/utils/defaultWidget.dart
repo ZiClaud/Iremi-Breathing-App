@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
 double defaultCircleSize() {
@@ -77,6 +78,19 @@ TextFormField defaultEditTextFormField2(String label, IconData icon, {required v
   );
 }
 
+TextFormField defaultEditTextFormField2Num(String label, IconData icon,
+    {required void Function(String?) onChanged}) {
+  return TextFormField(
+    decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
+    keyboardType: TextInputType.number,
+    maxLines: null,
+    onChanged: onChanged,
+    inputFormatters: <TextInputFormatter>[
+      FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+      FilteringTextInputFormatter.digitsOnly
+    ],
+  );
+}
 
 RoundedRectangleBorder defaultRoundedRectangleBorder() {
   return RoundedRectangleBorder(

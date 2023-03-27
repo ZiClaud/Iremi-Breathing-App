@@ -23,22 +23,3 @@ abstract class MyExercise {
         times;
   }
 }
-/*
-  void start() {
-    start2(times);
-  }
-
-  void start2(int times) async {
-    while (times > 0) {
-      print('inhale');
-      await Future.delayed(inhaleDuration);
-      print('hold');
-      await Future.delayed(holdMiddleDuration);
-      print('exhale');
-      await Future.delayed(exhaleDuration);
-      print('hold');
-      await Future.delayed(holdEndDuration);
-      times--;
-    }
-  }
-  */

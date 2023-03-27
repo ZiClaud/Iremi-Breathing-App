@@ -27,7 +27,9 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       _ExerciseAddDetailsPage(
         formData: formData,
       ),
-      _ExerciseAddStepsPage(),
+      _ExerciseAddStepsPage(
+        formData: formData,
+      ),
       /*
       ExerciseFormWidget(
         formData: formData,
@@ -94,49 +96,49 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               onChanged: (value) {
                 widget.formData.notes = value;
               }),
-          defaultEditTextFormField2("Times", Icons.incomplete_circle,
+          defaultEditTextFormField2Num("Times", Icons.incomplete_circle,
               onChanged: (value) {
                 widget.formData.times = int.tryParse(value!) ?? 0;
               }),
-          defaultEditTextFormField2("InhaleDuration", Icons.circle,
+          defaultEditTextFormField2Num("InhaleDuration", Icons.circle,
               onChanged: (value) {
                 widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
               }),
-          defaultEditTextFormField2("HoldMiddleDuration", Icons.change_circle,
+          defaultEditTextFormField2Num("HoldMiddleDuration", Icons.change_circle,
               onChanged: (value) {
                 widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
               }),
-          defaultEditTextFormField2("ExhaleDuration", Icons.circle_outlined,
+          defaultEditTextFormField2Num("ExhaleDuration", Icons.circle_outlined,
               onChanged: (value) {
                 widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
               }),
-          defaultEditTextFormField2(
+          defaultEditTextFormField2Num(
               "HoldEndDuration", Icons.change_circle_outlined,
               onChanged: (value) {
                 widget.formData.holdEndDuration = int.tryParse(value!) ?? 0;
               }),
           if (widget.showComplex)
-            defaultEditTextFormField2("InhaleDuration (ms)", Icons.circle,
+            defaultEditTextFormField2Num("InhaleDuration (ms)", Icons.circle,
                 onChanged: (value) {
                   widget.formData.inhaleDurationMs = int.tryParse(value!) ?? 0;
                 }),
           // TODO: Make icon smaller
           if (widget.showComplex)
-            defaultEditTextFormField2(
+            defaultEditTextFormField2Num(
                 "HoldMiddleDuration (ms)", Icons.change_circle,
                 onChanged: (value) {
                   widget.formData.holdMiddleDurationMs = int.tryParse(value!) ?? 0;
                 }),
           // TODO: Make icon smaller
           if (widget.showComplex)
-            defaultEditTextFormField2(
+            defaultEditTextFormField2Num(
                 "ExhaleDuration (ms)", Icons.circle_outlined,
                 onChanged: (value) {
                   widget.formData.exhaleDurationMs = int.tryParse(value!) ?? 0;
                 }),
           // TODO: Make icon smaller
           if (widget.showComplex)
-            defaultEditTextFormField2(
+            defaultEditTextFormField2Num(
                 "HoldEndDuration (ms)", Icons.change_circle_outlined,
                 onChanged: (value) {
                   widget.formData.holdEndDurationMs = int.tryParse(value!) ?? 0;
@@ -149,7 +151,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
                   widget.showComplex = true;
                 });
               },
-              child: Text('Show More'),
+              child: const Text('Show More'),
             ),
           if (widget.showComplex)
             OutlinedButton(
@@ -158,7 +160,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
                   widget.showComplex = false;
                 });
               },
-              child: Text('Show Less'),
+              child: const Text('Show Less'),
             ),
         ],
       ),
@@ -167,7 +169,9 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
 }
 
 class _ExerciseAddStepsPage extends StatefulWidget {
-  const _ExerciseAddStepsPage({Key? key}) : super(key: key);
+  final ExerciseFormData formData;
+
+  const _ExerciseAddStepsPage({Key? key, required this.formData}) : super(key: key);
 
   @override
   State<_ExerciseAddStepsPage> createState() => _ExerciseAddStepsPageState();
