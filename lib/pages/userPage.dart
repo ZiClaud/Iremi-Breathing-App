@@ -103,11 +103,39 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
+  MyUser? _user;
+  late List<MyBadge?> _badge;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUser();
+    _getBadges();
+  }
+
+  Future<void> _getUser() async {
+    MyUser? user = await Getters.getUserDB(context);
+    if (user != null) {
+      setState(() {
+        _user = user;
+      });
+    }
+  }
+
+  Future<void> _getBadges() async {
+    List<MyBadge?> badge = await Getters.getBadgesDB(context);
+    if (badge.isNotEmpty) {
+      setState(() {
+        _badge = badge;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(context, null),
-      body: _showUserWidget(context),
+      appBar: _appBar(context, _user),
+      body: _showUserWidget(_user),
       /*
         Column(
         children: [
@@ -120,33 +148,23 @@ class _UserPageState extends State<UserPage> {
   }
 }
 
-Widget _showUserWidget(context) {
-  return FutureBuilder(
-    future: Getters.getUserDB(context),
-    builder: (BuildContext context, AsyncSnapshot<MyUser?> snapshot) {
-      if (snapshot.connectionState == ConnectionState.done) {
-        if (snapshot.hasData && snapshot.data != null) {
-          MyUser user = snapshot.data!;
-          return ListView(
-            children: [
-              defaultInputDecorator("Username", user.username, Icons.person),
-              if (user.name.isNotEmpty)
-                defaultInputDecorator("Name", user.name, Icons.badge_outlined),
-              if (user.sex.isNotEmpty)
-                defaultInputDecorator("Sex", user.sex, Icons.search),
-              if (user.goal.isNotEmpty)
-                defaultInputDecorator("Goal", user.goal, Icons.ads_click),
-            ],
-          );
-        } else {
-          return Center(
-            child: defaultText('No user found'),
-          );
-        }
-      } else {
-        return defaultLoadingScreen();
-      }
-    },
+Widget _showUserWidget(MyUser? _user) {
+  return _user != null
+      ? ListView(
+    children: [
+      defaultInputDecorator("Username", _user!.username, Icons.person),
+      if (_user!.name.isNotEmpty)
+        defaultInputDecorator(
+            "Name", _user!.name, Icons.badge_outlined),
+      if (_user!.sex.isNotEmpty)
+        defaultInputDecorator("Sex", _user!.sex, Icons.search),
+      if (_user!.goal.isNotEmpty)
+        defaultInputDecorator(
+            "Goal", _user!.goal, Icons.ads_click),
+    ],
+  )
+      : Center(
+    child: defaultText('No user found'),
   );
 }
 
@@ -165,7 +183,7 @@ Widget _showBadgeWidget(context) {
               itemCount: badges.length,
               itemBuilder: (context, index) {
                 return defaultInputDecorator(
-                  badges[index].name,
+                  badges[index].getBadge().badgeName,
                   badges[index].date,
                   Icons.star,
                 );
