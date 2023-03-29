@@ -137,9 +137,8 @@ class _UserPageState extends State<UserPage> {
       appBar: _appBar(context, _user),
       body: Column(
         children: [
-          _showUserWidget(_user),
-          _showUserWidget(_user), /// This won't show up if there's data in it, wierd
-//          _showBadgeWidget(_badges), // TODO: FIX THIS
+          Expanded(child: _showUserWidget(_user)),
+          Expanded(child: _showBadgeWidget(_badges)),
         ],
       ),
     );
