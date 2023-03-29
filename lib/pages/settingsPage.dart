@@ -61,13 +61,20 @@ class _SettingsPageState extends State<SettingsPage> {
     return (value is bool) ? (value == true ? "On" : "Off") : value.toString();
   }
 
-  void _warning(BuildContext context, Function() onDelete) {
+  void _warningUser(BuildContext context, Function() onDelete) {
+    _warning(context, onDelete, "Delete User?", "Are you sure you want to delete this user? This action cannot be undone.");
+  }
+
+  void _warningDatabase(BuildContext context, Function() onDelete) {
+    _warning(context, onDelete, "Delete Database?", "Are you sure you want to delete the database? This action cannot be undone.");
+  }
+
+  void _warning(BuildContext context, Function() onDelete, String title, String content) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text("Delete User?"),
-        content: const Text(
-            "Are you sure you want to delete this user? This action cannot be undone."),
+        title: Text(title),
+        content: Text(content),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -85,6 +92,18 @@ class _SettingsPageState extends State<SettingsPage> {
   void _deleteUser() async {
     try {
       await MyDatabase.instance.deleteUser(widget.user!.id!);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const MainPage()),
+      );
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
+    }
+  }
+
+  void _deleteDatabase() async {
+    try {
+      await MyDatabase.instance.deleteDB();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),
@@ -239,10 +258,17 @@ class _SettingsPageState extends State<SettingsPage> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
-                onPressed: () => _warning(context, _deleteUser),
+                onPressed: () => _warningUser(context, _deleteUser),
                 child: defaultButtonText("Delete User"),
               ),
             ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: OutlinedButton(
+              onPressed: () => _warningDatabase(context, _deleteDatabase),
+              child: defaultButtonText("Delete Database"),
+            ),
+          ),
         ],
       ),
     );
