@@ -57,7 +57,7 @@ class MyDatabase {
       rethrow;
     }
   }
-  
+
   Future deleteDB() async {
     try {
       final db = await instance.database;
@@ -157,7 +157,12 @@ class MyDatabase {
   Future<List<MyBadge?>> readAllBadges() async {
     try {
       final db = await instance.database;
-
+/*
+      return await [
+        MyBadge(id: 2, date: "Today"),
+        MyBadge(id: 3, date: "Yesterday"),
+      ];
+*/
       throw Exception("Not implemented yet");
 
 //      const orderBy = '${BadgeFields.id} ASC';

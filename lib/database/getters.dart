@@ -86,9 +86,18 @@ class Getters {
     }
   }
 
-  static Future<List<MyBadge?>> getBadgesDB(context) async {
+  static Future<List<MyBadge>> getBadgesDB(context) async {
     try {
-      return await MyDatabase.instance.readAllBadges();
+      List<MyBadge?> val = await MyDatabase.instance.readAllBadges();
+      List<MyBadge> ris = [];
+
+      for (MyBadge? badge in val) {
+        if (badge != null) {
+          ris.add(badge);
+        }
+      }
+
+      return ris;
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
       rethrow;
