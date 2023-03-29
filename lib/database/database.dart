@@ -1,16 +1,12 @@
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
-import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 import '../utils/myUtils.dart';
 
 const String tableUser = 'user';
+const String tableBadges = 'badges';
 
 class MyDatabase {
   static final MyDatabase instance = MyDatabase._init();
@@ -45,6 +41,7 @@ class MyDatabase {
 
   Future _createAllTables(Database db, int version) async {
     _createUserTable(db, version);
+    _createBadgesTable(db, version);
   }
 
   Future _close() async {
@@ -93,6 +90,24 @@ class MyDatabase {
     }
   }
 
+  Future _createBadgesTable(Database db, int version) async {
+    const idType = 'INTEGER PRIMARY KEY';
+    const textType = 'TEXT NOT NULL';
+    const boolType = 'BOOLEAN NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
+
+    try {
+      await db.execute('''
+          CREATE TABLE $tableBadges (
+          ${BadgeFields.id} $idType,
+          ${BadgeFields.date} $textType
+          )''');
+    } catch (e) {
+      printError('Error creating table $tableBadges: $e');
+      rethrow;
+    }
+  }
+
   Future<MyUser> createUser(MyUser user) async {
     try {
       final db = await instance.database;
@@ -100,6 +115,17 @@ class MyDatabase {
       return user.copy(id: id);
     } catch (e) {
       printError('Error creating user: $e');
+      rethrow;
+    }
+  }
+
+  Future<MyBadge> createBadge(MyBadge badge) async {
+    try {
+      final db = await instance.database;
+      final id = await db.insert(tableBadges, badge.toJson());
+      return badge.copy(id: id);
+    } catch (e) {
+      printError('Error creating badge: $e');
       rethrow;
     }
   }
@@ -122,6 +148,28 @@ class MyDatabase {
       }
     } catch (e) {
       printError('Error reading user: $e');
+      rethrow;
+    }
+  }
+
+  Future<MyBadge> _readBadge(int id) async {
+    try {
+      final db = await instance.database;
+
+      final maps = await db.query(
+        tableBadges,
+        columns: BadgeFields.values,
+        where: '${BadgeFields.id} = ?',
+        whereArgs: [id],
+      );
+
+      if (maps.isNotEmpty) {
+        return MyBadge.fromJson(maps.first);
+      } else {
+        throw Exception('ID $id not found');
+      }
+    } catch (e) {
+      printError('Error reading badge: $e');
       rethrow;
     }
   }
@@ -154,22 +202,15 @@ class MyDatabase {
     }
   }
 
-  Future<List<MyBadge?>> readAllBadges() async {
+  Future<List<MyBadge>> readAllBadges() async {
     try {
       final db = await instance.database;
-/*
-      return await [
-        MyBadge(id: 2, date: "Today"),
-        MyBadge(id: 3, date: "Yesterday"),
-      ];
-*/
-      throw Exception("Not implemented yet");
 
-//      const orderBy = '${BadgeFields.id} ASC';
+      const orderBy = '${BadgeFields.id} ASC';
 
-//      final result = await db.query(tableBadges, orderBy: orderBy);
+      final result = await db.query(tableBadges, orderBy: orderBy);
 
-//      return result.map((json) => MyBadge.fromJson(json)).toList();
+      return result.map((json) => MyBadge.fromJson(json)).toList();
     } catch (e) {
       printError('Error reading all badges: $e');
       rethrow;
@@ -192,6 +233,22 @@ class MyDatabase {
     }
   }
 
+  Future<int> updateBadge(MyBadge badge) async {
+    try {
+      final db = await instance.database;
+
+      return await db.update(
+        tableBadges,
+        badge.toJson(),
+        where: '${BadgeFields.id} = ?',
+        whereArgs: [badge.id],
+      );
+    } catch (e) {
+      printError('Error updating badge: $e');
+      rethrow;
+    }
+  }
+
   Future<int> deleteUser(int id) async {
     try {
       final db = await instance.database;
@@ -203,6 +260,21 @@ class MyDatabase {
       );
     } catch (e) {
       printError('Error deleting user: $e');
+      rethrow;
+    }
+  }
+
+  Future<int> deleteBadge(int id) async {
+    try {
+      final db = await instance.database;
+
+      return await db.delete(
+        tableBadges,
+        where: '${BadgeFields.id} = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      printError('Error deleting badge: $e');
       rethrow;
     }
   }

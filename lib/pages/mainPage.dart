@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPages.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
@@ -103,25 +104,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<void> _doDevStuff(context) async {
-    try {
-      var v1 = await MyDatabase.instance.database;
-      defaultDialog(context, "NewDatabase.instance.database:", v1.toString());
-    } catch (e) {
-      defaultDialog(context, "ERROR NewDatabase.instance.database:", e.toString());
-    }
-
-    try {
-      var v2 = await MyDatabase.instance;
-      defaultDialog(context, "NewDatabase.instance:", v2.toString());
-    } catch (e) {
-      defaultDialog(context, "ERROR NewDatabase.instance:", e.toString());
-    }
-
-    try {
-      var v3 = await MyDatabase;
-      defaultDialog(context, "NewDatabase:", v3.toString());
-    } catch (e) {
-      defaultDialog(context, "ERROR NewDatabase:", e.toString());
-    }
+    Achievement.addAchievement(PossibleBadges.rater, context);
   }
 }

@@ -32,8 +32,8 @@ App against anxiety that gives breathing exercises
 - [x] Login/Register
 - [x] Add settings
 - [ ] Add all the languages, translated using a translator API
-- [ ] Add achievements
-- [ ] Add badges
+- [x] Add achievements
+- [x] Add badges
 - [ ] Add statistics
 
 # Theme

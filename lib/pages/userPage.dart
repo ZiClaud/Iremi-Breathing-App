@@ -169,8 +169,8 @@ Widget _showBadgeWidget(List<MyBadge?> badges) {
           itemCount: badges.length,
           itemBuilder: (context, index) {
             return defaultInputDecorator(
-              badges[index]!.getBadge().badgeName,
               badges[index]!.date,
+              badges[index]!.getBadge().badgeName,
               badges[index]!.getBadge().icon,
             );
           },
