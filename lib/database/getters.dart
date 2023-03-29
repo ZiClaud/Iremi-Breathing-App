@@ -88,7 +88,7 @@ class Getters {
 
   static Future<List<MyBadge?>> getBadgesDB(context) async {
     try {
-      return await MyDatabase.instance.getBadges();
+      return await MyDatabase.instance.readAllBadges();
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
       rethrow;

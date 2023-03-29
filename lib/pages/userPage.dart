@@ -107,12 +107,15 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(context, null),
-      body: Column(
+      body: _showUserWidget(context),
+      /*
+        Column(
         children: [
           _showUserWidget(context),
           _showBadgeWidget(context), // TODO: FIX THIS
         ],
       ),
+      */
     );
   }
 }

@@ -57,7 +57,7 @@ class MyDatabase {
       rethrow;
     }
   }
-
+  
   Future deleteDB() async {
     try {
       final db = await instance.database;
@@ -93,7 +93,7 @@ class MyDatabase {
     }
   }
 
-  Future<MyUser> _createUser(MyUser user) async {
+  Future<MyUser> createUser(MyUser user) async {
     try {
       final db = await instance.database;
       final id = await db.insert(tableUser, user.toJson());
@@ -126,9 +126,9 @@ class MyDatabase {
     }
   }
 
-  Future<MyUser?> _getFirstUser() async {
+  Future<MyUser?> getFirstUser() async {
     try {
-      final allUsers = await _readAllUsers();
+      final allUsers = await readAllUsers();
       if (allUsers.isNotEmpty) {
         return allUsers.first;
       }
@@ -139,7 +139,7 @@ class MyDatabase {
     }
   }
 
-  Future<List<MyUser>> _readAllUsers() async {
+  Future<List<MyUser>> readAllUsers() async {
     try {
       final db = await instance.database;
 
@@ -154,46 +154,7 @@ class MyDatabase {
     }
   }
 
-  Future<int> _updateUser(MyUser user) async {
-    try {
-      final db = await instance.database;
-
-      return await db.update(
-        tableUser,
-        user.toJson(),
-        where: '${UserFields.id} = ?',
-        whereArgs: [user.id],
-      );
-    } catch (e) {
-      printError('Error updating user: $e');
-      rethrow;
-    }
-  }
-
-  Future<int> _deleteUser(int id) async {
-    try {
-      final db = await instance.database;
-
-      return await db.delete(
-        tableUser,
-        where: '${UserFields.id} = ?',
-        whereArgs: [id],
-      );
-    } catch (e) {
-      printError('Error deleting user: $e');
-      rethrow;
-    }
-  }
-
-  Future<MyUser> createUser(MyUser user) async {
-    return _createUser(user);
-  }
-
-  Future<MyUser?> getFirstUser() async {
-    return _getFirstUser();
-  }
-
-  Future<List<MyBadge?>> getBadges() async {
+  Future<List<MyBadge?>> readAllBadges() async {
     try {
       final db = await instance.database;
 
@@ -210,74 +171,34 @@ class MyDatabase {
     }
   }
 
-  Future<List<MyUser>> readAllUsers() async {
-    return _readAllUsers();
-  }
+  Future<int> updateUser(MyUser user) async {
+    try {
+      final db = await instance.database;
 
-  Future updateUser(MyUser user) async {
-    _updateUser(user);
-  }
-
-  Future deleteUser(MyUser user) async {
-    _deleteUser(user.id!);
-  }
-}
-
-Future<void> backupDatabaseToInternalStorage(context) async {
-  try {
-    // Get the database path
-    final dbPath = await MyDatabase.instance.database.then((db) => db.path);
-
-    // Get the app's documents directory
-    final dir = await getApplicationDocumentsDirectory();
-
-    // Create a new file in the documents directory with the same name as the database file
-    final file = File('${dir.path}/IremiDatabase.db');
-
-    // Copy the database file to the new file
-    await file.writeAsBytes(await File(dbPath).readAsBytes());
-
-    // Show a message to the user indicating that the database was saved
-    await defaultDialog(context, 'Database saved',
-        'The database was saved to internal storage.\n Path: ${file.path}');
-  } catch (e) {
-    defaultDatabaseErrorDialog(
-        context, 'Error saving database to internal storage: $e');
-  }
-}
-
-Future<void> restoreDatabaseFromInternalStorage(BuildContext context) async {
-  try {
-    // Get the app's documents directory
-    final dir = await getApplicationDocumentsDirectory();
-
-    // Allow the user to choose a file
-    final file = await FilePicker.platform.pickFiles();
-
-    if (file == null) {
-      // User cancelled the file picker
-      return;
+      return await db.update(
+        tableUser,
+        user.toJson(),
+        where: '${UserFields.id} = ?',
+        whereArgs: [user.id],
+      );
+    } catch (e) {
+      printError('Error updating user: $e');
+      rethrow;
     }
+  }
 
-    // Get the chosen file path
-    final filePath = file.files.single.path!;
+  Future<int> deleteUser(int id) async {
+    try {
+      final db = await instance.database;
 
-    if (!filePath.endsWith('.db')) {
-      throw Exception("File chosen is not a database");
+      return await db.delete(
+        tableUser,
+        where: '${UserFields.id} = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      printError('Error deleting user: $e');
+      rethrow;
     }
-
-    // Delete the existing database
-    await MyDatabase.instance.deleteDB();
-
-    // Copy the chosen file to the app's documents directory with the same name as the database file
-    final newFile = File('${dir.path}/IremiDatabase.db');
-    await newFile.writeAsBytes(await File(filePath).readAsBytes());
-
-    // Show a message to the user indicating that the database was restored
-    await defaultDialog(context, 'Database restored',
-        'The database was restored from internal storage.');
-  } catch (e) {
-    defaultDatabaseErrorDialog(
-        context, 'Error restoring database from internal storage: \n$e');
   }
 }
