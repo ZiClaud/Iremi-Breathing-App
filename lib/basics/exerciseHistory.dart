@@ -2,7 +2,8 @@ import 'package:iremibreathingapp/basics/exercise.dart';
 
 class ExerciseHistory {
   final int? id;
-  Map<DateTime, MyExercise> exercises;
+  MyExercise exercise;
+  DateTime dateTime;
 
-  ExerciseHistory({this.id, required this.exercises});
+  ExerciseHistory({this.id, required this.exercise, required this.dateTime});
 }

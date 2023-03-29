@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPages.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
@@ -41,7 +42,7 @@ class _MainPageState extends State<MainPage> {
           actions: [ // TODO: Remove
             IconButton(icon: const Icon(Icons.code),
               onPressed: () {
-                _getDBPath(context);
+                _doDevStuff(context);
               },
             ),
             IconButton(
@@ -102,12 +103,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Future<void> _getDBPath(context) async {
-    var dir = await getApplicationDocumentsDirectory();
-    defaultDialog(context, "Path:", "${dir.path}");
-
-
-    final dbPath = await MyDatabase.instance.database.then((db) => db.path);
-    defaultDialog(context, "DB Path:", "${dbPath}");
+  Future<void> _doDevStuff(context) async {
+    Achievement.addAchievement(PossibleBadges.rater, context);
   }
 }

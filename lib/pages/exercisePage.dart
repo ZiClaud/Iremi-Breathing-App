@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 
+import '../basics/badge.dart';
 import '../utils/defaultWidget.dart';
 import '../utils/theme.dart';
 
@@ -92,6 +93,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
       if (_counter < widget.exercise.times) {
         _controller.reset();
       } else {
+        Achievement.addAchievement(PossibleBadges.beginner, context);
         Navigator.pop(context);
       }
     }

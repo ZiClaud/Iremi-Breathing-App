@@ -88,7 +88,7 @@ bool isDefaultThemeDark(context) {
   return isDefaultThemeDark2() || isDefaultThemeDark3(context);
 }
 
-Future defaultDatabaseErrorDialog(context, message) {
+Future defaultDatabaseErrorDialog(context, String message) {
   return defaultDialog(context, "Database error", message);
 }
 

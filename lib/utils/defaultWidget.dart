@@ -7,7 +7,7 @@ double defaultCircleSize() {
   return 200;
 }
 
-TabBar defaultTopBar(controller){
+TabBar defaultTopBar(controller) {
   return TabBar(
     controller: controller,
     tabs: const [
@@ -19,7 +19,8 @@ TabBar defaultTopBar(controller){
 }
 
 TextFormField _defaultShowTextFormField2(
-    String label, String text, IconData icon, {TextEditingController? controller}) {
+    String label, String text, IconData icon,
+    {TextEditingController? controller}) {
   return TextFormField(
     enabled: false,
     initialValue: text,
@@ -30,7 +31,7 @@ TextFormField _defaultShowTextFormField2(
   );
 }
 
-InputDecorator defaultInputDecorator(String label, String text, IconData icon){
+InputDecorator defaultInputDecorator(String label, String text, IconData icon) {
   return InputDecorator(
     decoration: InputDecoration(
       labelText: label,
@@ -69,7 +70,8 @@ TextFormField defaultEditTextFormField(String label, IconData icon) {
   );
 }
 
-TextFormField defaultEditTextFormField2(String label, IconData icon, {required void Function(String?) onChanged}) {
+TextFormField defaultEditTextFormField2(String label, IconData icon,
+    {required void Function(String?) onChanged}) {
   return TextFormField(
     decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
     keyboardType: TextInputType.multiline,
@@ -107,12 +109,10 @@ BorderSide defaultBorderSide() {
   return BorderSide(color: myBluLightDark(), width: 1.5);
 }
 
-Scaffold defaultLoadingScreen() {
-  return const Scaffold(
-    body: Center(
-      child: Image(
-        image: AssetImage('assets/icon/icon.png'),
-      ),
+Widget defaultLoadingScreen() {
+  return Center(
+    child: Image(
+      image: AssetImage('assets/icon/icon.png'),
     ),
   );
 }

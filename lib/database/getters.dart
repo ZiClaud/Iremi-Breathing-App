@@ -6,6 +6,7 @@ import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/utils/myUtils.dart';
 
+import '../basics/badge.dart';
 import '../basics/exercises/deepBreathingExerciseAvanced.dart';
 import '../basics/exercises/deepBreathingExerciseIntermediate.dart';
 import 'database.dart';
@@ -80,7 +81,25 @@ class Getters {
     try {
       return await MyDatabase.instance.getFirstUser();
     } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
+      defaultDatabaseErrorDialog(context, e.toString());
+      rethrow;
+    }
+  }
+
+  static Future<List<MyBadge>> getBadgesDB(context) async {
+    try {
+      List<MyBadge?> val = await MyDatabase.instance.readAllBadges();
+      List<MyBadge> ris = [];
+
+      for (MyBadge? badge in val) {
+        if (badge != null) {
+          ris.add(badge);
+        }
+      }
+
+      return ris;
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
       rethrow;
     }
   }
@@ -89,7 +108,7 @@ class Getters {
     return ['English', 'Italian', 'Spanish', 'Chinese (Simplified)', 'Greek'];
   }
 
-  static String getFirstLanguage(){
+  static String getFirstLanguage(){  // TODO: Replace with something that gets the default language
     return getAvailableLanguages().first;
   }
 
@@ -100,23 +119,4 @@ class Getters {
   static String getFirstVoiceType(){
     return getAvailableVoiceTypes().first;
   }
-/*
-  static MySettings getDefaultSettings() {
-    return MySettings(
-        language: getDefaultLanguage(),
-        darkmode: getDefaultTheme2(),
-        music: true,
-        voice: true,
-        voiceType: "Male");
-  }
-
-  static Future<MySettings> getSettingsDB(context) async {
-    try {
-      return await MyDatabase.instance.getFirstSettings() ?? getDefaultSettings();
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
-      return getDefaultSettings();
-    }
-  }
-  */
 }

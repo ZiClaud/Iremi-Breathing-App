@@ -96,14 +96,14 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
             goal: goal,
           ));
         }
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (context) => const MainPage()),
+              (route) => false,
+        );
       } catch (e) {
-        defaultDatabaseErrorDialog(context, e);
+        defaultDatabaseErrorDialog(context, e.toString());
       }
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
-            (route) => false,
-      );
     }
   }
 }

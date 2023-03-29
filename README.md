@@ -22,7 +22,8 @@ App against anxiety that gives breathing exercises
 - [x] Add profile page
 - [x] Database - SQLite
 - [x] Add user to database
-- [x] Backup/Restore database
+- [ ] Add badges to database
+- [ ] Backup/Restore database to google drive
 - [ ] Save custom exercises
 - [ ] Track progress
 
@@ -31,7 +32,9 @@ App against anxiety that gives breathing exercises
 - [x] Login/Register
 - [x] Add settings
 - [ ] Add all the languages, translated using a translator API
-- [ ] Add badges
+- [x] Add achievements
+- [x] Add badges
+- [ ] Add statistics
 
 # Theme
 
@@ -45,4 +48,3 @@ App against anxiety that gives breathing exercises
 - [ ] Add chill music
 - [x] Logo showing on loading screen
 - [ ] Loading screen with tips
-- [x] In the same app there can be more users (Kinda useful if I decide to move the app on a server)
