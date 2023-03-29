@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
@@ -190,6 +191,23 @@ class MyDatabase {
 
   Future<MyUser?> getFirstUser() async {
     return _getFirstUser();
+  }
+
+  Future<List<MyBadge?>> getBadges() async {
+    try {
+      final db = await instance.database;
+
+      throw Exception("Not implemented yet");
+
+//      const orderBy = '${BadgeFields.id} ASC';
+
+//      final result = await db.query(tableBadges, orderBy: orderBy);
+
+//      return result.map((json) => MyBadge.fromJson(json)).toList();
+    } catch (e) {
+      printError('Error reading all badges: $e');
+      rethrow;
+    }
   }
 
   Future<List<MyUser>> readAllUsers() async {

@@ -4,8 +4,8 @@ class MyUser {
   String name;
   String sex;
   String goal;
-//  List<MyBadge> badges; // TODO
-//  ExerciseHistory exerciseHistory; // TODO
+//  List<MyBadge> badges;  // Maybe we don't need this
+//  ExerciseHistory exerciseHistory;  // Maybe we don't need this
 
   MyUser({
     this.id,

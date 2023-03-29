@@ -41,7 +41,7 @@ class _MainPageState extends State<MainPage> {
           actions: [ // TODO: Remove
             IconButton(icon: const Icon(Icons.code),
               onPressed: () {
-                _getDBPath(context);
+                _doDevStuff(context);
               },
             ),
             IconButton(
@@ -102,12 +102,26 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Future<void> _getDBPath(context) async {
-    var dir = await getApplicationDocumentsDirectory();
-    defaultDialog(context, "Path:", "${dir.path}");
+  Future<void> _doDevStuff(context) async {
+    try {
+      var v1 = await MyDatabase.instance.database;
+      defaultDialog(context, "NewDatabase.instance.database:", v1.toString());
+    } catch (e) {
+      defaultDialog(context, "ERROR NewDatabase.instance.database:", e.toString());
+    }
 
+    try {
+      var v2 = await MyDatabase.instance;
+      defaultDialog(context, "NewDatabase.instance:", v2.toString());
+    } catch (e) {
+      defaultDialog(context, "ERROR NewDatabase.instance:", e.toString());
+    }
 
-    final dbPath = await MyDatabase.instance.database.then((db) => db.path);
-    defaultDialog(context, "DB Path:", "${dbPath}");
+    try {
+      var v3 = await MyDatabase;
+      defaultDialog(context, "NewDatabase:", v3.toString());
+    } catch (e) {
+      defaultDialog(context, "ERROR NewDatabase:", e.toString());
+    }
   }
 }

@@ -90,7 +90,7 @@ class _SettingsPageState extends State<SettingsPage> {
         MaterialPageRoute(builder: (context) => const MainPage()),
       );
     } catch (e) {
-      defaultDatabaseErrorDialog(context, e);
+      defaultDatabaseErrorDialog(context, e.toString());
     }
   }
 
@@ -229,7 +229,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: OutlinedButton(
               onPressed: () {
                 // TODO: NEEDS TESTING
-                backupDatabaseToInternalStorage(context);
+//                backupDatabaseToInternalStorage(context);
               },
               child: defaultButtonText("Backup"),
             ),
@@ -239,7 +239,7 @@ class _SettingsPageState extends State<SettingsPage> {
             child: OutlinedButton(
               // TODO: NEEDS TESTING
               onPressed: () {
-                restoreDatabaseFromInternalStorage(context);
+//                restoreDatabaseFromInternalStorage(context);
               },
               child: defaultButtonText("Restore"),
             ),

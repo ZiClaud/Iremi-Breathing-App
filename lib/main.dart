@@ -16,7 +16,7 @@ void main() {
 
     if (isFirstTime) {
       // Set default settings for the first time
-      prefs.setBool('darkMode', true); //TODO: EXCHANGE "true);" TO "isDefaultThemeDark2());"
+      prefs.setBool('darkMode', true); //TODO: Exchange "true" to "isDefaultThemeDark2()"
       prefs.setBool('music', true);
       prefs.setBool('voice', true);
       prefs.setString('voiceType', Getters.getFirstVoiceType());
@@ -91,6 +91,7 @@ Future<StatefulWidget> _getFutureFirstPage() async {
     }
   } catch (e) {
     print(e.toString());
-    return RegisterPageDB();
+//    defaultDatabaseErrorDialog(context, "Error connecting to database");
+    return RegisterPageDB(); // TODO: Maybe change this to MainPage, telling the user that the database is not connected
   }
 }
