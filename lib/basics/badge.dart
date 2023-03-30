@@ -1,4 +1,6 @@
+import 'package:achievement_view/achievement_view.dart';
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../database/database.dart';
 import '../utils/myUtils.dart';
@@ -44,36 +46,47 @@ class BadgeFields {
 }
 
 enum PossibleBadges {
-  beginner(0, "Breathing Beginner", Icons.emoji_emotions),
-  // awarded for completing your first breathing exercise session.
-  calmAndCollected(1, "Calm and Collected", Icons.brightness_3),
-  // awarded for consistently completing daily breathing exercises for a set period of time.
-  deepBreather(2, "Deep Breather", Icons.local_florist),
-  // awarded for practicing deep breathing exercises for a certain amount of time.
-  breathingExplorer(3, "Breathing Explorer", Icons.explore),
-  // awarded for trying out a variety of different breathing exercises offered in the app.
-  stressBuster(4, "Stress Buster", Icons.favorite),
-  // awarded for using the app to manage and reduce stress levels.
-  richBoi(5, "Rich Boi", Icons.attach_money),
-  // awarded for donating to the app.
-  rater(6, "Rater", Icons.star),
+  /// awarded for completing your first breathing exercise session.
+  airApprentice(0, "Air Apprentice", Icons.air),
+
+  // awarded for consistently completing breathing exercises daily for a week.
+  serenitySeeker(1, "Serenity Seeker", Icons.water_drop),
+
+  //  awarded for consistently completing breathing exercises daily for a month.
+  wellnessWarrior(2, "Wellness Warrior", Icons.local_fire_department),
+
+  // awarded for consistently completing breathing exercises daily for 3 months.
+  rockSolid(3, "Rock Solid", Icons.terrain),
+
+  /// awarded for practicing deep breathing exercises for more than 5 minutes.
+  deepBreather(4, "Deep Breather", Icons.spa),
+
+  // awarded for trying out a all default breathing exercises offered in the app.
+  breathingExplorer(5, "Breathing Explorer", Icons.explore),
+
+  /// awarded for creating a custom exercise
+  customizer(6, "Customizer", Icons.handyman),
+
+  // awarded for doing 5 exercises between 6AM and 8AM.
+  morningPerson(7, "Morning Person", Icons.wb_sunny),
+
+  // awarded for doing 5 exercises between 10PM and 12PM.
+  nightOwl(8, "Night Owl", Icons.nightlight_round),
+
   // awarded for rating the app.
-  sharingIsCaring(7, "Sharing is Caring", Icons.share);
+  rater(9, "Rater", Icons.star),
+
   // awarded for sharing the app with a friend.
+  sharingIsCaring(10, "Sharing is Caring", Icons.share),
 
-  /*
-  Mindful Master: awarded for completing a certain number of mindfulness exercises or meditations.
-  Focus Achiever: awarded for consistently completing focus and concentration exercises for a set period of time.
-  Sleep Savior: awarded for using the app to improve sleep quality and duration.
-  Positivity Promoter: awarded for completing a certain number of exercises focused on promoting positive thinking and gratitude.
-  Fitness Fanatic: awarded for using the app in conjunction with a fitness routine to enhance physical performance.
-  Mood Manager: awarded for using the app to manage and regulate emotions, such as anxiety or anger.
-  Health Hero: awarded for consistently using the app to promote overall health and wellness.
-   */
+  // awarded for donating to the app.
+  supporter(11, "Generous Supporter", Icons.attach_money),
 
-//  master("Meditation Master"), // awarded for completing a certain number of meditation sessions.
-//  focusedMind("Focused Mind"), // awarded for consistently practicing mindfulness meditation for a set period of time.
-//  meditationStreak("Meditation Streak"); // awarded for completing a certain number of consecutive days of meditation.
+  /// awarded for backing up your data.
+  backupMaster(12, "Backup Master", Icons.save),
+
+  /// awarded for finding a secret page.
+  secret(13, "Curious Explorer", Icons.lock_open);
 
   final int id;
   final String badgeName;
@@ -83,25 +96,55 @@ enum PossibleBadges {
 }
 
 class Achievement {
+  static PossibleBadges getBadgeByID(int id) {
+    return PossibleBadges.values[id];
+  }
+
+  static int getMaxID() {
+    return PossibleBadges.values.length;
+  }
+
   static Future<void> addAchievement(PossibleBadges badge, context) async {
     try {
       List<MyBadge> badges = await MyDatabase.instance.readAllBadges();
-      if (badges
-          .where((element) => element.id == badge.id)
-          .isEmpty) {
+      if (badges.where((element) => element.id == badge.id).isEmpty) {
         _addBadge(badge);
-        defaultDialog(context, "New Achievement!", '${badge.badgeName}');
+        _showAchievementView(context, badge);
+        //defaultDialog(context, "New Achievement!", '${badge.badgeName}');
       }
     } catch (e) {
-      defaultDatabaseErrorDialog(context, 'Error adding achievement: $e');
+      _showAchievementView(context, badge); // TODO: remove this
+//      defaultDatabaseErrorDialog(context, 'Error adding achievement: $e'); // TODO: IMPORTANT BEFORE RELEASE: Remove comment
       rethrow;
     }
   }
 
+  static void _showAchievementView(BuildContext context, PossibleBadges badge) {
+    AchievementView(
+        context,
+        title: "New Achievement!",
+        subTitle: badge.badgeName,
+        icon: Icon(badge.icon, color: Colors.white),
+        color: myBluNeutral,
+        //textStyleTitle: TextStyle(),
+        //textStyleSubTitle: TextStyle(),
+        //alignment: Alignment.topCenter,
+        //duration: Duration(seconds: 3),
+        isCircle: true,
+//        listener: (status){
+//          print(status);
+          //AchievementState.opening
+          //AchievementState.open
+          //AchievementState.closing
+          //AchievementState.closed
+//        }
+    ).show();
+  }
+
   static void _addBadge(PossibleBadges badge) {
     try {
-    MyDatabase.instance.createBadge(MyBadge(
-        id: badge.id, date: MyUtils.getItalianDateFormat(DateTime.now())));
+      MyDatabase.instance.createBadge(MyBadge(
+          id: badge.id, date: MyUtils.getItalianDateFormat(DateTime.now())));
     } catch (e) {
       rethrow;
     }

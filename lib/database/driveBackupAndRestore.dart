@@ -1,4 +1,8 @@
-Future<void> backupDatabaseToGoogleDrive(context) async { // TODO: IMPLEMENT
+import '../utils/myUtils.dart';
+
+Future<void> backupDatabaseToGoogleDrive(context) async {
+  // TODO: IMPLEMENT
+  defaultDatabaseErrorDialog(context, 'Needs implementation');
   /*
   try {
     // Get the database path
@@ -23,7 +27,9 @@ Future<void> backupDatabaseToGoogleDrive(context) async { // TODO: IMPLEMENT
   */
 }
 
-Future<void> restoreDatabaseFromGoogleDrive(context) async { // TODO: IMPLEMENT
+Future<void> restoreDatabaseFromGoogleDrive(context) async {
+  // TODO: IMPLEMENT
+  defaultDatabaseErrorDialog(context, 'Needs implementation');
   /*
   try {
     // Get the app's documents directory

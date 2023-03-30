@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/myUtils.dart';
 
+import '../basics/badge.dart';
 import '../database/forms/exerciseFormWidget.dart';
 import '../utils/defaultWidget.dart';
 
@@ -60,10 +61,15 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.navigate_next),
         onPressed: () => {
+          _customizerAchievement(context),
           defaultDatabaseErrorDialog(context, "Not connected to database, yet")
         },
       ),
     );
+  }
+
+  void _customizerAchievement(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.customizer, context);
   }
 }
 
@@ -151,7 +157,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
                   widget.showComplex = true;
                 });
               },
-              child: const Text('Show More'),
+              child: defaultButtonText('Show More'),
             ),
           if (widget.showComplex)
             OutlinedButton(
@@ -160,7 +166,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
                   widget.showComplex = false;
                 });
               },
-              child: const Text('Show Less'),
+              child: defaultButtonText('Show Less'),
             ),
         ],
       ),
@@ -242,7 +248,7 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _addTextFormField,
-              child: const Text('Add Step'),
+              child: defaultButtonText('Add Step'),
             ),
           ],
         ),

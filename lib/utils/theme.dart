@@ -202,6 +202,14 @@ TextStyle defaultButtonTextStyle() {
       color: myButtonTextColor, fontSize: 20, fontFamily: 'Gotham');
 }
 
+TextStyle defaultSmallButtonTextStyle() {
+  return const TextStyle(color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
+}
+
+TextStyle defaultSmallerButtonTextStyle() {
+  return const TextStyle(color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
+}
+
 MaterialStateProperty<TextStyle> defaultLightMSPTextStyle() {
   return MaterialStatePropertyAll(defaultLightTextStyle());
 }

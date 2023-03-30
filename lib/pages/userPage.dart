@@ -137,8 +137,14 @@ class _UserPageState extends State<UserPage> {
       appBar: _appBar(context, _user),
       body: Column(
         children: [
-          Expanded(child: _showUserWidget(_user)),
-          Expanded(child: _showBadgeWidget(_badges)),
+          Expanded(
+            flex: 3, // TODO: Check it it works well on different devices
+            child: _showUserWidget(_user),
+          ),
+          Expanded(
+            flex: 1,
+            child: _showBadgeWidget(_badges),
+          ),
         ],
       ),
     );
@@ -166,21 +172,22 @@ Widget _showUserWidget(MyUser? user) {
 Widget _showBadgeWidget(List<MyBadge?> badges) {
   return (badges.isNotEmpty)
       ? ListView.builder(
+          scrollDirection: Axis.horizontal,
           itemCount: badges.length,
           itemBuilder: (context, index) {
-            return defaultInputDecorator(
-              badges[index]!.date,
+            return defaultBadgeView(
               badges[index]!.getBadge().badgeName,
+              badges[index]!.date,
               badges[index]!.getBadge().icon,
             );
           },
         )
       : Center(
-          child: defaultText('No badge found'),
+          child: defaultText(' '), // 'No badge found'
         );
 }
 
-/// APPBAR - DO NOT TOUCH
+/// APPBAR
 AppBar _appBar(context, MyUser? user) {
   return AppBar(
     title: const Text("Profile"),

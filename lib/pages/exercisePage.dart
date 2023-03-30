@@ -93,10 +93,17 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
       if (_counter < widget.exercise.times) {
         _controller.reset();
       } else {
-        Achievement.addAchievement(PossibleBadges.beginner, context);
-        Navigator.pop(context);
+        _finishExercise(context);
       }
     }
+  }
+
+  void _finishExercise(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.airApprentice, context);
+    if (widget.exercise.getTime().inMinutes >= 5) {
+      Achievement.addAchievement(PossibleBadges.deepBreather, context);
+    }
+    Navigator.pop(context);
   }
 
   @override

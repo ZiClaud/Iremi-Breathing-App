@@ -4,10 +4,12 @@ import 'package:iremibreathingapp/database/getters.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../basics/badge.dart';
 import '../basics/user.dart';
 import '../database/database.dart';
 import '../utils/defaultWidget.dart';
 import '../utils/myUtils.dart';
+import 'devPage.dart';
 import 'mainPage.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -25,6 +27,7 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _voice = false;
   String _voiceType = Getters.getFirstVoiceType();
   String _language = Getters.getFirstLanguage();
+  bool _dev = false;
 
   final List<String> languages = Getters.getAvailableLanguages();
   final List<String> voiceTypes = Getters.getAvailableVoiceTypes();
@@ -43,6 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
       _voice = prefs.getBool('voice') ?? false;
       _voiceType = prefs.getString('voiceType') ?? voiceTypes[0];
       _language = prefs.getString('language') ?? languages[0];
+      _dev = prefs.getBool('dev') ?? false;
       myTheme.setMode(_darkMode);
     });
   }
@@ -54,6 +58,7 @@ class _SettingsPageState extends State<SettingsPage> {
     await prefs.setBool('voice', _voice);
     await prefs.setString('voiceType', _voiceType);
     await prefs.setString('language', _language);
+    await prefs.setBool('dev', _dev);
     _loadSettings();
   }
 
@@ -62,14 +67,17 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _warningUser(BuildContext context, Function() onDelete) {
-    _warning(context, onDelete, "Delete User?", "Are you sure you want to delete this user? This action cannot be undone.");
+    _warning(context, onDelete, "Delete User?",
+        "Are you sure you want to delete this user? This action cannot be undone.");
   }
 
   void _warningDatabase(BuildContext context, Function() onDelete) {
-    _warning(context, onDelete, "Delete Database?", "Are you sure you want to delete the database? This action cannot be undone.");
+    _warning(context, onDelete, "Delete Database?",
+        "Are you sure you want to delete the database? This action cannot be undone.");
   }
 
-  void _warning(BuildContext context, Function() onDelete, String title, String content) {
+  void _warning(
+      BuildContext context, Function() onDelete, String title, String content) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -113,17 +121,42 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
+  void _becomeDev() {
+    setState(() {
+      _dev = !_dev;
+      _saveSettings();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
+        actions: [
+          if (_dev)
+            IconButton(
+              icon: const Icon(Icons.code),
+              onPressed: () {
+                _secretAchievement(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DevPage(),
+                  ),
+                );
+              },
+            ),
+        ],
       ),
       body: ListView(
         children: [
           ListTile(
             title: defaultInputDecorator(
-                "Dark Mode", _getValueAsString(_darkMode), Icons.dark_mode),
+              "Dark Mode",
+              _getValueAsString(_darkMode),
+              (_darkMode) ? Icons.dark_mode : Icons.light_mode,
+            ),
             trailing: Switch(
               value: _darkMode,
               onChanged: (value) {
@@ -136,7 +169,10 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ListTile(
             title: defaultInputDecorator(
-                "Music", _getValueAsString(_music), Icons.music_note),
+              "Music",
+              _getValueAsString(_music),
+              (_music) ? Icons.music_note : Icons.music_off,
+            ),
             trailing: Switch(
               value: _music,
               onChanged: (value) {
@@ -148,8 +184,11 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           ListTile(
-            title: defaultInputDecorator("Voice", _getValueAsString(_voice),
-                Icons.keyboard_voice_rounded),
+            title: defaultInputDecorator(
+              "Voice",
+              _getValueAsString(_voice),
+              (_voice) ? Icons.mic : Icons.mic_off,
+            ),
             trailing: Switch(
               value: _voice,
               onChanged: (value) {
@@ -238,8 +277,8 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
               onPressed: () {
-                // TODO: NEEDS TESTING
                 backupDatabaseToGoogleDrive(context);
+                _backupAchievement(context);
               },
               child: defaultButtonText("Backup"),
             ),
@@ -247,7 +286,6 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
-              // TODO: NEEDS TESTING
               onPressed: () {
                 restoreDatabaseFromGoogleDrive(context);
               },
@@ -266,11 +304,20 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
               onPressed: () => _warningDatabase(context, _deleteDatabase),
+              onLongPress: () => _becomeDev(),
               child: defaultButtonText("Delete Database"),
             ),
           ),
         ],
       ),
     );
+  }
+
+  void _backupAchievement(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.backupMaster, context);
+  }
+
+  void _secretAchievement(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.secret, context);
   }
 }
