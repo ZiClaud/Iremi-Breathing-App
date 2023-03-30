@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/myUtils.dart';
 
+import '../basics/badge.dart';
 import '../database/forms/exerciseFormWidget.dart';
 import '../utils/defaultWidget.dart';
 
@@ -60,10 +61,15 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.navigate_next),
         onPressed: () => {
+          _customizerAchievement(context),
           defaultDatabaseErrorDialog(context, "Not connected to database, yet")
         },
       ),
     );
+  }
+
+  void _customizerAchievement(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.customizer, context);
   }
 }
 

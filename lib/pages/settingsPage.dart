@@ -4,6 +4,7 @@ import 'package:iremibreathingapp/database/getters.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../basics/badge.dart';
 import '../basics/user.dart';
 import '../database/database.dart';
 import '../utils/defaultWidget.dart';
@@ -137,6 +138,7 @@ class _SettingsPageState extends State<SettingsPage> {
             IconButton(
               icon: const Icon(Icons.code),
               onPressed: () {
+                _secretAchievement(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -275,8 +277,8 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
               onPressed: () {
-                // TODO: NEEDS TESTING
                 backupDatabaseToGoogleDrive(context);
+                _backupAchievement(context);
               },
               child: defaultButtonText("Backup"),
             ),
@@ -284,7 +286,6 @@ class _SettingsPageState extends State<SettingsPage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
-              // TODO: NEEDS TESTING
               onPressed: () {
                 restoreDatabaseFromGoogleDrive(context);
               },
@@ -310,5 +311,13 @@ class _SettingsPageState extends State<SettingsPage> {
         ],
       ),
     );
+  }
+
+  void _backupAchievement(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.backupMaster, context);
+  }
+
+  void _secretAchievement(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.secret, context);
   }
 }

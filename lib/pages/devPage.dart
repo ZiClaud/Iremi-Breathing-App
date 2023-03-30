@@ -13,10 +13,6 @@ class DevPage extends StatefulWidget {
 }
 
 class _DevPageState extends State<DevPage> {
-  void _secretAchievement(BuildContext context) {
-    Achievement.addAchievement(PossibleBadges.secret, context);
-  }
-
   void _doDevStufff(BuildContext context) {
     // TODO: Do dev stuff
   }
@@ -38,7 +34,7 @@ class _DevPageState extends State<DevPage> {
           IconButton(
             icon: const Icon(Icons.code),
             onPressed: () {
-              _secretAchievement(context);
+              _doDevStufff(context);
             },
           ),
           IconButton(
