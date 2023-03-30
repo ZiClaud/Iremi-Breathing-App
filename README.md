@@ -22,7 +22,7 @@ App against anxiety that gives breathing exercises
 - [x] Add profile page
 - [x] Database - SQLite
 - [x] Add user to database
-- [ ] Add badges to database
+- [x] Add badges to database
 - [ ] Backup/Restore database to google drive
 - [ ] Save custom exercises
 - [ ] Track progress
