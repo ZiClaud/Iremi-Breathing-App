@@ -80,7 +80,9 @@ enum PossibleBadges {
   final IconData icon;
 
   const PossibleBadges(this.id, this.badgeName, this.icon);
+}
 
+class Achievement {
   static PossibleBadges getBadgeByID(int id) {
     return PossibleBadges.values[id];
   }
@@ -88,9 +90,7 @@ enum PossibleBadges {
   static int getMaxID() {
     return PossibleBadges.values.length;
   }
-}
 
-class Achievement {
   static Future<void> addAchievement(PossibleBadges badge, context) async {
     try {
       List<MyBadge> badges = await MyDatabase.instance.readAllBadges();

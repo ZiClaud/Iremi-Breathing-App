@@ -112,11 +112,4 @@ class _MainPageState extends State<MainPage> {
       ],
     );
   }
-
-  Future<void> _doDevStuff(context) async {
-    Random random = Random();
-    int id = random.nextInt(PossibleBadges.getMaxID());
-
-    Achievement.addAchievement(PossibleBadges.getBadgeByID(id), context);
-  }
 }

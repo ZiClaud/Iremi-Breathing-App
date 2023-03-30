@@ -183,11 +183,11 @@ Widget _showBadgeWidget(List<MyBadge?> badges) {
           },
         )
       : Center(
-          child: defaultText('No badge found'),
+          child: defaultText(' '), // 'No badge found'
         );
 }
 
-/// APPBAR - DO NOT TOUCH
+/// APPBAR
 AppBar _appBar(context, MyUser? user) {
   return AppBar(
     title: const Text("Profile"),

@@ -62,14 +62,17 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _warningUser(BuildContext context, Function() onDelete) {
-    _warning(context, onDelete, "Delete User?", "Are you sure you want to delete this user? This action cannot be undone.");
+    _warning(context, onDelete, "Delete User?",
+        "Are you sure you want to delete this user? This action cannot be undone.");
   }
 
   void _warningDatabase(BuildContext context, Function() onDelete) {
-    _warning(context, onDelete, "Delete Database?", "Are you sure you want to delete the database? This action cannot be undone.");
+    _warning(context, onDelete, "Delete Database?",
+        "Are you sure you want to delete the database? This action cannot be undone.");
   }
 
-  void _warning(BuildContext context, Function() onDelete, String title, String content) {
+  void _warning(
+      BuildContext context, Function() onDelete, String title, String content) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -123,7 +126,10 @@ class _SettingsPageState extends State<SettingsPage> {
         children: [
           ListTile(
             title: defaultInputDecorator(
-                "Dark Mode", _getValueAsString(_darkMode), Icons.dark_mode),
+              "Dark Mode",
+              _getValueAsString(_darkMode),
+              (_darkMode) ? Icons.dark_mode : Icons.light_mode,
+            ),
             trailing: Switch(
               value: _darkMode,
               onChanged: (value) {
@@ -136,7 +142,10 @@ class _SettingsPageState extends State<SettingsPage> {
           ),
           ListTile(
             title: defaultInputDecorator(
-                "Music", _getValueAsString(_music), Icons.music_note),
+              "Music",
+              _getValueAsString(_music),
+              (_music) ? Icons.music_note : Icons.music_off,
+            ),
             trailing: Switch(
               value: _music,
               onChanged: (value) {
@@ -148,8 +157,11 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
           ),
           ListTile(
-            title: defaultInputDecorator("Voice", _getValueAsString(_voice),
-                Icons.keyboard_voice_rounded),
+            title: defaultInputDecorator(
+              "Voice",
+              _getValueAsString(_voice),
+              (_voice) ? Icons.mic : Icons.mic_off,
+            ),
             trailing: Switch(
               value: _voice,
               onChanged: (value) {
