@@ -1,4 +1,6 @@
+import 'package:achievement_view/achievement_view.dart';
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../database/database.dart';
 import '../utils/myUtils.dart';
@@ -107,12 +109,36 @@ class Achievement {
       List<MyBadge> badges = await MyDatabase.instance.readAllBadges();
       if (badges.where((element) => element.id == badge.id).isEmpty) {
         _addBadge(badge);
-        defaultDialog(context, "New Achievement!", '${badge.badgeName}');
+        _showAchievementView(context, badge);
+        //defaultDialog(context, "New Achievement!", '${badge.badgeName}');
       }
     } catch (e) {
-      defaultDatabaseErrorDialog(context, 'Error adding achievement: $e');
+      _showAchievementView(context, badge); // TODO: remove this
+//      defaultDatabaseErrorDialog(context, 'Error adding achievement: $e'); // TODO: IMPORTANT BEFORE RELEASE: Remove comment
       rethrow;
     }
+  }
+
+  static void _showAchievementView(BuildContext context, PossibleBadges badge) {
+    AchievementView(
+        context,
+        title: "New Achievement!",
+        subTitle: badge.badgeName,
+        icon: Icon(badge.icon, color: Colors.white),
+        color: myBluNeutral,
+        //textStyleTitle: TextStyle(),
+        //textStyleSubTitle: TextStyle(),
+        //alignment: Alignment.topCenter,
+        //duration: Duration(seconds: 3),
+        isCircle: true,
+//        listener: (status){
+//          print(status);
+          //AchievementState.opening
+          //AchievementState.open
+          //AchievementState.closing
+          //AchievementState.closed
+//        }
+    ).show();
   }
 
   static void _addBadge(PossibleBadges badge) {

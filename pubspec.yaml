@@ -41,6 +41,7 @@ dependencies:
   provider: ^6.0.5
   path_provider: ^2.0.14
   file_picker: ^5.2.6
+  achievement_view: ^1.0.0
 
 flutter_icons:
   android: "launcher_icon"
