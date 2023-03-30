@@ -41,6 +41,32 @@ InputDecorator defaultInputDecorator(String label, String text, IconData icon) {
   );
 }
 
+Widget defaultBadgeView(String name, String date, IconData icon) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        color: myBluLightDark(),
+        shape: BoxShape.circle,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 50,
+            color: Colors.white, // TODO: Change?
+          ),
+          Text(name, style: defaultSmallButtonTextStyle()),
+          Text(date, style: defaultSmallerButtonTextStyle()),
+        ],
+      ),
+    ),
+  );
+}
+
 Text defaultText(String message) {
   return Text(
     message,

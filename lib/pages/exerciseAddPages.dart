@@ -151,7 +151,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
                   widget.showComplex = true;
                 });
               },
-              child: const Text('Show More'),
+              child: defaultButtonText('Show More'),
             ),
           if (widget.showComplex)
             OutlinedButton(
@@ -160,7 +160,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
                   widget.showComplex = false;
                 });
               },
-              child: const Text('Show Less'),
+              child: defaultButtonText('Show Less'),
             ),
         ],
       ),
@@ -242,7 +242,7 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
             const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _addTextFormField,
-              child: const Text('Add Step'),
+              child: defaultButtonText('Add Step'),
             ),
           ],
         ),

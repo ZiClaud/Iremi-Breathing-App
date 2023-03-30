@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
+import 'package:iremibreathingapp/pages/devPage.dart';
 import 'package:iremibreathingapp/pages/exerciseAddPages.dart';
 import 'package:iremibreathingapp/pages/userPage.dart';
 import 'package:path_provider/path_provider.dart';
@@ -46,7 +47,12 @@ class _MainPageState extends State<MainPage> {
             IconButton(
               icon: const Icon(Icons.code),
               onPressed: () {
-                _doDevStuff(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DevPage(),
+                  ),
+                );
               },
             ),
             IconButton(
