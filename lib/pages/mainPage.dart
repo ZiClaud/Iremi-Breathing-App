@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
@@ -39,8 +41,10 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text("Welcome to Iremi"),
-          actions: [ // TODO: Remove
-            IconButton(icon: const Icon(Icons.code),
+          actions: [
+            // TODO: Remove
+            IconButton(
+              icon: const Icon(Icons.code),
               onPressed: () {
                 _doDevStuff(context);
               },
@@ -104,6 +108,9 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<void> _doDevStuff(context) async {
-    Achievement.addAchievement(PossibleBadges.rater, context);
+    Random random = Random();
+    int id = random.nextInt(PossibleBadges.getMaxID());
+
+    Achievement.addAchievement(PossibleBadges.getBadgeByID(id), context);
   }
 }

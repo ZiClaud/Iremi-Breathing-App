@@ -80,6 +80,14 @@ enum PossibleBadges {
   final IconData icon;
 
   const PossibleBadges(this.id, this.badgeName, this.icon);
+
+  static PossibleBadges getBadgeByID(int id) {
+    return PossibleBadges.values[id];
+  }
+
+  static int getMaxID() {
+    return PossibleBadges.values.length;
+  }
 }
 
 class Achievement {
