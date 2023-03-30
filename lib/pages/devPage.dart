@@ -13,11 +13,16 @@ class DevPage extends StatefulWidget {
 }
 
 class _DevPageState extends State<DevPage> {
-  void _doDevStuff(BuildContext context) {
+  void _secretAchievement(BuildContext context) {
+    Achievement.addAchievement(PossibleBadges.secret, context);
+  }
+
+  void _doDevStufff(BuildContext context) {
     // TODO: Do dev stuff
   }
 
   Future<void> _addRandomAchievement(context) async {
+    // TODO: Remove
     Random random = Random();
     int id = random.nextInt(Achievement.getMaxID());
 
@@ -33,7 +38,7 @@ class _DevPageState extends State<DevPage> {
           IconButton(
             icon: const Icon(Icons.code),
             onPressed: () {
-              _doDevStuff(context);
+              _secretAchievement(context);
             },
           ),
           IconButton(
@@ -60,45 +65,26 @@ class _DevPageState extends State<DevPage> {
   }
 
   Widget _getAchievementListView(BuildContext context) {
-    return ListView(
+    return ListView.builder(
+      itemCount: PossibleBadges.values.length,
       scrollDirection: Axis.horizontal,
-      children: [
-        defaultBadgeView(
-          PossibleBadges.breathingExplorer.badgeName,
-          "02/12/2022",
-          PossibleBadges.breathingExplorer.icon,
-        ),
-        defaultBadgeView(
-          PossibleBadges.beginner.badgeName,
-          "12/12/2022",
-          PossibleBadges.beginner.icon,
-        ),
-        defaultBadgeView(
-          PossibleBadges.rater.badgeName,
-          "12/12/2022",
-          PossibleBadges.rater.icon,
-        ),
-        defaultBadgeView(
-          PossibleBadges.richBoi.badgeName,
-          "12/12/2022",
-          PossibleBadges.richBoi.icon,
-        ),
-        defaultBadgeView(
-          PossibleBadges.calmAndCollected.badgeName,
-          "12/12/2022",
-          PossibleBadges.calmAndCollected.icon,
-        ),
-      ],
+      itemBuilder: (context, index) {
+        return defaultBadgeView(
+          PossibleBadges.values[index].badgeName,
+          "30/03/2023",
+          PossibleBadges.values[index].icon,
+        );
+      },
     );
   }
 
   Widget _getUserListView(BuildContext context) {
     return ListView(
       children: [
-        defaultInputDecorator("Username", "user.username", Icons.person),
-        defaultInputDecorator("Name", "user.name", Icons.badge_outlined),
-        defaultInputDecorator("Sex", "user.sex", Icons.search),
-        defaultInputDecorator("Goal", "user.goal", Icons.ads_click),
+        defaultInputDecorator("Username", "DEV", Icons.person),
+        defaultInputDecorator("Name", "Developer", Icons.badge_outlined),
+        defaultInputDecorator("Sex", "No", Icons.search),
+        defaultInputDecorator("Goal", "24h/day", Icons.ads_click),
       ],
     );
   }

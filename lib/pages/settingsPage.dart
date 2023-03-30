@@ -8,6 +8,7 @@ import '../basics/user.dart';
 import '../database/database.dart';
 import '../utils/defaultWidget.dart';
 import '../utils/myUtils.dart';
+import 'devPage.dart';
 import 'mainPage.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -25,6 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _voice = false;
   String _voiceType = Getters.getFirstVoiceType();
   String _language = Getters.getFirstLanguage();
+  bool _dev = false;
 
   final List<String> languages = Getters.getAvailableLanguages();
   final List<String> voiceTypes = Getters.getAvailableVoiceTypes();
@@ -43,6 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
       _voice = prefs.getBool('voice') ?? false;
       _voiceType = prefs.getString('voiceType') ?? voiceTypes[0];
       _language = prefs.getString('language') ?? languages[0];
+      _dev = prefs.getBool('dev') ?? false;
       myTheme.setMode(_darkMode);
     });
   }
@@ -54,6 +57,7 @@ class _SettingsPageState extends State<SettingsPage> {
     await prefs.setBool('voice', _voice);
     await prefs.setString('voiceType', _voiceType);
     await prefs.setString('language', _language);
+    await prefs.setBool('dev', _dev);
     _loadSettings();
   }
 
@@ -116,11 +120,32 @@ class _SettingsPageState extends State<SettingsPage> {
     }
   }
 
+  void _becomeDev() {
+    setState(() {
+      _dev = !_dev;
+      _saveSettings();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Settings"),
+        actions: [
+          if (_dev)
+            IconButton(
+              icon: const Icon(Icons.code),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DevPage(),
+                  ),
+                );
+              },
+            ),
+        ],
       ),
       body: ListView(
         children: [
@@ -278,6 +303,7 @@ class _SettingsPageState extends State<SettingsPage> {
             padding: const EdgeInsets.all(8.0),
             child: OutlinedButton(
               onPressed: () => _warningDatabase(context, _deleteDatabase),
+              onLongPress: () => _becomeDev(),
               child: defaultButtonText("Delete Database"),
             ),
           ),

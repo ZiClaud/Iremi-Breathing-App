@@ -43,18 +43,6 @@ class _MainPageState extends State<MainPage> {
           automaticallyImplyLeading: false,
           title: const Text("Welcome to Iremi"),
           actions: [
-            // TODO: Remove
-            IconButton(
-              icon: const Icon(Icons.code),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DevPage(),
-                  ),
-                );
-              },
-            ),
             IconButton(
               icon: const Icon(
                 Icons.add_circle,

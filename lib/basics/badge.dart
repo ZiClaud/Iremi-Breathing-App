@@ -58,8 +58,10 @@ enum PossibleBadges {
   // awarded for donating to the app.
   rater(6, "Rater", Icons.star),
   // awarded for rating the app.
-  sharingIsCaring(7, "Sharing is Caring", Icons.share);
+  sharingIsCaring(7, "Sharing is Caring", Icons.share),
   // awarded for sharing the app with a friend.
+  secret(8, "Secret", Icons.lock_open);
+  // awarded for finding a secret page.
 
   /*
   Mindful Master: awarded for completing a certain number of mindfulness exercises or meditations.
