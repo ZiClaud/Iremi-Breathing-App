@@ -99,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _deleteUser() async {
     try {
-      await MyDatabase.instance.deleteUser(widget.user!.id!);
+      await DBMyUser().deleteUser(widget.user!.id!);
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => const MainPage()),

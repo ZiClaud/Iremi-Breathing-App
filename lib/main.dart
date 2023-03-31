@@ -85,7 +85,7 @@ FutureBuilder _home() {
 
 Future<StatefulWidget> _getFutureFirstPage() async {
   try {
-    if (await MyDatabase.instance.getFirstUser() != null) {
+    if (await DBMyUser().getFirstUser() != null) {
       return const MainPage();
     } else {
       return RegisterPageDB();

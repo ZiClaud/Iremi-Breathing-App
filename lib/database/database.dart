@@ -3,10 +3,12 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
+import '../basics/exercises/customExercise.dart';
 import '../utils/myUtils.dart';
 
 const String tableUser = 'user';
 const String tableBadges = 'badges';
+const String tableExercises = 'exercises';
 
 class MyDatabase {
   static final MyDatabase instance = MyDatabase._init();
@@ -39,11 +41,6 @@ class MyDatabase {
     }
   }
 
-  Future _createAllTables(Database db, int version) async {
-    _createUserTable(db, version);
-    _createBadgesTable(db, version);
-  }
-
   Future _close() async {
     try {
       final db = await instance.database;
@@ -69,11 +66,15 @@ class MyDatabase {
     }
   }
 
+  Future _createAllTables(Database db, int version) async {
+    _createUserTable(db, version);
+    _createBadgesTable(db, version);
+    _createExercisesTable(db, version);
+  }
+
   Future _createUserTable(Database db, int version) async {
     const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
     const textType = 'TEXT NOT NULL';
-    const boolType = 'BOOLEAN NOT NULL';
-    const integerType = 'INTEGER NOT NULL';
 
     try {
       await db.execute('''
@@ -93,8 +94,6 @@ class MyDatabase {
   Future _createBadgesTable(Database db, int version) async {
     const idType = 'INTEGER PRIMARY KEY';
     const textType = 'TEXT NOT NULL';
-    const boolType = 'BOOLEAN NOT NULL';
-    const integerType = 'INTEGER NOT NULL';
 
     try {
       await db.execute('''
@@ -108,9 +107,41 @@ class MyDatabase {
     }
   }
 
+  Future _createExercisesTable(Database db, int version) async {
+    const idType = 'INTEGER PRIMARY KEY';
+    const textType = 'TEXT NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
+
+    try {
+      await db.execute('''
+          CREATE TABLE $tableExercises (
+          ${CustomExerciseFields.id} $idType,
+          ${CustomExerciseFields.name} $textType,
+          ${CustomExerciseFields.description} $textType,
+          ${CustomExerciseFields.notes} $textType,
+          ${CustomExerciseFields.steps} $textType,
+          ${CustomExerciseFields.times} $integerType,
+          ${CustomExerciseFields.inhaleTime} $integerType,
+          ${CustomExerciseFields.holdMiddleTime} $integerType,
+          ${CustomExerciseFields.exhaleTime} $integerType,
+          ${CustomExerciseFields.holdEndTime} $integerType,
+          ${CustomExerciseFields.inhaleTimeMs} $integerType,
+          ${CustomExerciseFields.holdMiddleTimeMs} $integerType,
+          ${CustomExerciseFields.exhaleTimeMs} $integerType,
+          ${CustomExerciseFields.holdEndTimeMs} $integerType
+          )''');
+    } catch (e) {
+      printError('Error creating table $tableExercises: $e');
+      rethrow;
+    }
+  }
+}
+
+/// DBMyUser
+class DBMyUser {
   Future<MyUser> createUser(MyUser user) async {
     try {
-      final db = await instance.database;
+      final db = await MyDatabase.instance.database;
       final id = await db.insert(tableUser, user.toJson());
       return user.copy(id: id);
     } catch (e) {
@@ -119,20 +150,9 @@ class MyDatabase {
     }
   }
 
-  Future<MyBadge> createBadge(MyBadge badge) async {
-    try {
-      final db = await instance.database;
-      final id = await db.insert(tableBadges, badge.toJson());
-      return badge.copy(id: id);
-    } catch (e) {
-      printError('Error creating badge: $e');
-      rethrow;
-    }
-  }
-
   Future<MyUser> _readUser(int id) async {
     try {
-      final db = await instance.database;
+      final db = await MyDatabase.instance.database;
 
       final maps = await db.query(
         tableUser,
@@ -152,9 +172,83 @@ class MyDatabase {
     }
   }
 
+  Future<MyUser?> getFirstUser() async {
+    try {
+      final allUsers = await readAllUsers();
+      if (allUsers.isNotEmpty) {
+        return allUsers.first;
+      }
+      return null;
+    } catch (e) {
+      printError('Error reading all users: $e');
+      rethrow;
+    }
+  }
+
+
+  Future<List<MyUser>> readAllUsers() async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      const orderBy = '${UserFields.id} ASC';
+
+      final result = await db.query(tableUser, orderBy: orderBy);
+
+      return result.map((json) => MyUser.fromJson(json)).toList();
+    } catch (e) {
+      printError('Error reading all users: $e');
+      rethrow;
+    }
+  }
+
+  Future<int> updateUser(MyUser user) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      return await db.update(
+        tableUser,
+        user.toJson(),
+        where: '${UserFields.id} = ?',
+        whereArgs: [user.id],
+      );
+    } catch (e) {
+      printError('Error updating user: $e');
+      rethrow;
+    }
+  }
+
+  Future<int> deleteUser(int id) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      return await db.delete(
+        tableUser,
+        where: '${UserFields.id} = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      printError('Error deleting user: $e');
+      rethrow;
+    }
+  }
+}
+
+/// DBMyBadge
+class DBMyBadge {
+  Future<MyBadge> createBadge(MyBadge badge) async {
+    try {
+      final db = await MyDatabase.instance.database;
+      final id = await db.insert(tableBadges, badge.toJson());
+      return badge.copy(id: id);
+    } catch (e) {
+      printError('Error creating badge: $e');
+      rethrow;
+    }
+  }
+
   Future<MyBadge> _readBadge(int id) async {
     try {
-      final db = await instance.database;
+      final db = await MyDatabase.instance.database;
 
       final maps = await db.query(
         tableBadges,
@@ -174,37 +268,9 @@ class MyDatabase {
     }
   }
 
-  Future<MyUser?> getFirstUser() async {
-    try {
-      final allUsers = await readAllUsers();
-      if (allUsers.isNotEmpty) {
-        return allUsers.first;
-      }
-      return null;
-    } catch (e) {
-      printError('Error reading all users: $e');
-      rethrow;
-    }
-  }
-
-  Future<List<MyUser>> readAllUsers() async {
-    try {
-      final db = await instance.database;
-
-      const orderBy = '${UserFields.id} ASC';
-
-      final result = await db.query(tableUser, orderBy: orderBy);
-
-      return result.map((json) => MyUser.fromJson(json)).toList();
-    } catch (e) {
-      printError('Error reading all users: $e');
-      rethrow;
-    }
-  }
-
   Future<List<MyBadge>> readAllBadges() async {
     try {
-      final db = await instance.database;
+      final db = await MyDatabase.instance.database;
 
       const orderBy = '${BadgeFields.id} ASC';
 
@@ -217,25 +283,9 @@ class MyDatabase {
     }
   }
 
-  Future<int> updateUser(MyUser user) async {
-    try {
-      final db = await instance.database;
-
-      return await db.update(
-        tableUser,
-        user.toJson(),
-        where: '${UserFields.id} = ?',
-        whereArgs: [user.id],
-      );
-    } catch (e) {
-      printError('Error updating user: $e');
-      rethrow;
-    }
-  }
-
   Future<int> updateBadge(MyBadge badge) async {
     try {
-      final db = await instance.database;
+      final db = await MyDatabase.instance.database;
 
       return await db.update(
         tableBadges,
@@ -249,24 +299,9 @@ class MyDatabase {
     }
   }
 
-  Future<int> deleteUser(int id) async {
-    try {
-      final db = await instance.database;
-
-      return await db.delete(
-        tableUser,
-        where: '${UserFields.id} = ?',
-        whereArgs: [id],
-      );
-    } catch (e) {
-      printError('Error deleting user: $e');
-      rethrow;
-    }
-  }
-
   Future<int> deleteBadge(int id) async {
     try {
-      final db = await instance.database;
+      final db = await MyDatabase.instance.database;
 
       return await db.delete(
         tableBadges,
@@ -275,6 +310,88 @@ class MyDatabase {
       );
     } catch (e) {
       printError('Error deleting badge: $e');
+      rethrow;
+    }
+  }
+}
+
+/// DBCustomExercise
+class DBCustomExercise {
+  Future<CustomExercise> createExercise(CustomExercise exercise) async {
+    try {
+      final db = await MyDatabase.instance.database;
+      final id = await db.insert(tableExercises, exercise.toJson());
+      return exercise.copy(id: id);
+    } catch (e) {
+      printError('Error creating exercise: $e');
+      rethrow;
+    }
+  }
+
+  Future<CustomExercise> _readExercise(int id) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      final maps = await db.query(
+        tableExercises,
+        columns: CustomExerciseFields.values,
+        where: '${CustomExerciseFields.id} = ?',
+        whereArgs: [id],
+      );
+
+      if (maps.isNotEmpty) {
+        return CustomExercise.fromJson(maps.first);
+      } else {
+        throw Exception('ID $id not found');
+      }
+    } catch (e) {
+      printError('Error reading exercise: $e');
+      rethrow;
+    }
+  }
+
+  Future<List<CustomExercise>> readAllExercises() async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      const orderBy = '${CustomExerciseFields.id} ASC';
+
+      final result = await db.query(tableExercises, orderBy: orderBy);
+
+      return result.map((json) => CustomExercise.fromJson(json)).toList();
+    } catch (e) {
+      printError('Error reading all exercises: $e');
+      rethrow;
+    }
+  }
+
+  Future<int> updateExercise(CustomExercise exercise) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      return await db.update(
+        tableExercises,
+        exercise.toJson(),
+        where: '${CustomExerciseFields.id} = ?',
+        whereArgs: [exercise.id],
+      );
+    } catch (e) {
+      printError('Error updating exercise: $e');
+      rethrow;
+    }
+  }
+
+  Future<int> deleteExercise(int id) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      return await db.delete(
+        tableExercises,
+        where: '${CustomExerciseFields.id} = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      printError('Error deleting eExercise: $e');
       rethrow;
     }
   }

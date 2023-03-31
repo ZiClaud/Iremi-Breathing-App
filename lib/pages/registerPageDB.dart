@@ -82,14 +82,14 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
 
       try {
         if (isUpdating) {
-          await MyDatabase.instance.updateUser(widget.user!.copy(
+          await DBMyUser().updateUser(widget.user!.copy(
             username: username,
             name: name,
             sex: sex,
             goal: goal,
           ));
         } else {
-          await MyDatabase.instance.createUser(MyUser(
+          await DBMyUser().createUser(MyUser(
             username: username,
             name: name,
             sex: sex,

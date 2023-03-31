@@ -30,7 +30,7 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<void> _loadCustomExercises() async {
-    List<MyExercise?> customExercises = await Getters.getCustomExercises();
+    List<MyExercise?> customExercises = await Getters.getCustomExercisesDB(context);
     setState(() {
       exercises.addAll(customExercises.whereType<MyExercise>());
     });

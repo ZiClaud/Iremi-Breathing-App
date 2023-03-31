@@ -106,7 +106,7 @@ class Achievement {
 
   static Future<void> addAchievement(PossibleBadges badge, context) async {
     try {
-      List<MyBadge> badges = await MyDatabase.instance.readAllBadges();
+      List<MyBadge> badges = await DBMyBadge().readAllBadges();
       if (badges.where((element) => element.id == badge.id).isEmpty) {
         _addBadge(badge);
         _showAchievementView(context, badge);
@@ -143,7 +143,7 @@ class Achievement {
 
   static void _addBadge(PossibleBadges badge) {
     try {
-      MyDatabase.instance.createBadge(MyBadge(
+      DBMyBadge().createBadge(MyBadge(
           id: badge.id, date: MyUtils.getItalianDateFormat(DateTime.now())));
     } catch (e) {
       rethrow;

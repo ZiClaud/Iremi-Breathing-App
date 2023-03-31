@@ -1,9 +1,12 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
 import 'package:iremibreathingapp/utils/defaultWidget.dart';
+import 'package:iremibreathingapp/utils/myUtils.dart';
 
 import '../basics/badge.dart';
+import '../database/database.dart';
 
 class DevPage extends StatefulWidget {
   DevPage({Key? key}) : super(key: key);
@@ -13,8 +16,27 @@ class DevPage extends StatefulWidget {
 }
 
 class _DevPageState extends State<DevPage> {
-  void _doDevStufff(BuildContext context) {
-    // TODO: Do dev stuff
+  Future<void> _doDevStufff(BuildContext context) async {
+    try {
+      await DBCustomExercise().createExercise(CustomExercise(
+        name: "Test Exercise",
+        description: "This is a test exercise",
+        notes: 'This is a test note',
+        steps: ['Inhale', 'Hold', 'Exhale', 'Hold'],
+        times: 2,
+        inhaleTime: 1,
+        holdMiddleTime: 1,
+        exhaleTime: 1,
+        holdEndTime: 1,
+        inhaleTimeMs: 1,
+        holdMiddleTimeMs: 1,
+        exhaleTimeMs: 1,
+        holdEndTimeMs: 1,
+      ));
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
+      print(e);
+    }
   }
 
   Future<void> _addRandomAchievement(context) async {

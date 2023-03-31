@@ -24,24 +24,20 @@ class Getters {
     return ex;
   }
 
-  static CustomExercise getCustomExercise() {
-    // TODO: REMOVE - Now it's replacing DB stuff
-    return CustomExercise(
-        name: "DEV: Fast",
-        description: "Used by developer",
-        notes: "N/A",
-        steps: ["N/A"],
-        times: 1,
-        inhaleTime: 1,
-        holdMiddleTime: 1,
-        exhaleTime: 1,
-        holdEndTime: 1);
+  static Future<List<CustomExercise?>> getCustomExercisesDB(context) async {
+    try {
+      return DBCustomExercise().readAllExercises();
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
+      rethrow;
+    }
   }
-
+  
   static Future<List<CustomExercise?>> getCustomExercises() async {
     // TODO: Replace with DB stuff
     return await [
       CustomExercise(
+          id: 1,
           name: "DEV: Fast",
           description: "Used by developer",
           notes: "N/A",
@@ -52,6 +48,7 @@ class Getters {
           exhaleTime: 1,
           holdEndTime: 1),
       CustomExercise(
+          id: 2,
           name: "DEV: Faster",
           description: "Used by developer",
           notes: "N/A",
@@ -79,7 +76,7 @@ class Getters {
 
   static Future<MyUser?> getUserDB(context) async {
     try {
-      return await MyDatabase.instance.getFirstUser();
+      return await DBMyUser().getFirstUser();
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
       rethrow;
@@ -88,7 +85,7 @@ class Getters {
 
   static Future<List<MyBadge>> getBadgesDB(context) async {
     try {
-      List<MyBadge?> val = await MyDatabase.instance.readAllBadges();
+      List<MyBadge?> val = await DBMyBadge().readAllBadges();
       List<MyBadge> ris = [];
 
       for (MyBadge? badge in val) {
@@ -108,7 +105,8 @@ class Getters {
     return ['English', 'Italian', 'Spanish', 'Chinese (Simplified)', 'Greek'];
   }
 
-  static String getFirstLanguage(){  // TODO: Replace with something that gets the default language
+  static String getFirstLanguage() {
+    // TODO: Replace with something that gets the default language
     return getAvailableLanguages().first;
   }
 
@@ -116,7 +114,7 @@ class Getters {
     return ['Male', 'Female', 'Neutral'];
   }
 
-  static String getFirstVoiceType(){
+  static String getFirstVoiceType() {
     return getAvailableVoiceTypes().first;
   }
 }
