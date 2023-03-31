@@ -3,12 +3,14 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../basics/exercises/customExercise.dart';
+import '../basics/customExercise.dart';
+import '../basics/exerciseHistory.dart';
 import '../utils/myUtils.dart';
 
 const String tableUser = 'user';
 const String tableBadges = 'badges';
 const String tableExercises = 'exercises';
+const String tableExerciseHistory = 'exerciseHistory';
 
 class MyDatabase {
   static final MyDatabase instance = MyDatabase._init();
@@ -70,6 +72,7 @@ class MyDatabase {
     _createUserTable(db, version);
     _createBadgesTable(db, version);
     _createExercisesTable(db, version);
+    _createExerciseHistoryTable(db, version);
   }
 
   Future _createUserTable(Database db, int version) async {
@@ -128,6 +131,24 @@ class MyDatabase {
           )''');
     } catch (e) {
       printError('Error creating table $tableExercises: $e');
+      rethrow;
+    }
+  }
+
+  void _createExerciseHistoryTable(Database db, int version) {
+    const idType = 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    const textType = 'TEXT NOT NULL';
+    const integerType = 'INTEGER NOT NULL';
+
+    try {
+      db.execute('''
+          CREATE TABLE $tableExerciseHistory (
+          ${ExerciseHistoryFields.id} $idType,
+          ${ExerciseHistoryFields.dateTime} $textType,
+          ${ExerciseHistoryFields.exerciseDurationSeconds} $textType
+          )''');
+    } catch (e) {
+      printError('Error creating table $tableExerciseHistory: $e');
       rethrow;
     }
   }
@@ -388,6 +409,90 @@ class DBCustomExercise {
       );
     } catch (e) {
       printError('Error deleting eExercise: $e');
+      rethrow;
+    }
+  }
+}
+
+
+/// DBExerciseHistory
+class DBExerciseHistory {
+  Future<ExerciseHistory> createExerciseHistory(
+      ExerciseHistory exerciseHistory) async {
+    try {
+      final db = await MyDatabase.instance.database;
+      final id = await db.insert(tableExerciseHistory, exerciseHistory.toJson());
+      return exerciseHistory.copy(id: id);
+    } catch (e) {
+      printError('Error creating exerciseHistory: $e');
+      rethrow;
+    }
+  }
+
+  Future<ExerciseHistory> _readExerciseHistory(int id) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      final maps = await db.query(
+        tableExerciseHistory,
+        columns: ExerciseHistoryFields.values,
+        where: '${ExerciseHistoryFields.id} = ?',
+        whereArgs: [id],
+      );
+
+      if (maps.isNotEmpty) {
+        return ExerciseHistory.fromJson(maps.first);
+      } else {
+        throw Exception('ID $id not found');
+      }
+    } catch (e) {
+      printError('Error reading exerciseHistory: $e');
+      rethrow;
+    }
+  }
+
+  Future<List<ExerciseHistory>> readAllExerciseHistory() async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      const orderBy = '${ExerciseHistoryFields.id} ASC';
+
+      final result = await db.query(tableExerciseHistory, orderBy: orderBy);
+
+      return result.map((json) => ExerciseHistory.fromJson(json)).toList();
+    } catch (e) {
+      printError('Error reading all exerciseHistory: $e');
+      rethrow;
+    }
+  }
+
+  Future<int> updateExerciseHistory(ExerciseHistory exerciseHistory) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      return await db.update(
+        tableExerciseHistory,
+        exerciseHistory.toJson(),
+        where: '${ExerciseHistoryFields.id} = ?',
+        whereArgs: [exerciseHistory.id],
+      );
+    } catch (e) {
+      printError('Error updating exerciseHistory: $e');
+      rethrow;
+    }
+  }
+
+  Future<int> deleteExerciseHistory(int id) async {
+    try {
+      final db = await MyDatabase.instance.database;
+
+      return await db.delete(
+        tableExerciseHistory,
+        where: '${ExerciseHistoryFields.id} = ?',
+        whereArgs: [id],
+      );
+    } catch (e) {
+      printError('Error deleting exerciseHistory: $e');
       rethrow;
     }
   }

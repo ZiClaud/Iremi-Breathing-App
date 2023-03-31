@@ -1,7 +1,8 @@
 import 'package:iremibreathingapp/basics/exercise.dart';
+import 'package:iremibreathingapp/basics/exerciseHistory.dart';
 import 'package:iremibreathingapp/basics/exercises/b478Exercise.dart';
 import 'package:iremibreathingapp/basics/exercises/boxBreathingExercise.dart';
-import 'package:iremibreathingapp/basics/exercises/customExercise.dart';
+import 'package:iremibreathingapp/basics/customExercise.dart';
 import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/utils/myUtils.dart';
@@ -20,54 +21,24 @@ class Getters {
       B478Exercise(),
       BoxBreathingExercise(),
     ];
-
     return ex;
   }
 
-  static Future<List<CustomExercise?>> getCustomExercisesDB(context) async {
-    try {
-      return DBCustomExercise().readAllExercises();
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
-      rethrow;
-    }
+  static List<String> getAvailableLanguages() {
+    return ['English', 'Italian', 'Spanish', 'Chinese (Simplified)', 'Greek'];
   }
 
-  static Future<List<CustomExercise?>> getCustomExercises() async {
-    return await [
-      CustomExercise(
-        id: 1,
-        name: "DEV: Fast",
-        description: "Used by developer",
-        notes: "N/A",
-        steps: ["N/A"],
-        times: 1,
-        inhaleTimeMs: 1000,
-        holdMiddleTimeMs: 1000,
-        exhaleTimeMs: 1000,
-        holdEndTimeMs: 1000,
-      ),
-      CustomExercise(
-          id: 2,
-          name: "DEV: Faster",
-          description: "Used by developer",
-          notes: "N/A",
-          steps: [],
-          times: 1,
-          inhaleTimeMs: 1,
-          holdMiddleTimeMs: 1,
-          exhaleTimeMs: 1,
-          holdEndTimeMs: 1),
-    ];
+  static String getFirstLanguage() {
+    // TODO: Replace with something that gets the default language
+    return getAvailableLanguages().first;
   }
 
-  static Future<MyUser?> getUser() {
-    return MyUser(
-      username: "ZiCli",
-      name: "Claudio",
-      sex: "M",
-      goal: "5 min - day",
-    ) as Future<MyUser>;
+  static List<String> getAvailableVoiceTypes() {
+    return ['Male', 'Female', 'Neutral'];
+  }
+
+  static String getFirstVoiceType() {
+    return getAvailableVoiceTypes().first;
   }
 
   static Future<MyUser?> getUserDB(context) async {
@@ -97,20 +68,21 @@ class Getters {
     }
   }
 
-  static List<String> getAvailableLanguages() {
-    return ['English', 'Italian', 'Spanish', 'Chinese (Simplified)', 'Greek'];
+  static Future<List<CustomExercise?>> getCustomExercisesDB(context) async {
+    try {
+      return DBCustomExercise().readAllExercises();
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
+      rethrow;
+    }
   }
 
-  static String getFirstLanguage() {
-    // TODO: Replace with something that gets the default language
-    return getAvailableLanguages().first;
-  }
-
-  static List<String> getAvailableVoiceTypes() {
-    return ['Male', 'Female', 'Neutral'];
-  }
-
-  static String getFirstVoiceType() {
-    return getAvailableVoiceTypes().first;
+  static Future<List<ExerciseHistory>> getExerciseHistoryDB(context) async {
+    try {
+      return DBExerciseHistory().readAllExerciseHistory();
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
+      rethrow;
+    }
   }
 }
