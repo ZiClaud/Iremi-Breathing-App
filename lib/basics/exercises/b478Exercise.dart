@@ -31,7 +31,7 @@ class B478Exercise extends MyExercise {
   int exhaleTimeMs = 8 * 1000;
 
   @override
-  int holdEndTimeMs = 1 * 1000;
+  int holdEndTimeMs = 1;
 
   @override
   int times = 4;

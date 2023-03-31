@@ -18,11 +18,28 @@ class DevPage extends StatefulWidget {
 class _DevPageState extends State<DevPage> {
   Future<void> _doDevStufff(BuildContext context) async {
     try {
+      try {
+        await DBCustomExercise().createExercise(CustomExercise(
+          name: "Test",
+          description: "test",
+          notes: 'note',
+          steps: [],
+          times: 2,
+          inhaleTimeMs: 1000,
+          holdMiddleTimeMs: 1000,
+          exhaleTimeMs: 1000,
+          holdEndTimeMs: 1000,
+        ));
+      } catch (e) {
+        defaultDatabaseErrorDialog(context, e.toString());
+        print(e);
+      }
+
       await DBCustomExercise().createExercise(CustomExercise(
         name: "Test Exercise",
         description: "This is a test exercise",
         notes: 'This is a test note',
-        steps: ['Inhale', 'Hold', 'Exhale', 'Hold'],
+        steps: ['Inhale'],
         times: 2,
         inhaleTimeMs: 1000,
         holdMiddleTimeMs: 1000,

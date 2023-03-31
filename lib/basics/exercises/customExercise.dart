@@ -40,7 +40,7 @@ class CustomExercise extends MyExercise {
       required this.inhaleTimeMs,
       required this.holdMiddleTimeMs,
       required this.exhaleTimeMs,
-      required this.holdEndTimeMs}) {}
+      required this.holdEndTimeMs});
 
   CustomExercise copy({
     int? id,
