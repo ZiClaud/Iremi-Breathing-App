@@ -22,16 +22,16 @@ class B478Exercise extends MyExercise {
   ];
 
   @override
-  Duration inhaleDuration = const Duration(seconds: 4);
+  int inhaleTimeMs = 4 * 1000;
 
   @override
-  Duration holdMiddleDuration = const Duration(seconds: 7);
+  int holdMiddleTimeMs = 7 * 1000;
 
   @override
-  Duration exhaleDuration = const Duration(seconds: 8);
+  int exhaleTimeMs = 8 * 1000;
 
   @override
-  Duration holdEndDuration = const Duration(milliseconds: 1);
+  int holdEndTimeMs = 1 * 1000;
 
   @override
   int times = 4;

@@ -24,14 +24,10 @@ class _DevPageState extends State<DevPage> {
         notes: 'This is a test note',
         steps: ['Inhale', 'Hold', 'Exhale', 'Hold'],
         times: 2,
-        inhaleTime: 1,
-        holdMiddleTime: 1,
-        exhaleTime: 1,
-        holdEndTime: 1,
-        inhaleTimeMs: 1,
-        holdMiddleTimeMs: 1,
-        exhaleTimeMs: 1,
-        holdEndTimeMs: 1,
+        inhaleTimeMs: 1000,
+        holdMiddleTimeMs: 1000,
+        exhaleTimeMs: 1000,
+        holdEndTimeMs: 1000,
       ));
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());

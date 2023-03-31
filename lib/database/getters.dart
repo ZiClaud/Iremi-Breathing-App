@@ -32,21 +32,21 @@ class Getters {
       rethrow;
     }
   }
-  
+
   static Future<List<CustomExercise?>> getCustomExercises() async {
-    // TODO: Replace with DB stuff
     return await [
       CustomExercise(
-          id: 1,
-          name: "DEV: Fast",
-          description: "Used by developer",
-          notes: "N/A",
-          steps: ["N/A"],
-          times: 1,
-          inhaleTime: 1,
-          holdMiddleTime: 1,
-          exhaleTime: 1,
-          holdEndTime: 1),
+        id: 1,
+        name: "DEV: Fast",
+        description: "Used by developer",
+        notes: "N/A",
+        steps: ["N/A"],
+        times: 1,
+        inhaleTimeMs: 1000,
+        holdMiddleTimeMs: 1000,
+        exhaleTimeMs: 1000,
+        holdEndTimeMs: 1000,
+      ),
       CustomExercise(
           id: 2,
           name: "DEV: Faster",
@@ -54,10 +54,6 @@ class Getters {
           notes: "N/A",
           steps: [],
           times: 1,
-          inhaleTime: 0,
-          holdMiddleTime: 0,
-          exhaleTime: 0,
-          holdEndTime: 0,
           inhaleTimeMs: 1,
           holdMiddleTimeMs: 1,
           exhaleTimeMs: 1,

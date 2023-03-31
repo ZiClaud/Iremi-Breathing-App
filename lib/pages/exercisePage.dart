@@ -48,31 +48,31 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: widget.exercise.inhaleDuration +
-          widget.exercise.holdMiddleDuration +
-          widget.exercise.exhaleDuration +
-          widget.exercise.holdEndDuration,
+      duration: widget.exercise.getInhaleDuration() +
+          widget.exercise.getHoldMiddleDuration() +
+          widget.exercise.getExhaleDuration() +
+          widget.exercise.getHoldEndDuration(),
     );
 
     _animation = TweenSequence([
       TweenSequenceItem(
         tween: Tween<Size>(begin: Size.zero, end: Size.square(defaultCircleSize())),
-        weight: widget.exercise.inhaleDuration.inMilliseconds.toDouble() /
+        weight: widget.exercise.getInhaleDuration().inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
         tween: Tween<Size>(begin: Size.square(defaultCircleSize()), end: Size.square(defaultCircleSize())),
-        weight: widget.exercise.holdMiddleDuration.inMilliseconds.toDouble() /
+        weight: widget.exercise.getHoldMiddleDuration().inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
         tween: Tween<Size>(begin: Size.square(defaultCircleSize()), end: Size.zero),
-        weight: widget.exercise.exhaleDuration.inMilliseconds.toDouble() /
+        weight: widget.exercise.getExhaleDuration().inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
         tween: Tween<Size>(begin: Size.zero, end: Size.zero),
-        weight: widget.exercise.holdEndDuration.inMilliseconds.toDouble() /
+        weight: widget.exercise.getHoldEndDuration().inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
     ]).animate(_controller);

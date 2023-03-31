@@ -32,11 +32,11 @@ void navigateToExercisePage(context, MyExercise exercise) {
 }
 
 String getDurationString(MyExercise exercise) {
-  return "${exercise.inhaleDuration.inSeconds}s, ${exercise.holdMiddleDuration.inSeconds}s, ${exercise.exhaleDuration.inSeconds}s, ${exercise.holdEndDuration.inSeconds}s";
+  return "${exercise.getInhaleDuration().inSeconds}s, ${exercise.getHoldMiddleDuration().inSeconds}s, ${exercise.getExhaleDuration().inSeconds}s, ${exercise.getHoldEndDuration().inSeconds}s";
 }
 
 String getAdvancedDurationString(MyExercise exercise) {
-  return "${exercise.inhaleDuration.inSeconds}s ${exercise.inhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdMiddleDuration.inSeconds}s ${exercise.holdMiddleDuration.inMilliseconds % 1000}ms, ${exercise.exhaleDuration.inSeconds}s ${exercise.exhaleDuration.inMilliseconds % 1000}ms, ${exercise.holdEndDuration.inSeconds}s ${exercise.holdEndDuration.inMilliseconds % 1000}ms";
+  return "${exercise.getInhaleDuration().inSeconds}s ${exercise.getInhaleDuration().inMilliseconds % 1000}ms, ${exercise.getHoldMiddleDuration().inSeconds}s ${exercise.getHoldMiddleDuration().inMilliseconds % 1000}ms, ${exercise.getExhaleDuration().inSeconds}s ${exercise.getExhaleDuration().inMilliseconds % 1000}ms, ${exercise.getHoldEndDuration().inSeconds}s ${exercise.getHoldEndDuration().inMilliseconds % 1000}ms";
 }
 
 String getTimeString(MyExercise exercise) {

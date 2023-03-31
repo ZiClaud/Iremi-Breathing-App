@@ -4,10 +4,10 @@ abstract class MyExercise {
   late String notes;
   late List<String> steps;
   late int times;
-  late Duration inhaleDuration;
-  late Duration holdMiddleDuration;
-  late Duration exhaleDuration;
-  late Duration holdEndDuration;
+  late int inhaleTimeMs;
+  late int holdMiddleTimeMs;
+  late int exhaleTimeMs;
+  late int holdEndTimeMs;
 
   void tellSteps() {
     for (String step in steps) {
@@ -15,11 +15,27 @@ abstract class MyExercise {
     }
   }
 
+  Duration getInhaleDuration() {
+    return Duration(milliseconds: inhaleTimeMs);
+  }
+
+  Duration getHoldMiddleDuration() {
+    return Duration(milliseconds: holdMiddleTimeMs);
+  }
+
+  Duration getExhaleDuration() {
+    return Duration(milliseconds: exhaleTimeMs);
+  }
+
+  Duration getHoldEndDuration() {
+    return Duration(milliseconds: holdEndTimeMs);
+  }
+
   Duration getTime() {
-    return (inhaleDuration +
-            holdMiddleDuration +
-            exhaleDuration +
-            holdEndDuration) *
+    return (getInhaleDuration() +
+            getHoldMiddleDuration() +
+            getExhaleDuration() +
+            getHoldEndDuration()) *
         times;
   }
 }

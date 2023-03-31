@@ -16,16 +16,16 @@ class CustomExercise extends MyExercise {
   List<String> steps;
 
   @override
-  late Duration inhaleDuration;
+  int inhaleTimeMs;
 
   @override
-  late Duration holdMiddleDuration;
+  int holdMiddleTimeMs;
 
   @override
-  late Duration exhaleDuration;
+  int exhaleTimeMs;
 
   @override
-  late Duration holdEndDuration;
+  int holdEndTimeMs;
 
   @override
   int times;
@@ -37,23 +37,10 @@ class CustomExercise extends MyExercise {
       required this.notes,
       required this.steps,
       required this.times,
-      required inhaleTime,
-      required holdMiddleTime,
-      required exhaleTime,
-      required holdEndTime,
-      inhaleTimeMs = 0,
-      holdMiddleTimeMs = 0,
-      exhaleTimeMs = 0,
-      holdEndTimeMs = 0}) {
-    inhaleDuration =
-        Duration(seconds: inhaleTime, milliseconds: inhaleTimeMs);
-    holdMiddleDuration =
-        Duration(seconds: holdMiddleTime, milliseconds: holdMiddleTimeMs);
-    exhaleDuration =
-        Duration(seconds: exhaleTime, milliseconds: exhaleTimeMs);
-    holdEndDuration =
-        Duration(seconds: holdEndTime, milliseconds: holdEndTimeMs);
-  }
+      required this.inhaleTimeMs,
+      required this.holdMiddleTimeMs,
+      required this.exhaleTimeMs,
+      required this.holdEndTimeMs}) {}
 
   CustomExercise copy({
     int? id,
@@ -62,32 +49,24 @@ class CustomExercise extends MyExercise {
     String? notes,
     List<String>? steps,
     int? times,
-    int? inhaleTime,
-    int? holdMiddleTime,
-    int? exhaleTime,
-    int? holdEndTime,
     int? inhaleTimeMs,
     int? holdMiddleTimeMs,
     int? exhaleTimeMs,
     int? holdEndTimeMs,
-  }) =>
-      CustomExercise(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        description: description ?? this.description,
-        notes: notes ?? this.notes,
-        steps: steps ?? this.steps,
-        times: times ?? this.times,
-        inhaleTime: inhaleTime ?? this.inhaleDuration.inSeconds,
-        holdMiddleTime: holdMiddleTime ?? this.holdMiddleDuration.inSeconds,
-        exhaleTime: exhaleTime ?? this.exhaleDuration.inSeconds,
-        holdEndTime: holdEndTime ?? this.holdEndDuration.inSeconds,
-        inhaleTimeMs: inhaleTimeMs ?? this.inhaleDuration.inMilliseconds % 1000, // TODO: Check this works properly
-        holdMiddleTimeMs:
-            holdMiddleTimeMs ?? this.holdMiddleDuration.inMilliseconds % 1000, // TODO: Check this works properly
-        exhaleTimeMs: exhaleTimeMs ?? this.exhaleDuration.inMilliseconds % 1000, // TODO: Check this works properly
-        holdEndTimeMs: holdEndTimeMs ?? this.holdEndDuration.inMilliseconds % 1000, // TODO: Check this works properly
-      );
+  }) {
+    return CustomExercise(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      description: description ?? this.description,
+      notes: notes ?? this.notes,
+      steps: steps ?? this.steps,
+      times: times ?? this.times,
+      inhaleTimeMs: inhaleTimeMs ?? this.inhaleTimeMs,
+      holdMiddleTimeMs: holdMiddleTimeMs ?? this.holdMiddleTimeMs,
+      exhaleTimeMs: exhaleTimeMs ?? this.exhaleTimeMs,
+      holdEndTimeMs: holdEndTimeMs ?? this.holdEndTimeMs,
+    );
+  }
 
   static CustomExercise fromJson(Map<String, Object?> json) => CustomExercise(
         id: json[CustomExerciseFields.id] as int?,
@@ -96,10 +75,6 @@ class CustomExercise extends MyExercise {
         notes: json[CustomExerciseFields.notes] as String,
         steps: json[CustomExerciseFields.steps] as List<String>,
         times: json[CustomExerciseFields.times] as int,
-        inhaleTime: json[CustomExerciseFields.inhaleTime] as int,
-        holdMiddleTime: json[CustomExerciseFields.holdMiddleTime] as int,
-        exhaleTime: json[CustomExerciseFields.exhaleTime] as int,
-        holdEndTime: json[CustomExerciseFields.holdEndTime] as int,
         inhaleTimeMs: json[CustomExerciseFields.inhaleTimeMs] as int,
         holdMiddleTimeMs: json[CustomExerciseFields.holdMiddleTimeMs] as int,
         exhaleTimeMs: json[CustomExerciseFields.exhaleTimeMs] as int,
@@ -113,14 +88,10 @@ class CustomExercise extends MyExercise {
         CustomExerciseFields.notes: notes,
         CustomExerciseFields.steps: steps,
         CustomExerciseFields.times: times,
-        CustomExerciseFields.inhaleTime: inhaleDuration.inSeconds,
-        CustomExerciseFields.holdMiddleTime: holdMiddleDuration.inSeconds,
-        CustomExerciseFields.exhaleTime: exhaleDuration.inSeconds,
-        CustomExerciseFields.holdEndTime: holdEndDuration.inSeconds,
-        CustomExerciseFields.inhaleTimeMs: inhaleDuration.inMilliseconds % 1000, // TODO: Check this works properly
-        CustomExerciseFields.holdMiddleTimeMs: holdMiddleDuration.inMilliseconds % 1000, // TODO: Check this works properly
-        CustomExerciseFields.exhaleTimeMs: exhaleDuration.inMilliseconds % 1000, // TODO: Check this works properly
-        CustomExerciseFields.holdEndTimeMs: holdEndDuration.inMilliseconds % 1000, // TODO: Check this works properly
+        CustomExerciseFields.inhaleTimeMs: inhaleTimeMs,
+        CustomExerciseFields.holdMiddleTimeMs: holdMiddleTimeMs,
+        CustomExerciseFields.exhaleTimeMs: exhaleTimeMs,
+        CustomExerciseFields.holdEndTimeMs: holdEndTimeMs,
       };
 }
 
@@ -132,10 +103,6 @@ class CustomExerciseFields {
     notes,
     steps,
     times,
-    inhaleTime,
-    holdMiddleTime,
-    exhaleTime,
-    holdEndTime,
     inhaleTimeMs,
     holdMiddleTimeMs,
     exhaleTimeMs,
@@ -148,12 +115,8 @@ class CustomExerciseFields {
   static const String notes = 'notes';
   static const String steps = 'steps';
   static const String times = 'times';
-  static const String inhaleTime = 'inhaleDuration';
-  static const String holdMiddleTime = 'holdMiddleDuration';
-  static const String exhaleTime = 'exhaleDuration';
-  static const String holdEndTime = 'holdEndDuration';
-  static const String inhaleTimeMs = 'inhaleDuration';
-  static const String holdMiddleTimeMs = 'holdMiddleDuration';
-  static const String exhaleTimeMs = 'exhaleDuration';
-  static const String holdEndTimeMs = 'holdEndDuration';
+  static const String inhaleTimeMs = 'inhaleTimeMs';
+  static const String holdMiddleTimeMs = 'holdMiddleTimeMs';
+  static const String exhaleTimeMs = 'exhaleTimeMs';
+  static const String holdEndTimeMs = 'holdEndTimeMs';
 }
