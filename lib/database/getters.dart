@@ -68,9 +68,18 @@ class Getters {
     }
   }
 
-  static Future<List<CustomExercise?>> getCustomExercisesDB(context) async {
+  static Future<List<CustomExercise>> getCustomExercisesDB(context) async {
     try {
-      return DBCustomExercise().readAllExercises();
+      List<CustomExercise?> val = await DBCustomExercise().readAllExercises();
+      List<CustomExercise> ris = [];
+
+      for (CustomExercise? customExercise in val) {
+        if (customExercise != null) {
+          ris.add(customExercise);
+        }
+      }
+
+      return ris;
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
       rethrow;
@@ -79,7 +88,16 @@ class Getters {
 
   static Future<List<ExerciseHistory>> getExerciseHistoryDB(context) async {
     try {
-      return DBExerciseHistory().readAllExerciseHistory();
+      List<ExerciseHistory?> val = await DBExerciseHistory().readAllExerciseHistory();
+      List<ExerciseHistory> ris = [];
+
+      for (ExerciseHistory? exerciseHistory in val) {
+        if (exerciseHistory != null) {
+          ris.add(exerciseHistory);
+        }
+      }
+
+      return ris;
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
       rethrow;

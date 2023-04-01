@@ -36,6 +36,7 @@ class _DevPageState extends State<DevPage> {
         print(e);
       }
 
+      /*
       await DBCustomExercise().createExercise(CustomExercise(
         name: "Test Exercise",
         description: "This is a test exercise",
@@ -47,8 +48,15 @@ class _DevPageState extends State<DevPage> {
         exhaleTimeMs: 1000,
         holdEndTimeMs: 1000,
       ));
+      */
 
       defaultDialog(context, "Success", "Saved exercise to database");
+      try {
+        DBCustomExercise().readAllExercises().then((value) => defaultDialog(
+            context, "N. of exercises:", value.length.toString()));
+      } catch (e) {
+        defaultDatabaseErrorDialog(context, e.toString());
+      }
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
       print(e);
@@ -60,6 +68,13 @@ class _DevPageState extends State<DevPage> {
       await DBExerciseHistory().createExerciseHistory(ExerciseHistory(
           exerciseDurationSeconds: 20, dateTime: DateTime.now()));
       defaultDialog(context, "Success", "Saved exercise history to database");
+      try {
+        DBExerciseHistory().readAllExerciseHistory().then((value) =>
+            defaultDialog(
+                context, "N. of exercises history:", value.length.toString()));
+      } catch (e) {
+        defaultDatabaseErrorDialog(context, e.toString());
+      }
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
       print(e);
@@ -151,18 +166,18 @@ class _DevPageState extends State<DevPage> {
     ];
     return (exerciseHistory.isNotEmpty)
         ? ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: exerciseHistory.length,
-      itemBuilder: (context, index) {
-        return defaultBadgeView(
-          exerciseHistory[index]!.exerciseDurationSeconds.toString(),
-          exerciseHistory[index]!.dateTime.toString(),
-          Icons.history,
-        );
-      },
-    )
+            scrollDirection: Axis.horizontal,
+            itemCount: exerciseHistory.length,
+            itemBuilder: (context, index) {
+              return defaultBadgeView(
+                exerciseHistory[index]!.exerciseDurationSeconds.toString(),
+                exerciseHistory[index]!.dateTime.toString(),
+                Icons.history,
+              );
+            },
+          )
         : Center(
-      child: defaultText('No exercise history found'),
-    );
+            child: defaultText('No exercise history found'),
+          );
   }
 }

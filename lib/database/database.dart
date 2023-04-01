@@ -145,7 +145,7 @@ class MyDatabase {
           CREATE TABLE $tableExerciseHistory (
           ${ExerciseHistoryFields.id} $idType,
           ${ExerciseHistoryFields.dateTime} $textType,
-          ${ExerciseHistoryFields.exerciseDurationSeconds} $textType
+          ${ExerciseHistoryFields.exerciseDurationSeconds} $integerType
           )''');
     } catch (e) {
       printError('Error creating table $tableExerciseHistory: $e');
