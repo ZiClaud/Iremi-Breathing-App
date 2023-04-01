@@ -69,6 +69,22 @@ class CustomExercise extends MyExercise {
   }
 
   static CustomExercise fromJson(Map<String, Object?> json) => CustomExercise(
+    id: json[CustomExerciseFields.id] as int?,
+    name: json[CustomExerciseFields.name] as String,
+    description: json[CustomExerciseFields.description] as String,
+    notes: json[CustomExerciseFields.notes] as String,
+    steps: (json[CustomExerciseFields.steps] as List)
+        .map((step) => step as String)
+        .toList(),
+    times: json[CustomExerciseFields.times] as int,
+    inhaleTimeMs: json[CustomExerciseFields.inhaleTimeMs] as int,
+    holdMiddleTimeMs: json[CustomExerciseFields.holdMiddleTimeMs] as int,
+    exhaleTimeMs: json[CustomExerciseFields.exhaleTimeMs] as int,
+    holdEndTimeMs: json[CustomExerciseFields.holdEndTimeMs] as int,
+  );
+
+  /*
+  static CustomExercise fromJson(Map<String, Object?> json) => CustomExercise(
         id: json[CustomExerciseFields.id] as int?,
         name: json[CustomExerciseFields.name] as String,
         description: json[CustomExerciseFields.description] as String,
@@ -80,6 +96,7 @@ class CustomExercise extends MyExercise {
         exhaleTimeMs: json[CustomExerciseFields.exhaleTimeMs] as int,
         holdEndTimeMs: json[CustomExerciseFields.holdEndTimeMs] as int,
       );
+  */
 
   Map<String, Object?> toJson() => {
         CustomExerciseFields.id: id,

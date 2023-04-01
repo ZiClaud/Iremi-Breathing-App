@@ -19,24 +19,23 @@ class DevPage extends StatefulWidget {
 class _DevPageState extends State<DevPage> {
   Future<void> _doDevStuff1(BuildContext context) async {
     try {
-      try {
-        await DBCustomExercise().createExercise(CustomExercise(
-          name: "Test",
-          description: "test",
-          notes: 'note',
-          steps: [],
-          times: 2,
-          inhaleTimeMs: 1000,
-          holdMiddleTimeMs: 1000,
-          exhaleTimeMs: 1000,
-          holdEndTimeMs: 1000,
-        ));
-      } catch (e) {
-        defaultDatabaseErrorDialog(context, e.toString());
-        print(e);
-      }
+      await DBCustomExercise().createExercise(CustomExercise(
+        name: "Test",
+        description: "test",
+        notes: 'note',
+        steps: [],
+        times: 2,
+        inhaleTimeMs: 1000,
+        holdMiddleTimeMs: 1000,
+        exhaleTimeMs: 1000,
+        holdEndTimeMs: 1000,
+      ));
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
+      print(e);
+    }
 
-      /*
+    /*
       await DBCustomExercise().createExercise(CustomExercise(
         name: "Test Exercise",
         description: "This is a test exercise",
@@ -50,28 +49,32 @@ class _DevPageState extends State<DevPage> {
       ));
       */
 
-      defaultDialog(context, "Success", "Saved exercise to database");
-      try {
-        DBCustomExercise().readAllExercises().then((value) => defaultDialog(
-            context, "N. of exercises:", value.length.toString()));
-      } catch (e) {
-        defaultDatabaseErrorDialog(context, e.toString());
-      }
+    defaultDialog(context, "Success", "Saved exercise to database");
+    try {
+      DBCustomExercise().readAllExercises().then((value) =>
+          defaultDialog(context, "N. of exercises:", value.length.toString()));
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
-      print(e);
     }
   }
 
   Future<void> _doDevStuff2(BuildContext context) async {
     try {
-      await DBExerciseHistory().createExerciseHistory(ExerciseHistory(
-          exerciseDurationSeconds: 20, dateTime: DateTime.now()));
-      defaultDialog(context, "Success", "Saved exercise history to database");
+      await DBCustomExercise().createExercise(CustomExercise(
+        name: "Test Exercise",
+        description: "This is a test exercise",
+        notes: 'This is a test note',
+        steps: ['Inhale'],
+        times: 2,
+        inhaleTimeMs: 1000,
+        holdMiddleTimeMs: 1000,
+        exhaleTimeMs: 1000,
+        holdEndTimeMs: 1000,
+      ));
+      defaultDialog(context, "Success", "Saved exercise to database");
       try {
-        DBExerciseHistory().readAllExerciseHistory().then((value) =>
-            defaultDialog(
-                context, "N. of exercises history:", value.length.toString()));
+        DBCustomExercise().readAllExercises().then((value) => defaultDialog(
+            context, "N. of exercises:", value.length.toString()));
       } catch (e) {
         defaultDatabaseErrorDialog(context, e.toString());
       }
