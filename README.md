@@ -33,7 +33,7 @@ App against anxiety that gives breathing exercises
 - [ ] Add all the languages, translated using a translator API
 - [x] Add achievements
 - [x] Add badges
-- [ ] Add statistics
+- [x] Add statistics
 
 # Google Auth
 - [ ] Add Google Auth
