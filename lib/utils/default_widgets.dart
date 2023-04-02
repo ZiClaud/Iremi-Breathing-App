@@ -140,6 +140,7 @@ BorderSide defaultBorderSide() {
 }
 
 Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
+  // TODO: Fix bug -> Doesn't sum the time if you do more exercises in the same day
   return SfCartesianChart(
     title: ChartTitle(text: 'Exercise History', textStyle: getChartDefaultTextStyle()),
     series: <ChartSeries<ExerciseHistory, String>>[

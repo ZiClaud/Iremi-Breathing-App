@@ -59,11 +59,6 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
           _customizerAchievement(context);
           try {
             _saveExercise(context);
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => const MainPage()),
-              (route) => false,
-            );
           } catch (e) {
             defaultDatabaseErrorDialog(context, e.toString());
           }
@@ -77,6 +72,7 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
   }
 
   void _saveExercise(BuildContext context) async {
+    // TODO: Fix "Steps" -> they don't work at all
     if (formData.name == null || formData.name!.isEmpty) {
       throw Exception("Please enter a name for the exercise");
     }
@@ -105,7 +101,17 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       steps: formData.steps,
     );
 
-    await DBCustomExercise().createExercise(newExercise);
+    try {
+      await DBCustomExercise().createExercise(newExercise);
+    } catch (e) {
+      rethrow;
+    }
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => const MainPage()),
+      (route) => false,
+    );
   }
 }
 

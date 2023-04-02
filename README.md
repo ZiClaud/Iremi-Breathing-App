@@ -23,8 +23,8 @@ App against anxiety that gives breathing exercises
 - [x] Database - SQLite
 - [x] Add user to database
 - [x] Add badges to database
-- [ ] Save custom exercises
-- [ ] Track progress
+- [x] Save custom exercises
+- [x] Track progress
 
 # Profile
 
@@ -43,7 +43,7 @@ App against anxiety that gives breathing exercises
 
 - [x] Theme and logo
 - [x] Add darkmode
-- [ ] Insert "Quicksand" font or some other better font
+- [ ] Insert "Quicksand" font or some other, better font
 
 # Extras
 
