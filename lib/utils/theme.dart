@@ -189,6 +189,10 @@ TextTheme defaultDarkTextTheme() {
   );
 }
 
+TextStyle getChartDefaultTextStyle() {
+  return IremiTheme.isDarkTheme() ? defaultDarkTextStyle() : defaultLightTextStyle();
+}
+
 TextStyle defaultLightTextStyle() {
   return const TextStyle(color: _myBlack, fontSize: 20, fontFamily: 'Gotham');
 }

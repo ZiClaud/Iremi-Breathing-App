@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../basics/exercise_history.dart';
+import 'my_utils.dart';
 
 double defaultCircleSize() {
 //  return getMinWindowSize(context) * 2 / 3;
@@ -133,6 +137,31 @@ BorderRadius defaultBorderRadius() {
 
 BorderSide defaultBorderSide() {
   return BorderSide(color: myBluLightDark(), width: 1.5);
+}
+
+Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
+  return SfCartesianChart(
+    title: ChartTitle(text: 'Exercise History', textStyle: getChartDefaultTextStyle()),
+    series: <ChartSeries<ExerciseHistory, String>>[
+      ColumnSeries<ExerciseHistory, String>(
+          dataSource: exerciseHistory,
+          xValueMapper: (ExerciseHistory sales, _) =>
+              MyUtils.getItalianDateFormat(sales.dateTime),
+          yValueMapper: (ExerciseHistory sales, _) =>
+              sales.exerciseDurationSeconds,
+          name: 'Exercise History',
+          color: myBluLightDark(),
+          dataLabelSettings: DataLabelSettings(isVisible: false))
+    ],
+    primaryXAxis: CategoryAxis(
+        name: "Date",
+        isVisible: true,
+        majorGridLines: MajorGridLines(width: 0)),
+    primaryYAxis: CategoryAxis(
+        name: "Seconds",
+        isVisible: true,
+        majorGridLines: MajorGridLines(width: 0)),
+  );
 }
 
 Widget defaultLoadingScreen() {

@@ -66,7 +66,7 @@ class _UserPageState extends State<UserPage> {
             child: _showUserWidget(_user),
           ),
           Expanded(
-            flex: 1, // TODO: Check it it works well on different devices
+            flex: 2, // TODO: Check it it works well on different devices
             child: _showExerciseHistoryWidget(_exerciseHistory),
           ),
           Expanded(
@@ -115,19 +115,9 @@ Widget _showBadgeWidget(List<MyBadge?> badges) {
         );
 }
 
-Widget _showExerciseHistoryWidget(List<ExerciseHistory?> exerciseHistory) {
+Widget _showExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
   return (exerciseHistory.isNotEmpty)
-      ? ListView.builder(
-    scrollDirection: Axis.horizontal,
-    itemCount: exerciseHistory.length,
-    itemBuilder: (context, index) {
-      return defaultBadgeView(
-        exerciseHistory[index]!.exerciseDurationSeconds.toString(),
-        exerciseHistory[index]!.dateTime.toString(),
-        Icons.history,
-      );
-    },
-  )
+      ? defaultExerciseHistoryWidget(exerciseHistory)
       : Center(
     child: defaultText('No exercise history found'),
   );

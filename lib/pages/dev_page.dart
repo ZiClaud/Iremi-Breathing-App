@@ -157,7 +157,7 @@ class _DevPageState extends State<DevPage> {
             child: _getUserListView(context),
           ),
           Expanded(
-            flex: 1, // TODO: Check it it works well on different devices
+            flex: 2, // TODO: Check it it works well on different devices
             child: _showExerciseHistoryWidget(context),
           ),
           Expanded(
@@ -196,21 +196,22 @@ class _DevPageState extends State<DevPage> {
 
   Widget _showExerciseHistoryWidget(BuildContext context) {
     List<ExerciseHistory> exerciseHistory = [
-      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime.now()),
+      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2021)),
+      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2022)),
       ExerciseHistory(exerciseDurationSeconds: 500, dateTime: DateTime.now()),
+      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2020)),
+      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2019)),
+      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2018)),
+      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2017)),
+      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2016)),
+      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2015)),
+      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2014)),
+      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2013)),
+      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2012)),
+      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2011)),
     ];
     return (exerciseHistory.isNotEmpty)
-        ? ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: exerciseHistory.length,
-            itemBuilder: (context, index) {
-              return defaultBadgeView(
-                exerciseHistory[index].exerciseDurationSeconds.toString(),
-                exerciseHistory[index].dateTime.toString(),
-                Icons.history,
-              );
-            },
-          )
+        ? defaultExerciseHistoryWidget(exerciseHistory)
         : Center(
             child: defaultText('No exercise history found'),
           );
