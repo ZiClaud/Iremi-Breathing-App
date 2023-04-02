@@ -20,11 +20,11 @@ class _DevPageState extends State<DevPage> {
   Future<void> _doDevStuff1(BuildContext context) async {
     try {
       await DBCustomExercise().createExercise(CustomExercise(
-        name: "Test",
+        name: "Fast",
         description: "test",
         notes: 'note',
         steps: [],
-        times: 2,
+        times: 1,
         inhaleTimeMs: 1000,
         holdMiddleTimeMs: 1000,
         exhaleTimeMs: 1000,
@@ -61,15 +61,15 @@ class _DevPageState extends State<DevPage> {
   Future<void> _doDevStuff2(BuildContext context) async {
     try {
       await DBCustomExercise().createExercise(CustomExercise(
-        name: "Test Exercise",
+        name: "Faster",
         description: "This is a test exercise",
         notes: 'This is a test note',
         steps: ['Inhale', 'Exhale', 'Hold'],
         times: 2,
-        inhaleTimeMs: 1000,
-        holdMiddleTimeMs: 1000,
-        exhaleTimeMs: 1000,
-        holdEndTimeMs: 1000,
+        inhaleTimeMs: 1,
+        holdMiddleTimeMs: 1,
+        exhaleTimeMs: 1,
+        holdEndTimeMs: 1,
       ));
       defaultDialog(context, "Success", "Saved exercise to database");
       try {

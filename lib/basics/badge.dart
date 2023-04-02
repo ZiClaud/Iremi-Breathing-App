@@ -1,5 +1,7 @@
 import 'package:achievement_view/achievement_view.dart';
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/basics/exercise_history.dart';
+import 'package:iremibreathingapp/database/getters.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../database/database.dart';
@@ -49,13 +51,13 @@ enum PossibleBadges {
   /// awarded for completing your first breathing exercise session.
   airApprentice(0, "Air Apprentice", Icons.air),
 
-  // awarded for consistently completing breathing exercises daily for a week.
+  /// awarded for consistently completing breathing exercises daily for a week.
   serenitySeeker(1, "Serenity Seeker", Icons.water_drop),
 
-  //  awarded for consistently completing breathing exercises daily for a month.
+  ///  awarded for consistently completing breathing exercises daily for a month.
   wellnessWarrior(2, "Wellness Warrior", Icons.local_fire_department),
 
-  // awarded for consistently completing breathing exercises daily for 3 months.
+  /// awarded for consistently completing breathing exercises daily for 3 months.
   rockSolid(3, "Rock Solid", Icons.terrain),
 
   /// awarded for practicing deep breathing exercises for more than 5 minutes.
@@ -67,10 +69,10 @@ enum PossibleBadges {
   /// awarded for creating a custom exercise
   customizer(6, "Customizer", Icons.handyman),
 
-  // awarded for doing 5 exercises between 6AM and 8AM.
+  /// awarded for doing 5 exercises between 6AM and 8AM.
   morningPerson(7, "Morning Person", Icons.wb_sunny),
 
-  // awarded for doing 5 exercises between 10PM and 12PM.
+  /// awarded for doing 5 exercises between 10PM and 12PM.
   nightOwl(8, "Night Owl", Icons.nightlight_round),
 
   // awarded for rating the app.
@@ -110,34 +112,105 @@ class Achievement {
       if (badges.where((element) => element.id == badge.id).isEmpty) {
         _addBadge(badge);
         _showAchievementView(context, badge);
-        //defaultDialog(context, "New Achievement!", '${badge.badgeName}');
       }
     } catch (e) {
-      _showAchievementView(context, badge); // TODO: remove this
-//      defaultDatabaseErrorDialog(context, 'Error adding achievement: $e'); // TODO: IMPORTANT BEFORE RELEASE: Remove comment
+      defaultDatabaseErrorDialog(context, 'Error adding achievement: $e');
       rethrow;
     }
   }
 
+  static Future<void> checkExerciseHistoryAchievement(context) async {
+    List<ExerciseHistory> exerciseHistory =
+        await Getters.getExerciseHistoryDB(context);
+
+    int streak = _getExerciseHistoryStreak(exerciseHistory);
+    int morningPerson = _getExerciseHistoryMorningTimes(exerciseHistory);
+    int nightOwl = _getExerciseHistoryNightTimes(exerciseHistory);
+
+    if (streak >= 7) {
+      addAchievement(PossibleBadges.serenitySeeker, context);
+    }
+    if (streak >= 30) {
+      addAchievement(PossibleBadges.wellnessWarrior, context);
+    }
+    if (streak >= 90) {
+      addAchievement(PossibleBadges.rockSolid, context);
+    }
+    if (morningPerson >= 5) {
+      addAchievement(PossibleBadges.morningPerson, context);
+    }
+    if (nightOwl >= 5) {
+      addAchievement(PossibleBadges.nightOwl, context);
+    }
+  }
+
+  static int _getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
+    int streak = 0;
+    DateTime? date;
+
+    for (ExerciseHistory exercise in exerciseHistory) {
+      if (date != null && date.difference(exercise.dateTime).inDays == -1) {
+        streak++;
+      } else {
+        streak = 0;
+      }
+
+      date = exercise.dateTime;
+    }
+
+    if (date != null && date.difference(DateTime.now()).inDays == -1) {
+      streak++;
+    } else {
+      streak = 0;
+    }
+
+    return streak;
+  }
+
+  static int _getExerciseHistoryMorningTimes(
+      List<ExerciseHistory> exerciseHistory) {
+    int morningPerson = 0;
+    DateTime? lastMorningDate;
+
+    for (ExerciseHistory exercise in exerciseHistory) {
+      if (exercise.dateTime.hour > 6 && exercise.dateTime.hour < 8) {
+        if (lastMorningDate == null ||
+            exercise.dateTime.isAfter(lastMorningDate)) {
+          morningPerson++;
+          lastMorningDate = exercise.dateTime;
+        }
+      }
+    }
+
+    return morningPerson;
+  }
+
+  static int _getExerciseHistoryNightTimes(
+      List<ExerciseHistory> exerciseHistory) {
+    int nightOwl = 0;
+    DateTime? lastMorningDate;
+
+    for (ExerciseHistory exercise in exerciseHistory) {
+      if (exercise.dateTime.hour > 22 && exercise.dateTime.hour < 24) {
+        if (lastMorningDate == null ||
+            exercise.dateTime.isAfter(lastMorningDate)) {
+          nightOwl++;
+          lastMorningDate = exercise.dateTime;
+        }
+      }
+    }
+
+    return nightOwl;
+  }
+
   static void _showAchievementView(BuildContext context, PossibleBadges badge) {
     AchievementView(
-        context,
-        title: "New Achievement!",
-        subTitle: badge.badgeName,
-        icon: Icon(badge.icon, color: Colors.white),
-        color: myBluNeutral,
-        //textStyleTitle: TextStyle(),
-        //textStyleSubTitle: TextStyle(),
-        //alignment: Alignment.topCenter,
-        //duration: Duration(seconds: 3),
-        isCircle: true,
-//        listener: (status){
-//          print(status);
-          //AchievementState.opening
-          //AchievementState.open
-          //AchievementState.closing
-          //AchievementState.closed
-//        }
+      context,
+      title: "New Achievement!",
+      subTitle: badge.badgeName,
+      icon: Icon(badge.icon, color: Colors.white),
+      color: myBluNeutral,
+      isCircle: true,
     ).show();
   }
 

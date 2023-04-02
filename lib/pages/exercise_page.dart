@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
+import 'package:iremibreathingapp/basics/exercise_history.dart';
+import 'package:iremibreathingapp/database/database.dart';
 
 import '../basics/badge.dart';
 import '../utils/default_widgets.dart';
@@ -99,10 +101,14 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
   }
 
   void _finishExercise(BuildContext context) {
+    DBExerciseHistory().createExerciseHistory(ExerciseHistory(exerciseDurationSeconds: widget.exercise.getTime().inSeconds, dateTime: DateTime.now()));
+
     Achievement.addAchievement(PossibleBadges.airApprentice, context);
     if (widget.exercise.getTime().inMinutes >= 5) {
       Achievement.addAchievement(PossibleBadges.deepBreather, context);
     }
+    Achievement.checkExerciseHistoryAchievement(context);
+
     Navigator.pop(context);
   }
 
