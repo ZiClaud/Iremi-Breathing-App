@@ -4,8 +4,10 @@ import 'package:iremibreathingapp/utils/myUtils.dart';
 import '../basics/badge.dart';
 import '../database/forms/exerciseFormWidget.dart';
 import '../utils/defaultWidget.dart';
+import 'mainPage.dart';
 
 class ExerciseAddPages extends StatefulWidget {
+
   const ExerciseAddPages({Key? key}) : super(key: key);
 
   @override
@@ -59,20 +61,18 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.navigate_next),
-        onPressed: () => {
-          _customizerAchievement(context),
-          /*
+        onPressed: () {
+          _customizerAchievement(context);
           try {
-            throw Exception("Not connected to database, yet");
+            _saveExercise(context);
             Navigator.pushAndRemoveUntil(
               context,
               MaterialPageRoute(builder: (context) => const MainPage()),
                 (route) => false,
             );
           } catch (e) {
-             */
-          defaultDatabaseErrorDialog(context, "Not connected to database, yet") // e.toString
-//        }
+          defaultDatabaseErrorDialog(context, e.toString());
+        }
         },
       ),
     );
@@ -80,6 +80,10 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
 
   void _customizerAchievement(BuildContext context) {
     Achievement.addAchievement(PossibleBadges.customizer, context);
+  }
+
+  void _saveExercise(BuildContext context) {
+    throw Exception("Not connected to database, yet");
   }
 }
 
