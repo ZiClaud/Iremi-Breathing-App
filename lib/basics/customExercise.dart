@@ -73,8 +73,14 @@ class CustomExercise extends MyExercise {
     name: json[CustomExerciseFields.name] as String,
     description: json[CustomExerciseFields.description] as String,
     notes: json[CustomExerciseFields.notes] as String,
+    /*
     steps: (json[CustomExerciseFields.steps] as List)
         .map((step) => step as String)
+        .toList(),
+    */
+    steps: (json[CustomExerciseFields.steps] as String)
+        .split(',')
+        .map((step) => step.trim())
         .toList(),
     times: json[CustomExerciseFields.times] as int,
     inhaleTimeMs: json[CustomExerciseFields.inhaleTimeMs] as int,

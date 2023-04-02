@@ -337,10 +337,27 @@ class DBCustomExercise {
   Future<CustomExercise> createExercise(CustomExercise exercise) async {
     try {
       final db = await MyDatabase.instance.database;
-      final id = await db.insert(tableExercises, exercise.toJson());
+      final stepsAsString = exercise.steps.join(',');
+      final exerciseJson = exercise.toJson()..['steps'] = stepsAsString;
+      final id = await db.insert(tableExercises, exerciseJson);
       return exercise.copy(id: id);
     } catch (e) {
       printError('Error creating exercise: $e');
+      rethrow;
+    }
+  }
+
+  Future<List<CustomExercise>> readAllExercisesNew() async {
+    try {
+      final db = await MyDatabase.instance.database;
+      final exercisesJson = await db.query(tableExercises);
+      return exercisesJson.map((json) {
+        final stepsAsString = json['steps'] as String;
+        final steps = stepsAsString.split(',');
+        return CustomExercise.fromJson(json)..steps = steps;
+      }).toList();
+    } catch (e) {
+      printError('Error reading exercises: $e');
       rethrow;
     }
   }

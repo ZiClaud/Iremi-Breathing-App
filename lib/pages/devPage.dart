@@ -64,6 +64,32 @@ class _DevPageState extends State<DevPage> {
         name: "Test Exercise",
         description: "This is a test exercise",
         notes: 'This is a test note',
+        steps: ['Inhale', 'Exhale', 'Hold'],
+        times: 2,
+        inhaleTimeMs: 1000,
+        holdMiddleTimeMs: 1000,
+        exhaleTimeMs: 1000,
+        holdEndTimeMs: 1000,
+      ));
+      defaultDialog(context, "Success", "Saved exercise to database");
+      try {
+        DBCustomExercise().readAllExercises().then((value) => defaultDialog(
+            context, "N. of exercises:", value.length.toString()));
+      } catch (e) {
+        defaultDatabaseErrorDialog(context, e.toString());
+      }
+    } catch (e) {
+      defaultDatabaseErrorDialog(context, e.toString());
+      print(e);
+    }
+  }
+
+  Future<void> _doDevStuff3(BuildContext context) async {
+    try {
+      await DBCustomExercise().createExercise(CustomExercise(
+        name: "Test Exercise 2",
+        description: "This is a test exercise",
+        notes: 'This is a test note',
         steps: ['Inhale'],
         times: 2,
         inhaleTimeMs: 1000,
@@ -108,6 +134,12 @@ class _DevPageState extends State<DevPage> {
             icon: const Icon(Icons.cloud),
             onPressed: () {
               _doDevStuff2(context);
+            },
+          ),
+          IconButton(
+            icon: const Icon(Icons.code_off),
+            onPressed: () {
+              _doDevStuff3(context);
             },
           ),
           IconButton(
