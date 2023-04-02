@@ -3,9 +3,9 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../basics/customExercise.dart';
-import '../basics/exerciseHistory.dart';
-import '../utils/myUtils.dart';
+import '../basics/custom_exercise.dart';
+import '../basics/exercise_history.dart';
+import '../utils/my_utils.dart';
 
 const String tableUser = 'user';
 const String tableBadges = 'badges';

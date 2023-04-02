@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:intl/intl.dart';
 
-import 'notesDatabase.dart';
+import 'notes_database.dart';
 
 class NotesPage extends StatefulWidget {
   @override

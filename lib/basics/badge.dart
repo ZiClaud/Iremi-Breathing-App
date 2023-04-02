@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../database/database.dart';
-import '../utils/myUtils.dart';
+import '../utils/my_utils.dart';
 
 class MyBadge {
   final int id;

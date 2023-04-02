@@ -1,17 +1,12 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
-import 'package:iremibreathingapp/pages/devPage.dart';
-import 'package:iremibreathingapp/pages/exerciseAddPages.dart';
-import 'package:iremibreathingapp/pages/userPage.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
+import 'package:iremibreathingapp/pages/user_page.dart';
 
-import '../database/database.dart';
 import '../database/getters.dart';
-import '../utils/myUtils.dart';
-import 'exerciseInfoPages.dart';
+import '../utils/my_utils.dart';
+import 'exercise_info_pages.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);

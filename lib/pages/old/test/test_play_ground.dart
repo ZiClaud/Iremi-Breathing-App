@@ -22,7 +22,7 @@ class _TestPlayGroundState extends State<TestPlayGround> {
       ),
       body: ListTile(
         title: InputDecorator(
-          decoration: InputDecoration(
+          decoration: const InputDecoration(
             labelText: "Music",
             icon: Icon(Icons.music_note),
           ),

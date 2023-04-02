@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/database/getters.dart';
 
-import '../../../utils/defaultWidget.dart';
+import '../../../utils/default_widgets.dart';
 
 class SettingsFormWidget extends StatelessWidget {
   final String? language;

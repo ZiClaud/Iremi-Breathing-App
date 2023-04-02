@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/database/database.dart';
-import 'package:iremibreathingapp/utils/myUtils.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 
-import '../../utils/defaultWidget.dart';
+import '../../utils/default_widgets.dart';
 import '../../utils/theme.dart';
-import 'dbTestAddPage.dart';
+import 'db_test_add_page.dart';
 
 class TestDBShowUserPage extends StatefulWidget {
   const TestDBShowUserPage({

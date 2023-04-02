@@ -1,10 +1,10 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/customExercise.dart';
-import 'package:iremibreathingapp/basics/exerciseHistory.dart';
-import 'package:iremibreathingapp/utils/defaultWidget.dart';
-import 'package:iremibreathingapp/utils/myUtils.dart';
+import 'package:iremibreathingapp/basics/custom_exercise.dart';
+import 'package:iremibreathingapp/basics/exercise_history.dart';
+import 'package:iremibreathingapp/utils/default_widgets.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
 import '../database/database.dart';
@@ -205,8 +205,8 @@ class _DevPageState extends State<DevPage> {
             itemCount: exerciseHistory.length,
             itemBuilder: (context, index) {
               return defaultBadgeView(
-                exerciseHistory[index]!.exerciseDurationSeconds.toString(),
-                exerciseHistory[index]!.dateTime.toString(),
+                exerciseHistory[index].exerciseDurationSeconds.toString(),
+                exerciseHistory[index].dateTime.toString(),
                 Icons.history,
               );
             },

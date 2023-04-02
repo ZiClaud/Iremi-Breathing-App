@@ -5,8 +5,8 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
-import '../../utils/myUtils.dart';
-import '../forms/userFormWidget.dart';
+import '../../utils/my_utils.dart';
+import '../forms/user_form_widget.dart';
 
 class TestDBAddUserPage extends StatefulWidget {
   final MyUser? user;

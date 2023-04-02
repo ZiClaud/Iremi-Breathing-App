@@ -78,7 +78,7 @@ Text defaultButtonText(String message) {
   return Text(
     message,
     maxLines: null,
-    style: TextStyle(color: myButtonTextColor),
+    style: const TextStyle(color: myButtonTextColor),
   );
 }
 
@@ -136,7 +136,7 @@ BorderSide defaultBorderSide() {
 }
 
 Widget defaultLoadingScreen() {
-  return Center(
+  return const Center(
     child: Image(
       image: AssetImage('assets/icon/icon.png'),
     ),

@@ -1,8 +1,8 @@
 /*
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/pages/mainPage.dart';
+import 'package:iremibreathingapp/pages/main_page.dart';
 
-import '../utils/defaultWidget.dart';
+import '../utils/default_widgets.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);

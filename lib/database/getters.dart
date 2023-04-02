@@ -1,15 +1,15 @@
 import 'package:iremibreathingapp/basics/exercise.dart';
-import 'package:iremibreathingapp/basics/exerciseHistory.dart';
-import 'package:iremibreathingapp/basics/exercises/b478Exercise.dart';
-import 'package:iremibreathingapp/basics/exercises/boxBreathingExercise.dart';
-import 'package:iremibreathingapp/basics/customExercise.dart';
-import 'package:iremibreathingapp/basics/exercises/deepBreathingExerciseBeginner.dart';
+import 'package:iremibreathingapp/basics/exercise_history.dart';
+import 'package:iremibreathingapp/basics/exercises/exercise_478.dart';
+import 'package:iremibreathingapp/basics/exercises/exercise_box_breathing.dart';
+import 'package:iremibreathingapp/basics/custom_exercise.dart';
+import 'package:iremibreathingapp/basics/exercises/exercise_deep_breathing_beginner.dart';
 import 'package:iremibreathingapp/basics/user.dart';
-import 'package:iremibreathingapp/utils/myUtils.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
-import '../basics/exercises/deepBreathingExerciseAvanced.dart';
-import '../basics/exercises/deepBreathingExerciseIntermediate.dart';
+import '../basics/exercises/exercise_deep_breathing_avanced.dart';
+import '../basics/exercises/exercise_deep_breathing_intermediate.dart';
 import 'database.dart';
 
 class Getters {

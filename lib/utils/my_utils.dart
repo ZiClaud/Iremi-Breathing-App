@@ -3,10 +3,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
-import 'package:iremibreathingapp/pages/exercisePage.dart';
+import 'package:iremibreathingapp/pages/exercise_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'defaultWidget.dart';
+import 'default_widgets.dart';
 
 class MyUtils {
   static String getItalianDateFormat(DateTime dateTime) {

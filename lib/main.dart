@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/pages/mainPage.dart';
-import 'package:iremibreathingapp/pages/registerPageDB.dart';
-import 'package:iremibreathingapp/utils/defaultWidget.dart';
-import 'package:iremibreathingapp/utils/myUtils.dart';
+import 'package:iremibreathingapp/pages/main_page.dart';
+import 'package:iremibreathingapp/pages/register_page.dart';
+import 'package:iremibreathingapp/utils/default_widgets.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

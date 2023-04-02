@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/badge.dart';
-import 'package:iremibreathingapp/basics/exerciseHistory.dart';
-import 'package:iremibreathingapp/pages/registerPageDB.dart';
-import 'package:iremibreathingapp/pages/settingsPage.dart';
+import 'package:iremibreathingapp/basics/exercise_history.dart';
+import 'package:iremibreathingapp/pages/register_page.dart';
+import 'package:iremibreathingapp/pages/settings_page.dart';
 
 import '../basics/user.dart';
 import '../database/getters.dart';
-import '../utils/defaultWidget.dart';
+import '../utils/default_widgets.dart';
 
 class UserPage extends StatefulWidget {
   UserPage({Key? key}) : super(key: key);

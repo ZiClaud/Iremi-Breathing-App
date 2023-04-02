@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/utils/myUtils.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
-import '../database/forms/exerciseFormWidget.dart';
-import '../utils/defaultWidget.dart';
-import 'mainPage.dart';
+import '../database/forms/exercise_form_widget.dart';
+import '../utils/default_widgets.dart';
+import 'main_page.dart';
 
 class ExerciseAddPages extends StatefulWidget {
 
@@ -32,13 +32,6 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       _ExerciseAddStepsPage(
         formData: formData,
       ),
-      /*
-      ExerciseFormWidget(
-        formData: formData,
-        onAddStep: () {},
-        onRemoveStep: (int) {},
-      ),
-      */
     ];
   }
 

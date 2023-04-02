@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 
-import '../utils/defaultWidget.dart';
-import '../utils/myUtils.dart';
-import 'exercisePage.dart';
+import '../utils/default_widgets.dart';
+import '../utils/my_utils.dart';
+import 'exercise_page.dart';
 
 class ExerciseInfoPages extends StatefulWidget {
   MyExercise exercise;

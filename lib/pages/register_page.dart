@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/user.dart';
-import 'package:iremibreathingapp/pages/mainPage.dart';
+import 'package:iremibreathingapp/pages/main_page.dart';
 
 import '../database/database.dart';
-import '../database/forms/userFormWidget.dart';
-import '../utils/defaultWidget.dart';
-import '../utils/myUtils.dart';
+import '../database/forms/user_form_widget.dart';
+import '../utils/default_widgets.dart';
+import '../utils/my_utils.dart';
 
 class RegisterPageDB extends StatefulWidget {
   final MyUser? user;

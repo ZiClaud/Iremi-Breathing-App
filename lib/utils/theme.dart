@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'myUtils.dart';
+import 'my_utils.dart';
 
 IremiTheme myTheme = IremiTheme();
 const Color _myBluLight = Color(0xFF07C2E6);

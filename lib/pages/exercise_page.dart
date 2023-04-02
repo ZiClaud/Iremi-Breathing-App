@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 
 import '../basics/badge.dart';
-import '../utils/defaultWidget.dart';
+import '../utils/default_widgets.dart';
 import '../utils/theme.dart';
 
 class ExercisePage extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/database/driveBackupAndRestore.dart';
+import 'package:iremibreathingapp/database/drive_backup_and_restore.dart';
 import 'package:iremibreathingapp/database/getters.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -7,10 +7,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../basics/badge.dart';
 import '../basics/user.dart';
 import '../database/database.dart';
-import '../utils/defaultWidget.dart';
-import '../utils/myUtils.dart';
-import 'devPage.dart';
-import 'mainPage.dart';
+import '../utils/default_widgets.dart';
+import '../utils/my_utils.dart';
+import 'dev_page.dart';
+import 'main_page.dart';
 
 class SettingsPage extends StatefulWidget {
   final MyUser? user;

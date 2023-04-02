@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../pages/exerciseAddPages.dart';
+import '../../pages/exercise_add_pages.dart';
 /*
 class ExerciseFormWidget extends StatelessWidget {
   final String? name;
