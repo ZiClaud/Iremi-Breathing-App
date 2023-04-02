@@ -3,7 +3,7 @@ import 'package:iremibreathingapp/basics/user.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../basics/custom_exercise.dart';
+import '../basics/exercise_custom.dart';
 import '../basics/exercise_history.dart';
 import '../utils/my_utils.dart';
 

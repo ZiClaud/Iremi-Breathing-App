@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/custom_exercise.dart';
+import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
 import 'package:iremibreathingapp/utils/default_widgets.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
