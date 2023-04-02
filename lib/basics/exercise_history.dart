@@ -17,7 +17,8 @@ class ExerciseHistory {
     return dateTime;
   }
 
-  ExerciseHistory({this.id, required this.exerciseDurationSeconds, required this.dateTime});
+  ExerciseHistory(
+      {this.id, required this.exerciseDurationSeconds, required this.dateTime});
 
   copy({
     int? id,
@@ -26,14 +27,17 @@ class ExerciseHistory {
   }) =>
       ExerciseHistory(
         id: id ?? this.id,
-        exerciseDurationSeconds: exerciseDurationSeconds ?? this.exerciseDurationSeconds,
+        exerciseDurationSeconds:
+            exerciseDurationSeconds ?? this.exerciseDurationSeconds,
         dateTime: dateTime ?? this.dateTime,
       );
 
   static ExerciseHistory fromJson(Map<String, Object?> json) => ExerciseHistory(
         id: json[ExerciseHistoryFields.id] as int?,
-        exerciseDurationSeconds: json[ExerciseHistoryFields.exerciseDurationSeconds] as int,
-        dateTime: DateTime.parse(json[ExerciseHistoryFields.dateTime] as String),
+        exerciseDurationSeconds:
+            json[ExerciseHistoryFields.exerciseDurationSeconds] as int,
+        dateTime:
+            DateTime.parse(json[ExerciseHistoryFields.dateTime] as String),
       );
 
   Map<String, Object?> toJson() => {
@@ -45,7 +49,8 @@ class ExerciseHistory {
   static ExerciseHistory fromMap(Map<String, dynamic> map) {
     return ExerciseHistory(
       id: map[ExerciseHistoryFields.id],
-      exerciseDurationSeconds: map[ExerciseHistoryFields.exerciseDurationSeconds],
+      exerciseDurationSeconds:
+          map[ExerciseHistoryFields.exerciseDurationSeconds],
       dateTime: DateTime.parse(map[ExerciseHistoryFields.dateTime]),
     );
   }
@@ -60,7 +65,8 @@ class ExerciseHistory {
 
   String toJsonString() => json.encode(toJson());
 
-  static ExerciseHistory fromJsonString(String source) => fromJson(json.decode(source));
+  static ExerciseHistory fromJsonString(String source) =>
+      fromJson(json.decode(source));
 }
 
 class ExerciseHistoryFields {

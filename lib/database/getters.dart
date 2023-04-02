@@ -1,8 +1,8 @@
 import 'package:iremibreathingapp/basics/exercise.dart';
+import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_478.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_box_breathing.dart';
-import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_deep_breathing_beginner.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
@@ -88,7 +88,8 @@ class Getters {
 
   static Future<List<ExerciseHistory>> getExerciseHistoryDB(context) async {
     try {
-      List<ExerciseHistory?> val = await DBExerciseHistory().readAllExerciseHistory();
+      List<ExerciseHistory?> val =
+          await DBExerciseHistory().readAllExerciseHistory();
       List<ExerciseHistory> ris = [];
 
       for (ExerciseHistory? exerciseHistory in val) {

@@ -71,7 +71,7 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     Achievement.addAchievement(PossibleBadges.customizer, context);
   }
 
-  void _saveExercise(BuildContext context) async {
+  void _saveExercise(BuildContext context) {
     // TODO: Fix "Steps" -> they don't work at all
     if (formData.name == null || formData.name!.isEmpty) {
       throw Exception("Please enter a name for the exercise");
@@ -82,12 +82,27 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
 
     int inhaleDuration = formData.inhaleDuration ?? 0;
     int inhaleDurationMs = formData.inhaleDurationMs ?? 0;
+    if (inhaleDuration == 0 && inhaleDurationMs == 0) {
+      inhaleDurationMs = 1;
+    }
+
     int holdMiddleDuration = formData.holdMiddleDuration ?? 0;
     int holdMiddleDurationMs = formData.holdMiddleDurationMs ?? 0;
+    if (holdMiddleDuration == 0 && holdMiddleDurationMs == 0) {
+      holdMiddleDurationMs = 1;
+    }
+
     int exhaleDuration = formData.exhaleDuration ?? 0;
     int exhaleDurationMs = formData.exhaleDurationMs ?? 0;
+    if (exhaleDuration == 0 && exhaleDurationMs == 0) {
+      exhaleDurationMs = 1;
+    }
+
     int holdEndDuration = formData.holdEndDuration ?? 0;
     int holdEndDurationMs = formData.holdEndDurationMs ?? 0;
+    if (holdEndDuration == 0 && holdEndDurationMs == 0) {
+      holdEndDurationMs = 1;
+    }
 
     final newExercise = CustomExercise(
       name: formData.name!,
@@ -102,16 +117,16 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     );
 
     try {
-      await DBCustomExercise().createExercise(newExercise);
+      DBCustomExercise().createExercise(newExercise);
     } catch (e) {
       rethrow;
+    } finally {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => const MainPage()),
+        (route) => false,
+      );
     }
-
-    Navigator.pushAndRemoveUntil(
-      context,
-      MaterialPageRoute(builder: (context) => const MainPage()),
-      (route) => false,
-    );
   }
 }
 

@@ -48,8 +48,10 @@ const Map<int, Color> myColorMapDark = {
   900: Color.fromRGBO(0, 124, 154, 1.0),
 };
 
-const MaterialColor myBluLightMaterial = MaterialColor(0xFF3B44AC, myColorMapLight);
-const MaterialColor myBluDarkMaterial = MaterialColor(0xFF3B44AC, myColorMapDark);
+const MaterialColor myBluLightMaterial =
+    MaterialColor(0xFF3B44AC, myColorMapLight);
+const MaterialColor myBluDarkMaterial =
+    MaterialColor(0xFF3B44AC, myColorMapDark);
 
 //ColorScheme myLightColorScheme = ColorScheme(brightness: Brightness.light, primary: _myBluLight, onPrimary: _myBlack, secondary: _myBluLight, onSecondary: _myBlack, error: myBluNeutral, onError: _myBlack, background: _myBluLight, onBackground: _myBluLight, surface: _myBluLight, onSurface: _myBluLight);
 
@@ -148,7 +150,6 @@ class IremiTheme with ChangeNotifier {
   }
 }
 
-
 TextTheme defaultLightTextTheme() {
   return TextTheme(
     displayLarge: defaultLightTextStyle(),
@@ -190,7 +191,9 @@ TextTheme defaultDarkTextTheme() {
 }
 
 TextStyle getChartDefaultTextStyle() {
-  return IremiTheme.isDarkTheme() ? defaultDarkTextStyle() : defaultLightTextStyle();
+  return IremiTheme.isDarkTheme()
+      ? defaultDarkTextStyle()
+      : defaultLightTextStyle();
 }
 
 TextStyle defaultLightTextStyle() {
@@ -207,11 +210,13 @@ TextStyle defaultButtonTextStyle() {
 }
 
 TextStyle defaultSmallButtonTextStyle() {
-  return const TextStyle(color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
+  return const TextStyle(
+      color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
 }
 
 TextStyle defaultSmallerButtonTextStyle() {
-  return const TextStyle(color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
+  return const TextStyle(
+      color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
 }
 
 MaterialStateProperty<TextStyle> defaultLightMSPTextStyle() {

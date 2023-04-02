@@ -202,7 +202,6 @@ class DBMyUser {
     }
   }
 
-
   Future<List<MyUser>> readAllUsers() async {
     try {
       final db = await MyDatabase.instance.database;
@@ -431,14 +430,14 @@ class DBCustomExercise {
   }
 }
 
-
 /// DBExerciseHistory
 class DBExerciseHistory {
   Future<ExerciseHistory> createExerciseHistory(
       ExerciseHistory exerciseHistory) async {
     try {
       final db = await MyDatabase.instance.database;
-      final id = await db.insert(tableExerciseHistory, exerciseHistory.toJson());
+      final id =
+          await db.insert(tableExerciseHistory, exerciseHistory.toJson());
       return exerciseHistory.copy(id: id);
     } catch (e) {
       printError('Error creating exerciseHistory: $e');

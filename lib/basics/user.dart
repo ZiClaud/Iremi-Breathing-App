@@ -46,9 +46,7 @@ class MyUser {
 }
 
 class UserFields {
-  static final List<String> values = [
-    id, username, name, sex, goal
-  ];
+  static final List<String> values = [id, username, name, sex, goal];
 
   static const String id = '_id';
   static const String username = 'username';
@@ -56,4 +54,3 @@ class UserFields {
   static const String sex = 'sex';
   static const String goal = 'goal';
 }
-

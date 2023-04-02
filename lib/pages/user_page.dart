@@ -47,7 +47,8 @@ class _UserPageState extends State<UserPage> {
   }
 
   Future<void> _getExerciseHistory() async {
-    List<ExerciseHistory> exerciseHistory = await Getters.getExerciseHistoryDB(context);
+    List<ExerciseHistory> exerciseHistory =
+        await Getters.getExerciseHistoryDB(context);
     if (exerciseHistory.isNotEmpty) {
       setState(() {
         _exerciseHistory = exerciseHistory;
@@ -119,8 +120,8 @@ Widget _showExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
   return (exerciseHistory.isNotEmpty)
       ? defaultExerciseHistoryWidget(exerciseHistory)
       : Center(
-    child: defaultText('No exercise history found'),
-  );
+          child: defaultText('No exercise history found'),
+        );
 }
 
 /// APPBAR

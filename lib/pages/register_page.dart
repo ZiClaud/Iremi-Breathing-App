@@ -36,7 +36,8 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text((widget.user == null) ? "Register" : "Edit user")),
+        appBar: AppBar(
+            title: Text((widget.user == null) ? "Register" : "Edit user")),
         body: Column(
           children: [
             Form(
@@ -99,7 +100,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const MainPage()),
-              (route) => false,
+          (route) => false,
         );
       } catch (e) {
         defaultDatabaseErrorDialog(context, e.toString());

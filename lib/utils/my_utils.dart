@@ -92,7 +92,8 @@ Future defaultDatabaseErrorDialog(context, String message) {
   print("TODO: IMPORTANT BEFORE RELEASE: Remove comment");
   printWarning("Database error: " + message);
 //  throw Exception("TODO: IMPORTANT BEFORE RELEASE: Remove comment");
-  return defaultDialog(context, "Database error", message); // TODO: IMPORTANT BEFORE RELEASE: Remove comment
+  return defaultDialog(context, "Database error",
+      message); // TODO: IMPORTANT BEFORE RELEASE: Remove comment
 }
 
 Future defaultDatabaseErrorDialog2(context, message) {
@@ -115,8 +116,7 @@ Future defaultDatabaseErrorDialog2(context, message) {
   );
 }
 
-Future defaultDialog(
-    context, String title, String message) {
+Future defaultDialog(context, String title, String message) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {

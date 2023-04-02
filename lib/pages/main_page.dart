@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
@@ -25,7 +24,8 @@ class _MainPageState extends State<MainPage> {
   }
 
   Future<void> _loadCustomExercises() async {
-    List<MyExercise?> customExercises = await Getters.getCustomExercisesDB(context);
+    List<MyExercise?> customExercises =
+        await Getters.getCustomExercisesDB(context);
     setState(() {
       exercises.addAll(customExercises.whereType<MyExercise>());
     });

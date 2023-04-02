@@ -47,10 +47,7 @@ class _MyAppState extends State<MyApp> {
 
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/utils/default_widgets.dart';
-import 'package:iremibreathingapp/utils/my_utils.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 
 import 'basics/exercise_history.dart';
 

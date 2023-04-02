@@ -16,11 +16,13 @@ void main() {
 
     if (isFirstTime) {
       // Set default settings for the first time
-      prefs.setBool('darkMode', true); //TODO: Exchange "true" to "isDefaultThemeDark2()"
+      prefs.setBool(
+          'darkMode', true); //TODO: Exchange "true" to "isDefaultThemeDark2()"
       prefs.setBool('music', true);
       prefs.setBool('voice', true);
       prefs.setString('voiceType', Getters.getFirstVoiceType());
-      prefs.setString('language', Getters.getFirstLanguage()); // TODO: Change with user's language
+      prefs.setString('language',
+          Getters.getFirstLanguage()); // TODO: Change with user's language
       prefs.setBool('dev', false);
 
       // Set isFirstTime to false to indicate that the app has been opened before

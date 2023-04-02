@@ -58,17 +58,22 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
 
     _animation = TweenSequence([
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.zero, end: Size.square(defaultCircleSize())),
+        tween: Tween<Size>(
+            begin: Size.zero, end: Size.square(defaultCircleSize())),
         weight: widget.exercise.getInhaleDuration().inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.square(defaultCircleSize()), end: Size.square(defaultCircleSize())),
-        weight: widget.exercise.getHoldMiddleDuration().inMilliseconds.toDouble() /
-            _controller.duration!.inMilliseconds.toDouble(),
+        tween: Tween<Size>(
+            begin: Size.square(defaultCircleSize()),
+            end: Size.square(defaultCircleSize())),
+        weight:
+            widget.exercise.getHoldMiddleDuration().inMilliseconds.toDouble() /
+                _controller.duration!.inMilliseconds.toDouble(),
       ),
       TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.square(defaultCircleSize()), end: Size.zero),
+        tween: Tween<Size>(
+            begin: Size.square(defaultCircleSize()), end: Size.zero),
         weight: widget.exercise.getExhaleDuration().inMilliseconds.toDouble() /
             _controller.duration!.inMilliseconds.toDouble(),
       ),
@@ -101,7 +106,9 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
   }
 
   void _finishExercise(BuildContext context) {
-    DBExerciseHistory().createExerciseHistory(ExerciseHistory(exerciseDurationSeconds: widget.exercise.getTime().inSeconds, dateTime: DateTime.now()));
+    DBExerciseHistory().createExerciseHistory(ExerciseHistory(
+        exerciseDurationSeconds: widget.exercise.getTime().inSeconds,
+        dateTime: DateTime.now()));
 
     Achievement.addAchievement(PossibleBadges.airApprentice, context);
     if (widget.exercise.getTime().inMinutes >= 5) {

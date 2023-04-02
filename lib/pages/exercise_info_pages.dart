@@ -76,8 +76,8 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
           defaultInputDecorator("Inhale, hold, exhale, hold",
               getDurationString(exercise), Icons.book),
           defaultInputDecorator("Times", "${exercise.times}", Icons.repeat),
-          defaultInputDecorator("Duration of exercise",
-              getTimeString(exercise), Icons.timelapse_sharp),
+          defaultInputDecorator("Duration of exercise", getTimeString(exercise),
+              Icons.timelapse_sharp),
         ],
       ),
     );
@@ -105,7 +105,8 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
           String step = exercise.steps[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
-            child: defaultInputDecorator("Step ${index + 1}", step, Icons.shape_line),
+            child: defaultInputDecorator(
+                "Step ${index + 1}", step, Icons.shape_line),
           );
         },
       ),
@@ -113,8 +114,8 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
   }
 }
 
-FloatingActionButton _startExercise(MyExercise exercise, context){
-  return  FloatingActionButton(
+FloatingActionButton _startExercise(MyExercise exercise, context) {
+  return FloatingActionButton(
     child: const Icon(Icons.play_arrow),
     onPressed: () => {
       Navigator.push(
