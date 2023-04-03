@@ -10,6 +10,7 @@ import '../database/database.dart';
 import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 import 'dev_page.dart';
+import 'home_page.dart';
 import 'main_page.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -103,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
       await DBMyUser().deleteUser(widget.user!.id!);
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
@@ -115,7 +116,7 @@ class _SettingsPageState extends State<SettingsPage> {
       await MyDatabase.instance.deleteDB();
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());

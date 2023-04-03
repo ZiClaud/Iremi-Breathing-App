@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
-import 'package:iremibreathingapp/pages/register_page.dart';
-import 'package:iremibreathingapp/pages/settings_page.dart';
 
-import '../basics/user.dart';
 import '../database/getters.dart';
 import '../utils/default_widgets.dart';
 
@@ -60,7 +57,7 @@ class _ProgressPageState extends State<ProgressPage> {
           ),
         ],
       ),
-      bottomNavigationBar: getBottomNavigationBar(context, 0),
+//      bottomNavigationBar: getBottomNavigationBar(context, 0),
     );
   }
 }
@@ -90,4 +87,3 @@ Widget _showExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
           child: defaultText('No exercise history found'),
         );
 }
-

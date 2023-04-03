@@ -7,6 +7,7 @@ import '../basics/exercise_custom.dart';
 import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 import 'exercise_page.dart';
+import 'home_page.dart';
 import 'main_page.dart';
 
 class ExerciseInfoPages extends StatefulWidget {
@@ -92,7 +93,7 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
                   .deleteExercise((widget.exercise as CustomExercise).id!),
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const MainPage()),
+                MaterialPageRoute(builder: (context) => const HomePage()),
                 (route) => false,
               ),
             },

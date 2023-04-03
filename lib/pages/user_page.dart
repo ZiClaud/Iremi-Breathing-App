@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/badge.dart';
-import 'package:iremibreathingapp/basics/exercise_history.dart';
 import 'package:iremibreathingapp/pages/register_page.dart';
 import 'package:iremibreathingapp/pages/settings_page.dart';
 
@@ -42,23 +40,23 @@ class _UserPageState extends State<UserPage> {
             child: _showUserWidget(_user),
           ),
           OutlinedButton(
-            child: (_user != null) ? Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.edit,
-                ),
-                Text("Edit user"),
-              ],
-            ) : Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Icon(
-                  Icons.add,
-                ),
-                Text("Register user"),
-              ],
-            ),
+            child: (_user != null)
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.edit,
+                      ),
+                      Text("Edit user"),
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      defaultButtonIcon(Icons.add),
+                      defaultButtonText("Register user"),
+                    ],
+                  ),
             onPressed: () {
               Navigator.push(
                 context,
@@ -72,10 +70,8 @@ class _UserPageState extends State<UserPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  Icons.settings,
-                ),
-                Text("Settings"),
+                defaultButtonIcon(Icons.settings),
+                defaultButtonText("Settings"),
               ],
             ),
             onPressed: () {
@@ -89,7 +85,7 @@ class _UserPageState extends State<UserPage> {
           ),
         ],
       ),
-      bottomNavigationBar: getBottomNavigationBar(context, 2),
+//      bottomNavigationBar: getBottomNavigationBar(context, 2),
     );
   }
 }

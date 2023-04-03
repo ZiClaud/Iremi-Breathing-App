@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/database/database.dart';
+import 'package:iremibreathingapp/pages/home_page.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
@@ -124,7 +125,7 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     } finally {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const MainPage()),
+        MaterialPageRoute(builder: (context) => const HomePage()),
         (route) => false,
       );
     }

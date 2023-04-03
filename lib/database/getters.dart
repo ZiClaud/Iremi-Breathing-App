@@ -1,6 +1,3 @@
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';

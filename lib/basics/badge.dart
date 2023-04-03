@@ -216,8 +216,8 @@ class Achievement {
 
   static void _addBadge(PossibleBadges badge) {
     try {
-      DBMyBadge().createBadge(MyBadge(
-          id: badge.id, date: getItalianDateFormat(DateTime.now())));
+      DBMyBadge().createBadge(
+          MyBadge(id: badge.id, date: getItalianDateFormat(DateTime.now())));
     } catch (e) {
       rethrow;
     }

@@ -7,6 +7,13 @@ const Color _myBluLight = Color(0xFF07C2E6);
 const Color myBluNeutral = Color(0xFF01B3CA);
 const Color _myBluDark = Color(0xFF007C9A);
 
+const Color myButtonTextColor = Color(0xFFFFFFFF);
+
+const Color _myWhite = Color(0xFFFFFFFF);
+const Color _myLightBackgroundColor = Color(0xFFFFFFFF);
+const Color _myDarkBackgroundColor = Color(0xFF282828);
+const Color _myBlack = Color(0xFF000000);
+
 Color myBluLightDark() {
   return IremiTheme.isDarkTheme() ? _myBluDark : _myBluLight;
 }
@@ -15,12 +22,13 @@ Color myBluLightDarkOpposite() {
   return IremiTheme.isDarkTheme() ? _myBluLight : _myBluDark;
 }
 
-const Color myButtonTextColor = Color(0xFFFFFFFF);
+Color myWhiteBlack() {
+  return IremiTheme.isDarkTheme() ? _myWhite : _myBlack;
+}
 
-const Color _myWhite = Color(0xFFFFFFFF);
-const Color _myLightBackgroundColor = Color(0xFFFFFFFF);
-const Color _myDarkBackgroundColor = Color(0xFF282828);
-const Color _myBlack = Color(0xFF000000);
+Color myWhiteBlackOpposite() {
+  return IremiTheme.isDarkTheme() ? _myBlack : _myWhite;
+}
 
 const Map<int, Color> myColorMapLight = {
   50: Color.fromRGBO(7, 194, 230, .1),
@@ -116,7 +124,9 @@ class IremiTheme with ChangeNotifier {
       textButtonTheme: TextButtonThemeData(
         style: defaultLightButtonStyle(),
       ),
-//        textFormField
+      cardTheme: CardTheme(
+        color: _myLightBackgroundColor,
+      ),
     );
   }
 
@@ -158,6 +168,9 @@ class IremiTheme with ChangeNotifier {
       ),
       textButtonTheme: TextButtonThemeData(
         style: defaultDarkButtonStyle(),
+      ),
+      cardTheme: CardTheme(
+        color: _myDarkBackgroundColor,
       ),
     );
   }

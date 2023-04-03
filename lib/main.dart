@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/pages/home_page.dart';
 import 'package:iremibreathingapp/pages/main_page.dart';
 import 'package:iremibreathingapp/pages/register_page.dart';
 import 'package:iremibreathingapp/utils/default_widgets.dart';
@@ -87,7 +88,7 @@ FutureBuilder _home() {
 Future<StatefulWidget> _getFutureFirstPage() async {
   try {
     if (await DBMyUser().getFirstUser() != null) {
-      return const MainPage();
+      return const HomePage();
     } else {
       return RegisterPageDB();
     }

@@ -26,7 +26,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> _loadCustomExercises() async {
     List<MyExercise?> customExercises =
-        await Getters.getCustomExercisesDB(context);
+    await Getters.getCustomExercisesDB(context);
     setState(() {
       exercises.addAll(customExercises.whereType<MyExercise>());
     });
@@ -70,13 +70,13 @@ class _MainPageState extends State<MainPage> {
           return _showExerciseWidget(exercise);
         },
       ),
-      bottomNavigationBar: getBottomNavigationBar(context, 1),
+//      bottomNavigationBar: getBottomNavigationBar(context, 1),
     );
   }
 
   Widget _showExerciseWidget(MyExercise exercise) {
     return ListTile(
-      title: _showExerciseModel(exercise),
+      title: showExerciseModel(exercise),
       onTap: () {
         Navigator.push(
           context,
@@ -85,18 +85,6 @@ class _MainPageState extends State<MainPage> {
           ),
         );
       },
-    );
-  }
-
-  Widget _showExerciseModel(MyExercise exercise) {
-    /// Graphics
-    // TODO: IMPROVE, MASSIVELY
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(exercise.name),
-        Text(getTimeString(exercise)),
-      ],
     );
   }
 }

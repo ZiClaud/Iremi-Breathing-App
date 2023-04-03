@@ -4,6 +4,7 @@ import 'package:iremibreathingapp/pages/progress_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../basics/exercise.dart';
 import '../basics/exercise_history.dart';
 import '../pages/main_page.dart';
 import '../pages/user_page.dart';
@@ -14,7 +15,58 @@ double defaultCircleSize() {
   return 200;
 }
 
-BottomNavigationBar getBottomNavigationBar(context, currentIndex) {
+Widget showExerciseModel(MyExercise exercise) {
+  return Card(
+    elevation: 2.0,
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  exercise.name,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: 4.0),
+                Row(
+                  children: [
+                    Icon(Icons.timer, size: 16.0, color: myWhiteBlack()),
+                    // TODO: Fix the color, of the icon it doesn't update on dark mode change
+                    SizedBox(width: 4.0),
+                    Text(
+                      getTimeString(exercise),
+                      style: TextStyle(fontSize: 14.0),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget showExerciseModelOld(MyExercise exercise) {
+  /// Graphics
+  // TODO: IMPROVE, MASSIVELY
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Text(exercise.name),
+      Text(getTimeString(exercise)),
+    ],
+  );
+}
+
+BottomNavigationBar _getBottomNavigationBar(context, currentIndex) {
   BottomNavigationBarItem homePageItem = const BottomNavigationBarItem(
     icon: Icon(Icons.home),
     label: "Home",
@@ -126,6 +178,13 @@ Text defaultButtonText(String message) {
     message,
     maxLines: null,
     style: const TextStyle(color: myButtonTextColor),
+  );
+}
+
+Icon defaultButtonIcon(IconData iconData) {
+  return Icon(
+    iconData,
+    color: myButtonTextColor,
   );
 }
 
