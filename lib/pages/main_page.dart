@@ -63,7 +63,7 @@ class _MainPageState extends State<MainPage> {
               },
             ),
           ]),
-      body: ListView.builder(
+      body: ListView.builder( // TODO: Change with Wrap?
         itemCount: exercises.length,
         itemBuilder: (context, index) {
           MyExercise exercise = exercises[index];

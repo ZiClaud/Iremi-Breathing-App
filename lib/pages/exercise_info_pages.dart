@@ -8,7 +8,6 @@ import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 import 'exercise_page.dart';
 import 'home_page.dart';
-import 'main_page.dart';
 
 class ExerciseInfoPages extends StatefulWidget {
   MyExercise exercise;

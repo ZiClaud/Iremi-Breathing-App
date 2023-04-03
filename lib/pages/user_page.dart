@@ -43,11 +43,11 @@ class _UserPageState extends State<UserPage> {
             child: (_user != null)
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
+                    children: [
+                      defaultButtonIcon(
                         Icons.edit,
                       ),
-                      Text("Edit user"),
+                      defaultButtonText("Edit user"),
                     ],
                   )
                 : Row(
