@@ -3,32 +3,22 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
-import 'package:iremibreathingapp/pages/exercise_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'default_widgets.dart';
 
-class MyUtils {
-  static String getItalianDateFormat(DateTime dateTime) {
-    if (dateTime.day < 10 && dateTime.month < 10) {
-      return "0${dateTime.day}/0${dateTime.month}/${dateTime.year}";
-    } else if (dateTime.day < 10) {
-      return "0${dateTime.day}/${dateTime.month}/${dateTime.year}";
-    } else if (dateTime.month < 10) {
-      return "${dateTime.day}/0${dateTime.month}/${dateTime.year}";
-    }
+bool isDev = false; // TODO IMPORTANT: Change to false when building for release
 
-    return "${dateTime.day}/${dateTime.month}/${dateTime.year}";
+String getItalianDateFormat(DateTime dateTime) {
+  if (dateTime.day < 10 && dateTime.month < 10) {
+    return "0${dateTime.day}/0${dateTime.month}/${dateTime.year}";
+  } else if (dateTime.day < 10) {
+    return "0${dateTime.day}/${dateTime.month}/${dateTime.year}";
+  } else if (dateTime.month < 10) {
+    return "${dateTime.day}/0${dateTime.month}/${dateTime.year}";
   }
-}
 
-void navigateToExercisePage(context, MyExercise exercise) {
-  Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => ExercisePage(exercise: exercise),
-    ),
-  );
+  return "${dateTime.day}/${dateTime.month}/${dateTime.year}";
 }
 
 String getDurationString(MyExercise exercise) {
@@ -91,9 +81,7 @@ bool isDefaultThemeDark(context) {
 Future defaultDatabaseErrorDialog(context, String message) {
   print("TODO: IMPORTANT BEFORE RELEASE: Remove comment");
   printWarning("Database error: " + message);
-//  throw Exception("TODO: IMPORTANT BEFORE RELEASE: Remove comment");
-  return defaultDialog(context, "Database error",
-      message); // TODO: IMPORTANT BEFORE RELEASE: Remove comment
+  return defaultDialog(context, "Database error", message);
 }
 
 Future defaultDatabaseErrorDialog2(context, message) {

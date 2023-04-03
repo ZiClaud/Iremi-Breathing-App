@@ -46,62 +46,55 @@ class _MyAppState extends State<MyApp> {
 */
 
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/utils/default_widgets.dart';
-import 'package:iremibreathingapp/utils/theme.dart';
-
-import 'basics/exercise_history.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 void main() {
-  return runApp(_ChartApp());
+  runApp(MyApp());
 }
 
-class _ChartApp extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: IremiTheme.darkTheme,
-      home: _MyHomePage(),
+      title: 'Google Sign-In Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),
     );
   }
 }
 
-class _MyHomePage extends StatefulWidget {
-  // ignore: prefer_const_constructors_in_immutables
-  _MyHomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    scopes: <String>[
+      'email',
+      'https://www.googleapis.com/auth/drive.appdata',
+    ],
+  );
 
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<_MyHomePage> {
-  List<_SalesData> data = [
-    _SalesData('Jan', 35),
-    _SalesData('Feb', 28),
-    _SalesData('Mar', 34),
-    _SalesData('Apr', 32),
-    _SalesData('May', 40)
-  ];
-
-  List<ExerciseHistory> exerciseHistory = [
-    ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2022)),
-    ExerciseHistory(exerciseDurationSeconds: 500, dateTime: DateTime.now()),
-    ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2021)),
-  ];
+  Future<void> _handleSignIn() async {
+    try {
+      await _googleSignIn.signIn();
+      print('Signed in successfully.');
+    } catch (error) {
+      print('Error signing in with Google: $error');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Syncfusion Flutter chart'),
+        title: Text('Google Sign-In Demo'),
       ),
-      body: defaultExerciseHistoryWidget(exerciseHistory),
+      body: Center(
+        child: OutlinedButton(
+          onPressed: _handleSignIn,
+          child: Text('Sign in with Google'),
+        ),
+      ),
     );
   }
 }
 
-class _SalesData {
-  _SalesData(this.year, this.sales);
-
-  final String year;
-  final double sales;
-}

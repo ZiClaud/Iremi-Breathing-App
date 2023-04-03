@@ -1,3 +1,6 @@
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
@@ -29,7 +32,7 @@ class Getters {
   }
 
   static String getFirstLanguage() {
-    // TODO: Replace with something that gets the default language
+    // TODO: Change with user's language
     return getAvailableLanguages().first;
   }
 

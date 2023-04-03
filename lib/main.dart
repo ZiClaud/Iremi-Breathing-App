@@ -21,8 +21,7 @@ void main() {
       prefs.setBool('music', true);
       prefs.setBool('voice', true);
       prefs.setString('voiceType', Getters.getFirstVoiceType());
-      prefs.setString('language',
-          Getters.getFirstLanguage()); // TODO: Change with user's language
+      prefs.setString('language', Getters.getFirstLanguage());
       prefs.setBool('dev', false);
 
       // Set isFirstTime to false to indicate that the app has been opened before

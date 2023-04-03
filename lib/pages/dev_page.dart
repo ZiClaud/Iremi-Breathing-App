@@ -124,30 +124,34 @@ class _DevPageState extends State<DevPage> {
       appBar: AppBar(
         title: Text("DEV Page"),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.code),
-            onPressed: () {
-              _doDevStuff1(context);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.cloud),
-            onPressed: () {
-              _doDevStuff2(context);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.code_off),
-            onPressed: () {
-              _doDevStuff3(context);
-            },
-          ),
-          IconButton(
-            icon: const Icon(Icons.star),
-            onPressed: () {
-              _addRandomAchievement(context);
-            },
-          ),
+          if (isDev)
+            IconButton(
+              icon: const Icon(Icons.code),
+              onPressed: () {
+                _doDevStuff1(context);
+              },
+            ),
+          if (isDev)
+            IconButton(
+              icon: const Icon(Icons.cloud),
+              onPressed: () {
+                _doDevStuff2(context);
+              },
+            ),
+          if (isDev)
+            IconButton(
+              icon: const Icon(Icons.code_off),
+              onPressed: () {
+                _doDevStuff3(context);
+              },
+            ),
+          if (isDev)
+            IconButton(
+              icon: const Icon(Icons.star),
+              onPressed: () {
+                _addRandomAchievement(context);
+              },
+            ),
         ],
       ),
       body: Column(

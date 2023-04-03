@@ -61,7 +61,7 @@ Widget defaultBadgeView(String name, String date, IconData icon) {
           Icon(
             icon,
             size: 50,
-            color: Colors.white, // TODO: Change?
+            color: Colors.white,
           ),
           Text(name, style: defaultSmallButtonTextStyle()),
           Text(date, style: defaultSmallerButtonTextStyle()),
@@ -148,7 +148,7 @@ Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
       ColumnSeries<ExerciseHistory, String>(
           dataSource: exerciseHistory,
           xValueMapper: (ExerciseHistory sales, _) =>
-              MyUtils.getItalianDateFormat(sales.dateTime),
+              getItalianDateFormat(sales.dateTime),
           yValueMapper: (ExerciseHistory sales, _) =>
               sales.exerciseDurationSeconds,
           name: 'Exercise History',

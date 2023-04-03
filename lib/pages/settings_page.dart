@@ -167,131 +167,137 @@ class _SettingsPageState extends State<SettingsPage> {
               },
             ),
           ),
-          ListTile(
-            title: defaultInputDecorator(
-              "Music",
-              _getValueAsString(_music),
-              (_music) ? Icons.music_note : Icons.music_off,
-            ),
-            trailing: Switch(
-              value: _music,
-              onChanged: (value) {
-                setState(() {
-                  _music = value;
-                  _saveSettings();
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: defaultInputDecorator(
-              "Voice",
-              _getValueAsString(_voice),
-              (_voice) ? Icons.mic : Icons.mic_off,
-            ),
-            trailing: Switch(
-              value: _voice,
-              onChanged: (value) {
-                setState(() {
-                  _voice = value;
-                  _saveSettings();
-                });
-              },
-            ),
-          ),
-          ListTile(
-            title: defaultInputDecorator(
-                'Voice Type', _getValueAsString(_voiceType), Icons.person),
-            trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
-            onTap: () async {
-              String? newVoiceType = await showDialog<String>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text('Choose a Voice Type'),
-                    content: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          for (String voiceType in voiceTypes)
-                            RadioListTile<String>(
-                              title: Text(voiceType),
-                              value: voiceType,
-                              groupValue: _voiceType,
-                              onChanged: (String? value) {
-                                Navigator.of(context).pop(value);
-                              },
-                            ),
-                        ],
-                      ),
-                    ),
-                  );
+          if (isDev)
+            ListTile(
+              title: defaultInputDecorator(
+                "Music",
+                _getValueAsString(_music),
+                (_music) ? Icons.music_note : Icons.music_off,
+              ),
+              trailing: Switch(
+                value: _music,
+                onChanged: (value) {
+                  setState(() {
+                    _music = value;
+                    _saveSettings();
+                  });
                 },
-              );
-              if (newVoiceType != null) {
-                setState(() {
-                  _voiceType = newVoiceType;
-                  _saveSettings();
-                });
-              }
-            },
-          ),
-          ListTile(
-            title: defaultInputDecorator(
-                'Language', _getValueAsString(_language), Icons.language),
-            trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
-            onTap: () async {
-              String? newLanguage = await showDialog<String>(
-                context: context,
-                builder: (BuildContext context) {
-                  return AlertDialog(
-                    title: const Text('Choose a Language'),
-                    content: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          for (String language in languages)
-                            RadioListTile<String>(
-                              title: Text(language),
-                              value: language,
-                              groupValue: _language,
-                              onChanged: (String? value) {
-                                Navigator.of(context).pop(value);
-                              },
-                            ),
-                        ],
-                      ),
-                    ),
-                  );
+              ),
+            ),
+          if (isDev)
+            ListTile(
+              title: defaultInputDecorator(
+                "Voice",
+                _getValueAsString(_voice),
+                (_voice) ? Icons.mic : Icons.mic_off,
+              ),
+              trailing: Switch(
+                value: _voice,
+                onChanged: (value) {
+                  setState(() {
+                    _voice = value;
+                    _saveSettings();
+                  });
                 },
-              );
-              if (newLanguage != null) {
-                setState(() {
-                  _language = newLanguage;
-                  _saveSettings();
-                });
-              }
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: OutlinedButton(
-              onPressed: () {
-                backupDatabaseToGoogleDrive(context);
-                _backupAchievement(context);
-              },
-              child: defaultButtonText("Backup"),
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: OutlinedButton(
-              onPressed: () {
-                restoreDatabaseFromGoogleDrive(context);
+          if (isDev)
+            ListTile(
+              title: defaultInputDecorator(
+                  'Voice Type', _getValueAsString(_voiceType), Icons.person),
+              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
+              onTap: () async {
+                String? newVoiceType = await showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Choose a Voice Type'),
+                      content: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            for (String voiceType in voiceTypes)
+                              RadioListTile<String>(
+                                title: Text(voiceType),
+                                value: voiceType,
+                                groupValue: _voiceType,
+                                onChanged: (String? value) {
+                                  Navigator.of(context).pop(value);
+                                },
+                              ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+                if (newVoiceType != null) {
+                  setState(() {
+                    _voiceType = newVoiceType;
+                    _saveSettings();
+                  });
+                }
               },
-              child: defaultButtonText("Restore"),
             ),
-          ),
+          if (isDev)
+            ListTile(
+              title: defaultInputDecorator(
+                  'Language', _getValueAsString(_language), Icons.language),
+              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
+              onTap: () async {
+                String? newLanguage = await showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('Choose a Language'),
+                      content: SingleChildScrollView(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            for (String language in languages)
+                              RadioListTile<String>(
+                                title: Text(language),
+                                value: language,
+                                groupValue: _language,
+                                onChanged: (String? value) {
+                                  Navigator.of(context).pop(value);
+                                },
+                              ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                );
+                if (newLanguage != null) {
+                  setState(() {
+                    _language = newLanguage;
+                    _saveSettings();
+                  });
+                }
+              },
+            ),
+          if (isDev)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  backupDatabaseToGoogleDrive(context);
+                  _backupAchievement(context);
+                },
+                child: defaultButtonText("Backup"),
+              ),
+            ),
+          if (isDev)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  restoreDatabaseFromGoogleDrive(context);
+                },
+                child: defaultButtonText("Restore"),
+              ),
+            ),
           if (widget.user != null)
             Padding(
               padding: const EdgeInsets.all(8.0),
