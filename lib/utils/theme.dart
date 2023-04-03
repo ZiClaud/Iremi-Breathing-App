@@ -82,6 +82,7 @@ class IremiTheme with ChangeNotifier {
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluLight,
         foregroundColor: myButtonTextColor,
+        elevation: 0,
       ),
       textTheme: defaultLightTextTheme(),
       iconTheme: const IconThemeData(
@@ -119,6 +120,7 @@ class IremiTheme with ChangeNotifier {
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluDark,
         foregroundColor: myButtonTextColor,
+        elevation: 0,
       ),
       textTheme: defaultDarkTextTheme(),
       iconTheme: const IconThemeData(

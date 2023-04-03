@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'default_widgets.dart';
 
-bool isDev = false; // TODO IMPORTANT: Change to false when building for release
+bool isDev = true; // TODO IMPORTANT: Change to false when building for release
 
 String getItalianDateFormat(DateTime dateTime) {
   if (dateTime.day < 10 && dateTime.month < 10) {

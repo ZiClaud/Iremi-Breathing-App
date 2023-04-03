@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
+import 'package:iremibreathingapp/database/database.dart';
+import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
 
+import '../basics/exercise_custom.dart';
 import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 import 'exercise_page.dart';
+import 'main_page.dart';
 
 class ExerciseInfoPages extends StatefulWidget {
   MyExercise exercise;
@@ -41,12 +45,60 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
       appBar: AppBar(
         title: Text(widget.exercise.name),
         bottom: defaultTopBar(_tabController),
+        actions: [
+          if (isDev && widget.exercise is CustomExercise)
+            IconButton(
+              icon: const Icon(Icons.edit),
+              onPressed: () => {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ExerciseAddPages(
+                        exercise: (widget.exercise as CustomExercise)),
+                  ),
+                ),
+              },
+            ),
+          if (widget.exercise is CustomExercise)
+            IconButton(
+              icon: const Icon(Icons.delete),
+              onPressed: () => {_deleteExerciseWarning()},
+            ),
+        ],
       ),
       body: TabBarView(
         controller: _tabController,
         children: _pages,
       ),
       floatingActionButton: _startExercise(widget.exercise, context),
+    );
+  }
+
+  _deleteExerciseWarning() {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text("Delete exercise"),
+        content: const Text("Are you sure you want to delete this exercise?"),
+        actions: [
+          TextButton(
+            child: defaultButtonText("Cancel"),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          TextButton(
+            child: defaultButtonText("Delete"),
+            onPressed: () async => {
+              await DBCustomExercise()
+                  .deleteExercise((widget.exercise as CustomExercise).id!),
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => const MainPage()),
+                (route) => false,
+              ),
+            },
+          ),
+        ],
+      ),
     );
   }
 }

@@ -9,7 +9,8 @@ import '../utils/default_widgets.dart';
 import 'main_page.dart';
 
 class ExerciseAddPages extends StatefulWidget {
-  const ExerciseAddPages({Key? key}) : super(key: key);
+  CustomExercise? exercise; // TODO: Use it - modifies the exercise
+  ExerciseAddPages({Key? key, this.exercise}) : super(key: key);
 
   @override
   State<ExerciseAddPages> createState() => _ExerciseAddPagesState();

@@ -76,6 +76,7 @@ class _SettingsPageState extends State<SettingsPage> {
         "Are you sure you want to delete the database? This action cannot be undone.");
   }
 
+  //TODO: Put this in default_widgets.dart
   void _warning(
       BuildContext context, Function() onDelete, String title, String content) {
     showDialog(
