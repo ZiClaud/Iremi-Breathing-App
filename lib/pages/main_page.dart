@@ -4,6 +4,7 @@ import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
 import 'package:iremibreathingapp/pages/user_page.dart';
 
 import '../database/getters.dart';
+import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 import 'exercise_info_pages.dart';
 
@@ -34,6 +35,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // TODO: Remove appbar
       appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text("Welcome to Iremi"),
@@ -68,6 +70,7 @@ class _MainPageState extends State<MainPage> {
           return _showExerciseWidget(exercise);
         },
       ),
+      bottomNavigationBar: getBottomNavigationBar(context, 1),
     );
   }
 
@@ -87,6 +90,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _showExerciseModel(MyExercise exercise) {
     /// Graphics
+    // TODO: IMPROVE, MASSIVELY
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

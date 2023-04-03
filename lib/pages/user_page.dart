@@ -17,15 +17,11 @@ class UserPage extends StatefulWidget {
 
 class _UserPageState extends State<UserPage> {
   MyUser? _user;
-  List<MyBadge> _badges = [];
-  List<ExerciseHistory> _exerciseHistory = [];
 
   @override
   void initState() {
     super.initState();
     _getUser();
-    _getBadges();
-    _getExerciseHistory();
   }
 
   Future<void> _getUser() async {
@@ -37,45 +33,63 @@ class _UserPageState extends State<UserPage> {
     }
   }
 
-  Future<void> _getBadges() async {
-    List<MyBadge> badge = await Getters.getBadgesDB(context);
-    if (badge.isNotEmpty) {
-      setState(() {
-        _badges = badge;
-      });
-    }
-  }
-
-  Future<void> _getExerciseHistory() async {
-    List<ExerciseHistory> exerciseHistory =
-        await Getters.getExerciseHistoryDB(context);
-    if (exerciseHistory.isNotEmpty) {
-      setState(() {
-        _exerciseHistory = exerciseHistory;
-      });
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appBar(context, _user),
       body: Column(
         children: [
           Expanded(
-            flex: 3, // TODO: Check it it works well on different devices
             child: _showUserWidget(_user),
           ),
-          Expanded(
-            flex: 2, // TODO: Check it it works well on different devices
-            child: _showExerciseHistoryWidget(_exerciseHistory),
+          OutlinedButton(
+            child: (_user != null) ? Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.edit,
+                ),
+                Text("Edit user"),
+              ],
+            ) : Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Icon(
+                  Icons.add,
+                ),
+                Text("Register user"),
+              ],
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterPageDB(user: _user),
+                ),
+              );
+            },
           ),
-          Expanded(
-            flex: 1,
-            child: _showBadgeWidget(_badges),
+          OutlinedButton(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.settings,
+                ),
+                Text("Settings"),
+              ],
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsPage(user: _user),
+                ),
+              );
+            },
           ),
         ],
       ),
+      bottomNavigationBar: getBottomNavigationBar(context, 2),
     );
   }
 }
@@ -96,65 +110,4 @@ Widget _showUserWidget(MyUser? user) {
       : Center(
           child: defaultText('No user found'),
         );
-}
-
-Widget _showBadgeWidget(List<MyBadge?> badges) {
-  return (badges.isNotEmpty)
-      ? ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: badges.length,
-          itemBuilder: (context, index) {
-            return defaultBadgeView(
-              badges[index]!.getBadge().badgeName,
-              badges[index]!.date,
-              badges[index]!.getBadge().icon,
-            );
-          },
-        )
-      : Center(
-          child: defaultText('No badge found'), // 'No badge found'
-        );
-}
-
-Widget _showExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
-  return (exerciseHistory.isNotEmpty)
-      ? defaultExerciseHistoryWidget(exerciseHistory)
-      : Center(
-          child: defaultText('No exercise history found'),
-        );
-}
-
-/// APPBAR
-AppBar _appBar(context, MyUser? user) {
-  return AppBar(
-    title: const Text("Profile"),
-    actions: [
-      IconButton(
-        icon: const Icon(
-          Icons.edit,
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => RegisterPageDB(user: user),
-            ),
-          );
-        },
-      ),
-      IconButton(
-        icon: const Icon(
-          Icons.settings,
-        ),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => SettingsPage(user: user),
-            ),
-          );
-        },
-      ),
-    ],
-  );
 }

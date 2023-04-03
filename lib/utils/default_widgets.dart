@@ -1,14 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iremibreathingapp/pages/progress_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../basics/exercise_history.dart';
+import '../pages/main_page.dart';
+import '../pages/user_page.dart';
 import 'my_utils.dart';
 
 double defaultCircleSize() {
 //  return getMinWindowSize(context) * 2 / 3;
   return 200;
+}
+
+BottomNavigationBar getBottomNavigationBar(context, currentIndex) {
+  BottomNavigationBarItem homePageItem = const BottomNavigationBarItem(
+    icon: Icon(Icons.home),
+    label: "Home",
+  );
+
+  BottomNavigationBarItem userPageItem = const BottomNavigationBarItem(
+    icon: Icon(Icons.person),
+    label: "Profile",
+  );
+
+  BottomNavigationBarItem progressPageItem = const BottomNavigationBarItem(
+    icon: Icon(Icons.bar_chart),
+    label: "Progress",
+  );
+
+  List<BottomNavigationBarItem> items = [
+    progressPageItem,
+    homePageItem,
+    userPageItem,
+  ];
+
+  return BottomNavigationBar(
+    items: items,
+    currentIndex: currentIndex,
+    onTap: (index) {
+      if (index == 0 && currentIndex != 0) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ProgressPage()));
+      } else if (index == 1 && currentIndex != 1) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MainPage()));
+      } else if (index == 2 && currentIndex != 2) {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => UserPage()));
+      }
+    },
+  );
 }
 
 TabBar defaultTopBar(controller) {

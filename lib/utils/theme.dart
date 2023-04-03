@@ -84,6 +84,12 @@ class IremiTheme with ChangeNotifier {
         foregroundColor: myButtonTextColor,
         elevation: 0,
       ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: _myBluLight,
+        selectedItemColor: _myLightBackgroundColor,
+        unselectedItemColor: _myBluDark,
+        elevation: 0,
+      ),
       textTheme: defaultLightTextTheme(),
       iconTheme: const IconThemeData(
         color: _myBluLight,
@@ -120,6 +126,12 @@ class IremiTheme with ChangeNotifier {
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluDark,
         foregroundColor: myButtonTextColor,
+        elevation: 0,
+      ),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: _myBluDark,
+        selectedItemColor: _myWhite,
+        unselectedItemColor: _myDarkBackgroundColor,
         elevation: 0,
       ),
       textTheme: defaultDarkTextTheme(),

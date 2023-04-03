@@ -35,20 +35,6 @@ class _DevPageState extends State<DevPage> {
       print(e);
     }
 
-    /*
-      await DBCustomExercise().createExercise(CustomExercise(
-        name: "Test Exercise",
-        description: "This is a test exercise",
-        notes: 'This is a test note',
-        steps: ['Inhale'],
-        times: 2,
-        inhaleTimeMs: 1000,
-        holdMiddleTimeMs: 1000,
-        exhaleTimeMs: 1000,
-        holdEndTimeMs: 1000,
-      ));
-      */
-
     defaultDialog(context, "Success", "Saved exercise to database");
     try {
       DBCustomExercise().readAllExercises().then((value) =>
@@ -157,12 +143,8 @@ class _DevPageState extends State<DevPage> {
       body: Column(
         children: [
           Expanded(
-            flex: 3, // TODO: Check it it works well on different devices
+            flex: 3,
             child: _getUserListView(context),
-          ),
-          Expanded(
-            flex: 2, // TODO: Check it it works well on different devices
-            child: _showExerciseHistoryWidget(context),
           ),
           Expanded(
             flex: 1,
@@ -196,28 +178,5 @@ class _DevPageState extends State<DevPage> {
         defaultInputDecorator("Goal", "24h/day", Icons.ads_click),
       ],
     );
-  }
-
-  Widget _showExerciseHistoryWidget(BuildContext context) {
-    List<ExerciseHistory> exerciseHistory = [
-      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2021)),
-      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2022)),
-      ExerciseHistory(exerciseDurationSeconds: 500, dateTime: DateTime.now()),
-      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2020)),
-      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2019)),
-      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2018)),
-      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2017)),
-      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2016)),
-      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2015)),
-      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2014)),
-      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2013)),
-      ExerciseHistory(exerciseDurationSeconds: 2100, dateTime: DateTime(2012)),
-      ExerciseHistory(exerciseDurationSeconds: 200, dateTime: DateTime(2011)),
-    ];
-    return (exerciseHistory.isNotEmpty)
-        ? defaultExerciseHistoryWidget(exerciseHistory)
-        : Center(
-            child: defaultText('No exercise history found'),
-          );
   }
 }
