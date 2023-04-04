@@ -63,7 +63,8 @@ class _ProgressPageState extends State<ProgressPage> {
 }
 
 Widget _showBadgeWidget(List<MyBadge?> badges) {
-  List<PossibleBadges> allPossibleBadges = PossibleBadges.values;
+  List<PossibleBadges> allPossibleBadges = [];
+  allPossibleBadges.addAll(PossibleBadges.values);
 
   for (int i = 0; i < badges.length; i++) {
     allPossibleBadges.remove(badges[i]!.getBadge());
