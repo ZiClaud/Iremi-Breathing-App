@@ -11,7 +11,6 @@ import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 import 'dev_page.dart';
 import 'home_page.dart';
-import 'main_page.dart';
 
 class SettingsPage extends StatefulWidget {
   final MyUser? user;

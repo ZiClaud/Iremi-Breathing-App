@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/home_page.dart';
-import 'package:iremibreathingapp/pages/main_page.dart';
 import 'package:iremibreathingapp/pages/register_page.dart';
 import 'package:iremibreathingapp/utils/default_widgets.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';

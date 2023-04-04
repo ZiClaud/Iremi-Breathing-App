@@ -7,7 +7,6 @@ import '../basics/badge.dart';
 import '../basics/exercise_custom.dart';
 import '../database/forms/exercise_form_widget.dart';
 import '../utils/default_widgets.dart';
-import 'main_page.dart';
 
 class ExerciseAddPages extends StatefulWidget {
   CustomExercise? exercise; // TODO: Use it - modifies the exercise

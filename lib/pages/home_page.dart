@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   final List<Widget> _pages = [
     ProgressPage(),
-    MainPage(),
+    const MainPage(),
     UserPage(),
   ];
 
@@ -37,6 +37,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Center(child: Text('Iremi Breathing App')),
+      ),
       body: IndexedStack(
         index: _currentIndex,
         children: _pages,

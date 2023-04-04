@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
-import 'package:iremibreathingapp/pages/user_page.dart';
 
 import '../database/getters.dart';
 import '../utils/default_widgets.dart';
-import '../utils/my_utils.dart';
 import 'exercise_info_pages.dart';
 
 class MainPage extends StatefulWidget {
@@ -26,7 +24,7 @@ class _MainPageState extends State<MainPage> {
 
   Future<void> _loadCustomExercises() async {
     List<MyExercise?> customExercises =
-    await Getters.getCustomExercisesDB(context);
+        await Getters.getCustomExercisesDB(context);
     setState(() {
       exercises.addAll(customExercises.whereType<MyExercise>());
     });
@@ -64,7 +62,8 @@ class _MainPageState extends State<MainPage> {
             ),
           ]),
       */
-      body: ListView.builder( // TODO: Change with Wrap?
+      body: ListView.builder(
+        // TODO: Change with Wrap?
         itemCount: exercises.length,
         itemBuilder: (context, index) {
           MyExercise exercise = exercises[index];
