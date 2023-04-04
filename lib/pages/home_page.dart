@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Iremi Breathing App')),
+        title: const Center(child: Text('Iremi')), // TODO: Improve this
       ),
       body: IndexedStack(
         index: _currentIndex,
