@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/pages/progress_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -254,48 +253,33 @@ TextFormField defaultEditTextFormField2Num(String label, IconData icon,
 
 RoundedRectangleBorder defaultRoundedRectangleBorder() {
   return RoundedRectangleBorder(
-    borderRadius: defaultBorderRadius(),
-    side: defaultBorderSide(),
+    borderRadius: BorderRadius.circular(10.0),
+    side: BorderSide(color: myBluLightDark(), width: 1.5),
   );
 }
 
-BorderRadius defaultBorderRadius() {
-  return BorderRadius.circular(10.0);
-}
-
-BorderSide defaultBorderSide() {
-  return BorderSide(color: myBluLightDark(), width: 1.5);
-}
-
-Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory){
+/// CHART
+Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
   return _defaultExerciseHistoryWidget(_filterExerciseHistory(exerciseHistory));
 }
 
-List<ExerciseHistory> _filterExerciseHistory(List<ExerciseHistory> exerciseHistory){
+List<ExerciseHistory> _filterExerciseHistory(
+    List<ExerciseHistory> exerciseHistory) {
+  List<DateTime> dateTimes = []; // List of the dateTimes
+
+  // Add the past 6 days
+  for (int i = 0; i < 6; i++) {
+    dateTimes.add(DateTime.now().subtract(Duration(days: i)));
+  }
+
+  // Add tomorrow
+  dateTimes.add(DateTime.now().add(Duration(days: 1)));
+
   List<ExerciseHistory> exerciseHistoryFiltered = [];
-  exerciseHistoryFiltered.addAll(exerciseHistory);
-  bool exercisedToday = false;
 
-  for (ExerciseHistory eh in exerciseHistoryFiltered){
-    if (eh.dateTime.isAtSameMomentAs(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day))){
-      exercisedToday = true;
-    }
-  }
-
-  if (!exercisedToday) {
-    exerciseHistoryFiltered.add(ExerciseHistory(exerciseDurationSeconds: 0, dateTime: DateTime.now()));
-  }
-
-  exerciseHistoryFiltered.add(ExerciseHistory(exerciseDurationSeconds: 0, dateTime: DateTime.now().add(Duration(days: 1))));
-
-  for (ExerciseHistory eh in exerciseHistoryFiltered){
-    if (eh.dateTime.isBefore(DateTime.now().subtract(Duration(days: 6)))){
-      exerciseHistoryFiltered.remove(eh);
-    }
-  }
-
-  while (exerciseHistoryFiltered.length < 7){
-    exerciseHistoryFiltered.add(ExerciseHistory(exerciseDurationSeconds: 0, dateTime: DateTime.now().subtract(Duration(days: exerciseHistoryFiltered.length))));
+  for (DateTime dateTime in dateTimes) {
+    exerciseHistoryFiltered
+        .add(_sumDurationExerciseHistoryThisDay(exerciseHistory, dateTime));
   }
 
   exerciseHistoryFiltered.sort((a, b) => a.dateTime.compareTo(b.dateTime));
@@ -303,8 +287,21 @@ List<ExerciseHistory> _filterExerciseHistory(List<ExerciseHistory> exerciseHisto
   return exerciseHistoryFiltered;
 }
 
+ExerciseHistory _sumDurationExerciseHistoryThisDay(
+    List<ExerciseHistory> exerciseHistory, DateTime dateTime) {
+  int sumDuration = 0;
+  for (ExerciseHistory eh in exerciseHistory) {
+    if (eh.dateTime.day == dateTime.day &&
+        eh.dateTime.month == dateTime.month &&
+        eh.dateTime.year == dateTime.year) {
+      sumDuration += eh.exerciseDurationSeconds;
+    }
+  }
+  return ExerciseHistory(
+      exerciseDurationSeconds: sumDuration, dateTime: dateTime);
+}
+
 Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
-  // TODO: Fix bug -> Doesn't sum the time if you do more exercises in the same day
   return SfCartesianChart(
     series: <ChartSeries<ExerciseHistory, String>>[
       ColumnSeries<ExerciseHistory, String>(
