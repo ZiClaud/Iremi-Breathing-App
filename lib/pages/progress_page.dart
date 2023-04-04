@@ -49,7 +49,7 @@ class _ProgressPageState extends State<ProgressPage> {
         children: [
           Expanded(
             flex: 2, // TODO: Check it it works well on different devices
-            child: _showExerciseHistoryWidget(_exerciseHistory),
+            child: defaultExerciseHistoryWidget(_exerciseHistory),
           ),
           Expanded(
             flex: 1,
@@ -87,12 +87,4 @@ Widget _showBadgeWidget(List<MyBadge?> badges) {
       }
     },
   );
-}
-
-Widget _showExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
-  return (exerciseHistory.isNotEmpty)
-      ? defaultExerciseHistoryWidget(exerciseHistory)
-      : Center(
-          child: defaultText('No exercise history found'),
-        );
 }

@@ -267,11 +267,45 @@ BorderSide defaultBorderSide() {
   return BorderSide(color: myBluLightDark(), width: 1.5);
 }
 
-Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
+Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory){
+  return _defaultExerciseHistoryWidget(_filterExerciseHistory(exerciseHistory));
+}
+
+List<ExerciseHistory> _filterExerciseHistory(List<ExerciseHistory> exerciseHistory){
+  List<ExerciseHistory> exerciseHistoryFiltered = [];
+  exerciseHistoryFiltered.addAll(exerciseHistory);
+  bool exercisedToday = false;
+
+  for (ExerciseHistory eh in exerciseHistoryFiltered){
+    if (eh.dateTime.isAtSameMomentAs(DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day))){
+      exercisedToday = true;
+    }
+  }
+
+  if (!exercisedToday) {
+    exerciseHistoryFiltered.add(ExerciseHistory(exerciseDurationSeconds: 0, dateTime: DateTime.now()));
+  }
+
+  exerciseHistoryFiltered.add(ExerciseHistory(exerciseDurationSeconds: 0, dateTime: DateTime.now().add(Duration(days: 1))));
+
+  for (ExerciseHistory eh in exerciseHistoryFiltered){
+    if (eh.dateTime.isBefore(DateTime.now().subtract(Duration(days: 6)))){
+      exerciseHistoryFiltered.remove(eh);
+    }
+  }
+
+  while (exerciseHistoryFiltered.length < 7){
+    exerciseHistoryFiltered.add(ExerciseHistory(exerciseDurationSeconds: 0, dateTime: DateTime.now().subtract(Duration(days: exerciseHistoryFiltered.length))));
+  }
+
+  exerciseHistoryFiltered.sort((a, b) => a.dateTime.compareTo(b.dateTime));
+
+  return exerciseHistoryFiltered;
+}
+
+Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
   // TODO: Fix bug -> Doesn't sum the time if you do more exercises in the same day
   return SfCartesianChart(
-    title: ChartTitle(
-        text: 'Exercise History', textStyle: getChartDefaultTextStyle()),
     series: <ChartSeries<ExerciseHistory, String>>[
       ColumnSeries<ExerciseHistory, String>(
           dataSource: exerciseHistory,
