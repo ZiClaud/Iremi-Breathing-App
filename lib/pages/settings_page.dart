@@ -101,9 +101,10 @@ class _SettingsPageState extends State<SettingsPage> {
   void _deleteUser() async {
     try {
       await DBMyUser().deleteUser(widget.user!.id!);
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
+        (route) => false,
       );
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
@@ -113,9 +114,10 @@ class _SettingsPageState extends State<SettingsPage> {
   void _deleteDatabase() async {
     try {
       await MyDatabase.instance.deleteDB();
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
+        (route) => false,
       );
     } catch (e) {
       defaultDatabaseErrorDialog(context, e.toString());
