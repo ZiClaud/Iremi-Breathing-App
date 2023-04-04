@@ -307,7 +307,7 @@ Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
       ColumnSeries<ExerciseHistory, String>(
           dataSource: exerciseHistory,
           xValueMapper: (ExerciseHistory sales, _) =>
-              getItalianDateFormat(sales.dateTime),
+              getWeekLetter(sales.dateTime),
           yValueMapper: (ExerciseHistory sales, _) =>
               sales.exerciseDurationSeconds,
           name: 'Exercise History',
@@ -325,6 +325,7 @@ Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
   );
 }
 
+/// Loading Screen
 Widget defaultLoadingScreen() {
   return const Center(
     child: Image(

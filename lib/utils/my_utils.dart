@@ -21,6 +21,29 @@ String getItalianDateFormat(DateTime dateTime) {
   return "${dateTime.day}/${dateTime.month}/${dateTime.year}";
 }
 
+String getWeekLetter(DateTime dateTime) {
+  dateTime.weekday;
+
+  switch (dateTime.weekday) {
+    case 1:
+      return "Mon";
+    case 2:
+      return "Tue";
+    case 3:
+      return "Wed";
+    case 4:
+      return "Thu";
+    case 5:
+      return "Fri";
+    case 6:
+      return "Sat";
+    case 7:
+      return "Sun";
+    default:
+      return "Error";
+  }
+}
+
 String getDurationString(MyExercise exercise) {
   return "${exercise.getInhaleDuration().inSeconds}s, ${exercise.getHoldMiddleDuration().inSeconds}s, ${exercise.getExhaleDuration().inSeconds}s, ${exercise.getHoldEndDuration().inSeconds}s";
 }
