@@ -10,7 +10,9 @@ const Color _myBluDark = Color(0xFF007C9A);
 const Color myButtonTextColor = Color(0xFFFFFFFF);
 
 const Color _myWhite = Color(0xFFFFFFFF);
-const Color _myLightBackgroundColor = Color(0xFFFFFFFF);
+const Color _myLightBackgroundColor = Color(0xFFF5F5F5);
+const Color _myLightBackgroundColorCard = Color(0xFFFFFFFF);
+const Color _myDarkBackgroundColorCard = Color(0xFF444444);
 const Color _myDarkBackgroundColor = Color(0xFF282828);
 const Color _myBlack = Color(0xFF000000);
 
@@ -125,7 +127,7 @@ class IremiTheme with ChangeNotifier {
         style: defaultLightButtonStyle(),
       ),
       cardTheme: CardTheme(
-        color: _myLightBackgroundColor,
+        color: _myLightBackgroundColorCard,
       ),
     );
   }
@@ -170,7 +172,7 @@ class IremiTheme with ChangeNotifier {
         style: defaultDarkButtonStyle(),
       ),
       cardTheme: CardTheme(
-        color: _myDarkBackgroundColor,
+        color: _myDarkBackgroundColorCard,
       ),
     );
   }

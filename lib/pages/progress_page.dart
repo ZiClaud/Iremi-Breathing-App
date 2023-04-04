@@ -63,21 +63,30 @@ class _ProgressPageState extends State<ProgressPage> {
 }
 
 Widget _showBadgeWidget(List<MyBadge?> badges) {
-  return (badges.isNotEmpty)
-      ? ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: badges.length,
-          itemBuilder: (context, index) {
-            return defaultBadgeView(
-              badges[index]!.getBadge().badgeName,
-              badges[index]!.date,
-              badges[index]!.getBadge().icon,
-            );
-          },
-        )
-      : Center(
-          child: defaultText('No badge found'), // 'No badge found'
+  List<PossibleBadges> allPossibleBadges = PossibleBadges.values;
+
+  for (int i = 0; i < badges.length; i++) {
+    allPossibleBadges.remove(badges[i]!.getBadge());
+  }
+
+  return ListView.builder(
+    scrollDirection: Axis.horizontal,
+    itemCount: allPossibleBadges.length + badges.length,
+    itemBuilder: (context, index) {
+      if (index < badges.length) {
+        return defaultBadgeView(
+          badges[index]!.getBadge().badgeName,
+          badges[index]!.date,
+          badges[index]!.getBadge().icon,
         );
+      } else {
+        return defaultLockedBadgeView(
+          allPossibleBadges[index - badges.length].badgeName,
+          allPossibleBadges[index - badges.length].icon,
+        );
+      }
+    },
+  );
 }
 
 Widget _showExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {

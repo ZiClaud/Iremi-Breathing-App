@@ -35,7 +35,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // TODO: Remove appbar
+      /*
       appBar: AppBar(
           automaticallyImplyLeading: false,
           title: const Text("Welcome to Iremi"),
@@ -63,11 +63,25 @@ class _MainPageState extends State<MainPage> {
               },
             ),
           ]),
+      */
       body: ListView.builder( // TODO: Change with Wrap?
         itemCount: exercises.length,
         itemBuilder: (context, index) {
           MyExercise exercise = exercises[index];
           return _showExerciseWidget(exercise);
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(
+          Icons.add_circle_outline,
+        ),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ExerciseAddPages(),
+            ),
+          );
         },
       ),
 //      bottomNavigationBar: getBottomNavigationBar(context, 1),

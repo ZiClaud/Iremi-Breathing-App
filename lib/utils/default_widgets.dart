@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/pages/progress_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -160,6 +161,31 @@ Widget defaultBadgeView(String name, String date, IconData icon) {
           ),
           Text(name, style: defaultSmallButtonTextStyle()),
           Text(date, style: defaultSmallerButtonTextStyle()),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget defaultLockedBadgeView(String name, IconData icon) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      width: 100,
+      height: 100,
+      decoration: BoxDecoration(
+        color: Colors.grey, // TODO: try other colors
+        shape: BoxShape.circle,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            icon,
+            size: 50,
+            color: Colors.white,
+          ),
+          Text(name, style: defaultSmallButtonTextStyle()),
         ],
       ),
     ),
