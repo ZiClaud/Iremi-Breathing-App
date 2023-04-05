@@ -68,7 +68,7 @@ const MaterialColor myBluDarkMaterial =
 /// ---------------------------
 
 class IremiTheme with ChangeNotifier {
-  static bool _isDarkTheme = isDefaultThemeDark2();
+  static bool _isDarkTheme = isDefaultThemeDark();
 
   ThemeMode get iremiTheme => _isDarkTheme ? ThemeMode.dark : ThemeMode.light;
 

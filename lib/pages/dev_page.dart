@@ -1,12 +1,8 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/utils/default_widgets.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
-import '../database/database.dart';
 
 class DevPage extends StatefulWidget {
   DevPage({Key? key}) : super(key: key);
@@ -16,92 +12,11 @@ class DevPage extends StatefulWidget {
 }
 
 class _DevPageState extends State<DevPage> {
-  Future<void> _doDevStuff1(BuildContext context) async {
-    try {
-      await DBCustomExercise().createExercise(CustomExercise(
-        name: "Fast",
-        description: "test",
-        notes: 'note',
-        steps: [],
-        times: 1,
-        inhaleTimeMs: 1000,
-        holdMiddleTimeMs: 1000,
-        exhaleTimeMs: 1000,
-        holdEndTimeMs: 1000,
-      ));
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
-      print(e);
-    }
+  Future<void> _doDevStuff1(BuildContext context) async {}
 
-    defaultDialog(context, "Success", "Saved exercise to database");
-    try {
-      DBCustomExercise().readAllExercises().then((value) =>
-          defaultDialog(context, "N. of exercises:", value.length.toString()));
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
-    }
-  }
+  Future<void> _doDevStuff2(BuildContext context) async {}
 
-  Future<void> _doDevStuff2(BuildContext context) async {
-    try {
-      await DBCustomExercise().createExercise(CustomExercise(
-        name: "Faster",
-        description: "This is a test exercise",
-        notes: 'This is a test note',
-        steps: ['Inhale', 'Exhale', 'Hold'],
-        times: 2,
-        inhaleTimeMs: 1,
-        holdMiddleTimeMs: 1,
-        exhaleTimeMs: 1,
-        holdEndTimeMs: 1,
-      ));
-      defaultDialog(context, "Success", "Saved exercise to database");
-      try {
-        DBCustomExercise().readAllExercises().then((value) => defaultDialog(
-            context, "N. of exercises:", value.length.toString()));
-      } catch (e) {
-        defaultDatabaseErrorDialog(context, e.toString());
-      }
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
-      print(e);
-    }
-  }
-
-  Future<void> _doDevStuff3(BuildContext context) async {
-    try {
-      await DBCustomExercise().createExercise(CustomExercise(
-        name: "Test Exercise 2",
-        description: "This is a test exercise",
-        notes: 'This is a test note',
-        steps: ['Inhale'],
-        times: 2,
-        inhaleTimeMs: 1000,
-        holdMiddleTimeMs: 1000,
-        exhaleTimeMs: 1000,
-        holdEndTimeMs: 1000,
-      ));
-      defaultDialog(context, "Success", "Saved exercise to database");
-      try {
-        DBCustomExercise().readAllExercises().then((value) => defaultDialog(
-            context, "N. of exercises:", value.length.toString()));
-      } catch (e) {
-        defaultDatabaseErrorDialog(context, e.toString());
-      }
-    } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
-      print(e);
-    }
-  }
-
-  Future<void> _addRandomAchievement(context) async {
-    // TODO: Remove
-    Random random = Random();
-    int id = random.nextInt(Achievement.getMaxID());
-
-    Achievement.addAchievement(Achievement.getBadgeByID(id), context);
-  }
+  Future<void> _doDevStuff3(BuildContext context) async {}
 
   @override
   Widget build(BuildContext context) {
@@ -128,13 +43,6 @@ class _DevPageState extends State<DevPage> {
               icon: const Icon(Icons.code_off),
               onPressed: () {
                 _doDevStuff3(context);
-              },
-            ),
-          if (isDev)
-            IconButton(
-              icon: const Icon(Icons.star),
-              onPressed: () {
-                _addRandomAchievement(context);
               },
             ),
         ],

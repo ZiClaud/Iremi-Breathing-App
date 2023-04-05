@@ -24,23 +24,6 @@ class Getters {
     return ex;
   }
 
-  static List<String> getAvailableLanguages() {
-    return ['English', 'Italian', 'Spanish', 'Chinese (Simplified)', 'Greek'];
-  }
-
-  static String getFirstLanguage() {
-    // TODO: Change with user's language
-    return getAvailableLanguages().first;
-  }
-
-  static List<String> getAvailableVoiceTypes() {
-    return ['Male', 'Female', 'Neutral'];
-  }
-
-  static String getFirstVoiceType() {
-    return getAvailableVoiceTypes().first;
-  }
-
   static Future<MyUser?> getUserDB(context) async {
     try {
       return await DBMyUser().getFirstUser();

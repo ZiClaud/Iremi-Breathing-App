@@ -25,12 +25,12 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _darkMode = false;
   bool _music = false;
   bool _voice = false;
-  String _voiceType = Getters.getFirstVoiceType();
-  String _language = Getters.getFirstLanguage();
+  String _voiceType = getDefaultVoiceType();
+  String _language = getDefaultLanguage();
   bool _dev = false;
 
-  final List<String> languages = Getters.getAvailableLanguages();
-  final List<String> voiceTypes = Getters.getAvailableVoiceTypes();
+  final List<String> languages = getAvailableLanguages();
+  final List<String> voiceTypes = getAvailableVoiceTypes();
 
   @override
   void initState() {

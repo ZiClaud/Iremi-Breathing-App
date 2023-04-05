@@ -7,7 +7,6 @@ import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database/database.dart';
-import 'database/getters.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,12 +15,12 @@ void main() {
 
     if (isFirstTime) {
       // Set default settings for the first time
-      prefs.setBool(
-          'darkMode', true); //TODO: Exchange "true" to "isDefaultThemeDark2()"
+      prefs.setBool('darkMode', true);
+      //TODO: Change "true" to "isDefaultThemeDark()"
       prefs.setBool('music', true);
       prefs.setBool('voice', true);
-      prefs.setString('voiceType', Getters.getFirstVoiceType());
-      prefs.setString('language', Getters.getFirstLanguage());
+      prefs.setString('voiceType', getDefaultVoiceType());
+      prefs.setString('language', getDefaultLanguage());
       prefs.setBool('dev', false);
 
       // Set isFirstTime to false to indicate that the app has been opened before
@@ -47,7 +46,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-    _darkMode = widget.prefs.getBool('darkMode') ?? isDefaultThemeDark2();
+    _darkMode = widget.prefs.getBool('darkMode') ?? isDefaultThemeDark();
 
     myTheme.setMode(_darkMode);
 

@@ -7,8 +7,56 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'default_widgets.dart';
 
-bool isDev = false; // TODO IMPORTANT: Change to false when building for release
+bool isDev = false; //TODO IMPORTANT: Change to false when building for release
 
+/// SharedPreferences
+Future<SharedPreferences> getSharedPreferences() async {
+  return await SharedPreferences.getInstance();
+}
+
+/// SharedPreferences default
+String _getDefaultLanguageLocale() {
+  return window.locale.languageCode;
+}
+
+String getDefaultLanguage() {
+  if (_getDefaultLanguageLocale() == "en")
+    return "English";
+  else if (_getDefaultLanguageLocale() == "it")
+    return "Italiano";
+  else if (_getDefaultLanguageLocale() == "es")
+    return "Español";
+//  else if (_getDefaultLanguageLocale() == "zh")
+//    return "Chinese (Simplified)??";
+//  else if (_getDefaultLanguageLocale() == "el")
+//    return "Greek??";
+  else
+    return "English";
+}
+
+List<String> getAvailableLanguages() {
+  return ['English', 'Italiano', 'Español']; //'Chinese (Simplified)', 'Greek'?
+}
+
+List<String> getAvailableVoiceTypes() {
+  return ['Male', 'Female', 'Neutral'];
+}
+
+String getDefaultVoiceType() {
+  return getAvailableVoiceTypes().first;
+}
+
+/// DarkTheme
+ThemeMode _getDefaultTheme() {
+  return ThemeMode.system;
+}
+
+bool isDefaultThemeDark() {
+  // TODO: Maybe change
+  return _getDefaultTheme() == ThemeMode.dark ? true : false;
+}
+
+/// Date/Time formats
 String getItalianDateFormat(DateTime dateTime) {
   if (dateTime.day < 10 && dateTime.month < 10) {
     return "0${dateTime.day}/0${dateTime.month}/${dateTime.year}";
@@ -67,11 +115,13 @@ String getTimeString(MyExercise exercise) {
   }
 }
 
+/// Min window size
 double getMinWindowSize(context) {
   return math.min((MediaQuery.of(context).size.height),
       (MediaQuery.of(context).size.width) / 2);
 }
 
+/// Debug
 void printWarning(String text) {
   print('\x1B[33m$text\x1B[0m');
 }
@@ -80,33 +130,13 @@ void printError(String text) {
   print('\x1B[31m$text\x1B[0m');
 }
 
-String getDefaultLanguage() {
-  return window.locale.languageCode;
-}
-
-ThemeMode _getDefaultTheme() {
-  return ThemeMode.system;
-}
-
-bool isDefaultThemeDark2() {
-  return _getDefaultTheme() == ThemeMode.dark ? true : false;
-}
-
-bool isDefaultThemeDark3(context) {
-  var brightness = MediaQuery.of(context).platformBrightness;
-  return brightness == Brightness.dark;
-}
-
-bool isDefaultThemeDark(context) {
-  return isDefaultThemeDark2() || isDefaultThemeDark3(context);
-}
-
+/// Database errors
 Future defaultDatabaseErrorDialog(context, String message) {
   printWarning("Database error: " + message);
-  return defaultDialog(context, "Database error", message);
+  return _defaultDialog(context, "Database error", message);
 }
 
-Future defaultDatabaseErrorDialog2(context, message) {
+Future _defaultDatabaseErrorDialog2(context, message) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -126,7 +156,8 @@ Future defaultDatabaseErrorDialog2(context, message) {
   );
 }
 
-Future defaultDialog(context, String title, String message) {
+/// Default dialogs
+Future _defaultDialog(context, String title, String message) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -144,8 +175,4 @@ Future defaultDialog(context, String title, String message) {
       );
     },
   );
-}
-
-Future<SharedPreferences> getSharedPreferences() async {
-  return await SharedPreferences.getInstance();
 }
