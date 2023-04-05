@@ -53,9 +53,8 @@ Widget showExerciseModel(MyExercise exercise) {
   );
 }
 
-Widget showExerciseModelOld(MyExercise exercise) {
-  /// Graphics
-  // TODO: IMPROVE, MASSIVELY
+Widget _showExerciseModelOld(MyExercise exercise) {
+  /// Old graphics
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -65,7 +64,7 @@ Widget showExerciseModelOld(MyExercise exercise) {
   );
 }
 
-TabBar defaultTopBar(controller) {
+TabBar defaultExerciseTopBar(controller) {
   return TabBar(
     controller: controller,
     tabs: const [
@@ -86,12 +85,7 @@ InputDecorator defaultInputDecorator(String label, String text, IconData icon) {
   );
 }
 
-void Function() _onTapViewBadge(BuildContext context, MyBadge badge) {
-  return () {
-    showBadgeDialog(context, badge);
-  };
-}
-
+/// Badge views
 Widget defaultBadgeView(context, badge) {
   if (badge.date != "") {
     return defaultUnlockedBadgeView(context, badge);
@@ -100,9 +94,15 @@ Widget defaultBadgeView(context, badge) {
   }
 }
 
+void Function() _onTapViewBadge(BuildContext context, MyBadge badge) {
+  return () {
+    showBadgeDialog(context, badge);
+  };
+}
+
 Widget defaultUnlockedBadgeView(context, MyBadge badge) {
+  // TODO: Unite UnlockedView with LockedView in a single widget
   String name = badge.getBadge().badgeName;
-  String date = badge.date;
   IconData icon = badge.getBadge().icon;
   return Padding(
     padding: const EdgeInsets.all(8.0),
@@ -123,8 +123,7 @@ Widget defaultUnlockedBadgeView(context, MyBadge badge) {
               size: 50,
               color: Colors.white,
             ),
-            Text(name, style: defaultSmallButtonTextStyle()),
-//            Text(date, style: defaultSmallerButtonTextStyle()),  // TODO: Remove?
+            Text(name, style: defaultSmallButtonTextStyle(), maxLines: 2),
           ],
         ),
       ),
@@ -133,9 +132,9 @@ Widget defaultUnlockedBadgeView(context, MyBadge badge) {
 }
 
 Widget defaultLockedBadgeView(context, PossibleBadges badge) {
+  // TODO: Unite UnlockedView with LockedView in a single widget
   String name = badge.badgeName;
   IconData icon = badge.icon;
-
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: GestureDetector(
@@ -155,7 +154,7 @@ Widget defaultLockedBadgeView(context, PossibleBadges badge) {
               size: 50,
               color: Colors.white,
             ),
-            Text(name, style: defaultSmallButtonTextStyle()),
+            Text(name, style: defaultSmallButtonTextStyle(), maxLines: 2),
           ],
         ),
       ),
@@ -163,13 +162,7 @@ Widget defaultLockedBadgeView(context, PossibleBadges badge) {
   );
 }
 
-Text defaultText(String message) {
-  return Text(
-    message,
-    maxLines: null,
-  );
-}
-
+/// Buttons
 Text defaultButtonText(String message) {
   return Text(
     message,
@@ -182,12 +175,6 @@ Icon defaultButtonIcon(IconData iconData) {
   return Icon(
     iconData,
     color: myButtonTextColor,
-  );
-}
-
-Text defaultErrorText(String message) {
-  return Text(
-    message,
   );
 }
 

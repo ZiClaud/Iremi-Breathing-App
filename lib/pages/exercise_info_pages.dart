@@ -44,7 +44,7 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.exercise.name),
-        bottom: defaultTopBar(_tabController),
+        bottom: defaultExerciseTopBar(_tabController),
         actions: [
           if (isDev && widget.exercise is CustomExercise)
             IconButton(

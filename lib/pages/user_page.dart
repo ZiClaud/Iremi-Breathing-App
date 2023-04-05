@@ -102,7 +102,8 @@ Widget _showUserWidget(MyUser? user) {
               defaultInputDecorator("Goal", user.goal, Icons.ads_click),
           ],
         )
-      : Center(
-          child: defaultText('No user found'),
+      : const Center(
+          child: Text('No user found'),
+          // TODO: Maybe change with something else
         );
 }

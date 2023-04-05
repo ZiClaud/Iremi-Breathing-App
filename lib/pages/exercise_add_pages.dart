@@ -77,7 +77,7 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     return Scaffold(
       appBar: AppBar(
         title: const Text("Add custom exercise"),
-        bottom: defaultTopBar(_tabController),
+        bottom: defaultExerciseTopBar(_tabController),
       ),
       body: TabBarView(
         controller: _tabController,
