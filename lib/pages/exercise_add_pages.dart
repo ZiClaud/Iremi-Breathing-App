@@ -12,20 +12,14 @@ final TextEditingController _nameController = TextEditingController();
 final TextEditingController _descriptionController = TextEditingController();
 final TextEditingController _notesController = TextEditingController();
 final TextEditingController _timesController = TextEditingController();
-final TextEditingController _inhaleDurationController = TextEditingController();
-final TextEditingController _inhaleDurationMsController =
-    TextEditingController();
-final TextEditingController _holdMiddleDurationController =
-    TextEditingController();
-final TextEditingController _holdMiddleDurationMsController =
-    TextEditingController();
-final TextEditingController _exhaleDurationController = TextEditingController();
-final TextEditingController _exhaleDurationMsController =
-    TextEditingController();
-final TextEditingController _holdEndDurationController =
-    TextEditingController();
-final TextEditingController _holdEndDurationMsController =
-    TextEditingController();
+final TextEditingController _inhaleDrController = TextEditingController();
+final TextEditingController _inhaleDrMsController = TextEditingController();
+final TextEditingController _holdMiddleDrController = TextEditingController();
+final TextEditingController _holdMiddleDrMsController = TextEditingController();
+final TextEditingController _exhaleDrController = TextEditingController();
+final TextEditingController _exhaleDrMsController = TextEditingController();
+final TextEditingController _holdEndDrController = TextEditingController();
+final TextEditingController _holdEndDrMsController = TextEditingController();
 final List<TextEditingController> _stepsControllers = [];
 final List<FocusNode> _stepsFocusNodes = [];
 
@@ -60,14 +54,14 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     _descriptionController.text = "";
     _notesController.text = "";
     _timesController.text = "";
-    _inhaleDurationController.text = "";
-    _inhaleDurationMsController.text = "";
-    _holdMiddleDurationController.text = "";
-    _holdMiddleDurationMsController.text = "";
-    _exhaleDurationController.text = "";
-    _exhaleDurationMsController.text = "";
-    _holdEndDurationController.text = "";
-    _holdEndDurationMsController.text = "";
+    _inhaleDrController.text = "";
+    _inhaleDrMsController.text = "";
+    _holdMiddleDrController.text = "";
+    _holdMiddleDrMsController.text = "";
+    _exhaleDrController.text = "";
+    _exhaleDrMsController.text = "";
+    _holdEndDrController.text = "";
+    _holdEndDrMsController.text = "";
     _stepsControllers.clear();
     _stepsFocusNodes.clear();
   }
@@ -112,7 +106,6 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
   }
 
   void _saveExercise(BuildContext context) {
-    // TODO: Fix "Steps" -> they don't work at all
     if (formData.name == null || formData.name!.isEmpty) {
       throw Exception("Please enter a name for the exercise");
     }
@@ -222,7 +215,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
           defaultEditTextFormField2Num(
             "InhaleDuration",
             Icons.circle,
-            _inhaleDurationController,
+            _inhaleDrController,
             onChanged: (value) {
               widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
             },
@@ -230,7 +223,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
           defaultEditTextFormField2Num(
             "HoldMiddleDuration",
             Icons.change_circle,
-            _holdMiddleDurationController,
+            _holdMiddleDrController,
             onChanged: (value) {
               widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
             },
@@ -238,7 +231,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
           defaultEditTextFormField2Num(
             "ExhaleDuration",
             Icons.circle_outlined,
-            _exhaleDurationController,
+            _exhaleDrController,
             onChanged: (value) {
               widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
             },
@@ -246,7 +239,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
           defaultEditTextFormField2Num(
             "HoldEndDuration",
             Icons.change_circle_outlined,
-            _holdEndDurationController,
+            _holdEndDrController,
             onChanged: (value) {
               widget.formData.holdEndDuration = int.tryParse(value!) ?? 0;
             },
@@ -255,7 +248,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
             defaultEditTextFormField2Num(
               "InhaleDuration (ms)",
               Icons.circle,
-              _inhaleDurationMsController,
+              _inhaleDrMsController,
               onChanged: (value) {
                 widget.formData.inhaleDurationMs = int.tryParse(value!) ?? 0;
               },
@@ -264,7 +257,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
             defaultEditTextFormField2Num(
               "HoldMiddleDuration (ms)",
               Icons.change_circle,
-              _holdMiddleDurationMsController,
+              _holdMiddleDrMsController,
               onChanged: (value) {
                 widget.formData.holdMiddleDurationMs =
                     int.tryParse(value!) ?? 0;
@@ -274,7 +267,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
             defaultEditTextFormField2Num(
               "ExhaleDuration (ms)",
               Icons.circle_outlined,
-              _exhaleDurationMsController,
+              _exhaleDrMsController,
               onChanged: (value) {
                 widget.formData.exhaleDurationMs = int.tryParse(value!) ?? 0;
               },
@@ -283,7 +276,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
             defaultEditTextFormField2Num(
               "HoldEndDuration (ms)",
               Icons.change_circle_outlined,
-              _holdEndDurationMsController,
+              _holdEndDrMsController,
               onChanged: (value) {
                 widget.formData.holdEndDurationMs = int.tryParse(value!) ?? 0;
               },
@@ -326,13 +319,10 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
   @override
   void initState() {
     super.initState();
-//    _addTextFormField();
   }
 
   @override
   void dispose() {
-//    _stepsControllers.forEach((controller) => controller.dispose());
-//    _stepsFocusNodes.forEach((focusNode) => focusNode.dispose());
     super.dispose();
   }
 
@@ -374,7 +364,7 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
                         labelText: 'Step ${i + 1}',
                       ),
                       onChanged: (value) {
-                        widget.formData.steps[i] = value ?? "";
+                        widget.formData.steps[i] = value;
                       },
                     ),
                   ),
