@@ -8,8 +8,29 @@ import '../basics/exercise_custom.dart';
 import '../database/forms/exercise_form_widget.dart';
 import '../utils/default_widgets.dart';
 
+final TextEditingController _nameController = TextEditingController();
+final TextEditingController _descriptionController = TextEditingController();
+final TextEditingController _notesController = TextEditingController();
+final TextEditingController _timesController = TextEditingController();
+final TextEditingController _inhaleDurationController = TextEditingController();
+final TextEditingController _inhaleDurationMsController =
+    TextEditingController();
+final TextEditingController _holdMiddleDurationController =
+    TextEditingController();
+final TextEditingController _holdMiddleDurationMsController =
+    TextEditingController();
+final TextEditingController _exhaleDurationController = TextEditingController();
+final TextEditingController _exhaleDurationMsController =
+    TextEditingController();
+final TextEditingController _holdEndDurationController =
+    TextEditingController();
+final TextEditingController _holdEndDurationMsController =
+    TextEditingController();
+final List<TextEditingController> _stepsControllers = [];
+final List<FocusNode> _stepsFocusNodes = [];
+
 class ExerciseAddPages extends StatefulWidget {
-  CustomExercise? exercise; // TODO: Use it - modifies the exercise
+  CustomExercise? exercise; // TODO: Use it to modify the exercise
   ExerciseAddPages({Key? key, this.exercise}) : super(key: key);
 
   @override
@@ -35,6 +56,20 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
         formData: formData,
       ),
     ];
+    _nameController.text = "";
+    _descriptionController.text = "";
+    _notesController.text = "";
+    _timesController.text = "";
+    _inhaleDurationController.text = "";
+    _inhaleDurationMsController.text = "";
+    _holdMiddleDurationController.text = "";
+    _holdMiddleDurationMsController.text = "";
+    _exhaleDurationController.text = "";
+    _exhaleDurationMsController.text = "";
+    _holdEndDurationController.text = "";
+    _holdEndDurationMsController.text = "";
+    _stepsControllers.clear();
+    _stepsFocusNodes.clear();
   }
 
   @override
@@ -148,61 +183,107 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
     return Scaffold(
       body: ListView(
         children: [
-          defaultEditTextFormField2("Name", Icons.keyboard_double_arrow_up,
-              onChanged: (value) {
-            widget.formData.name = value;
-          }),
-          defaultEditTextFormField2("Description", Icons.description,
-              onChanged: (value) {
-            widget.formData.description = value;
-          }),
-          defaultEditTextFormField2("Notes", Icons.note, onChanged: (value) {
-            widget.formData.notes = value;
-          }),
-          defaultEditTextFormField2Num("Times", Icons.incomplete_circle,
-              onChanged: (value) {
-            widget.formData.times = int.tryParse(value!) ?? 0;
-          }),
-          defaultEditTextFormField2Num("InhaleDuration", Icons.circle,
-              onChanged: (value) {
-            widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
-          }),
+          defaultEditTextFormField2(
+            "Name",
+            Icons.keyboard_double_arrow_up,
+            _nameController,
+            onChanged: (value) {
+              widget.formData.name = value;
+            },
+          ),
+          defaultEditTextFormField2(
+            "Description",
+            Icons.description,
+            _descriptionController,
+            onChanged: (value) {
+              widget.formData.description = value;
+            },
+          ),
+          defaultEditTextFormField2(
+            "Notes",
+            Icons.note,
+            _notesController,
+            onChanged: (value) {
+              widget.formData.notes = value;
+            },
+          ),
           defaultEditTextFormField2Num(
-              "HoldMiddleDuration", Icons.change_circle, onChanged: (value) {
-            widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
-          }),
-          defaultEditTextFormField2Num("ExhaleDuration", Icons.circle_outlined,
-              onChanged: (value) {
-            widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
-          }),
+            "Times",
+            Icons.incomplete_circle,
+            _timesController,
+            onChanged: (value) {
+              widget.formData.times = int.tryParse(value!) ?? 0;
+            },
+          ),
           defaultEditTextFormField2Num(
-              "HoldEndDuration", Icons.change_circle_outlined,
+            "InhaleDuration",
+            Icons.circle,
+            _inhaleDurationController,
+            onChanged: (value) {
+              widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
+            },
+          ),
+          defaultEditTextFormField2Num(
+            "HoldMiddleDuration",
+            Icons.change_circle,
+            _holdMiddleDurationController,
+            onChanged: (value) {
+              widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
+            },
+          ),
+          defaultEditTextFormField2Num(
+            "ExhaleDuration",
+            Icons.circle_outlined,
+            _exhaleDurationController,
+            onChanged: (value) {
+              widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
+            },
+          ),
+          defaultEditTextFormField2Num(
+            "HoldEndDuration",
+            Icons.change_circle_outlined,
+            _holdEndDurationController,
+            onChanged: (value) {
+              widget.formData.holdEndDuration = int.tryParse(value!) ?? 0;
+            },
+          ),
+          if (widget.showComplex)
+            defaultEditTextFormField2Num(
+              "InhaleDuration (ms)",
+              Icons.circle,
+              _inhaleDurationMsController,
               onChanged: (value) {
-            widget.formData.holdEndDuration = int.tryParse(value!) ?? 0;
-          }),
-          if (widget.showComplex)
-            defaultEditTextFormField2Num("InhaleDuration (ms)", Icons.circle,
-                onChanged: (value) {
-              widget.formData.inhaleDurationMs = int.tryParse(value!) ?? 0;
-            }),
+                widget.formData.inhaleDurationMs = int.tryParse(value!) ?? 0;
+              },
+            ),
           if (widget.showComplex)
             defaultEditTextFormField2Num(
-                "HoldMiddleDuration (ms)", Icons.change_circle,
-                onChanged: (value) {
-              widget.formData.holdMiddleDurationMs = int.tryParse(value!) ?? 0;
-            }),
+              "HoldMiddleDuration (ms)",
+              Icons.change_circle,
+              _holdMiddleDurationMsController,
+              onChanged: (value) {
+                widget.formData.holdMiddleDurationMs =
+                    int.tryParse(value!) ?? 0;
+              },
+            ),
           if (widget.showComplex)
             defaultEditTextFormField2Num(
-                "ExhaleDuration (ms)", Icons.circle_outlined,
-                onChanged: (value) {
-              widget.formData.exhaleDurationMs = int.tryParse(value!) ?? 0;
-            }),
+              "ExhaleDuration (ms)",
+              Icons.circle_outlined,
+              _exhaleDurationMsController,
+              onChanged: (value) {
+                widget.formData.exhaleDurationMs = int.tryParse(value!) ?? 0;
+              },
+            ),
           if (widget.showComplex)
             defaultEditTextFormField2Num(
-                "HoldEndDuration (ms)", Icons.change_circle_outlined,
-                onChanged: (value) {
-              widget.formData.holdEndDurationMs = int.tryParse(value!) ?? 0;
-            }),
+              "HoldEndDuration (ms)",
+              Icons.change_circle_outlined,
+              _holdEndDurationMsController,
+              onChanged: (value) {
+                widget.formData.holdEndDurationMs = int.tryParse(value!) ?? 0;
+              },
+            ),
           if (!widget.showComplex)
             OutlinedButton(
               onPressed: () {
@@ -238,19 +319,16 @@ class _ExerciseAddStepsPage extends StatefulWidget {
 }
 
 class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
-  final List<TextEditingController> _controllers = [];
-  final List<FocusNode> _focusNodes = [];
-
   @override
   void initState() {
     super.initState();
-    _addTextFormField();
+//    _addTextFormField();
   }
 
   @override
   void dispose() {
-    _controllers.forEach((controller) => controller.dispose());
-    _focusNodes.forEach((focusNode) => focusNode.dispose());
+//    _stepsControllers.forEach((controller) => controller.dispose());
+//    _stepsFocusNodes.forEach((focusNode) => focusNode.dispose());
     super.dispose();
   }
 
@@ -258,8 +336,8 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
     final controller = TextEditingController();
     final focusNode = FocusNode();
     setState(() {
-      _controllers.add(controller);
-      _focusNodes.add(focusNode);
+      _stepsControllers.add(controller);
+      _stepsFocusNodes.add(focusNode);
     });
     // After adding a new text field, set the focus to it.
     Future.delayed(
@@ -268,8 +346,8 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
 
   void _removeTextFormField(int index) {
     setState(() {
-      _controllers.removeAt(index);
-      _focusNodes.removeAt(index);
+      _stepsControllers.removeAt(index);
+      _stepsFocusNodes.removeAt(index);
     });
   }
 
@@ -281,13 +359,13 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            for (var i = 0; i < _controllers.length; i++)
+            for (var i = 0; i < _stepsControllers.length; i++)
               Row(
                 children: [
                   Expanded(
                     child: TextFormField(
-                      controller: _controllers[i],
-                      focusNode: _focusNodes[i],
+                      controller: _stepsControllers[i],
+                      focusNode: _stepsFocusNodes[i],
                       decoration: InputDecoration(
                         labelText: 'Step ${i + 1}',
                       ),
