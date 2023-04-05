@@ -94,6 +94,10 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
         onPressed: () {
           _customizerAchievement(context);
           try {
+            printWarning("CHECK THIS OUT");
+            printWarning(formData.steps.toString());
+            printWarning(formData.steps.toString());
+            printWarning(formData.steps.toString());
             _saveExercise(context);
           } catch (e) {
             defaultDatabaseErrorDialog(context, e.toString());
@@ -369,17 +373,26 @@ class _ExerciseAddStepsPageState extends State<_ExerciseAddStepsPage> {
                       decoration: InputDecoration(
                         labelText: 'Step ${i + 1}',
                       ),
+                      onChanged: (value) {
+                        widget.formData.steps[i] = value ?? "";
+                      },
                     ),
                   ),
                   IconButton(
                     icon: const Icon(Icons.delete),
-                    onPressed: () => _removeTextFormField(i),
+                    onPressed: () {
+                      widget.formData.steps.removeAt(i);
+                      _removeTextFormField(i);
+                    },
                   ),
                 ],
               ),
             const SizedBox(height: 16.0),
             ElevatedButton(
-              onPressed: _addTextFormField,
+              onPressed: () {
+                widget.formData.steps.add("");
+                _addTextFormField();
+              },
               child: defaultButtonText('Add Step'),
             ),
           ],
