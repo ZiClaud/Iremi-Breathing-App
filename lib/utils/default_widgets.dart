@@ -191,15 +191,7 @@ Text defaultErrorText(String message) {
   );
 }
 
-TextFormField _defaultEditTextFormField(String label, IconData icon) {
-  return TextFormField(
-    decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
-    keyboardType: TextInputType.multiline,
-    maxLines: null,
-  );
-}
-
-TextFormField defaultEditTextFormField2(String label, IconData icon, controller,
+TextFormField defaultEditTextFormField(String label, IconData icon, controller,
     {required void Function(String?) onChanged}) {
   return TextFormField(
     controller: controller,
@@ -210,7 +202,8 @@ TextFormField defaultEditTextFormField2(String label, IconData icon, controller,
   );
 }
 
-TextFormField defaultEditTextFormField2Num(String label, IconData icon, controller,
+TextFormField defaultEditTextFormFieldNum(
+    String label, IconData icon, controller,
     {required void Function(String?) onChanged}) {
   return TextFormField(
     controller: controller,

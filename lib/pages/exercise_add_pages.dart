@@ -180,7 +180,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
     return Scaffold(
       body: ListView(
         children: [
-          defaultEditTextFormField2(
+          defaultEditTextFormField(
             "Name",
             Icons.keyboard_double_arrow_up,
             _nameController,
@@ -188,7 +188,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               widget.formData.name = value;
             },
           ),
-          defaultEditTextFormField2(
+          defaultEditTextFormField(
             "Description",
             Icons.description,
             _descriptionController,
@@ -196,7 +196,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               widget.formData.description = value;
             },
           ),
-          defaultEditTextFormField2(
+          defaultEditTextFormField(
             "Notes",
             Icons.note,
             _notesController,
@@ -204,7 +204,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               widget.formData.notes = value;
             },
           ),
-          defaultEditTextFormField2Num(
+          defaultEditTextFormFieldNum(
             "Times",
             Icons.incomplete_circle,
             _timesController,
@@ -212,7 +212,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               widget.formData.times = int.tryParse(value!) ?? 0;
             },
           ),
-          defaultEditTextFormField2Num(
+          defaultEditTextFormFieldNum(
             "InhaleDuration",
             Icons.circle,
             _inhaleDrController,
@@ -220,7 +220,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
             },
           ),
-          defaultEditTextFormField2Num(
+          defaultEditTextFormFieldNum(
             "HoldMiddleDuration",
             Icons.change_circle,
             _holdMiddleDrController,
@@ -228,7 +228,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
             },
           ),
-          defaultEditTextFormField2Num(
+          defaultEditTextFormFieldNum(
             "ExhaleDuration",
             Icons.circle_outlined,
             _exhaleDrController,
@@ -236,7 +236,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
             },
           ),
-          defaultEditTextFormField2Num(
+          defaultEditTextFormFieldNum(
             "HoldEndDuration",
             Icons.change_circle_outlined,
             _holdEndDrController,
@@ -245,7 +245,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
             },
           ),
           if (widget.showComplex)
-            defaultEditTextFormField2Num(
+            defaultEditTextFormFieldNum(
               "InhaleDuration (ms)",
               Icons.circle,
               _inhaleDrMsController,
@@ -254,7 +254,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               },
             ),
           if (widget.showComplex)
-            defaultEditTextFormField2Num(
+            defaultEditTextFormFieldNum(
               "HoldMiddleDuration (ms)",
               Icons.change_circle,
               _holdMiddleDrMsController,
@@ -264,7 +264,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               },
             ),
           if (widget.showComplex)
-            defaultEditTextFormField2Num(
+            defaultEditTextFormFieldNum(
               "ExhaleDuration (ms)",
               Icons.circle_outlined,
               _exhaleDrMsController,
@@ -273,7 +273,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
               },
             ),
           if (widget.showComplex)
-            defaultEditTextFormField2Num(
+            defaultEditTextFormFieldNum(
               "HoldEndDuration (ms)",
               Icons.change_circle_outlined,
               _holdEndDrMsController,
