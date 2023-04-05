@@ -5,6 +5,7 @@ import 'package:iremibreathingapp/database/getters.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../database/database.dart';
+import '../database/database_dialogs.dart';
 import '../utils/my_utils.dart';
 
 class MyBadge {

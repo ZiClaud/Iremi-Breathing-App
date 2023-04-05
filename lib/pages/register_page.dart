@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/user.dart';
 
 import '../database/database.dart';
+import '../database/database_dialogs.dart';
 import '../database/forms/user_form_widget.dart';
 import '../utils/default_widgets.dart';
-import '../utils/my_utils.dart';
 import 'home_page.dart';
 
 class RegisterPageDB extends StatefulWidget {

@@ -5,12 +5,12 @@ import 'package:iremibreathingapp/basics/exercises/exercise_478.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_box_breathing.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_deep_breathing_beginner.dart';
 import 'package:iremibreathingapp/basics/user.dart';
-import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
 import '../basics/exercises/exercise_deep_breathing_avanced.dart';
 import '../basics/exercises/exercise_deep_breathing_intermediate.dart';
 import 'database.dart';
+import 'database_dialogs.dart';
 
 class Getters {
   static List<MyExercise> getDefaultExercises() {

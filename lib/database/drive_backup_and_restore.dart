@@ -1,4 +1,4 @@
-import '../utils/my_utils.dart';
+import 'database_dialogs.dart';
 
 Future<void> backupDatabaseToGoogleDrive(context) async {
   // TODO: IMPLEMENT

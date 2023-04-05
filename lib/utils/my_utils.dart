@@ -5,8 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'default_widgets.dart';
-
 bool isDev = false; //TODO IMPORTANT: Change to false when building for release
 
 /// SharedPreferences
@@ -128,51 +126,4 @@ void printWarning(String text) {
 
 void printError(String text) {
   print('\x1B[31m$text\x1B[0m');
-}
-
-/// Database errors
-Future defaultDatabaseErrorDialog(context, String message) {
-  printWarning("Database error: " + message);
-  return _defaultDialog(context, "Database error", message);
-}
-
-Future _defaultDatabaseErrorDialog2(context, message) {
-  return showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text("Database error"),
-        content: Text(message.toString()),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: defaultButtonText("Close"),
-          ),
-        ],
-      );
-    },
-  );
-}
-
-/// Default dialogs
-Future _defaultDialog(context, String title, String message) {
-  return showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(title),
-        content: Text(message.toString()),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: defaultButtonText("Close"),
-          ),
-        ],
-      );
-    },
-  );
 }
