@@ -83,7 +83,6 @@ class _MainPageState extends State<MainPage> {
           );
         },
       ),
-//      bottomNavigationBar: getBottomNavigationBar(context, 1),
     );
   }
 

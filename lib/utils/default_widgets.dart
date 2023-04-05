@@ -86,29 +86,28 @@ InputDecorator defaultInputDecorator(String label, String text, IconData icon) {
   );
 }
 
-void Function() _onTapViewBadge(
-    BuildContext context, List<MyBadge?> myBadges, int index) {
+void Function() _onTapViewBadge(BuildContext context, MyBadge badge) {
   return () {
-    showBadgeDialog(context, myBadges[index]!);
+    showBadgeDialog(context, badge);
   };
 }
 
-Widget defaultBadgeView(context, List<MyBadge> myBadges, int index) {
-  if (myBadges[index].date != "") {
-    return defaultUnlockedBadgeView(context, myBadges, index);
+Widget defaultBadgeView(context, badge) {
+  if (badge.date != "") {
+    return defaultUnlockedBadgeView(context, badge);
   } else {
-    return defaultLockedBadgeView(context, myBadges, index);
+    return defaultLockedBadgeView(context, badge);
   }
 }
 
-Widget defaultUnlockedBadgeView(context, List<MyBadge> myBadges, int index) {
-  String name = myBadges[index].getBadge().badgeName;
-  String date = myBadges[index].date;
-  IconData icon = myBadges[index].getBadge().icon;
+Widget defaultUnlockedBadgeView(context, MyBadge badge) {
+  String name = badge.getBadge().badgeName;
+  String date = badge.date;
+  IconData icon = badge.getBadge().icon;
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: GestureDetector(
-      onTap: _onTapViewBadge(context, myBadges, index),
+      onTap: _onTapViewBadge(context, badge),
       child: Container(
         width: 100,
         height: 100,
@@ -125,7 +124,7 @@ Widget defaultUnlockedBadgeView(context, List<MyBadge> myBadges, int index) {
               color: Colors.white,
             ),
             Text(name, style: defaultSmallButtonTextStyle()),
-            Text(date, style: defaultSmallerButtonTextStyle()),
+            Text(date, style: defaultSmallerButtonTextStyle()),  // TODO: Remove?
           ],
         ),
       ),
@@ -133,14 +132,14 @@ Widget defaultUnlockedBadgeView(context, List<MyBadge> myBadges, int index) {
   );
 }
 
-Widget defaultLockedBadgeView(context, List<MyBadge> myBadges, int index) {
-  String name = myBadges[index].getBadge().badgeName;
-  IconData icon = myBadges[index].getBadge().icon;
+Widget defaultLockedBadgeView(context, PossibleBadges badge) {
+  String name = badge.badgeName;
+  IconData icon = badge.icon;
 
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: GestureDetector(
-      onTap: _onTapViewBadge(context, myBadges, index),
+      onTap: _onTapViewBadge(context, MyBadge(id: badge.id, date: "")),
       child: Container(
         width: 100,
         height: 100,
@@ -240,13 +239,10 @@ List<ExerciseHistory> _filterExerciseHistory(
     List<ExerciseHistory> exerciseHistory) {
   List<DateTime> dateTimes = []; // List of the dateTimes
 
-  // Add the past 6 days
-  for (int i = 0; i < 6; i++) {
+  // Add the past 6 days + today
+  for (int i = 0; i < 7; i++) {
     dateTimes.add(DateTime.now().subtract(Duration(days: i)));
   }
-
-  // Add tomorrow
-  dateTimes.add(DateTime.now().add(Duration(days: 1)));
 
   List<ExerciseHistory> exerciseHistoryFiltered = [];
 

@@ -159,7 +159,7 @@ class _DevPageState extends State<DevPage> {
       itemCount: _myBadgeExample().length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return defaultBadgeView(context, _myBadgeExample(), index);
+        return defaultBadgeView(context, _myBadgeExample()[index]);
       },
     );
   }

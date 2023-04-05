@@ -49,46 +49,59 @@ class BadgeFields {
 
 enum PossibleBadges {
   /// awarded for completing your first breathing exercise session.
-  airApprentice(0, "Air Apprentice", Icons.air, "Awarded for completing your first breathing exercise session."),
+  airApprentice(0, "Air Apprentice", Icons.air,
+      "Awarded for completing your first breathing exercise session."),
 
   /// awarded for consistently completing breathing exercises daily for a week.
-  serenitySeeker(1, "Serenity Seeker", Icons.water_drop, "Awarded for consistently completing breathing exercises daily for a week."),
+  serenitySeeker(1, "Serenity Seeker", Icons.water_drop,
+      "Awarded for consistently completing breathing exercises daily for a week."),
 
   ///  awarded for consistently completing breathing exercises daily for a month.
-  wellnessWarrior(2, "Wellness Warrior", Icons.local_fire_department, "Awarded for consistently completing breathing exercises daily for a month."),
+  wellnessWarrior(2, "Wellness Warrior", Icons.local_fire_department,
+      "Awarded for consistently completing breathing exercises daily for a month."),
 
   /// awarded for consistently completing breathing exercises daily for 3 months.
-  rockSolid(3, "Rock Solid", Icons.terrain, "Awarded for consistently completing breathing exercises daily for 3 months."),
+  rockSolid(3, "Rock Solid", Icons.terrain,
+      "Awarded for consistently completing breathing exercises daily for 3 months."),
 
   /// awarded for practicing deep breathing exercises for more than 5 minutes.
-  deepBreather(4, "Deep Breather", Icons.spa, "Awarded for practicing deep breathing exercises for more than 5 minutes."),
+  deepBreather(4, "Deep Breather", Icons.spa,
+      "Awarded for practicing deep breathing exercises for more than 5 minutes."),
 
   // awarded for trying out a all default breathing exercises offered in the app.
-  breathingExplorer(5, "Breathing Explorer", Icons.explore, "Awarded for trying out a all default breathing exercises offered in the app."),
+  breathingExplorer(5, "Breathing Explorer", Icons.explore,
+      "Awarded for trying out a all default breathing exercises offered in the app."),
 
   /// awarded for creating a custom exercise
-  customizer(6, "Customizer", Icons.handyman, "Awarded for creating a custom exercise."),
+  customizer(6, "Customizer", Icons.handyman,
+      "Awarded for creating a custom exercise."),
 
   /// awarded for doing 5 exercises between 6AM and 8AM.
-  morningPerson(7, "Morning Person", Icons.wb_sunny, "Awarded for doing 5 exercises between 6AM and 8AM."),
+  morningPerson(7, "Morning Person", Icons.wb_sunny,
+      "Awarded for doing 5 exercises between 6AM and 8AM."),
 
   /// awarded for doing 5 exercises between 10PM and 12PM.
-  nightOwl(8, "Night Owl", Icons.nightlight_round, "Awarded for doing 5 exercises between 10PM and 12PM."),
+  nightOwl(8, "Night Owl", Icons.nightlight_round,
+      "Awarded for doing 5 exercises between 10PM and 12PM."),
 
   // awarded for rating the app.
   rater(9, "Rater", Icons.star, "Awarded for rating the app."),
 
   // awarded for sharing the app with a friend.
-  sharingIsCaring(10, "Sharing is Caring", Icons.share, "Awarded for sharing the app with a friend."),
+  sharingIsCaring(10, "Sharing is Caring", Icons.share,
+      "Awarded for sharing the app with a friend."),
 
   // awarded for donating to the app.
-  supporter(11, "Generous Supporter", Icons.attach_money, "Awarded for donating to the app."),
+  supporter(11, "Generous Supporter", Icons.attach_money,
+      "Awarded for donating to the app."),
 
   /// awarded for backing up your data.
-  backupMaster(12, "Backup Master", Icons.save, "Awarded for backing up your data."),
+  backupMaster(
+      12, "Backup Master", Icons.save, "Awarded for backing up your data."),
 
   /// awarded for finding a secret page.
-  secret(13, "Curious Explorer", Icons.lock_open, "Awarded for finding a secret page.");
+  secret(13, "Curious Explorer", Icons.lock_open,
+      "Awarded for finding a secret page.");
 
   final int id;
   final String badgeName;

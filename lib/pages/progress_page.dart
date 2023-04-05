@@ -57,39 +57,33 @@ class _ProgressPageState extends State<ProgressPage> {
           ),
         ],
       ),
-//      bottomNavigationBar: getBottomNavigationBar(context, 0),
     );
   }
 }
 
-Widget _showBadgeWidget(List<MyBadge?> badges) {
-  List<MyBadge> allBadges = _getAllBadges(badges);
+Widget _showBadgeWidget(List<MyBadge> badges) {
+  List<PossibleBadges> allPossibleBadges = [];
+  allPossibleBadges.addAll(PossibleBadges.values);
+
+  for (int i = 0; i < badges.length; i++) {
+    allPossibleBadges.remove(badges[i].getBadge());
+  }
 
   return ListView.builder(
     scrollDirection: Axis.horizontal,
-    itemCount: allBadges.length,
+    itemCount: allPossibleBadges.length + badges.length,
     itemBuilder: (context, index) {
-      return defaultBadgeView(context, allBadges, index);
+      if (index < badges.length) {
+        return defaultBadgeView(
+          context,
+          badges[index],
+        );
+      } else {
+        return defaultLockedBadgeView(
+          context,
+          allPossibleBadges[index - badges.length],
+        );
+      }
     },
   );
-}
-
-List<MyBadge> _getAllBadges(List<MyBadge?> badges) {
-  List<MyBadge> allBadges = [];
-
-  for (PossibleBadges possibleBadges in PossibleBadges.values) {
-    allBadges.add(MyBadge(id: possibleBadges.id, date: ""));
-  }
-
-  for (int i = 0; i < badges.length; i++) {
-    for (MyBadge allBadge in allBadges) {
-      for (MyBadge? badge in badges) {
-        if (badge!.id == allBadge.id) {
-          allBadges.remove(allBadge);
-        }
-      }
-    }
-  }
-
-  return allBadges;
 }

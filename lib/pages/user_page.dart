@@ -85,7 +85,6 @@ class _UserPageState extends State<UserPage> {
           ),
         ],
       ),
-//      bottomNavigationBar: getBottomNavigationBar(context, 2),
     );
   }
 }
