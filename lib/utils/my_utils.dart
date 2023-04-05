@@ -102,7 +102,6 @@ bool isDefaultThemeDark(context) {
 }
 
 Future defaultDatabaseErrorDialog(context, String message) {
-  print("TODO: IMPORTANT BEFORE RELEASE: Remove comment");
   printWarning("Database error: " + message);
   return defaultDialog(context, "Database error", message);
 }
