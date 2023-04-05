@@ -15,6 +15,7 @@ const Color _myLightBackgroundColorCard = Color(0xFFFFFFFF);
 const Color _myDarkBackgroundColorCard = Color(0xFF444444);
 const Color _myDarkBackgroundColor = Color(0xFF282828);
 const Color _myBlack = Color(0xFF000000);
+const Color myLockedBadgeColor = Colors.grey;
 
 Color myBluLightDark() {
   return IremiTheme.isDarkTheme() ? _myBluDark : _myBluLight;

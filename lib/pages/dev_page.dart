@@ -156,16 +156,22 @@ class _DevPageState extends State<DevPage> {
 
   Widget _getAchievementListView(BuildContext context) {
     return ListView.builder(
-      itemCount: PossibleBadges.values.length,
+      itemCount: _myBadgeExample().length,
       scrollDirection: Axis.horizontal,
       itemBuilder: (context, index) {
-        return defaultBadgeView(
-          PossibleBadges.values[index].badgeName,
-          "30/03/2023",
-          PossibleBadges.values[index].icon,
-        );
+        return defaultBadgeView(context, _myBadgeExample(), index);
       },
     );
+  }
+
+  List<MyBadge> _myBadgeExample() {
+    List<MyBadge> allBadges = [];
+
+    for (PossibleBadges possibleBadges in PossibleBadges.values) {
+      allBadges.add(MyBadge(id: possibleBadges.id, date: "30/03/2023"));
+    }
+
+    return allBadges;
   }
 
   Widget _getUserListView(BuildContext context) {

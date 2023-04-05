@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:iremibreathingapp/pages/progress_page.dart';
+import 'package:iremibreathingapp/pages/badge_info_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
+import '../basics/badge.dart';
 import '../basics/exercise.dart';
 import '../basics/exercise_history.dart';
-import '../pages/main_page.dart';
-import '../pages/user_page.dart';
 import 'my_utils.dart';
 
 double defaultCircleSize() {
@@ -66,46 +65,6 @@ Widget showExerciseModelOld(MyExercise exercise) {
   );
 }
 
-BottomNavigationBar _getBottomNavigationBar(context, currentIndex) {
-  BottomNavigationBarItem homePageItem = const BottomNavigationBarItem(
-    icon: Icon(Icons.home),
-    label: "Home",
-  );
-
-  BottomNavigationBarItem userPageItem = const BottomNavigationBarItem(
-    icon: Icon(Icons.person),
-    label: "Profile",
-  );
-
-  BottomNavigationBarItem progressPageItem = const BottomNavigationBarItem(
-    icon: Icon(Icons.bar_chart),
-    label: "Progress",
-  );
-
-  List<BottomNavigationBarItem> items = [
-    progressPageItem,
-    homePageItem,
-    userPageItem,
-  ];
-
-  return BottomNavigationBar(
-    items: items,
-    currentIndex: currentIndex,
-    onTap: (index) {
-      if (index == 0 && currentIndex != 0) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ProgressPage()));
-      } else if (index == 1 && currentIndex != 1) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => MainPage()));
-      } else if (index == 2 && currentIndex != 2) {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => UserPage()));
-      }
-    },
-  );
-}
-
 TabBar defaultTopBar(controller) {
   return TabBar(
     controller: controller,
@@ -114,19 +73,6 @@ TabBar defaultTopBar(controller) {
       Tab(text: 'Steps'),
     ],
     indicatorColor: myBluNeutral,
-  );
-}
-
-TextFormField _defaultShowTextFormField2(
-    String label, String text, IconData icon,
-    {TextEditingController? controller}) {
-  return TextFormField(
-    enabled: false,
-    initialValue: text,
-    decoration: InputDecoration(label: Text(label), icon: Icon(icon)),
-    keyboardType: TextInputType.multiline,
-    maxLines: null,
-    controller: controller,
   );
 }
 
@@ -140,52 +86,79 @@ InputDecorator defaultInputDecorator(String label, String text, IconData icon) {
   );
 }
 
-Widget defaultBadgeView(String name, String date, IconData icon) {
+void Function() _onTapViewBadge(
+    BuildContext context, List<MyBadge?> myBadges, int index) {
+  return () {
+    showBadgeDialog(context, myBadges[index]!);
+  };
+}
+
+Widget defaultBadgeView(context, List<MyBadge> myBadges, int index) {
+  if (myBadges[index].date != "") {
+    return defaultUnlockedBadgeView(context, myBadges, index);
+  } else {
+    return defaultLockedBadgeView(context, myBadges, index);
+  }
+}
+
+Widget defaultUnlockedBadgeView(context, List<MyBadge> myBadges, int index) {
+  String name = myBadges[index].getBadge().badgeName;
+  String date = myBadges[index].date;
+  IconData icon = myBadges[index].getBadge().icon;
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        color: myBluLightDark(),
-        shape: BoxShape.circle,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 50,
-            color: Colors.white,
-          ),
-          Text(name, style: defaultSmallButtonTextStyle()),
-          Text(date, style: defaultSmallerButtonTextStyle()),
-        ],
+    child: GestureDetector(
+      onTap: _onTapViewBadge(context, myBadges, index),
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          color: myBluLightDark(),
+          shape: BoxShape.circle,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 50,
+              color: Colors.white,
+            ),
+            Text(name, style: defaultSmallButtonTextStyle()),
+            Text(date, style: defaultSmallerButtonTextStyle()),
+          ],
+        ),
       ),
     ),
   );
 }
 
-Widget defaultLockedBadgeView(String name, IconData icon) {
+Widget defaultLockedBadgeView(context, List<MyBadge> myBadges, int index) {
+  String name = myBadges[index].getBadge().badgeName;
+  IconData icon = myBadges[index].getBadge().icon;
+
   return Padding(
     padding: const EdgeInsets.all(8.0),
-    child: Container(
-      width: 100,
-      height: 100,
-      decoration: BoxDecoration(
-        color: Colors.grey, // TODO: try other colors
-        shape: BoxShape.circle,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 50,
-            color: Colors.white,
-          ),
-          Text(name, style: defaultSmallButtonTextStyle()),
-        ],
+    child: GestureDetector(
+      onTap: _onTapViewBadge(context, myBadges, index),
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: const BoxDecoration(
+          color: myLockedBadgeColor,
+          shape: BoxShape.circle,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              size: 50,
+              color: Colors.white,
+            ),
+            Text(name, style: defaultSmallButtonTextStyle()),
+          ],
+        ),
       ),
     ),
   );

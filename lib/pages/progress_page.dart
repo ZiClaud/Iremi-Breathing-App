@@ -48,7 +48,7 @@ class _ProgressPageState extends State<ProgressPage> {
       body: Column(
         children: [
           Expanded(
-            flex: 2, // TODO: Check it it works well on different devices
+            flex: 2,
             child: defaultExerciseHistoryWidget(_exerciseHistory),
           ),
           Expanded(
@@ -63,29 +63,33 @@ class _ProgressPageState extends State<ProgressPage> {
 }
 
 Widget _showBadgeWidget(List<MyBadge?> badges) {
-  List<PossibleBadges> allPossibleBadges = [];
-  allPossibleBadges.addAll(PossibleBadges.values);
-
-  for (int i = 0; i < badges.length; i++) {
-    allPossibleBadges.remove(badges[i]!.getBadge());
-  }
+  List<MyBadge> allBadges = _getAllBadges(badges);
 
   return ListView.builder(
     scrollDirection: Axis.horizontal,
-    itemCount: allPossibleBadges.length + badges.length,
+    itemCount: allBadges.length,
     itemBuilder: (context, index) {
-      if (index < badges.length) {
-        return defaultBadgeView(
-          badges[index]!.getBadge().badgeName,
-          badges[index]!.date,
-          badges[index]!.getBadge().icon,
-        );
-      } else {
-        return defaultLockedBadgeView(
-          allPossibleBadges[index - badges.length].badgeName,
-          allPossibleBadges[index - badges.length].icon,
-        );
-      }
+      return defaultBadgeView(context, allBadges, index);
     },
   );
+}
+
+List<MyBadge> _getAllBadges(List<MyBadge?> badges) {
+  List<MyBadge> allBadges = [];
+
+  for (PossibleBadges possibleBadges in PossibleBadges.values) {
+    allBadges.add(MyBadge(id: possibleBadges.id, date: ""));
+  }
+
+  for (int i = 0; i < badges.length; i++) {
+    for (MyBadge allBadge in allBadges) {
+      for (MyBadge? badge in badges) {
+        if (badge!.id == allBadge.id) {
+          allBadges.remove(allBadge);
+        }
+      }
+    }
+  }
+
+  return allBadges;
 }
