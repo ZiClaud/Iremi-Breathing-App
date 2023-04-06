@@ -96,7 +96,7 @@ enum PossibleBadges {
   supporter(11, "Generous Supporter", Icons.attach_money,
       "Awarded for donating to the app."),
 
-  /// awarded for backing up your data.
+  // awarded for backing up your data.
   backupMaster(
       12, "Backup Master", Icons.save, "Awarded for backing up your data."),
 
