@@ -59,7 +59,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                     (route) => false,
                   );
                 },
@@ -99,7 +99,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
         }
         Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
+          MaterialPageRoute(builder: (context) => HomePage()),
           (route) => false,
         );
       } catch (e) {

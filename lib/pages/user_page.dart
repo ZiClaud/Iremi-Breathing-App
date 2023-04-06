@@ -78,7 +78,7 @@ class _UserPageState extends State<UserPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingsPage(user: _user),
+                  builder: (context) => SettingsPage(),
                 ),
               );
             },
@@ -104,6 +104,5 @@ Widget _showUserWidget(MyUser? user) {
         )
       : const Center(
           child: Text('No user found'),
-          // TODO: Maybe change with something else
         );
 }

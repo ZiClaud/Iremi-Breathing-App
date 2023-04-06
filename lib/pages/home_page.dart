@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/progress_page.dart';
 import 'package:iremibreathingapp/pages/user_page.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 
+import '../utils/default_widgets.dart';
 import 'main_page.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  int? currentIndex;
+
+  HomePage({Key? key, this.currentIndex}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -35,10 +39,26 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    if (widget.currentIndex != null) {
+      _currentIndex = widget.currentIndex!;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: defaultDrawer(context),
       appBar: AppBar(
-        title: const Center(child: Text('Iremi')), // TODO: Improve this
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.refresh),
+              onPressed: () {
+                refreshPage(context, HomePage(currentIndex: _currentIndex));
+              }),
+        ],
       ),
       body: IndexedStack(
         index: _currentIndex,

@@ -7,6 +7,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../basics/badge.dart';
 import '../basics/exercise.dart';
 import '../basics/exercise_history.dart';
+import '../pages/home_page.dart';
+import '../pages/settings_page.dart';
 import 'my_utils.dart';
 
 double defaultCircleSize() {
@@ -50,17 +52,6 @@ Widget showExerciseModel(MyExercise exercise) {
         ],
       ),
     ),
-  );
-}
-
-Widget _showExerciseModelOld(MyExercise exercise) {
-  /// Old graphics
-  return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      Text(exercise.name),
-      Text(getTimeString(exercise)),
-    ],
   );
 }
 
@@ -277,7 +268,7 @@ Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
 }
 
 /// Loading Screen
-Widget defaultLoadingScreen() {
+Widget defaultLogoWidget() {
   return const Center(
     child: Image(
       image: AssetImage('assets/icon/icon.png'),
@@ -332,3 +323,40 @@ class _DefaultLoadingScreen2State extends State<DefaultLoadingScreen2>
     super.dispose();
   }
 }
+
+/// Drawer
+
+Widget defaultDrawer(context){
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+          child: defaultLogoWidget(),
+          decoration: BoxDecoration(
+            color: myBluNeutral,
+          ),
+        ),
+        ListTile(
+          title: Text('Home Page'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomePage()),
+            );
+          },
+        ),
+        ListTile(
+          title: Text('Settings'),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => SettingsPage()),
+            );
+          },
+        ),
+      ],
+    ),
+  );
+}
+

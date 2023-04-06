@@ -33,6 +33,18 @@ Color myWhiteBlackOpposite() {
   return IremiTheme.isDarkTheme() ? _myBlack : _myWhite;
 }
 
+Color myBackgroundColor() {
+  return IremiTheme.isDarkTheme()
+      ? _myDarkBackgroundColor
+      : _myLightBackgroundColor;
+}
+
+Color myBackgroundColorOpposite() {
+  return IremiTheme.isDarkTheme()
+      ? _myLightBackgroundColor
+      : _myDarkBackgroundColor;
+}
+
 const Map<int, Color> myColorMapLight = {
   50: Color.fromRGBO(7, 194, 230, .1),
   100: Color.fromRGBO(7, 194, 230, .2),
@@ -130,6 +142,9 @@ class IremiTheme with ChangeNotifier {
       cardTheme: CardTheme(
         color: _myLightBackgroundColorCard,
       ),
+      drawerTheme: DrawerThemeData(
+        backgroundColor: _myLightBackgroundColor,
+      ),
     );
   }
 
@@ -174,6 +189,9 @@ class IremiTheme with ChangeNotifier {
       ),
       cardTheme: CardTheme(
         color: _myDarkBackgroundColorCard,
+      ),
+      drawerTheme: DrawerThemeData(
+        backgroundColor: _myDarkBackgroundColor,
       ),
     );
   }

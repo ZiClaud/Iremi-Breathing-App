@@ -157,7 +157,7 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     } finally {
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => HomePage()),
         (route) => false,
       );
     }

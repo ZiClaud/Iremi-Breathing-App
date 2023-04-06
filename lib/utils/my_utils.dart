@@ -168,3 +168,9 @@ void printWarning(String text) {
 void printError(String text) {
   print('\x1B[31m$text\x1B[0m');
 }
+
+/// Refresh
+void refreshPage(BuildContext context, Widget page) {
+  Navigator.pushReplacement(
+      context, MaterialPageRoute(builder: (context) => page));
+}

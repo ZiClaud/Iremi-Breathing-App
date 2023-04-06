@@ -77,7 +77,7 @@ FutureBuilder _home() {
       if (snapshot.hasData) {
         return snapshot.data!;
       } else {
-        return defaultLoadingScreen();
+        return defaultLogoWidget();
       }
     },
   );
@@ -86,7 +86,7 @@ FutureBuilder _home() {
 Future<StatefulWidget> _getFutureFirstPage() async {
   try {
     if (await DBMyUser().getFirstUser() != null) {
-      return const HomePage();
+      return HomePage();
     } else {
       return RegisterPageDB();
     }

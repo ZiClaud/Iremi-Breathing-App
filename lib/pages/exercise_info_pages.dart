@@ -92,7 +92,7 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
                   .deleteExercise((widget.exercise as CustomExercise).id!),
               Navigator.pushAndRemoveUntil(
                 context,
-                MaterialPageRoute(builder: (context) => const HomePage()),
+                MaterialPageRoute(builder: (context) => HomePage()),
                 (route) => false,
               ),
             },

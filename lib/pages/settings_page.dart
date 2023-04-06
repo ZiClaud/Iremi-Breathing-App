@@ -7,21 +7,22 @@ import '../basics/badge.dart';
 import '../basics/user.dart';
 import '../database/database.dart';
 import '../database/database_dialogs.dart';
+import '../database/getters.dart';
 import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 import 'dev_page.dart';
 import 'home_page.dart';
 
 class SettingsPage extends StatefulWidget {
-  final MyUser? user;
-
-  const SettingsPage({Key? key, required this.user}) : super(key: key);
+  SettingsPage({Key? key}) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  MyUser? _user;
+
   bool _darkMode = false;
   bool _music = false;
   bool _voice = false;
@@ -36,6 +37,16 @@ class _SettingsPageState extends State<SettingsPage> {
   void initState() {
     super.initState();
     _loadSettings();
+    _getUser();
+  }
+
+  Future<void> _getUser() async {
+    MyUser? user = await Getters.getUserDB(context);
+    if (user != null) {
+      setState(() {
+        _user = user;
+      });
+    }
   }
 
   void _loadSettings() async {
@@ -100,10 +111,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _deleteUser() async {
     try {
-      await DBMyUser().deleteUser(widget.user!.id!);
+      await DBMyUser().deleteUser(_user!.id!);
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => HomePage()),
         (route) => false,
       );
     } catch (e) {
@@ -116,7 +127,7 @@ class _SettingsPageState extends State<SettingsPage> {
       await MyDatabase.instance.deleteDB();
       Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => HomePage()),
         (route) => false,
       );
     } catch (e) {
@@ -299,7 +310,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: defaultButtonText("Restore"),
               ),
             ),
-          if (widget.user != null)
+          if (_user != null)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
