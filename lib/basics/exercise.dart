@@ -1,3 +1,7 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../utils/my_utils.dart';
+
 abstract class MyExercise {
   late String name;
   late String description;
@@ -31,11 +35,36 @@ abstract class MyExercise {
     return Duration(milliseconds: holdEndTimeMs);
   }
 
-  Duration getTime() {
+  Duration _getOneLoopDuration() {
     return (getInhaleDuration() +
-            getHoldMiddleDuration() +
-            getExhaleDuration() +
-            getHoldEndDuration()) *
-        times;
+        getHoldMiddleDuration() +
+        getExhaleDuration() +
+        getHoldEndDuration());
+  }
+
+  Duration getTime() {
+    return _getOneLoopDuration() * times;
+  }
+
+  Future<void> startTTS() async {
+    SharedPreferences prefs = await getSharedPreferences();
+    bool _voice = prefs.getBool('voice') ?? false;
+
+    if (_voice) {
+      await flutterTts.awaitSpeakCompletion(false);
+      for (String step in steps) {
+        await Future.delayed(_getOneLoopDuration());
+        await flutterTts.speak(step);
+      }
+    }
+  }
+
+  Future<void> stopTTS() async {
+    SharedPreferences prefs = await getSharedPreferences();
+    bool _voice = prefs.getBool('voice') ?? false;
+
+    if (_voice) {
+      flutterTts.stop();
+    }
   }
 }

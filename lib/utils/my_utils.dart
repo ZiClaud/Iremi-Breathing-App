@@ -2,10 +2,59 @@ import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 bool isDev = false; //TODO IMPORTANT: Change to false when building for release
+
+/// TTS
+FlutterTts flutterTts = FlutterTts();
+
+void setDefaultTTS() {
+  setTTS("en-GB");
+}
+
+void setTTS(String language) {
+  flutterTts.setLanguage(language);
+  flutterTts.setPitch(1);
+  flutterTts.setSpeechRate(0.8);
+  flutterTts.setVolume(0.5);
+
+  flutterTts.setStartHandler(() {
+    print("Playing");
+  });
+  flutterTts.setCompletionHandler(() {
+    print("Complete");
+  });
+  flutterTts.setErrorHandler((msg) {
+    print("error: $msg");
+  });
+}
+
+Future<dynamic> _getTTSLanguages() async => await flutterTts.getLanguages;
+
+Future<List<String>> getAvailableVoiceTypes() async {
+  List<String> voiceTypes = [];
+
+  await flutterTts.getLanguages.then((value) {
+    voiceTypes.add(value.toString());
+  });
+
+  return voiceTypes;
+}
+
+Future<String> getDefaultVoiceType() async {
+  return (await getAvailableVoiceTypes()).first;
+}
+
+List<String> getAvailableVoiceTypes2() {
+  return ['Female en-GB', 'en-GB Female'];
+}
+
+String getDefaultVoiceType2() {
+  return getAvailableVoiceTypes2().first;
+}
 
 /// SharedPreferences
 Future<SharedPreferences> getSharedPreferences() async {
@@ -34,14 +83,6 @@ String getDefaultLanguage() {
 
 List<String> getAvailableLanguages() {
   return ['English', 'Italiano', 'Español']; //'Chinese (Simplified)', 'Greek'?
-}
-
-List<String> getAvailableVoiceTypes() {
-  return ['Male', 'Female', 'Neutral'];
-}
-
-String getDefaultVoiceType() {
-  return getAvailableVoiceTypes().first;
 }
 
 /// DarkTheme

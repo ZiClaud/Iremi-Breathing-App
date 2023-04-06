@@ -10,7 +10,7 @@ import 'database/database.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SharedPreferences.getInstance().then((prefs) {
+  SharedPreferences.getInstance().then((prefs) async {
     bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
 
     if (isFirstTime) {
@@ -19,7 +19,7 @@ void main() {
       //TODO: Change "true" to "isDefaultThemeDark()"
       prefs.setBool('music', true);
       prefs.setBool('voice', true);
-      prefs.setString('voiceType', getDefaultVoiceType());
+      prefs.setString('voiceType', getDefaultVoiceType2());
       prefs.setString('language', getDefaultLanguage());
       prefs.setBool('dev', false);
 

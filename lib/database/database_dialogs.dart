@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
-import '../utils/theme.dart';
 
 /// Database errors
 Future? defaultDatabaseErrorDialog(context, String message) {

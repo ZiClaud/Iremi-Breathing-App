@@ -20,11 +20,22 @@ class _ExercisePageState extends State<ExercisePage> {
   @override
   Widget build(BuildContext context) {
     MyExercise exercise = widget.exercise;
-    return Scaffold(
+    return WillPopScope(
+      onWillPop: onWillPop,
+      child: Scaffold(
         appBar: AppBar(
           title: Text(exercise.name),
         ),
-        body: _FourStageAnimation(exercise: exercise));
+        body: _FourStageAnimation(exercise: exercise),
+      ),
+    );
+  }
+
+  Future<bool> onWillPop() {
+    widget.exercise.stopTTS();
+
+    Navigator.pop(context);
+    return Future.value(true);
   }
 }
 
@@ -48,6 +59,9 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
   @override
   void initState() {
     super.initState();
+
+    widget.exercise.startTTS();
+
     _controller = AnimationController(
       vsync: this,
       duration: widget.exercise.getInhaleDuration() +
@@ -116,6 +130,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     }
     Achievement.checkExerciseHistoryAchievement(context);
 
+    widget.exercise.stopTTS();
     Navigator.pop(context);
   }
 

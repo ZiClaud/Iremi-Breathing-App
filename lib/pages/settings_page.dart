@@ -25,12 +25,12 @@ class _SettingsPageState extends State<SettingsPage> {
   bool _darkMode = false;
   bool _music = false;
   bool _voice = false;
-  String _voiceType = getDefaultVoiceType();
+  String _voiceType = getDefaultVoiceType2();
   String _language = getDefaultLanguage();
   bool _dev = false;
 
   final List<String> languages = getAvailableLanguages();
-  final List<String> voiceTypes = getAvailableVoiceTypes();
+  final List<String> voiceTypes = getAvailableVoiceTypes2();
 
   @override
   void initState() {
@@ -187,7 +187,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
             ),
-          if (isDev)
             ListTile(
               title: defaultInputDecorator(
                 "Voice",
@@ -204,7 +203,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
             ),
-          if (isDev)
             ListTile(
               title: defaultInputDecorator(
                   'Voice Type', _getValueAsString(_voiceType), Icons.person),
