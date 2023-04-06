@@ -85,14 +85,14 @@ enum PossibleBadges {
   nightOwl(8, "Night Owl", Icons.nightlight_round,
       "Awarded for doing 5 exercises between 10PM and 12PM."),
 
-  // awarded for rating the app.
+  /// awarded for rating the app.
   rater(9, "Rater", Icons.star, "Awarded for rating the app."),
 
-  // awarded for sharing the app with a friend.
+  /// awarded for sharing the app with a friend.
   sharingIsCaring(10, "Sharing is Caring", Icons.share,
       "Awarded for sharing the app with a friend."),
 
-  // awarded for donating to the app.
+  /// awarded for donating to the app.
   supporter(11, "Generous Supporter", Icons.attach_money,
       "Awarded for donating to the app."),
 

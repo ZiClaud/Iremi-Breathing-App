@@ -29,20 +29,20 @@ Widget showExerciseModel(MyExercise exercise) {
               children: [
                 Text(
                   exercise.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 4.0),
+                const SizedBox(height: 4.0),
                 Row(
                   children: [
                     Icon(Icons.timer, size: 16.0, color: myWhiteBlack()),
                     // TODO: Fix the color, of the icon it doesn't update on dark mode change
-                    SizedBox(width: 4.0),
+                    const SizedBox(width: 4.0),
                     Text(
                       getTimeString(exercise),
-                      style: TextStyle(fontSize: 14.0),
+                      style: const TextStyle(fontSize: 14.0),
                     ),
                   ],
                 ),
@@ -254,16 +254,16 @@ Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
               sales.exerciseDurationSeconds,
           name: 'Exercise History',
           color: myBluLightDark(),
-          dataLabelSettings: DataLabelSettings(isVisible: false))
+          dataLabelSettings: const DataLabelSettings(isVisible: false))
     ],
     primaryXAxis: CategoryAxis(
         name: "Date",
         isVisible: true,
-        majorGridLines: MajorGridLines(width: 0)),
+        majorGridLines: const MajorGridLines(width: 0)),
     primaryYAxis: CategoryAxis(
         name: "Seconds",
         isVisible: true,
-        majorGridLines: MajorGridLines(width: 0)),
+        majorGridLines: const MajorGridLines(width: 0)),
   );
 }
 
@@ -326,19 +326,25 @@ class _DefaultLoadingScreen2State extends State<DefaultLoadingScreen2>
 
 /// Drawer
 
-Widget defaultDrawer(context){
+Widget defaultDrawer(context) {
   return Drawer(
     child: ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[
         DrawerHeader(
           child: defaultLogoWidget(),
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: myBluNeutral,
           ),
         ),
         ListTile(
-          title: Text('Home Page'),
+          title: Row(
+            children: [
+              const Text('Home'),
+              const Spacer(),
+              Icon(Icons.home, color: myWhiteBlack()),
+            ],
+          ),
           onTap: () {
             Navigator.push(
               context,
@@ -347,7 +353,13 @@ Widget defaultDrawer(context){
           },
         ),
         ListTile(
-          title: Text('Settings'),
+          title: Row(
+            children: [
+              const Text('Settings'),
+              const Spacer(),
+              Icon(Icons.settings, color: myWhiteBlack()),
+            ],
+          ),
           onTap: () {
             Navigator.push(
               context,
@@ -355,8 +367,46 @@ Widget defaultDrawer(context){
             );
           },
         ),
+        ListTile(
+          title: Row(
+            children: [
+              const Text('Rate the app'),
+              const Spacer(),
+              Icon(Icons.star, color: myWhiteBlack()),
+            ],
+          ),
+          onTap: () {
+            // TODO: Add link to rate the app
+            Achievement.addAchievement(PossibleBadges.rater, context);
+          },
+        ),
+        ListTile(
+          title: Row(
+            children: [
+              const Text('Share'),
+              const Spacer(),
+              Icon(Icons.share, color: myWhiteBlack()),
+            ],
+          ),
+          onTap: () {
+            // TODO: Add link to share the app
+            Achievement.addAchievement(PossibleBadges.sharingIsCaring, context);
+          },
+        ),
+        ListTile(
+          title: Row(
+            children: [
+              const Text('Support the dev'),
+              const Spacer(),
+              Icon(Icons.attach_money, color: myWhiteBlack()),
+            ],
+          ),
+          onTap: () {
+            // TODO: Add link to support the developer
+            Achievement.addAchievement(PossibleBadges.supporter, context);
+          },
+        ),
       ],
     ),
   );
 }
-
