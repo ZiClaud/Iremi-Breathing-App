@@ -39,7 +39,7 @@ Future<File> getDatabaseFileCopy() async {
   return File(dbPath).copy(newPath);
 }
 
-Future<void> backupDatabaseToGoogleDrive(context) async {
+Future<void> backupDatabaseToInternalStorage(context) async {
   try {
     MyDatabase.instance.close();
     String dbPath = await MyDatabase.instance.getDBPath();

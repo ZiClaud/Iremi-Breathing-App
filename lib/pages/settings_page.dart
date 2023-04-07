@@ -293,7 +293,7 @@ class _SettingsPageState extends State<SettingsPage> {
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
                 onPressed: () {
-                  backupDatabaseToGoogleDrive(context);
+                  backupDatabaseToInternalStorage(context);
                   _backupAchievement(context);
                 },
                 child: defaultButtonText("Backup"),
