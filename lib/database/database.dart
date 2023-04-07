@@ -11,6 +11,7 @@ const String tableUser = 'user';
 const String tableBadges = 'badges';
 const String tableExercises = 'exercises';
 const String tableExerciseHistory = 'exerciseHistory';
+const String dbName = 'IremiDatabase.db';
 
 class MyDatabase {
   static final MyDatabase instance = MyDatabase._init();
@@ -23,7 +24,7 @@ class MyDatabase {
     if (_database != null) return _database!;
 
     try {
-      _database = await _initDB('IremiDatabase.db');
+      _database = await _initDB(dbName);
       return _database!;
     } catch (e) {
       printError('Error getting database: $e');
@@ -43,11 +44,28 @@ class MyDatabase {
     }
   }
 
-  Future _close() async {
+  Future<String> getDBPath() async {
+    final dbPath = await getDatabasesPath();
+    final String path = join(dbPath, dbName);
+    return path;
+  }
+
+  Future<void> open() async {
+    final db = await instance.database;
+    if (!db.isOpen) {
+      try {
+        _database = await _initDB(dbName);
+      } catch (e) {
+        printError('Error opening database: $e');
+        rethrow;
+      }
+     }
+  }
+
+  Future close() async {
     try {
       final db = await instance.database;
-
-      db.close();
+      await db.close();
     } catch (e) {
       printError('Error closing database: $e');
       rethrow;
@@ -56,11 +74,7 @@ class MyDatabase {
 
   Future deleteDB() async {
     try {
-      final db = await instance.database;
-      await db.close();
-      final dbPath = await getDatabasesPath();
-      final path = join(dbPath, 'IremiDatabase.db');
-      await deleteDatabase(path);
+      await deleteDatabase(await getDBPath());
       _database = null;
     } catch (e) {
       printError('Error deleting database: $e');
