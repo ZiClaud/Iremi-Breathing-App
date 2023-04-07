@@ -13,7 +13,6 @@ App against anxiety that gives breathing exercises
 - [x] Way to know for how long to inhale, exhale and hold
 - [x] Dot that fills when you need to inhale, and goes back to normal when you need to exhale
 - [x] Way to choose what exercise to do
-- [ ] Documentation, tips and tricks
 - [x] User friendly interface
 - [ ] Check that every breathing exercise has the right steps, description and timing
 
@@ -30,24 +29,26 @@ App against anxiety that gives breathing exercises
 
 - [x] Login/Register
 - [x] Add settings
-- [ ] Add all the languages, translated using a translator API
 - [x] Add achievements
 - [x] Add badges
 - [x] Add statistics
-
-# Google Auth
-- [ ] Add Google Auth
-- [ ] Save database to google drive
 
 # Theme
 
 - [x] Theme and logo
 - [x] Add darkmode
-- [ ] Insert "Quicksand" font or some other, better font
 
 # Extras
 
-- [ ] AI calming voice that reads the steps
+- [ ] Add all the languages, translated using a translator API
+- [x] AI calming voice that reads the steps
+- [ ] Improve AI voice
+- [ ] Documentation, tips and tricks
+- [ ] Add a timer
 - [ ] Add chill music
 - [x] Logo showing on loading screen
 - [ ] Loading screen with tips
+- [ ] Insert "Quicksand" font or some other, better font
+- [ ] Add Google Auth
+- [ ] Save database to google drive
+
