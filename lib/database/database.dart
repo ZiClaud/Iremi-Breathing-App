@@ -7,11 +7,11 @@ import '../basics/exercise_custom.dart';
 import '../basics/exercise_history.dart';
 import '../utils/my_utils.dart';
 
+const String dbName = 'IremiDatabase.db';
 const String tableUser = 'user';
 const String tableBadges = 'badges';
 const String tableExercises = 'exercises';
 const String tableExerciseHistory = 'exerciseHistory';
-const String dbName = 'IremiDatabase.db';
 
 class MyDatabase {
   static final MyDatabase instance = MyDatabase._init();

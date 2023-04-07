@@ -36,7 +36,8 @@ Future _defaultDatabaseErrorDialog2(context, message) {
 }
 
 /// Notification-Style dialog
-void _notificationStyleDialog(BuildContext context, String title, String message) {
+void _notificationStyleDialog(
+    BuildContext context, String title, String message) {
   AchievementView(
     context,
     title: title,

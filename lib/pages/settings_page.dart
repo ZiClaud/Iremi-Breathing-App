@@ -198,25 +198,26 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
               ),
             ),
-            ListTile(
-              title: defaultInputDecorator(
-                "Voice",
-                _getValueAsString(_voice),
-                (_voice) ? Icons.mic : Icons.mic_off,
-              ),
-              trailing: Switch(
-                value: _voice,
-                onChanged: (value) {
-                  setState(() {
-                    _voice = value;
-                    _saveSettings();
-                  });
-                },
-              ),
+          ListTile(
+            title: defaultInputDecorator(
+              "Voice (Beta)",
+              _getValueAsString(_voice),
+              (_voice) ? Icons.mic : Icons.mic_off,
             ),
+            trailing: Switch(
+              value: _voice,
+              onChanged: (value) {
+                setState(() {
+                  _voice = value;
+                  _saveSettings();
+                });
+              },
+            ),
+          ),
+          if (isDev)
             ListTile(
-              title: defaultInputDecorator(
-                  'Voice Type', _getValueAsString(_voiceType), Icons.person),
+              title: defaultInputDecorator('Voice Type (Beta)',
+                  _getValueAsString(_voiceType), Icons.person),
               trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
               onTap: () async {
                 String? newVoiceType = await showDialog<String>(
@@ -289,21 +290,23 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
+          if (isDev)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
                 onPressed: () {
-                  backupDatabaseToInternalStorage(context);
                   _backupAchievement(context);
+                  backupDatabaseToInternalStorage(context);
                 },
                 child: defaultButtonText("Backup"),
               ),
             ),
+          if (isDev)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
                 onPressed: () {
-                  restoreDatabaseFromGoogleDrive(context);
+                  restoreDatabaseFromInternalStorage(context);
                 },
                 child: defaultButtonText("Restore"),
               ),

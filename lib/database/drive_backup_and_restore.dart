@@ -2,15 +2,17 @@ import 'dart:io';
 
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/database/database_dialogs.dart';
-import 'package:path_provider/path_provider.dart';
 
-Future<File?> saveFileToDocumentsDirectory(File file) async {
+/// TODO: Only works on android.
+var path = "/storage/emulated/0/Download";
+var downloadDir = Directory(path);
+
+Future<File?> _saveFileToDocumentsDirectory(File file) async {
   if (!await file.exists()) {
     return null;
   }
 
-  // Get the Documents directory on Android.
-  final directory = await getApplicationDocumentsDirectory();
+  final directory = downloadDir;
 
   // Construct a file path in the Documents directory.
   final filePath = '${directory.path}/${file.path.split('/').last}';
@@ -32,28 +34,26 @@ Future<File?> saveFileToDocumentsDirectory(File file) async {
   }
 }
 
-Future<File> getDatabaseFileCopy() async {
+Future<File> _getDatabaseFileCopy() async {
   String dbPath = await MyDatabase.instance.getDBPath();
-  final directory = await getApplicationDocumentsDirectory();
+  final directory = downloadDir;
   final newPath = '${directory.path}/IremiDatabaseBackup.db';
   return File(dbPath).copy(newPath);
 }
 
 Future<void> backupDatabaseToInternalStorage(context) async {
   try {
-    MyDatabase.instance.close();
+    await MyDatabase.instance.close();
     String dbPath = await MyDatabase.instance.getDBPath();
-    final directory = await getApplicationDocumentsDirectory();
-    final newPath = '${directory.path}/IremiDatabaseBackup.db';
+    final Directory directory = downloadDir;
+    final newPath = '${directory.path}/$dbName';
     File(dbPath).copy(newPath);
-    defaultDatabaseErrorDialog(
-        context, "Saved database to internal storage: $newPath");
+    defaultDatabaseErrorDialog(context, "Saved database to internal storage: $newPath");
   } catch (e) {
-    defaultDatabaseErrorDialog(
-        context, 'Error saving database to internal storage: $e');
+    defaultDatabaseErrorDialog(context, 'Error saving database to internal storage: $e');
   } finally {
     try {
-      MyDatabase.instance.open();
+      await MyDatabase.instance.open();
     } catch (e) {
       defaultDatabaseErrorDialog(context, 'Error re-opening database: $e');
     }
@@ -83,7 +83,7 @@ Future<void> backupDatabaseToInternalStorage(context) async {
   }
   */
 
-Future<void> restoreDatabaseFromGoogleDrive(context) async {
+Future<void> restoreDatabaseFromInternalStorage(context) async {
 // TODO: IMPLEMENT
   defaultDatabaseErrorDialog(context, 'Needs implementation');
 /*
