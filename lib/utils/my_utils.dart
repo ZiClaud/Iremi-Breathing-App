@@ -159,27 +159,27 @@ String getTimeString(MyExercise exercise) {
 /// Get streak
 int getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
   int streak = 0;
-  DateTime date = DateTime.now();
+  DateTime? lastDate;
 
   exerciseHistory.sort((a, b) => a.dateTime.compareTo(b.dateTime));
 
   for (ExerciseHistory exercise in exerciseHistory) {
-    if (exercise.dateTime.difference(date).inDays == 1) {
-      streak++;
+    if (lastDate != null) {
+      int daysDifference = exercise.dateTime.difference(lastDate).inDays;
+      if (daysDifference == 1) {
+        streak++;
+      } else if (daysDifference > 1) {
+        streak = 0;
+      }
     } else {
-      streak = 0;
+      streak = 1;
     }
-    date = exercise.dateTime;
+    lastDate = exercise.dateTime;
   }
 
-  if (DateTime.now().difference(date).inDays > 1) {
-    streak = 0;
-  } else {
+  if (lastDate != null && DateTime.now().difference(lastDate).inDays >= 1) {
     streak++;
   }
-  /*
-  if (DateTime.now().difference(date).inDays == 1 || DateTime.now().difference(date).inDays == 0)
-   */
 
   return streak;
 }
