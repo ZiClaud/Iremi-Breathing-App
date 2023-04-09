@@ -161,23 +161,25 @@ int getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
   int streak = 0;
   DateTime date = DateTime.now();
 
-  exerciseHistory.sort((a, b) => b.dateTime.compareTo(a.dateTime));
+  exerciseHistory.sort((a, b) => a.dateTime.compareTo(b.dateTime));
 
   for (ExerciseHistory exercise in exerciseHistory) {
-    if (date.difference(exercise.dateTime).inDays == -1) {
+    if (exercise.dateTime.difference(date).inDays == 1) {
       streak++;
     } else {
       streak = 0;
     }
-
     date = exercise.dateTime;
   }
 
-  if (date.difference(DateTime.now()).inDays == -1) {
-    streak++;
-  } else {
+  if (DateTime.now().difference(date).inDays > 1) {
     streak = 0;
+  } else {
+    streak++;
   }
+  /*
+  if (DateTime.now().difference(date).inDays == 1 || DateTime.now().difference(date).inDays == 0)
+   */
 
   return streak;
 }

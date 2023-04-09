@@ -4,6 +4,7 @@ import 'package:iremibreathingapp/basics/exercise_history.dart';
 
 import '../database/getters.dart';
 import '../utils/default_widgets.dart';
+import '../utils/my_utils.dart';
 
 class ProgressPage extends StatefulWidget {
   ProgressPage({Key? key}) : super(key: key);
@@ -49,7 +50,12 @@ class _ProgressPageState extends State<ProgressPage> {
         children: [
           Expanded(
             flex: 2,
-            child: defaultExerciseHistoryWidget(_exerciseHistory),
+            child: Column(
+              children: [
+                Text("Streak: ${getExerciseHistoryStreak(_exerciseHistory)}"),
+                defaultExerciseHistoryWidget(_exerciseHistory),
+              ],
+            ),
           ),
           Expanded(
             flex: 1,
