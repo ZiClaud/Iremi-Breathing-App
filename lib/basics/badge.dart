@@ -135,12 +135,11 @@ class Achievement {
   }
 
   static Future<void> checkExerciseHistoryAchievement(context) async {
-    List<ExerciseHistory> exerciseHistory =
-        await Getters.getExerciseHistoryDB(context);
+    List<ExerciseHistory> exerciseHistory = await Getters.getExerciseHistoryDB(context);
 
-    int streak = _getExerciseHistoryStreak(exerciseHistory);
-    int morningPerson = _getExerciseHistoryMorningTimes(exerciseHistory);
-    int nightOwl = _getExerciseHistoryNightTimes(exerciseHistory);
+    int streak = getExerciseHistoryStreak(exerciseHistory);
+    int morningPerson = getExerciseHistoryMorningTimes(exerciseHistory);
+    int nightOwl = getExerciseHistoryNightTimes(exerciseHistory);
 
     if (streak >= 7) {
       addAchievement(PossibleBadges.serenitySeeker, context);
@@ -157,65 +156,6 @@ class Achievement {
     if (nightOwl >= 5) {
       addAchievement(PossibleBadges.nightOwl, context);
     }
-  }
-
-  static int _getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
-    int streak = 0;
-    DateTime? date;
-
-    for (ExerciseHistory exercise in exerciseHistory) {
-      if (date != null && date.difference(exercise.dateTime).inDays == -1) {
-        streak++;
-      } else {
-        streak = 0;
-      }
-
-      date = exercise.dateTime;
-    }
-
-    if (date != null && date.difference(DateTime.now()).inDays == -1) {
-      streak++;
-    } else {
-      streak = 0;
-    }
-
-    return streak;
-  }
-
-  static int _getExerciseHistoryMorningTimes(
-      List<ExerciseHistory> exerciseHistory) {
-    int morningPerson = 0;
-    DateTime? lastMorningDate;
-
-    for (ExerciseHistory exercise in exerciseHistory) {
-      if (exercise.dateTime.hour > 6 && exercise.dateTime.hour < 8) {
-        if (lastMorningDate == null ||
-            exercise.dateTime.isAfter(lastMorningDate)) {
-          morningPerson++;
-          lastMorningDate = exercise.dateTime;
-        }
-      }
-    }
-
-    return morningPerson;
-  }
-
-  static int _getExerciseHistoryNightTimes(
-      List<ExerciseHistory> exerciseHistory) {
-    int nightOwl = 0;
-    DateTime? lastMorningDate;
-
-    for (ExerciseHistory exercise in exerciseHistory) {
-      if (exercise.dateTime.hour > 22 && exercise.dateTime.hour < 24) {
-        if (lastMorningDate == null ||
-            exercise.dateTime.isAfter(lastMorningDate)) {
-          nightOwl++;
-          lastMorningDate = exercise.dateTime;
-        }
-      }
-    }
-
-    return nightOwl;
   }
 
   static void _showAchievementView(BuildContext context, PossibleBadges badge) {

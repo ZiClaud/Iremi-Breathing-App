@@ -121,14 +121,15 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
 
   void _finishExercise(BuildContext context) {
     DBExerciseHistory().createExerciseHistory(ExerciseHistory(
-        exerciseDurationSeconds: widget.exercise.getTime().inSeconds,
-        dateTime: DateTime.now()));
+      exerciseDurationSeconds: widget.exercise.getTime().inSeconds,
+      dateTime: DateTime.now(),
+    ));
 
     Achievement.addAchievement(PossibleBadges.airApprentice, context);
+    Achievement.checkExerciseHistoryAchievement(context);
     if (widget.exercise.getTime().inMinutes >= 5) {
       Achievement.addAchievement(PossibleBadges.deepBreather, context);
     }
-    Achievement.checkExerciseHistoryAchievement(context);
 
     widget.exercise.stopTTS();
     Navigator.pop(context);

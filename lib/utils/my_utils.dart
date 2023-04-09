@@ -6,6 +6,8 @@ import 'package:flutter_tts/flutter_tts.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../basics/exercise_history.dart';
+
 bool isDev = false; //TODO IMPORTANT: Change to false when building for release
 
 /// TTS
@@ -152,6 +154,67 @@ String getTimeString(MyExercise exercise) {
   } else {
     return "N/A";
   }
+}
+
+/// Get streak
+int getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
+  int streak = 0;
+  DateTime date = DateTime.now();
+
+  exerciseHistory.sort((a, b) => b.dateTime.compareTo(a.dateTime));
+
+  for (ExerciseHistory exercise in exerciseHistory) {
+    if (date.difference(exercise.dateTime).inDays == -1) {
+      streak++;
+    } else {
+      streak = 0;
+    }
+
+    date = exercise.dateTime;
+  }
+
+  if (date.difference(DateTime.now()).inDays == -1) {
+    streak++;
+  } else {
+    streak = 0;
+  }
+
+  return streak;
+}
+
+/// Get morning/evening times
+int getExerciseHistoryMorningTimes(List<ExerciseHistory> exerciseHistory) {
+  int morningPerson = 0;
+  DateTime? lastMorningDate;
+
+  for (ExerciseHistory exercise in exerciseHistory) {
+    if (exercise.dateTime.hour > 6 && exercise.dateTime.hour < 8) {
+      if (lastMorningDate == null ||
+          exercise.dateTime.isAfter(lastMorningDate)) {
+        morningPerson++;
+        lastMorningDate = exercise.dateTime;
+      }
+    }
+  }
+
+  return morningPerson;
+}
+
+int getExerciseHistoryNightTimes(List<ExerciseHistory> exerciseHistory) {
+  int nightOwl = 0;
+  DateTime? lastMorningDate;
+
+  for (ExerciseHistory exercise in exerciseHistory) {
+    if (exercise.dateTime.hour > 22 && exercise.dateTime.hour < 24) {
+      if (lastMorningDate == null ||
+          exercise.dateTime.isAfter(lastMorningDate)) {
+        nightOwl++;
+        lastMorningDate = exercise.dateTime;
+      }
+    }
+  }
+
+  return nightOwl;
 }
 
 /// Min window size

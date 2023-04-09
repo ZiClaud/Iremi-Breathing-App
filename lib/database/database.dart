@@ -59,7 +59,7 @@ class MyDatabase {
         printError('Error opening database: $e');
         rethrow;
       }
-     }
+    }
   }
 
   Future close() async {

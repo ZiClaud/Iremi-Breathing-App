@@ -245,6 +245,9 @@ ExerciseHistory _sumDurationExerciseHistoryThisDay(
 
 Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
   return SfCartesianChart(
+    title: ChartTitle(
+        text: "Streak: ${getExerciseHistoryStreak(exerciseHistory)}",
+        textStyle: TextStyle(color: myBluLightDark())),
     series: <ChartSeries<ExerciseHistory, String>>[
       ColumnSeries<ExerciseHistory, String>(
           dataSource: exerciseHistory,
