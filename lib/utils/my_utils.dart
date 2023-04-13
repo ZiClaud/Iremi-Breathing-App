@@ -158,27 +158,44 @@ String getTimeString(MyExercise exercise) {
 
 /// Get streak
 int getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
-  int streak = 0;
-  DateTime? lastDate;
-
-  exerciseHistory.sort((a, b) => a.dateTime.compareTo(b.dateTime));
-
+  List<DateTime> dates = [];
+  DateTime currDate;
   for (ExerciseHistory exercise in exerciseHistory) {
-    if (lastDate != null) {
-      int daysDifference = exercise.dateTime.difference(lastDate).inDays;
-      if (daysDifference == 1) {
+    currDate = DateTime(
+        exercise.dateTime.year, exercise.dateTime.month, exercise.dateTime.day);
+    if (!dates.contains(currDate)) {
+      dates.add(currDate);
+    }
+  }
+  return getDateStreak(dates);
+}
+
+/// Get datetime streak
+int getDateStreak(List<DateTime> dates) {
+  int streak = 0;
+  DateTime? currDate;
+  DateTime today =
+      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  dates.sort((a, b) => b.compareTo(a));
+
+  for (DateTime exercise in dates) {
+    if (currDate == null) {
+      if (today == exercise) {
         streak++;
-      } else if (daysDifference > 1) {
-        streak = 0;
+        currDate = exercise;
+      } else if (today.subtract(const Duration(days: 1)) == exercise) {
+        currDate = exercise;
+      } else {
+        break;
       }
     } else {
-      streak = 1;
+      if (currDate.subtract(const Duration(days: 1)) == exercise) {
+        streak++;
+        currDate = exercise;
+      } else {
+        break;
+      }
     }
-    lastDate = exercise.dateTime;
-  }
-
-  if (lastDate != null && DateTime.now().difference(lastDate).inDays >= 1) {
-    streak++;
   }
 
   return streak;
