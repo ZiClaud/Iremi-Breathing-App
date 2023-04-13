@@ -137,9 +137,9 @@ class Achievement {
   static Future<void> checkExerciseHistoryAchievement(context) async {
     List<ExerciseHistory> exerciseHistory = await Getters.getExerciseHistoryDB(context);
 
-    int streak = getExerciseHistoryStreak(exerciseHistory);
-    int morningPerson = getExerciseHistoryMorningTimes(exerciseHistory);
-    int nightOwl = getExerciseHistoryNightTimes(exerciseHistory);
+    int streak = getExHistoryStreak(exerciseHistory);
+    int morningPerson = getExHistoryMorningTimes(exerciseHistory);
+    int nightOwl = getExHistoryNightTimes(exerciseHistory);
 
     if (streak >= 7) {
       addAchievement(PossibleBadges.serenitySeeker, context);

@@ -52,7 +52,12 @@ class _ProgressPageState extends State<ProgressPage> {
             flex: 2,
             child: Column(
               children: [
-                Text("Streak: ${getExerciseHistoryStreak(_exerciseHistory)}"),
+                Text("Streak: ${getExHistoryStreak(_exerciseHistory)}"),
+                if (isDev)
+                  Text(
+                      "Morning: ${getExHistoryMorningTimes(_exerciseHistory)}"),
+                if (isDev)
+                  Text("Evening: ${getExHistoryNightTimes(_exerciseHistory)}"),
                 defaultExerciseHistoryWidget(_exerciseHistory),
               ],
             ),

@@ -8,7 +8,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../basics/exercise_history.dart';
 
-bool isDev = false; //TODO IMPORTANT: Change to false when building for release
+// TODO IMPORTANT: Change to false when building for release
+const bool isDev = true;
 
 /// TTS
 FlutterTts flutterTts = FlutterTts();
@@ -157,7 +158,34 @@ String getTimeString(MyExercise exercise) {
 }
 
 /// Get streak
-int getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
+int getDateStreak(List<DateTime> dates) {
+  int streak = 0;
+  DateTime? currDate;
+  DateTime today =
+      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  dates.sort((a, b) => b.compareTo(a));
+
+  for (DateTime date in dates) {
+    if (currDate == null) {
+      if (today == date) {
+        streak++;
+        currDate = date;
+      } else if (today.subtract(const Duration(days: 1)) == date) {
+        currDate = date;
+      }
+    } else {
+      if (currDate.subtract(const Duration(days: 1)) == date) {
+        streak++;
+        currDate = date;
+      } else {
+        break;
+      }
+    }
+  }
+  return streak;
+}
+
+int getExHistoryStreak(List<ExerciseHistory> exerciseHistory) {
   List<DateTime> dates = [];
   DateTime currDate;
   for (ExerciseHistory exercise in exerciseHistory) {
@@ -170,70 +198,55 @@ int getExerciseHistoryStreak(List<ExerciseHistory> exerciseHistory) {
   return getDateStreak(dates);
 }
 
-/// Get datetime streak
-int getDateStreak(List<DateTime> dates) {
-  int streak = 0;
-  DateTime? currDate;
-  DateTime today =
-      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
-  dates.sort((a, b) => b.compareTo(a));
-
-  for (DateTime exercise in dates) {
-    if (currDate == null) {
-      if (today == exercise) {
-        streak++;
-        currDate = exercise;
-      } else if (today.subtract(const Duration(days: 1)) == exercise) {
-        currDate = exercise;
-      } else {
-        break;
-      }
-    } else {
-      if (currDate.subtract(const Duration(days: 1)) == exercise) {
-        streak++;
-        currDate = exercise;
-      } else {
-        break;
-      }
-    }
-  }
-
-  return streak;
-}
-
 /// Get morning/evening times
-int getExerciseHistoryMorningTimes(List<ExerciseHistory> exerciseHistory) {
+int getDateMorningTimes(List<DateTime> dates) {
   int morningPerson = 0;
-  DateTime? lastMorningDate;
+  DateTime currDate;
+  List<DateTime> morningDates = [];
 
-  for (ExerciseHistory exercise in exerciseHistory) {
-    if (exercise.dateTime.hour > 6 && exercise.dateTime.hour < 8) {
-      if (lastMorningDate == null ||
-          exercise.dateTime.isAfter(lastMorningDate)) {
+  for (DateTime date in dates) {
+    currDate = DateTime(date.year, date.month, date.day);
+    if (date.hour >= 6 && date.hour <= 8) {
+      if (!morningDates.contains(currDate)) {
+        morningDates.add(currDate);
         morningPerson++;
-        lastMorningDate = exercise.dateTime;
       }
     }
   }
-
   return morningPerson;
 }
 
-int getExerciseHistoryNightTimes(List<ExerciseHistory> exerciseHistory) {
+int getDateNightTimes(List<DateTime> dates) {
   int nightOwl = 0;
-  DateTime? lastMorningDate;
+  DateTime currDate;
+  List<DateTime> nightDates = [];
 
-  for (ExerciseHistory exercise in exerciseHistory) {
-    if (exercise.dateTime.hour > 22 && exercise.dateTime.hour < 24) {
-      if (lastMorningDate == null ||
-          exercise.dateTime.isAfter(lastMorningDate)) {
+  for (DateTime date in dates) {
+    currDate = DateTime(date.year, date.month, date.day);
+    if (date.hour >= 10 && date.hour <= 12) {
+      if (!nightDates.contains(currDate)) {
+        nightDates.add(currDate);
         nightOwl++;
-        lastMorningDate = exercise.dateTime;
       }
     }
   }
-
   return nightOwl;
+}
+
+int getExHistoryMorningTimes(List<ExerciseHistory> exerciseHistory) {
+  List<DateTime> dates = [];
+  for (ExerciseHistory exercise in exerciseHistory) {
+    dates.add(exercise.dateTime);
+  }
+  return getDateMorningTimes(dates);
+}
+
+int getExHistoryNightTimes(List<ExerciseHistory> exerciseHistory) {
+  List<DateTime> dates = [];
+  for (ExerciseHistory exercise in exerciseHistory) {
+    dates.add(exercise.dateTime);
+  }
+  return getDateNightTimes(dates);
 }
 
 /// Min window size
