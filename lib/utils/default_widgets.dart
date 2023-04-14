@@ -327,21 +327,20 @@ class _DefaultLoadingScreen2State extends State<DefaultLoadingScreen2>
 /// Drawer
 Widget defaultDrawer(context) {
   return Drawer(
-    child: ListView(
-      padding: EdgeInsets.zero,
+    child: Column(
       children: <Widget>[
         DrawerHeader(
-          child: defaultLogoWidget(),
           decoration: const BoxDecoration(
             color: myBluNeutral,
           ),
+          child: defaultLogoWidget(),
         ),
         ListTile(
           title: Row(
             children: [
-              const Text('Home'),
-              const Spacer(),
               Icon(Icons.home, color: myWhiteBlack()),
+              const Padding(padding: EdgeInsets.only(right: 10.0)),
+              const Text('Home'),
             ],
           ),
           onTap: () {
@@ -354,9 +353,9 @@ Widget defaultDrawer(context) {
         ListTile(
           title: Row(
             children: [
-              const Text('Settings'),
-              const Spacer(),
               Icon(Icons.settings, color: myWhiteBlack()),
+              const Padding(padding: EdgeInsets.only(right: 10.0)),
+              const Text('Settings'),
             ],
           ),
           onTap: () {
@@ -366,12 +365,13 @@ Widget defaultDrawer(context) {
             );
           },
         ),
+        const Spacer(),
         ListTile(
           title: Row(
             children: [
-              const Text('Rate the app'),
-              const Spacer(),
               Icon(Icons.star, color: myWhiteBlack()),
+              const Padding(padding: EdgeInsets.only(right: 10.0)),
+              const Text('Rate the App'),
             ],
           ),
           onTap: () {
@@ -382,9 +382,9 @@ Widget defaultDrawer(context) {
         ListTile(
           title: Row(
             children: [
-              const Text('Share'),
-              const Spacer(),
               Icon(Icons.share, color: myWhiteBlack()),
+              const Padding(padding: EdgeInsets.only(right: 10.0)),
+              const Text('Share'),
             ],
           ),
           onTap: () {
@@ -395,9 +395,9 @@ Widget defaultDrawer(context) {
         ListTile(
           title: Row(
             children: [
-              const Text('Support the dev'),
-              const Spacer(),
               Icon(Icons.attach_money, color: myWhiteBlack()),
+              const Padding(padding: EdgeInsets.only(right: 10.0)),
+              const Text('Support the Dev'),
             ],
           ),
           onTap: () {
