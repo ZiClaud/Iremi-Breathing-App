@@ -1,10 +1,8 @@
 import 'package:iremibreathingapp/basics/complex_exercise.dart';
 
-import '../exercise.dart';
-
 class WimHofMethodExercise extends ComplexExercise {
   @override
-  List<MyExercise> _exercises() {
+  List<ComplexExerciseItem> _exercises() {
     return [
       _WimHofMethodExercisePt1(),
       _WimHofMethodExercisePt2(),
@@ -31,48 +29,9 @@ class WimHofMethodExercise extends ComplexExercise {
   String notes() {
     return "People with certain medical conditions such as asthma, epilepsy, and high blood pressure should avoid this practice or seek medical advice before trying it.";
   }
-
-  @override
-  List<String> steps() {
-    List<String> steps = [];
-    for (MyExercise exercise in _exercises()) {
-      steps.addAll(exercise.steps());
-    }
-    return steps;
-  }
-
-  @override
-  int times() {
-    // TODO: implement times
-    throw UnimplementedError();
-  }
-
-  @override
-  int exhaleTimeMs() {
-    // TODO: implement exhaleTimeMs
-    throw UnimplementedError();
-  }
-
-  @override
-  int holdEndTimeMs() {
-    // TODO: implement holdEndTimeMs
-    throw UnimplementedError();
-  }
-
-  @override
-  int holdMiddleTimeMs() {
-    // TODO: implement holdMiddleTimeMs
-    throw UnimplementedError();
-  }
-
-  @override
-  int inhaleTimeMs() {
-    // TODO: implement inhaleTimeMs
-    throw UnimplementedError();
-  }
 }
 
-class _WimHofMethodExercisePause extends MyExercise {
+class _WimHofMethodExercisePause extends ComplexExerciseItem {
   @override
   String name() {
     return "Pause";
@@ -107,19 +66,9 @@ class _WimHofMethodExercisePause extends MyExercise {
   int holdEndTimeMs() {
     return 1000;
   }
-
-  @override
-  String description() {
-    throw UnimplementedError();
-  }
-
-  @override
-  String notes() {
-    throw UnimplementedError();
-  }
 }
 
-class _WimHofMethodExercisePt1 extends MyExercise {
+class _WimHofMethodExercisePt1 extends ComplexExerciseItem {
   @override
   String name() {
     return "Wim Hof Method - Part 1";
@@ -165,19 +114,9 @@ class _WimHofMethodExercisePt1 extends MyExercise {
   int holdEndTimeMs() {
     return 1;
   }
-
-  @override
-  String description() {
-    throw UnimplementedError();
-  }
-
-  @override
-  String notes() {
-    throw UnimplementedError();
-  }
 }
 
-class _WimHofMethodExercisePt2 extends MyExercise {
+class _WimHofMethodExercisePt2 extends ComplexExerciseItem {
   @override
   String name() {
     return "Wim Hof Method - Part 2";
@@ -218,19 +157,9 @@ class _WimHofMethodExercisePt2 extends MyExercise {
   int holdEndTimeMs() {
     return 60000;
   }
-
-  @override
-  String description() {
-    throw UnimplementedError();
-  }
-
-  @override
-  String notes() {
-    throw UnimplementedError();
-  }
 }
 
-class _WimHofMethodExercisePt3 extends MyExercise {
+class _WimHofMethodExercisePt3 extends ComplexExerciseItem {
   @override
   String name() {
     return "Wim Hof Method - Part 3";
@@ -277,19 +206,9 @@ class _WimHofMethodExercisePt3 extends MyExercise {
   int holdEndTimeMs() {
     return 1;
   }
-
-  @override
-  String description() {
-    throw UnimplementedError();
-  }
-
-  @override
-  String notes() {
-    throw UnimplementedError();
-  }
 }
 
-class _WimHofMethodExercisePt4 extends MyExercise {
+class _WimHofMethodExercisePt4 extends ComplexExerciseItem {
   @override
   String name() {
     return "Wim Hof Method - Part 4";
@@ -330,19 +249,9 @@ class _WimHofMethodExercisePt4 extends MyExercise {
   int holdEndTimeMs() {
     return 90000;
   }
-
-  @override
-  String description() {
-    throw UnimplementedError();
-  }
-
-  @override
-  String notes() {
-    throw UnimplementedError();
-  }
 }
 
-class _WimHofMethodExercisePt5 extends MyExercise {
+class _WimHofMethodExercisePt5 extends ComplexExerciseItem {
   @override
   String name() {
     return "Wim Hof Method - Part 5";
@@ -391,19 +300,9 @@ class _WimHofMethodExercisePt5 extends MyExercise {
   int holdEndTimeMs() {
     return 1;
   }
-
-  @override
-  String description() {
-    throw UnimplementedError();
-  }
-
-  @override
-  String notes() {
-    throw UnimplementedError();
-  }
 }
 
-class _WimHofMethodExercisePt6 extends MyExercise {
+class _WimHofMethodExercisePt6 extends ComplexExerciseItem {
   @override
   String name() {
     return "Wim Hof Method - Part 6";
@@ -441,15 +340,5 @@ class _WimHofMethodExercisePt6 extends MyExercise {
   @override
   int holdEndTimeMs() {
     return 90000;
-  }
-
-  @override
-  String description() {
-    throw UnimplementedError();
-  }
-
-  @override
-  String notes() {
-    throw UnimplementedError();
   }
 }
