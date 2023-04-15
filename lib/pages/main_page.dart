@@ -33,35 +33,6 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      /*
-      appBar: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text("Welcome to Iremi"),
-          actions: [
-            IconButton(
-              icon: const Icon(
-                Icons.add_circle,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ExerciseAddPages(),
-                  ),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.account_circle,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserPage()));
-              },
-            ),
-          ]),
-      */
       body: ListView.builder(
         // TODO: Change with Wrap?
         itemCount: exercises.length,

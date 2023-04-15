@@ -3,123 +3,151 @@ import 'package:iremibreathingapp/basics/exercise.dart';
 class CustomExercise extends MyExercise {
   final int? id;
 
-  @override
-  String name;
+  String name2;
+  String description2;
+  String notes2;
+  List<String> steps2;
+  int inhaleTimeMs2;
+  int holdMiddleTimeMs2;
+  int exhaleTimeMs2;
+  int holdEndTimeMs2;
+  int times2;
 
   @override
-  String description;
+  String name() {
+    return name2;
+  }
 
   @override
-  String notes;
+  String description() {
+    return description2;
+  }
 
   @override
-  List<String> steps;
+  String notes() {
+    return notes2;
+  }
 
   @override
-  int inhaleTimeMs;
+  List<String> steps() {
+    return steps2;
+  }
 
   @override
-  int holdMiddleTimeMs;
+  int times() {
+    return times2;
+  }
 
   @override
-  int exhaleTimeMs;
+  int inhaleTimeMs() {
+    return inhaleTimeMs2;
+  }
 
   @override
-  int holdEndTimeMs;
+  int holdMiddleTimeMs() {
+    return holdMiddleTimeMs2;
+  }
 
   @override
-  int times;
+  int exhaleTimeMs() {
+    return exhaleTimeMs2;
+  }
+
+  @override
+  int holdEndTimeMs() {
+    return holdEndTimeMs2;
+  }
 
   CustomExercise(
       {this.id,
-      required this.name,
-      required this.description,
-      required this.notes,
-      required this.steps,
-      required this.times,
-      required this.inhaleTimeMs,
-      required this.holdMiddleTimeMs,
-      required this.exhaleTimeMs,
-      required this.holdEndTimeMs});
+      required this.name2,
+      required this.description2,
+      required this.notes2,
+      required this.steps2,
+      required this.times2,
+      required this.inhaleTimeMs2,
+      required this.holdMiddleTimeMs2,
+      required this.exhaleTimeMs2,
+      required this.holdEndTimeMs2});
 
   CustomExercise copy({
     int? id,
-    String? name,
-    String? description,
-    String? notes,
-    List<String>? steps,
-    int? times,
-    int? inhaleTimeMs,
-    int? holdMiddleTimeMs,
-    int? exhaleTimeMs,
-    int? holdEndTimeMs,
+    String? name2,
+    String? description2,
+    String? notes2,
+    List<String>? steps2,
+    int? times2,
+    int? inhaleTimeMs2,
+    int? holdMiddleTimeMs2,
+    int? exhaleTimeMs2,
+    int? holdEndTimeMs2,
   }) {
     return CustomExercise(
       id: id ?? this.id,
-      name: name ?? this.name,
-      description: description ?? this.description,
-      notes: notes ?? this.notes,
-      steps: steps ?? this.steps,
-      times: times ?? this.times,
-      inhaleTimeMs: inhaleTimeMs ?? this.inhaleTimeMs,
-      holdMiddleTimeMs: holdMiddleTimeMs ?? this.holdMiddleTimeMs,
-      exhaleTimeMs: exhaleTimeMs ?? this.exhaleTimeMs,
-      holdEndTimeMs: holdEndTimeMs ?? this.holdEndTimeMs,
+      name2: name2 ?? this.name2,
+      description2: description2 ?? this.description2,
+      notes2: notes2 ?? this.notes2,
+      steps2: steps2 ?? this.steps2,
+      times2: times2 ?? this.times2,
+      inhaleTimeMs2: inhaleTimeMs2 ?? this.inhaleTimeMs2,
+      holdMiddleTimeMs2: holdMiddleTimeMs2 ?? this.holdMiddleTimeMs2,
+      exhaleTimeMs2: exhaleTimeMs2 ?? this.exhaleTimeMs2,
+      holdEndTimeMs2: holdEndTimeMs2 ?? this.holdEndTimeMs2,
     );
   }
 
   static CustomExercise fromJson(Map<String, Object?> json) => CustomExercise(
         id: json[CustomExerciseFields.id] as int?,
-        name: json[CustomExerciseFields.name] as String,
-        description: json[CustomExerciseFields.description] as String,
-        notes: json[CustomExerciseFields.notes] as String,
-        steps: (json[CustomExerciseFields.steps] as String)
+        name2: json[CustomExerciseFields.name2] as String,
+        description2: json[CustomExerciseFields.description2] as String,
+        notes2: json[CustomExerciseFields.notes2] as String,
+        steps2: (json[CustomExerciseFields.steps2] as String)
             .split(',')
             .map((step) => step.trim())
             .toList(),
-        times: json[CustomExerciseFields.times] as int,
-        inhaleTimeMs: json[CustomExerciseFields.inhaleTimeMs] as int,
-        holdMiddleTimeMs: json[CustomExerciseFields.holdMiddleTimeMs] as int,
-        exhaleTimeMs: json[CustomExerciseFields.exhaleTimeMs] as int,
-        holdEndTimeMs: json[CustomExerciseFields.holdEndTimeMs] as int,
+        times2: json[CustomExerciseFields.times2] as int,
+        inhaleTimeMs2: json[CustomExerciseFields.inhaleTimeMs2] as int,
+        holdMiddleTimeMs2: json[CustomExerciseFields.holdMiddleTimeMs2] as int,
+        exhaleTimeMs2: json[CustomExerciseFields.exhaleTimeMs2] as int,
+        holdEndTimeMs2: json[CustomExerciseFields.holdEndTimeMs2] as int,
       );
 
   Map<String, Object?> toJson() => {
         CustomExerciseFields.id: id,
-        CustomExerciseFields.name: name,
-        CustomExerciseFields.description: description,
-        CustomExerciseFields.notes: notes,
-        CustomExerciseFields.steps: steps,
-        CustomExerciseFields.times: times,
-        CustomExerciseFields.inhaleTimeMs: inhaleTimeMs,
-        CustomExerciseFields.holdMiddleTimeMs: holdMiddleTimeMs,
-        CustomExerciseFields.exhaleTimeMs: exhaleTimeMs,
-        CustomExerciseFields.holdEndTimeMs: holdEndTimeMs,
+        CustomExerciseFields.name2: name2,
+        CustomExerciseFields.description2: description2,
+        CustomExerciseFields.notes2: notes2,
+        CustomExerciseFields.steps2: steps2,
+        CustomExerciseFields.times2: times2,
+        CustomExerciseFields.inhaleTimeMs2: inhaleTimeMs2,
+        CustomExerciseFields.holdMiddleTimeMs2: holdMiddleTimeMs2,
+        CustomExerciseFields.exhaleTimeMs2: exhaleTimeMs2,
+        CustomExerciseFields.holdEndTimeMs2: holdEndTimeMs2,
       };
 }
 
 class CustomExerciseFields {
   static final List<String> values = [
     id,
-    name,
-    description,
-    notes,
-    steps,
-    times,
-    inhaleTimeMs,
-    holdMiddleTimeMs,
-    exhaleTimeMs,
-    holdEndTimeMs
+    name2,
+    description2,
+    notes2,
+    steps2,
+    times2,
+    inhaleTimeMs2,
+    holdMiddleTimeMs2,
+    exhaleTimeMs2,
+    holdEndTimeMs2
   ];
 
   static const String id = '_id';
-  static const String name = 'name';
-  static const String description = 'description';
-  static const String notes = 'notes';
-  static const String steps = 'steps';
-  static const String times = 'times';
-  static const String inhaleTimeMs = 'inhaleTimeMs';
-  static const String holdMiddleTimeMs = 'holdMiddleTimeMs';
-  static const String exhaleTimeMs = 'exhaleTimeMs';
-  static const String holdEndTimeMs = 'holdEndTimeMs';
+  static const String name2 = 'name';
+  static const String description2 = 'description';
+  static const String notes2 = 'notes';
+  static const String steps2 = 'steps';
+  static const String times2 = 'times';
+  static const String inhaleTimeMs2 = 'inhaleTimeMs';
+  static const String holdMiddleTimeMs2 = 'holdMiddleTimeMs';
+  static const String exhaleTimeMs2 = 'exhaleTimeMs';
+  static const String holdEndTimeMs2 = 'holdEndTimeMs';
 }

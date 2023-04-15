@@ -10,7 +10,7 @@ import '../utils/theme.dart';
 class ExercisePage extends StatefulWidget {
   MyExercise exercise;
 
-  ExercisePage({Key? key, required MyExercise this.exercise}) : super(key: key);
+  ExercisePage({Key? key, required this.exercise}) : super(key: key);
 
   @override
   State<ExercisePage> createState() => _ExercisePageState();
@@ -24,7 +24,7 @@ class _ExercisePageState extends State<ExercisePage> {
       onWillPop: onWillPop,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(exercise.name),
+          title: Text(exercise.name()),
         ),
         body: _FourStageAnimation(exercise: exercise),
       ),
@@ -103,7 +103,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
   }
 
   void _loopAnimation() async {
-    while (_counter < widget.exercise.times) {
+    while (_counter < widget.exercise.times()) {
       // Run the animation once
       await _controller.forward().orCancel;
 
@@ -111,7 +111,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
       _counter++;
 
       // Reset the animation if it's not the last iteration
-      if (_counter < widget.exercise.times) {
+      if (_counter < widget.exercise.times()) {
         _controller.reset();
       } else {
         _finishExercise(context);

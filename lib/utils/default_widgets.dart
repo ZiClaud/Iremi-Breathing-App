@@ -28,7 +28,7 @@ Widget showExerciseModel(MyExercise exercise) {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  exercise.name,
+                  exercise.name(),
                   style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,

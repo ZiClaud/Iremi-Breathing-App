@@ -2,20 +2,32 @@ import 'package:iremibreathingapp/basics/exercises/exercise_deep_breathing.dart'
 
 class DeepBreathingExerciseAvanced extends DeepBreathingExercise {
   @override
-  String name = "Deep Breathing Avanced";
+  String name() {
+    return "Deep Breathing Avanced";
+  }
 
   @override
-  int inhaleTimeMs = 4 * 1000;
+  int inhaleTimeMs() {
+    return 4 * 1000;
+  }
 
   @override
-  int holdMiddleTimeMs = 4 * 1000;
+  int holdMiddleTimeMs() {
+    return 4 * 1000;
+  }
 
   @override
-  int exhaleTimeMs = 4 * 1000;
+  int exhaleTimeMs() {
+    return 4 * 1000;
+  }
 
   @override
-  int holdEndTimeMs = 4 * 1000;
+  int holdEndTimeMs() {
+    return 4 * 1000;
+  }
 
   @override
-  int times = 30;
+  int times() {
+    return 30;
+  }
 }

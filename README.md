@@ -52,3 +52,19 @@ App against anxiety that gives breathing exercises
 - [ ] Add Google Auth
 - [ ] Save database to google drive
 
+#### Breathing exercises:
+
+Pranayama: This is a traditional yogic breathing technique that involves controlling the breath in
+specific ways to promote physical, mental, and spiritual well-being. There are many different types
+of pranayama, each with its own benefits.
+
+Kapalbhati: This is a traditional yogic breathing technique that involves forceful exhalations
+followed by passive inhalations. This technique is believed to stimulate the digestive system and
+improve lung function.
+
+Alternate nostril breathing: This technique involves breathing through one nostril at a time while
+holding the other nostril closed with the fingers. This technique is believed to balance the energy
+flow in the body and promote relaxation.
+
+Buteyko breathing: This technique involves slowing down the breathing rate and reducing the volume
+of each breath. It is often used to treat respiratory problems such as asthma and COPD.

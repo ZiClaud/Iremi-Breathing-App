@@ -133,15 +133,15 @@ class MyDatabase {
       await db.execute('''
           CREATE TABLE $tableExercises (
           ${CustomExerciseFields.id} $idType,
-          ${CustomExerciseFields.name} $textType,
-          ${CustomExerciseFields.description} $textType,
-          ${CustomExerciseFields.notes} $textType,
-          ${CustomExerciseFields.steps} $textType,
-          ${CustomExerciseFields.times} $integerType,
-          ${CustomExerciseFields.inhaleTimeMs} $integerType,
-          ${CustomExerciseFields.holdMiddleTimeMs} $integerType,
-          ${CustomExerciseFields.exhaleTimeMs} $integerType,
-          ${CustomExerciseFields.holdEndTimeMs} $integerType
+          ${CustomExerciseFields.name2} $textType,
+          ${CustomExerciseFields.description2} $textType,
+          ${CustomExerciseFields.notes2} $textType,
+          ${CustomExerciseFields.steps2} $textType,
+          ${CustomExerciseFields.times2} $integerType,
+          ${CustomExerciseFields.inhaleTimeMs2} $integerType,
+          ${CustomExerciseFields.holdMiddleTimeMs2} $integerType,
+          ${CustomExerciseFields.exhaleTimeMs2} $integerType,
+          ${CustomExerciseFields.holdEndTimeMs2} $integerType
           )''');
     } catch (e) {
       printError('Error creating table $tableExercises: $e');
@@ -350,7 +350,7 @@ class DBCustomExercise {
   Future<CustomExercise> createExercise(CustomExercise exercise) async {
     try {
       final db = await MyDatabase.instance.database;
-      final stepsAsString = exercise.steps.join(',');
+      final stepsAsString = exercise.steps().join(',');
       final exerciseJson = exercise.toJson()..['steps'] = stepsAsString;
       final id = await db.insert(tableExercises, exerciseJson);
       return exercise.copy(id: id);
@@ -367,7 +367,7 @@ class DBCustomExercise {
       return exercisesJson.map((json) {
         final stepsAsString = json['steps'] as String;
         final steps = stepsAsString.split(',');
-        return CustomExercise.fromJson(json)..steps = steps;
+        return CustomExercise.fromJson(json)..steps2 = steps;
       }).toList();
     } catch (e) {
       printError('Error reading exercises: $e');

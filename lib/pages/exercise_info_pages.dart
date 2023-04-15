@@ -43,7 +43,7 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.exercise.name),
+        title: Text(widget.exercise.name()),
         bottom: defaultExerciseTopBar(_tabController),
         actions: [
           if (isDev && widget.exercise is CustomExercise)
@@ -121,13 +121,13 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
       body: ListView(
         children: [
           defaultInputDecorator(
-              "Name", exercise.name, Icons.keyboard_double_arrow_up),
+              "Name", exercise.name(), Icons.keyboard_double_arrow_up),
           defaultInputDecorator(
-              "Description", exercise.description, Icons.description),
-          defaultInputDecorator("notes", exercise.notes, Icons.note),
+              "Description", exercise.description(), Icons.description),
+          defaultInputDecorator("notes", exercise.notes(), Icons.note),
           defaultInputDecorator("Inhale, hold, exhale, hold",
               getDurationString(exercise), Icons.book),
-          defaultInputDecorator("Times", "${exercise.times}", Icons.repeat),
+          defaultInputDecorator("Times", "${exercise.times()}", Icons.repeat),
           defaultInputDecorator("Duration of exercise", getTimeString(exercise),
               Icons.timelapse_sharp),
         ],
@@ -152,9 +152,9 @@ class _ExerciseStepsPageState extends State<_ExerciseStepsPage> {
     MyExercise exercise = widget.exercise;
     return Scaffold(
       body: ListView.builder(
-        itemCount: exercise.steps.length,
+        itemCount: exercise.steps().length,
         itemBuilder: (context, index) {
-          String step = exercise.steps[index];
+          String step = exercise.steps()[index];
           return Padding(
             padding: const EdgeInsets.all(8.0),
             child: defaultInputDecorator(

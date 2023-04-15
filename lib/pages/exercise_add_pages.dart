@@ -139,15 +139,15 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
     }
 
     final newExercise = CustomExercise(
-      name: formData.name!,
-      description: formData.description ?? "",
-      notes: formData.notes ?? "",
-      times: formData.times!,
-      inhaleTimeMs: inhaleDuration * 1000 + inhaleDurationMs,
-      holdMiddleTimeMs: holdMiddleDuration * 1000 + holdMiddleDurationMs,
-      exhaleTimeMs: exhaleDuration * 1000 + exhaleDurationMs,
-      holdEndTimeMs: holdEndDuration * 1000 + holdEndDurationMs,
-      steps: formData.steps,
+      name2: formData.name!,
+      description2: formData.description ?? "",
+      notes2: formData.notes ?? "",
+      times2: formData.times!,
+      inhaleTimeMs2: inhaleDuration * 1000 + inhaleDurationMs,
+      holdMiddleTimeMs2: holdMiddleDuration * 1000 + holdMiddleDurationMs,
+      exhaleTimeMs2: exhaleDuration * 1000 + exhaleDurationMs,
+      holdEndTimeMs2: holdEndDuration * 1000 + holdEndDurationMs,
+      steps2: formData.steps,
     );
 
     try {
