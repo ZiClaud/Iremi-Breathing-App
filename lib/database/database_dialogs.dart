@@ -7,6 +7,12 @@ import '../utils/my_utils.dart';
 /// Database errors
 Future? defaultDatabaseErrorDialog(context, String message) {
   printWarning("Database error: " + message);
+    return _showSnackbar(context, "Database error: " + message);
+
+}
+
+Future? defaultDatabaseErrorDialog3(context, String message) {
+  printWarning("Database error: " + message);
   if (isDev) {
     return _defaultDialog(context, "Database error", message);
   } else {
@@ -66,5 +72,15 @@ Future _defaultDialog(context, String title, String message) {
         ],
       );
     },
+  );
+}
+
+/// Default dialog new
+Future<void> _showSnackbar(BuildContext context, String message) async {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(message),
+      duration: const Duration(seconds: 2),
+    ),
   );
 }

@@ -7,6 +7,7 @@ import 'package:iremibreathingapp/database/database.dart';
 import '../basics/badge.dart';
 import '../utils/default_widgets.dart';
 import '../utils/theme.dart';
+import 'home_page.dart';
 
 class ExercisePage extends StatefulWidget {
   MyExercise exercise;
@@ -212,6 +213,11 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     }
 
     exDone.stopTTS();
-    Navigator.pop(context);
+
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => HomePage()),
+          (route) => false,
+    );
   }
 }

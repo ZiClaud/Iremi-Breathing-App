@@ -50,16 +50,20 @@ class _ProgressPageState extends State<ProgressPage> {
         children: [
           Expanded(
             flex: 2,
-            child: Column(
-              children: [
-                Text("Streak: ${getExHistoryStreak(_exerciseHistory)}"),
-                if (isDev)
-                  Text(
-                      "Morning: ${getExHistoryMorningTimes(_exerciseHistory)}"),
-                if (isDev)
-                  Text("Evening: ${getExHistoryNightTimes(_exerciseHistory)}"),
-                defaultExerciseHistoryWidget(_exerciseHistory),
-              ],
+            child: SingleChildScrollView(
+              physics: AlwaysScrollableScrollPhysics(),
+              child: Column(
+                children: [
+                  Text("Streak: ${getExHistoryStreak(_exerciseHistory)}"),
+                  if (isDev)
+                    Text(
+                        "Morning: ${getExHistoryMorningTimes(_exerciseHistory)}"),
+                  if (isDev)
+                    Text(
+                        "Evening: ${getExHistoryNightTimes(_exerciseHistory)}"),
+                  defaultExerciseHistoryWidget(_exerciseHistory),
+                ],
+              ),
             ),
           ),
           Expanded(

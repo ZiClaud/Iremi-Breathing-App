@@ -102,7 +102,10 @@ Widget _showUserWidget(MyUser? user) {
               defaultInputDecorator("Goal", user.goal, Icons.ads_click),
           ],
         )
-      : const Center(
-          child: Text('No user found'),
+      : const SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Center(
+            child: Text('No user found'),
+          ),
         );
 }

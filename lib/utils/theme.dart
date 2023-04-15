@@ -117,8 +117,8 @@ class IremiTheme with ChangeNotifier {
       iconTheme: const IconThemeData(
         color: _myBluLight,
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        labelStyle: defaultLightTextStyle(),
+      inputDecorationTheme: const InputDecorationTheme(
+        labelStyle: defaultLightTextStyle,
         prefixIconColor: _myBluLight,
         iconColor: _myBluLight,
         fillColor: _myLightBackgroundColor,
@@ -139,11 +139,16 @@ class IremiTheme with ChangeNotifier {
       textButtonTheme: TextButtonThemeData(
         style: defaultLightButtonStyle(),
       ),
-      cardTheme: CardTheme(
+      cardTheme: const CardTheme(
         color: _myLightBackgroundColorCard,
       ),
-      drawerTheme: DrawerThemeData(
+      drawerTheme: const DrawerThemeData(
         backgroundColor: _myLightBackgroundColor,
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: _myLightBackgroundColor,
+        contentTextStyle: defaultLightTextStyle,
+        closeIconColor: _myBlack,
       ),
     );
   }
@@ -166,8 +171,8 @@ class IremiTheme with ChangeNotifier {
       iconTheme: const IconThemeData(
         color: _myBluDark,
       ),
-      inputDecorationTheme: InputDecorationTheme(
-        labelStyle: defaultDarkTextStyle(),
+      inputDecorationTheme: const InputDecorationTheme(
+        labelStyle: defaultDarkTextStyle,
         prefixIconColor: _myBluDark,
         iconColor: _myBluDark,
         fillColor: _myDarkBackgroundColor,
@@ -187,70 +192,73 @@ class IremiTheme with ChangeNotifier {
       textButtonTheme: TextButtonThemeData(
         style: defaultDarkButtonStyle(),
       ),
-      cardTheme: CardTheme(
+      cardTheme: const CardTheme(
         color: _myDarkBackgroundColorCard,
       ),
-      drawerTheme: DrawerThemeData(
+      drawerTheme: const DrawerThemeData(
         backgroundColor: _myDarkBackgroundColor,
+      ),
+      snackBarTheme: const SnackBarThemeData(
+        backgroundColor: _myDarkBackgroundColor,
+        contentTextStyle: defaultDarkTextStyle,
+        showCloseIcon: true,
+        closeIconColor: _myWhite,
       ),
     );
   }
 }
 
 TextTheme defaultLightTextTheme() {
-  return TextTheme(
-    displayLarge: defaultLightTextStyle(),
-    displayMedium: defaultLightTextStyle(),
-    displaySmall: defaultLightTextStyle(),
-    headlineLarge: defaultLightTextStyle(),
-    headlineMedium: defaultLightTextStyle(),
-    headlineSmall: defaultLightTextStyle(),
-    titleLarge: defaultLightTextStyle(),
-    titleMedium: defaultLightTextStyle(),
-    titleSmall: defaultLightTextStyle(),
-    bodyLarge: defaultLightTextStyle(),
-    bodyMedium: defaultLightTextStyle(),
-    bodySmall: defaultLightTextStyle(),
-    labelLarge: defaultLightTextStyle(),
-    labelMedium: defaultLightTextStyle(),
-    labelSmall: defaultLightTextStyle(),
+  return const TextTheme(
+    displayLarge: defaultLightTextStyle,
+    displayMedium: defaultLightTextStyle,
+    displaySmall: defaultLightTextStyle,
+    headlineLarge: defaultLightTextStyle,
+    headlineMedium: defaultLightTextStyle,
+    headlineSmall: defaultLightTextStyle,
+    titleLarge: defaultLightTextStyle,
+    titleMedium: defaultLightTextStyle,
+    titleSmall: defaultLightTextStyle,
+    bodyLarge: defaultLightTextStyle,
+    bodyMedium: defaultLightTextStyle,
+    bodySmall: defaultLightTextStyle,
+    labelLarge: defaultLightTextStyle,
+    labelMedium: defaultLightTextStyle,
+    labelSmall: defaultLightTextStyle,
   );
 }
 
 TextTheme defaultDarkTextTheme() {
-  return TextTheme(
-    displayLarge: defaultDarkTextStyle(),
-    displayMedium: defaultDarkTextStyle(),
-    displaySmall: defaultDarkTextStyle(),
-    headlineLarge: defaultDarkTextStyle(),
-    headlineMedium: defaultDarkTextStyle(),
-    headlineSmall: defaultDarkTextStyle(),
-    titleLarge: defaultDarkTextStyle(),
-    titleMedium: defaultDarkTextStyle(),
-    titleSmall: defaultDarkTextStyle(),
-    bodyLarge: defaultDarkTextStyle(),
-    bodyMedium: defaultDarkTextStyle(),
-    bodySmall: defaultDarkTextStyle(),
-    labelLarge: defaultDarkTextStyle(),
-    labelMedium: defaultDarkTextStyle(),
-    labelSmall: defaultDarkTextStyle(),
+  return const TextTheme(
+    displayLarge: defaultDarkTextStyle,
+    displayMedium: defaultDarkTextStyle,
+    displaySmall: defaultDarkTextStyle,
+    headlineLarge: defaultDarkTextStyle,
+    headlineMedium: defaultDarkTextStyle,
+    headlineSmall: defaultDarkTextStyle,
+    titleLarge: defaultDarkTextStyle,
+    titleMedium: defaultDarkTextStyle,
+    titleSmall: defaultDarkTextStyle,
+    bodyLarge: defaultDarkTextStyle,
+    bodyMedium: defaultDarkTextStyle,
+    bodySmall: defaultDarkTextStyle,
+    labelLarge: defaultDarkTextStyle,
+    labelMedium: defaultDarkTextStyle,
+    labelSmall: defaultDarkTextStyle,
   );
 }
 
 TextStyle getChartDefaultTextStyle() {
   return IremiTheme.isDarkTheme()
-      ? defaultDarkTextStyle()
-      : defaultLightTextStyle();
+      ? defaultDarkTextStyle
+      : defaultLightTextStyle;
 }
 
-TextStyle defaultLightTextStyle() {
-  return const TextStyle(color: _myBlack, fontSize: 20, fontFamily: 'Gotham');
-}
+const TextStyle defaultLightTextStyle = TextStyle(color: _myBlack, fontSize: 20, fontFamily: 'Gotham');
 
-TextStyle defaultDarkTextStyle() {
-  return const TextStyle(color: _myWhite, fontSize: 20, fontFamily: 'Gotham');
-}
+const TextStyle defaultDarkTextStyle = TextStyle(color: _myWhite, fontSize: 20, fontFamily: 'Gotham');
 
+// TODO: Const everywhere and remove () {}
 TextStyle defaultButtonTextStyle() {
   return const TextStyle(
       color: myButtonTextColor, fontSize: 20, fontFamily: 'Gotham');
@@ -267,15 +275,15 @@ TextStyle defaultSmallerButtonTextStyle() {
 }
 
 MaterialStateProperty<TextStyle> defaultLightMSPTextStyle() {
-  return MaterialStatePropertyAll(defaultLightTextStyle());
+  return const MaterialStatePropertyAll(defaultLightTextStyle);
 }
 
 MaterialStateProperty<TextStyle> defaultDarkMSPTextStyle() {
-  return MaterialStatePropertyAll(defaultDarkTextStyle());
+  return const MaterialStatePropertyAll(defaultDarkTextStyle);
 }
 
 MaterialStateProperty<TextStyle> defaultButtonMSPTextStyle() {
-  return MaterialStatePropertyAll(defaultDarkTextStyle());
+  return const MaterialStatePropertyAll(defaultDarkTextStyle);
 }
 
 ButtonStyle defaultLightButtonStyle() {

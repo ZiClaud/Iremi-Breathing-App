@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/progress_page.dart';
 import 'package:iremibreathingapp/pages/user_page.dart';
-import 'package:iremibreathingapp/utils/my_utils.dart';
+import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../utils/default_widgets.dart';
 import 'main_page.dart';
@@ -50,20 +50,17 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: defaultDrawer(context),
-      appBar: AppBar(
-        actions: [
-          IconButton(
-              icon: const Icon(Icons.refresh),
-              onPressed: () {
-                refreshPage(context, HomePage(currentIndex: _currentIndex));
-              }),
-        ],
+      appBar: AppBar(),
+      body: RefreshIndicator(
+        onRefresh: _pullRefresh,
+        color: myBluLightDark(),
+        backgroundColor: myWhiteBlackOpposite(),
+        child: IndexedStack(
+          index: _currentIndex,
+          children: _pages,
+        ),
       ),
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
-      ),
+      endDrawer: defaultDrawer(context),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _currentIndex,
         items: _items,
@@ -72,6 +69,15 @@ class _HomePageState extends State<HomePage> {
             _currentIndex = index;
           });
         },
+      ),
+    );
+  }
+
+  Future<void> _pullRefresh() async {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HomePage(currentIndex: _currentIndex),
       ),
     );
   }

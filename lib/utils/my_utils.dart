@@ -265,7 +265,7 @@ void printError(String text) {
 }
 
 /// Refresh
-void refreshPage(BuildContext context, Widget page) {
+void _refreshPage(BuildContext context, Widget page) {
   Navigator.pushReplacement(
       context, MaterialPageRoute(builder: (context) => page));
 }
