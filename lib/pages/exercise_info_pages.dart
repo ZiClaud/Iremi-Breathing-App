@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iremibreathingapp/basics/complex_exercise.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
@@ -125,11 +126,13 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
           defaultInputDecorator(
               "Description", exercise.description(), Icons.description),
           defaultInputDecorator("notes", exercise.notes(), Icons.note),
-          defaultInputDecorator("Inhale, hold, exhale, hold",
-              getDurationString(exercise), Icons.book),
-          defaultInputDecorator("Times", "${exercise.times()}", Icons.repeat),
-          defaultInputDecorator("Duration of exercise", getTimeString(exercise),
-              Icons.timelapse_sharp),
+          if (exercise is! ComplexExercise)
+            defaultInputDecorator("Inhale, hold, exhale, hold",
+                getDurationString(exercise), Icons.book),
+          if (exercise is! ComplexExercise)
+            defaultInputDecorator("Times", "${exercise.times()}", Icons.repeat),
+            defaultInputDecorator("Duration of exercise",
+                getTimeString(exercise), Icons.timelapse_sharp),
         ],
       ),
     );

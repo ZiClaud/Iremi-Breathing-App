@@ -1,3 +1,4 @@
+import 'package:iremibreathingapp/basics/complex_exercises/exercise_wim_hof_method.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
@@ -20,6 +21,7 @@ class Getters {
       DeepBreathingExerciseAvanced(),
       B478Exercise(),
       BoxBreathingExercise(),
+      WimHofMethodExercise(),
     ];
     return ex;
   }

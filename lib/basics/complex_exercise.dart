@@ -10,41 +10,32 @@ abstract class ComplexExercise extends MyExercise {
   List<ComplexExerciseItem> get exercises => _exercises();
 
   @override
-  List<String> steps() {
-    List<String> steps = [];
-    for (MyExercise exercise in _exercises()) {
-      steps.addAll(exercise.steps());
-    }
-    return steps;
-  }
-
-  @override
-  int times() {
-    int times = 0;
-    for (MyExercise exercise in _exercises()) {
-      times += exercise.times();
-    }
-    return times;
+  Duration getTime() {
+    throw UnimplementedError();
   }
 
   @override
   int exhaleTimeMs() {
-    throw UnimplementedError();
+    // TODO: Throw unimplemented exception - throw UnimplementedError();
+    return 1;
   }
 
   @override
   int holdEndTimeMs() {
-    throw UnimplementedError();
+    // TODO: Throw unimplemented exception - throw UnimplementedError();
+    return 1;
   }
 
   @override
   int holdMiddleTimeMs() {
-    throw UnimplementedError();
+    // TODO: Throw unimplemented exception - throw UnimplementedError();
+    return 1;
   }
 
   @override
   int inhaleTimeMs() {
-    throw UnimplementedError();
+    // TODO: Throw unimplemented exception - throw UnimplementedError();
+    return 1;
   }
 }
 
