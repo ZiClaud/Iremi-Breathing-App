@@ -131,8 +131,8 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
                 getDurationString(exercise), Icons.book),
           if (exercise is! ComplexExercise)
             defaultInputDecorator("Times", "${exercise.times()}", Icons.repeat),
-            defaultInputDecorator("Duration of exercise",
-                getTimeString(exercise), Icons.timelapse_sharp),
+          defaultInputDecorator("Duration of exercise", getTimeString(exercise),
+              Icons.timelapse_sharp),
         ],
       ),
     );

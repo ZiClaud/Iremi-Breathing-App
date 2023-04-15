@@ -135,7 +135,8 @@ class Achievement {
   }
 
   static Future<void> checkExerciseHistoryAchievement(context) async {
-    List<ExerciseHistory> exerciseHistory = await Getters.getExerciseHistoryDB(context);
+    List<ExerciseHistory> exerciseHistory =
+        await Getters.getExerciseHistoryDB(context);
 
     int streak = getExHistoryStreak(exerciseHistory);
     int morningPerson = getExHistoryMorningTimes(exerciseHistory);

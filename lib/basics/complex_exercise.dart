@@ -1,17 +1,39 @@
 import 'package:iremibreathingapp/basics/exercise.dart';
 
 abstract class ComplexExercise extends MyExercise {
-  List<ComplexExerciseItem> _exercises();
+  List<ComplexExerciseItem> exercises();
 
-  int getRounds() {
-    return _exercises().length;
+  int rounds();
+
+  int getNumberOfExercises() {
+    return exercises().length;
   }
 
-  List<ComplexExerciseItem> get exercises => _exercises();
+  @override
+  List<String> steps() {
+    List<String> steps = [];
+    for (MyExercise exercise in exercises()) {
+      steps.addAll(exercise.steps());
+    }
+    return steps;
+  }
+
+  @override
+  int times() {
+    int times = 0;
+    for (MyExercise exercise in exercises()) {
+      times += exercise.times();
+    }
+    return times;
+  }
 
   @override
   Duration getTime() {
-    throw UnimplementedError();
+    Duration time = Duration.zero;
+    for (MyExercise exercise in exercises()) {
+      time += exercise.getTime();
+    }
+    return time;
   }
 
   @override
@@ -39,7 +61,7 @@ abstract class ComplexExercise extends MyExercise {
   }
 }
 
-abstract class ComplexExerciseItem extends MyExercise{
+abstract class ComplexExerciseItem extends MyExercise {
   @override
   String description() {
     throw UnimplementedError();

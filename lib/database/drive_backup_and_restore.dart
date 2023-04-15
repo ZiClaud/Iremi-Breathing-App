@@ -48,9 +48,11 @@ Future<void> backupDatabaseToInternalStorage(context) async {
     final Directory directory = downloadDir;
     final newPath = '${directory.path}/$dbName';
     File(dbPath).copy(newPath);
-    defaultDatabaseErrorDialog(context, "Saved database to internal storage: $newPath");
+    defaultDatabaseErrorDialog(
+        context, "Saved database to internal storage: $newPath");
   } catch (e) {
-    defaultDatabaseErrorDialog(context, 'Error saving database to internal storage: $e');
+    defaultDatabaseErrorDialog(
+        context, 'Error saving database to internal storage: $e');
   } finally {
     try {
       await MyDatabase.instance.open();

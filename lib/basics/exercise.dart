@@ -4,13 +4,21 @@ import '../utils/my_utils.dart';
 
 abstract class MyExercise {
   String name();
+
   String description();
+
   String notes();
+
   List<String> steps();
+
   int times();
+
   int inhaleTimeMs();
+
   int holdMiddleTimeMs();
+
   int exhaleTimeMs();
+
   int holdEndTimeMs();
 
   void tellSteps() {

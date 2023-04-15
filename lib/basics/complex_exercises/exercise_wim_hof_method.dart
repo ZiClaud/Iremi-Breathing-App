@@ -1,10 +1,8 @@
 import 'package:iremibreathingapp/basics/complex_exercise.dart';
 
-import '../exercise.dart';
-
 class WimHofMethodExercise extends ComplexExercise {
   @override
-  List<ComplexExerciseItem> _exercises() {
+  List<ComplexExerciseItem> exercises() {
     return [
       _WimHofMethodExercisePt1(),
       _WimHofMethodExercisePt2(),
@@ -15,6 +13,11 @@ class WimHofMethodExercise extends ComplexExercise {
       _WimHofMethodExercisePt5(),
       _WimHofMethodExercisePt6(),
     ];
+  }
+
+  @override
+  int rounds() {
+    return 3;
   }
 
   @override
@@ -30,33 +33,6 @@ class WimHofMethodExercise extends ComplexExercise {
   @override
   String notes() {
     return "People with certain medical conditions such as asthma, epilepsy, and high blood pressure should avoid this practice or seek medical advice before trying it.";
-  }
-
-  @override
-  List<String> steps() {
-    List<String> steps = [];
-    for (MyExercise exercise in _exercises()) {
-      steps.addAll(exercise.steps());
-    }
-    return steps;
-  }
-
-  @override
-  int times() {
-    int times = 0;
-    for (MyExercise exercise in _exercises()) {
-      times += exercise.times();
-    }
-    return times;
-  }
-
-  @override
-  Duration getTime() {
-    Duration time = Duration.zero;
-    for (MyExercise exercise in _exercises()) {
-      time += exercise.getTime();
-    }
-    return time;
   }
 }
 
