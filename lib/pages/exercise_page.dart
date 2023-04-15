@@ -42,9 +42,7 @@ class _ExercisePageState extends State<ExercisePage> {
 class _FourStageAnimation extends StatefulWidget {
   final MyExercise exercise;
 
-  _FourStageAnimation({
-    required this.exercise,
-  });
+  const _FourStageAnimation({required this.exercise});
 
   @override
   _FourStageAnimationState createState() => _FourStageAnimationState();
@@ -52,9 +50,9 @@ class _FourStageAnimation extends StatefulWidget {
 
 class _FourStageAnimationState extends State<_FourStageAnimation>
     with SingleTickerProviderStateMixin {
+  // TODO: Make it work for complex ex too
   late AnimationController _controller;
   late Animation<Size> _animation;
-  int _counter = 0;
 
   @override
   void initState() {
@@ -70,69 +68,11 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
           widget.exercise.getHoldEndDuration(),
     );
 
-    _animation = TweenSequence([
-      TweenSequenceItem(
-        tween: Tween<Size>(
-            begin: Size.zero, end: Size.square(defaultCircleSize())),
-        weight: widget.exercise.getInhaleDuration().inMilliseconds.toDouble() /
-            _controller.duration!.inMilliseconds.toDouble(),
-      ),
-      TweenSequenceItem(
-        tween: Tween<Size>(
-            begin: Size.square(defaultCircleSize()),
-            end: Size.square(defaultCircleSize())),
-        weight:
-            widget.exercise.getHoldMiddleDuration().inMilliseconds.toDouble() /
-                _controller.duration!.inMilliseconds.toDouble(),
-      ),
-      TweenSequenceItem(
-        tween: Tween<Size>(
-            begin: Size.square(defaultCircleSize()), end: Size.zero),
-        weight: widget.exercise.getExhaleDuration().inMilliseconds.toDouble() /
-            _controller.duration!.inMilliseconds.toDouble(),
-      ),
-      TweenSequenceItem(
-        tween: Tween<Size>(begin: Size.zero, end: Size.zero),
-        weight: widget.exercise.getHoldEndDuration().inMilliseconds.toDouble() /
-            _controller.duration!.inMilliseconds.toDouble(),
-      ),
-    ]).animate(_controller);
+    _animation =
+        getAnimation(widget.exercise, _controller).animate(_controller);
 
     // Start the loop
-    _loopAnimation();
-  }
-
-  void _loopAnimation() async {
-    while (_counter < widget.exercise.times()) {
-      // Run the animation once
-      await _controller.forward().orCancel;
-
-      // Increment the counter
-      _counter++;
-
-      // Reset the animation if it's not the last iteration
-      if (_counter < widget.exercise.times()) {
-        _controller.reset();
-      } else {
-        _finishExercise(context);
-      }
-    }
-  }
-
-  void _finishExercise(BuildContext context) {
-    DBExerciseHistory().createExerciseHistory(ExerciseHistory(
-      exerciseDurationSeconds: widget.exercise.getTime().inSeconds,
-      dateTime: DateTime.now(),
-    ));
-
-    Achievement.addAchievement(PossibleBadges.airApprentice, context);
-    Achievement.checkExerciseHistoryAchievement(context);
-    if (widget.exercise.getTime().inMinutes >= 5) {
-      Achievement.addAchievement(PossibleBadges.deepBreather, context);
-    }
-
-    widget.exercise.stopTTS();
-    Navigator.pop(context);
+    _loopAnimation(_controller, widget.exercise, context);
   }
 
   @override
@@ -143,36 +83,123 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: [
-          Center(
-            child: Container(
-              width: defaultCircleSize(),
-              height: defaultCircleSize(),
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: myBluNeutral,
-              ),
-            ),
-          ),
-          Center(
-            child: AnimatedBuilder(
-              animation: _animation,
-              builder: (BuildContext context, Widget? child) {
-                return Container(
-                  width: _animation.value.width,
-                  height: _animation.value.height,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: myBluLightDark(),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
+    return getBall(_animation);
   }
+}
+
+Widget getBall(Animation<Size> animation) {
+  return Center(
+    child: Stack(
+      children: [
+        Center(
+          child: Container(
+            width: defaultCircleSize(),
+            height: defaultCircleSize(),
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: myBluNeutral,
+            ),
+          ),
+        ),
+        Center(
+          child: AnimatedBuilder(
+            animation: animation,
+            builder: (BuildContext context, Widget? child) {
+              return Container(
+                width: animation.value.width,
+                height: animation.value.height,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: myBluLightDark(),
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+TweenSequence<Size> getAnimation(MyExercise exercise,
+    AnimationController controller) {
+  return TweenSequence([
+    TweenSequenceItem(
+      tween:
+      Tween<Size>(begin: Size.zero, end: Size.square(defaultCircleSize())),
+      weight: exercise
+          .getInhaleDuration()
+          .inMilliseconds
+          .toDouble() /
+          controller.duration!.inMilliseconds.toDouble(),
+    ),
+    TweenSequenceItem(
+      tween: Tween<Size>(
+          begin: Size.square(defaultCircleSize()),
+          end: Size.square(defaultCircleSize())),
+      weight: exercise
+          .getHoldMiddleDuration()
+          .inMilliseconds
+          .toDouble() /
+          controller.duration!.inMilliseconds.toDouble(),
+    ),
+    TweenSequenceItem(
+      tween:
+      Tween<Size>(begin: Size.square(defaultCircleSize()), end: Size.zero),
+      weight: exercise
+          .getExhaleDuration()
+          .inMilliseconds
+          .toDouble() /
+          controller.duration!.inMilliseconds.toDouble(),
+    ),
+    TweenSequenceItem(
+      tween: Tween<Size>(begin: Size.zero, end: Size.zero),
+      weight: exercise
+          .getHoldEndDuration()
+          .inMilliseconds
+          .toDouble() /
+          controller.duration!.inMilliseconds.toDouble(),
+    ),
+  ]);
+}
+
+void _loopAnimation(AnimationController controller, MyExercise exercise,
+    BuildContext context) async {
+  int counter = 0;
+  while (counter < exercise.times()) {
+    // Run the animation once
+    await controller
+        .forward()
+        .orCancel;
+
+    // Increment the counter
+    counter++;
+
+    // Reset the animation if it's not the last iteration
+    if (counter < exercise.times()) {
+      controller.reset();
+    } else {
+      _finishExercise(exercise, context);
+    }
+  }
+}
+
+void _finishExercise(MyExercise exercise, BuildContext context) {
+  DBExerciseHistory().createExerciseHistory(ExerciseHistory(
+    exerciseDurationSeconds: exercise
+        .getTime()
+        .inSeconds,
+    dateTime: DateTime.now(),
+  ));
+
+  Achievement.addAchievement(PossibleBadges.airApprentice, context);
+  Achievement.checkExerciseHistoryAchievement(context);
+  if (exercise
+      .getTime()
+      .inMinutes >= 5) {
+    Achievement.addAchievement(PossibleBadges.deepBreather, context);
+  }
+
+  exercise.stopTTS();
+  Navigator.pop(context);
 }
