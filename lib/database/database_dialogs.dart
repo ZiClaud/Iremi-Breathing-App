@@ -7,8 +7,7 @@ import '../utils/my_utils.dart';
 /// Database errors
 Future? defaultDatabaseErrorDialog(context, String message) {
   printWarning("Database error: " + message);
-    return _showSnackbar(context, "Database error: " + message);
-
+  return _showSnackbar(context, "Database error: " + message);
 }
 
 Future? defaultDatabaseErrorDialog3(context, String message) {

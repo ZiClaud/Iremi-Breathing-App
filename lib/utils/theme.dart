@@ -254,9 +254,11 @@ TextStyle getChartDefaultTextStyle() {
       : defaultLightTextStyle;
 }
 
-const TextStyle defaultLightTextStyle = TextStyle(color: _myBlack, fontSize: 20, fontFamily: 'Gotham');
+const TextStyle defaultLightTextStyle =
+    TextStyle(color: _myBlack, fontSize: 20, fontFamily: 'Gotham');
 
-const TextStyle defaultDarkTextStyle = TextStyle(color: _myWhite, fontSize: 20, fontFamily: 'Gotham');
+const TextStyle defaultDarkTextStyle =
+    TextStyle(color: _myWhite, fontSize: 20, fontFamily: 'Gotham');
 
 // TODO: Const everywhere and remove () {}
 TextStyle defaultButtonTextStyle() {
