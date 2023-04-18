@@ -11,7 +11,7 @@ showBadgeDialog(context, MyBadge badge) {
         title: Center(
           child: Text(
             badge.getBadge().badgeName,
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: const TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
         contentPadding:

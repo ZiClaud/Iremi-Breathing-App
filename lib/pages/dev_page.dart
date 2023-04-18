@@ -5,7 +5,7 @@ import 'package:iremibreathingapp/utils/my_utils.dart';
 import '../basics/badge.dart';
 
 class DevPage extends StatefulWidget {
-  DevPage({Key? key}) : super(key: key);
+  const DevPage({Key? key}) : super(key: key);
 
   @override
   State<DevPage> createState() => _DevPageState();
@@ -22,7 +22,7 @@ class _DevPageState extends State<DevPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("DEV Page"),
+        title: const Text("DEV Page"),
         actions: [
           if (isDev)
             IconButton(

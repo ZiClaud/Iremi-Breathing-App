@@ -19,9 +19,9 @@ class _HomePageState extends State<HomePage> {
   int _currentIndex = 1;
 
   final List<Widget> _pages = [
-    ProgressPage(),
+    const ProgressPage(),
     const MainPage(),
-    UserPage(),
+    const UserPage(),
   ];
 
   final List<BottomNavigationBarItem> _items = [

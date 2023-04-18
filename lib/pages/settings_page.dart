@@ -14,7 +14,7 @@ import 'dev_page.dart';
 import 'home_page.dart';
 
 class SettingsPage extends StatefulWidget {
-  SettingsPage({Key? key}) : super(key: key);
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -156,7 +156,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => DevPage(),
+                    builder: (context) => const DevPage(),
                   ),
                 );
               },

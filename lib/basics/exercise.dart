@@ -56,9 +56,9 @@ abstract class MyExercise {
 
   Future<void> startTTS() async {
     SharedPreferences prefs = await getSharedPreferences();
-    bool _voice = prefs.getBool('voice') ?? false;
+    bool voice = prefs.getBool('voice') ?? false;
 
-    if (_voice) {
+    if (voice) {
       await flutterTts.awaitSpeakCompletion(false);
       for (String step in steps()) {
         await Future.delayed(_getOneLoopDuration());
@@ -69,9 +69,9 @@ abstract class MyExercise {
 
   Future<void> stopTTS() async {
     SharedPreferences prefs = await getSharedPreferences();
-    bool _voice = prefs.getBool('voice') ?? false;
+    bool voice = prefs.getBool('voice') ?? false;
 
-    if (_voice) {
+    if (voice) {
       flutterTts.stop();
     }
   }

@@ -88,11 +88,11 @@ Future<StatefulWidget> _getFutureFirstPage() async {
     if (await DBMyUser().getFirstUser() != null) {
       return HomePage();
     } else {
-      return RegisterPageDB();
+      return const RegisterPageDB();
     }
   } catch (e) {
     print(e.toString());
 //    defaultDatabaseErrorDialog(context, "Error connecting to database");
-    return RegisterPageDB(); // TODO: Maybe change this to MainPage, telling the user that the database is not connected
+    return const RegisterPageDB(); // TODO: Maybe change this to MainPage, telling the user that the database is not connected
   }
 }

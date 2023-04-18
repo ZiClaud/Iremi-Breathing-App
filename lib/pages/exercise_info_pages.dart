@@ -107,8 +107,7 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
 class _ExerciseDetailsPage extends StatefulWidget {
   MyExercise exercise;
 
-  _ExerciseDetailsPage({Key? key, required MyExercise this.exercise})
-      : super(key: key);
+  _ExerciseDetailsPage({Key? key, required this.exercise}) : super(key: key);
 
   @override
   State<_ExerciseDetailsPage> createState() => _ExerciseDetailsPageState();
@@ -142,8 +141,7 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
 class _ExerciseStepsPage extends StatefulWidget {
   MyExercise exercise;
 
-  _ExerciseStepsPage({Key? key, required MyExercise this.exercise})
-      : super(key: key);
+  _ExerciseStepsPage({Key? key, required this.exercise}) : super(key: key);
 
   @override
   State<_ExerciseStepsPage> createState() => _ExerciseStepsPageState();

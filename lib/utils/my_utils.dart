@@ -70,18 +70,19 @@ String _getDefaultLanguageLocale() {
 }
 
 String getDefaultLanguage() {
-  if (_getDefaultLanguageLocale() == "en")
+  if (_getDefaultLanguageLocale() == "en") {
     return "English";
-  else if (_getDefaultLanguageLocale() == "it")
+  } else if (_getDefaultLanguageLocale() == "it") {
     return "Italiano";
-  else if (_getDefaultLanguageLocale() == "es")
+  } else if (_getDefaultLanguageLocale() == "es") {
     return "Español";
 //  else if (_getDefaultLanguageLocale() == "zh")
 //    return "Chinese (Simplified)??";
 //  else if (_getDefaultLanguageLocale() == "el")
 //    return "Greek??";
-  else
+  } else {
     return "English";
+  }
 }
 
 List<String> getAvailableLanguages() {

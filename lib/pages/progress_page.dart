@@ -7,7 +7,7 @@ import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 
 class ProgressPage extends StatefulWidget {
-  ProgressPage({Key? key}) : super(key: key);
+  const ProgressPage({Key? key}) : super(key: key);
 
   @override
   State<ProgressPage> createState() => _ProgressPageState();
@@ -51,7 +51,7 @@ class _ProgressPageState extends State<ProgressPage> {
           Expanded(
             flex: 2,
             child: SingleChildScrollView(
-              physics: AlwaysScrollableScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(),
               child: Column(
                 children: [
                   Text("Streak: ${getExHistoryStreak(_exerciseHistory)}"),

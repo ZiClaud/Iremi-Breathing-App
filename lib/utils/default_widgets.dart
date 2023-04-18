@@ -361,7 +361,7 @@ Widget defaultDrawer(context) {
           onTap: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SettingsPage()),
+              MaterialPageRoute(builder: (context) => const SettingsPage()),
             );
           },
         ),

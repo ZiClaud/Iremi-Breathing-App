@@ -6,12 +6,12 @@ import '../utils/my_utils.dart';
 
 /// Database errors
 Future? defaultDatabaseErrorDialog(context, String message) {
-  printWarning("Database error: " + message);
-  return _showSnackbar(context, "Database error: " + message);
+  printWarning("Database error: $message");
+  return _showSnackbar(context, "Database error: $message");
 }
 
 Future? defaultDatabaseErrorDialog3(context, String message) {
-  printWarning("Database error: " + message);
+  printWarning("Database error: $message");
   if (isDev) {
     return _defaultDialog(context, "Database error", message);
   } else {
@@ -47,7 +47,7 @@ void _notificationStyleDialog(
     context,
     title: title,
     subTitle: message,
-    icon: Icon(Icons.cloud_circle, color: Colors.white),
+    icon: const Icon(Icons.cloud_circle, color: Colors.white),
     color: Colors.black,
     isCircle: true,
   ).show();

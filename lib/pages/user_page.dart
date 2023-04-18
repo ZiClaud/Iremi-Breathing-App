@@ -7,7 +7,7 @@ import '../database/getters.dart';
 import '../utils/default_widgets.dart';
 
 class UserPage extends StatefulWidget {
-  UserPage({Key? key}) : super(key: key);
+  const UserPage({Key? key}) : super(key: key);
 
   @override
   State<UserPage> createState() => _UserPageState();
@@ -78,7 +78,7 @@ class _UserPageState extends State<UserPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => SettingsPage(),
+                  builder: (context) => const SettingsPage(),
                 ),
               );
             },
