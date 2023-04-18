@@ -3,6 +3,7 @@ import 'package:iremibreathingapp/basics/complex_exercise.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
 import 'package:iremibreathingapp/database/database.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
 import '../utils/default_widgets.dart';
@@ -63,9 +64,10 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     ex = widget.exercise;
     if (ex is ComplexExercise) {
       ex = (ex as ComplexExercise).exercises().first;
+      _startAnimation(ex);
+    } else {
+      _startAnimation(ex);
     }
-
-    _startAnimation(ex);
   }
 
   @override
@@ -80,6 +82,23 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
   }
 
   void _startAnimation(MyExercise ex) {
+    ex.startTTS();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: ex.getInhaleDuration() +
+          ex.getHoldMiddleDuration() +
+          ex.getExhaleDuration() +
+          ex.getHoldEndDuration(),
+    );
+
+    _animation = getAnimation(ex, _controller).animate(_controller);
+
+    // Start the loop
+    _loopAnimation(ex);
+  }
+
+  void _startAnimationOld(MyExercise ex) {
     ex.startTTS();
 
     _controller = AnimationController(
@@ -173,7 +192,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     ]);
   }
 
-  void _loopAnimation(MyExercise ex) async {
+  void _loopAnimationOld(MyExercise ex) async {
     int counter = 0;
     while (counter < ex.times()) {
       // Run the animation once
@@ -187,6 +206,37 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
         _controller.reset();
       } else {
         _finishExercise(ex);
+      }
+    }
+  }
+
+  void _loopAnimation(MyExercise ex) async {
+    int counter = 0;
+    MyExercise complexEx = widget.exercise;
+    while (counter < ex.times()) {
+      // Run the animation once
+      await _controller.forward().orCancel;
+
+      // Increment the counter
+      counter++;
+
+      // Reset the animation if it's not the last iteration
+      if (counter < ex.times()) {
+        _controller.reset();
+      } else {
+        if (complexEx is ComplexExercise && ex is ComplexExerciseItem) {
+          printWarning("AOOOOOOOOOWW");
+          int index = complexEx.exercises().indexOf(ex) + 1;
+          if (index < complexEx.exercises().length) {
+            MyExercise nextEx = complexEx.exercises()[index];
+            _startNewAnimation(nextEx, ex);
+          } else {
+            _finishExercise(ex);
+          }
+        } else {
+          printWarning("AOOOOOOOOO");
+          _finishExercise(ex);
+        }
       }
     }
   }
@@ -217,7 +267,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => HomePage()),
-          (route) => false,
+      (route) => false,
     );
   }
 }
