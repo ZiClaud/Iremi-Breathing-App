@@ -21,7 +21,9 @@ Future<File?> _saveFileToDocumentsDirectory(File file) async {
   final Directory directory = downloadDir;
 
   // Construct a file path in the Documents directory.
-  final String filePath = '${directory.path}/${file.path.split('/').last}';
+  final String filePath = '${directory.path}/${file.path
+      .split('/')
+      .last}';
 
   // Check if the file already exists in the directory.
   final File existingFile = File(filePath);
@@ -50,7 +52,6 @@ Future<File> _getDatabaseFileCopy() async {
 Future<void> backupDatabaseToInternalStorage(context) async {
   await Achievement.backupAchievement(context);
 
-  // TODO: ask user for permission
   if ((await _askPermission()) == false) {
     defaultDialog(context, "Backup failed", 'Permissions not granted');
     return;
@@ -60,21 +61,25 @@ Future<void> backupDatabaseToInternalStorage(context) async {
     await MyDatabase.instance.close();
     String dbPath = await MyDatabase.instance.getDBPath();
     final Directory directory = downloadDir;
-    final newPath = '${directory.path}/$dbName';
-    await File(dbPath).copy(newPath);
-    defaultDialog(context, "Backup successful",
-        "Saved database to internal storage: $newPath");
+    final newPath = '${directory.path}/${_getDBName()}_$dbName';
+  await File(dbPath).copy(newPath);
+  defaultDialog(context, "Backup successful",
+  "Saved database to internal storage: $newPath");
   } catch (e) {
-    printError('$e');
-    defaultDialog(context, "Backup failed",
-        'Error saving database to internal storage: $e');
+  printError('$e');
+  defaultDialog(context, "Backup failed",
+  'Error saving database to internal storage: $e');
   } finally {
-    try {
-      await MyDatabase.instance.open();
-    } catch (e) {
-      defaultDialog(context, "Backup failed", 'Error re-opening database: $e');
-    }
+  try {
+  await MyDatabase.instance.open();
+  } catch (e) {
+  defaultDialog(context, "Backup failed", 'Error re-opening database: $e');
   }
+  }
+}
+
+String _getDBName() {
+  return "${DateTime.now().year}${DateTime.now().month}${DateTime.now().day}_${DateTime.now().millisecondsSinceEpoch}";
 }
 
 Future<bool> _askPermission() async {
