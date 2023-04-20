@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../basics/exercise_history.dart';
 
 // TODO IMPORTANT: Change to false when building for release
-const bool isDev = true;
+const bool isDev = false;
 
 /// TTS
 FlutterTts flutterTts = FlutterTts();
@@ -224,7 +224,7 @@ int getDateNightTimes(List<DateTime> dates) {
 
   for (DateTime date in dates) {
     currDate = DateTime(date.year, date.month, date.day);
-    if (date.hour >= 10 && date.hour <= 12) {
+    if (date.hour >= 22 && date.hour <= 24) {
       if (!nightDates.contains(currDate)) {
         nightDates.add(currDate);
         nightOwl++;
