@@ -163,7 +163,7 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
         ],
       ),
-      body: ListView(
+      body: Column(
         children: [
           ListTile(
             title: defaultInputDecorator(
@@ -290,40 +290,18 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
-                onPressed: () {
-                  backupDatabaseToInternalStorage(context);
-                },
-                child: defaultButtonText("Backup"),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
-                onPressed: () {
-                  restoreDatabaseFromInternalStorage(context);
-                },
-                child: defaultButtonText("Restore"),
-              ),
-            ),
+          const Spacer(),
+          defaultOutlinedButton(context, "Backup", Icons.backup,
+              onPressed: () => backupDatabaseToInternalStorage(context)),
+          defaultOutlinedButton(context, "Restore", Icons.restore,
+              onPressed: () => restoreDatabaseFromInternalStorage(context)),
           if (_user != null)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: OutlinedButton(
-                onPressed: () => _warningUser(context, _deleteUser),
-                child: defaultButtonText("Delete User"),
-              ),
-            ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: OutlinedButton(
+            defaultOutlinedButton(context, "Delete User", Icons.no_accounts,
+                onPressed: () => _warningUser(context, _deleteUser)),
+          defaultOutlinedButton(
+              context, "Delete Database", Icons.delete_forever,
               onPressed: () => _warningDatabase(context, _deleteDatabase),
-              onLongPress: () => _becomeDev(),
-              child: defaultButtonText("Delete Database"),
-            ),
-          ),
+              onLongPress: _becomeDev),
         ],
       ),
     );

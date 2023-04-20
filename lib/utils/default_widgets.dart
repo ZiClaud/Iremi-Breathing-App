@@ -169,6 +169,25 @@ Icon defaultButtonIcon(IconData iconData) {
   );
 }
 
+Widget defaultOutlinedButton(BuildContext context, String message, IconData iconData,
+    {required void Function() onPressed, void Function()? onLongPress}) {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: OutlinedButton(
+      onPressed: () => onPressed(),
+      onLongPress: onLongPress,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          defaultButtonIcon(iconData),
+          const Padding(padding: EdgeInsets.only(left: 4.0, right: 4.0)),
+          defaultButtonText(message),
+        ],
+      ),
+    ),
+  );
+}
+
 TextFormField defaultEditTextFormField(String label, IconData icon, controller,
     {required void Function(String?) onChanged}) {
   return TextFormField(

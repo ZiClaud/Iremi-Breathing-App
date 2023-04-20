@@ -193,7 +193,7 @@ int getExHistoryStreak(List<ExerciseHistory> exerciseHistory) {
   for (ExerciseHistory exercise in exerciseHistory) {
     currDate = DateTime(
         exercise.dateTime.year, exercise.dateTime.month, exercise.dateTime.day);
-    if (!dates.contains(currDate)) {
+    if (!dates.contains(currDate) && currDate.isBefore(DateTime.now())) {
       dates.add(currDate);
     }
   }

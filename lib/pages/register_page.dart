@@ -55,7 +55,10 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
               ),
             ),
             if (widget.user == null && (username == ""))
-              OutlinedButton(
+              defaultOutlinedButton(
+                context,
+                "Continue without account",
+                Icons.person_off,
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
@@ -63,7 +66,6 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
                     (route) => false,
                   );
                 },
-                child: defaultButtonText("Continue without account"),
               ),
           ],
         ),

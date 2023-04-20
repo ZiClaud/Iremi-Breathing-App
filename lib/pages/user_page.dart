@@ -39,41 +39,37 @@ class _UserPageState extends State<UserPage> {
           Expanded(
             child: _showUserWidget(_user),
           ),
-          OutlinedButton(
-            child: (_user != null)
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      defaultButtonIcon(
-                        Icons.edit,
+          (_user != null)
+              ? defaultOutlinedButton(
+                  context,
+                  "Edit User",
+                  Icons.edit,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterPageDB(user: _user),
                       ),
-                      defaultButtonText("Edit user"),
-                    ],
-                  )
-                : Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      defaultButtonIcon(Icons.add),
-                      defaultButtonText("Register user"),
-                    ],
-                  ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RegisterPageDB(user: _user),
+                    );
+                  },
+                )
+              : defaultOutlinedButton(
+                  context,
+                  "Register User",
+                  Icons.person_add,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => RegisterPageDB(user: _user),
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          OutlinedButton(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                defaultButtonIcon(Icons.settings),
-                defaultButtonText("Settings"),
-              ],
-            ),
+          defaultOutlinedButton(
+            context,
+            "Settings",
+            Icons.settings,
             onPressed: () {
               Navigator.push(
                 context,
