@@ -172,7 +172,7 @@ Icon defaultButtonIcon(IconData iconData) {
 Widget defaultOutlinedButton(BuildContext context, String message, IconData iconData,
     {required void Function() onPressed, void Function()? onLongPress}) {
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.only(bottom: 8.0),
     child: OutlinedButton(
       onPressed: () => onPressed(),
       onLongPress: onLongPress,
