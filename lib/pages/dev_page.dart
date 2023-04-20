@@ -14,10 +14,6 @@ class DevPage extends StatefulWidget {
 class _DevPageState extends State<DevPage> {
   Future<void> _doDevStuff1(BuildContext context) async {}
 
-  Future<void> _doDevStuff2(BuildContext context) async {}
-
-  Future<void> _doDevStuff3(BuildContext context) async {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,20 +25,6 @@ class _DevPageState extends State<DevPage> {
               icon: const Icon(Icons.code),
               onPressed: () {
                 _doDevStuff1(context);
-              },
-            ),
-          if (isDev)
-            IconButton(
-              icon: const Icon(Icons.cloud),
-              onPressed: () {
-                _doDevStuff2(context);
-              },
-            ),
-          if (isDev)
-            IconButton(
-              icon: const Icon(Icons.code_off),
-              onPressed: () {
-                _doDevStuff3(context);
               },
             ),
         ],
@@ -76,7 +58,7 @@ class _DevPageState extends State<DevPage> {
     List<MyBadge> allBadges = [];
 
     for (PossibleBadges possibleBadges in PossibleBadges.values) {
-      allBadges.add(MyBadge(id: possibleBadges.id, date: "30/03/2023"));
+      allBadges.add(MyBadge(id: possibleBadges.id, date: "18/03/2023"));
     }
 
     return allBadges;
