@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/pages/home_page.dart';
-import 'package:iremibreathingapp/utils/my_utils.dart';
 
 import '../basics/badge.dart';
 import '../basics/exercise_custom.dart';
@@ -87,13 +86,9 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.navigate_next),
         onPressed: () {
-          _customizerAchievement(context);
           try {
-            printWarning("CHECK THIS OUT");
-            printWarning(formData.steps.toString());
-            printWarning(formData.steps.toString());
-            printWarning(formData.steps.toString());
             _saveExercise(context);
+            _customizerAchievement(context);
           } catch (e) {
             defaultDatabaseErrorDialog(context, e.toString());
           }

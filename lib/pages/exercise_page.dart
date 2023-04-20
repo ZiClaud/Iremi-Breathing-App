@@ -210,7 +210,7 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     }
   }
 
-  void _loopAnimation(MyExercise ex) async {
+  void _loopAnimation(MyExercise ex) async { // TODO: FIX
     int counter = 0;
     MyExercise complexEx = widget.exercise;
     while (counter < ex.times()) {
