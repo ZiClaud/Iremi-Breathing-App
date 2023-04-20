@@ -49,6 +49,8 @@ App against anxiety that gives breathing exercises
 - [x] Logo showing on loading screen
 - [ ] Loading screen with tips
 - [ ] Insert "Quicksand" font or some other, better font
+- [x] Save database in download
+- [x] Restore database
 - [ ] Add Google Auth
 - [ ] Save database to google drive
 
