@@ -299,7 +299,6 @@ class _SettingsPageState extends State<SettingsPage> {
                 child: defaultButtonText("Backup"),
               ),
             ),
-          if (isDev)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(

@@ -90,7 +90,8 @@ Future<bool> _askPermission() async {
 Future<void> restoreDatabaseFromInternalStorage(context) async {
   try {
     // Get the app's documents directory
-    final Directory dir = downloadDir;
+    String dbPath = await MyDatabase.instance.getDBPath();
+    final Directory dir = Directory(dbPath).parent;
 
     // Allow the user to choose a file
     final file = await FilePicker.platform.pickFiles();
