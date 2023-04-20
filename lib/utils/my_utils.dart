@@ -163,12 +163,13 @@ int getDateStreak(List<DateTime> dates) {
   int streak = 0;
   DateTime? currDate;
   DateTime today =
-      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  DateTime yesterday = today.subtract(const Duration(days: 1));
   dates.sort((a, b) => b.compareTo(a));
 
   for (DateTime date in dates) {
     if (currDate == null) {
-      if (today == date) {
+      if (today == date || yesterday == date) {
         streak++;
         currDate = date;
       } else if (today.subtract(const Duration(days: 1)) == date) {
