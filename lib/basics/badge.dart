@@ -159,6 +159,14 @@ class Achievement {
     }
   }
 
+ static Future<void> backupAchievement(BuildContext context) async {
+    await Achievement.addAchievement(PossibleBadges.backupMaster, context);
+  }
+
+ static Future<void> secretAchievement(BuildContext context) async {
+    await Achievement.addAchievement(PossibleBadges.secret, context);
+  }
+
   static void _showAchievementView(BuildContext context, PossibleBadges badge) {
     AchievementView(
       context,

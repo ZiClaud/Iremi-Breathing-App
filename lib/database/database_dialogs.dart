@@ -13,7 +13,7 @@ Future? defaultDatabaseErrorDialog(context, String message) {
 Future? defaultDatabaseErrorDialog3(context, String message) {
   printWarning("Database error: $message");
   if (isDev) {
-    return _defaultDialog(context, "Database error", message);
+    return defaultDialog(context, "Database error", message);
   } else {
     _notificationStyleDialog(context, "Database error", message);
     return null;
@@ -54,7 +54,7 @@ void _notificationStyleDialog(
 }
 
 /// Default dialog
-Future _defaultDialog(context, String title, String message) {
+Future defaultDialog(context, String title, String message) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {

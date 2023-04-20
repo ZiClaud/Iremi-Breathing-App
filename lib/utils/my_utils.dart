@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../basics/exercise_history.dart';
 
 // TODO IMPORTANT: Change to false when building for release
-const bool isDev = false;
+const bool isDev = true;
 
 /// TTS
 FlutterTts flutterTts = FlutterTts();

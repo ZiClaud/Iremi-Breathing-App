@@ -152,7 +152,7 @@ class _SettingsPageState extends State<SettingsPage> {
             IconButton(
               icon: const Icon(Icons.code),
               onPressed: () {
-                _secretAchievement(context);
+                Achievement.secretAchievement(context);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -290,12 +290,10 @@ class _SettingsPageState extends State<SettingsPage> {
                 }
               },
             ),
-          if (isDev)
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: OutlinedButton(
                 onPressed: () {
-                  _backupAchievement(context);
                   backupDatabaseToInternalStorage(context);
                 },
                 child: defaultButtonText("Backup"),
@@ -330,13 +328,5 @@ class _SettingsPageState extends State<SettingsPage> {
         ],
       ),
     );
-  }
-
-  void _backupAchievement(BuildContext context) {
-    Achievement.addAchievement(PossibleBadges.backupMaster, context);
-  }
-
-  void _secretAchievement(BuildContext context) {
-    Achievement.addAchievement(PossibleBadges.secret, context);
   }
 }

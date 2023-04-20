@@ -1,24 +1,30 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/database/database_dialogs.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+
+import '../basics/badge.dart';
 
 /// TODO: Only works on android.
-var path = "/storage/emulated/0/Download";
-var downloadDir = Directory(path);
+const String path = "/storage/emulated/0/Download";
+Directory downloadDir = Directory(path);
 
 Future<File?> _saveFileToDocumentsDirectory(File file) async {
   if (!await file.exists()) {
     return null;
   }
 
-  final directory = downloadDir;
+  final Directory directory = downloadDir;
 
   // Construct a file path in the Documents directory.
-  final filePath = '${directory.path}/${file.path.split('/').last}';
+  final String filePath = '${directory.path}/${file.path.split('/').last}';
 
   // Check if the file already exists in the directory.
-  final existingFile = File(filePath);
+  final File existingFile = File(filePath);
   if (await existingFile.exists()) {
     // If the file already exists, delete it.
     await existingFile.delete();
@@ -36,67 +42,61 @@ Future<File?> _saveFileToDocumentsDirectory(File file) async {
 
 Future<File> _getDatabaseFileCopy() async {
   String dbPath = await MyDatabase.instance.getDBPath();
-  final directory = downloadDir;
-  final newPath = '${directory.path}/IremiDatabaseBackup.db';
+  final Directory directory = downloadDir;
+  final String newPath = '${directory.path}/IremiDatabaseBackup.db';
   return File(dbPath).copy(newPath);
 }
 
 Future<void> backupDatabaseToInternalStorage(context) async {
+  await Achievement.backupAchievement(context);
+
+  // TODO: ask user for permission
+  if ((await _askPermission()) == false) {
+    defaultDialog(context, "Backup failed", 'Permissions not granted');
+    return;
+  }
+
   try {
     await MyDatabase.instance.close();
     String dbPath = await MyDatabase.instance.getDBPath();
     final Directory directory = downloadDir;
     final newPath = '${directory.path}/$dbName';
-    File(dbPath).copy(newPath);
-    defaultDatabaseErrorDialog(
-        context, "Saved database to internal storage: $newPath");
+    await File(dbPath).copy(newPath);
+    defaultDialog(context, "Backup successful",
+        "Saved database to internal storage: $newPath");
   } catch (e) {
-    defaultDatabaseErrorDialog(
-        context, 'Error saving database to internal storage: $e');
+    printError('$e');
+    defaultDialog(context, "Backup failed",
+        'Error saving database to internal storage: $e');
   } finally {
     try {
       await MyDatabase.instance.open();
     } catch (e) {
-      defaultDatabaseErrorDialog(context, 'Error re-opening database: $e');
+      defaultDialog(context, "Backup failed", 'Error re-opening database: $e');
     }
   }
 }
 
-/*
-  try {
-    // Get the database path
-    final dbPath = await MyDatabase.instance.database.then((db) => db.path);
-
-    // Get the app's documents directory
-    final dir = await getApplicationDocumentsDirectory();
-
-    // Create a new file in the documents directory with the same name as the database file
-    final file = File('${dir.path}/IremiDatabase.db');
-
-    // Copy the database file to the new file
-    await file.writeAsBytes(await File(dbPath).readAsBytes());
-
-    // Show a message to the user indicating that the database was saved
-    await defaultDialog(context, 'Database saved',
-        'The database was saved to internal storage.\n Path: ${file.path}');
-  } catch (e) {
-    defaultDatabaseErrorDialog(
-        context, 'Error saving database to internal storage: $e');
+Future<bool> _askPermission() async {
+  if (Platform.isAndroid) {
+    final permission = await Permission.storage.request(); // manageExternalStorage instead???
+    return permission.isGranted;
+  } else {
+    // Other platforms don't require permission to access internal storage
+    return true;
   }
-  */
+}
 
 Future<void> restoreDatabaseFromInternalStorage(context) async {
-// TODO: IMPLEMENT
-  defaultDatabaseErrorDialog(context, 'Needs implementation');
-/*
   try {
     // Get the app's documents directory
-    final dir = await getApplicationDocumentsDirectory();
+    final Directory dir = downloadDir;
 
     // Allow the user to choose a file
     final file = await FilePicker.platform.pickFiles();
 
     if (file == null) {
+      defaultDialog(context, "Restore failed", 'User cancelled the action');
       // User cancelled the file picker
       return;
     }
@@ -105,6 +105,7 @@ Future<void> restoreDatabaseFromInternalStorage(context) async {
     final filePath = file.files.single.path!;
 
     if (!filePath.endsWith('.db')) {
+      defaultDialog(context, "Restore failed", 'File chosen is not a database');
       throw Exception("File chosen is not a database");
     }
 
@@ -119,8 +120,7 @@ Future<void> restoreDatabaseFromInternalStorage(context) async {
     await defaultDialog(context, 'Database restored',
         'The database was restored from internal storage.');
   } catch (e) {
-    defaultDatabaseErrorDialog(
-        context, 'Error restoring database from internal storage: \n$e');
+    defaultDialog(context, "Restore failed",
+        'Error restoring database from internal storage: \n$e');
   }
-  */
 }
