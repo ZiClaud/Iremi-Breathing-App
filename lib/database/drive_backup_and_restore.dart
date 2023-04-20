@@ -79,8 +79,9 @@ Future<void> backupDatabaseToInternalStorage(context) async {
 
 Future<bool> _askPermission() async {
   if (Platform.isAndroid) {
-    final permission = await Permission.storage.request(); // manageExternalStorage instead???
-    return permission.isGranted;
+    final permission = await Permission.storage.request();
+    final permission2 = await Permission.manageExternalStorage.request();
+    return permission.isGranted && permission2.isGranted;
   } else {
     // Other platforms don't require permission to access internal storage
     return true;
@@ -91,7 +92,7 @@ Future<void> restoreDatabaseFromInternalStorage(context) async {
   try {
     // Get the app's documents directory
     String dbPath = await MyDatabase.instance.getDBPath();
-    final Directory dir = Directory(dbPath).parent;
+    final Directory dbDir = Directory(dbPath);
 
     // Allow the user to choose a file
     final file = await FilePicker.platform.pickFiles();
@@ -114,7 +115,7 @@ Future<void> restoreDatabaseFromInternalStorage(context) async {
     await MyDatabase.instance.deleteDB();
 
     // Copy the chosen file to the app's documents directory with the same name as the database file
-    final newFile = File('${dir.path}/IremiDatabase.db');
+    final newFile = File(dbDir.path);
     await newFile.writeAsBytes(await File(filePath).readAsBytes());
 
     // Show a message to the user indicating that the database was restored
