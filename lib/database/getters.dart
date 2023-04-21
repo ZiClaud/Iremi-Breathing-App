@@ -21,7 +21,7 @@ class Getters {
       DeepBreathingExerciseAvanced(),
       B478Exercise(),
       BoxBreathingExercise(),
-      WimHofMethodExercise(),
+//      WimHofMethodExercise(),
     ];
     return ex;
   }
