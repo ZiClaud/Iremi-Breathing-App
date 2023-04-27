@@ -4,10 +4,10 @@ import 'my_utils.dart';
 
 IremiTheme myTheme = IremiTheme();
 const Color _myBluLight = Color(0xFF07C2E6);
-const Color myBluNeutral = Color(0xFF01B3CA);
+const Color _myBluNeutral = Color(0xFF01B3CA);
 const Color _myBluDark = Color(0xFF007C9A);
 
-const Color myButtonTextColor = Color(0xFFFFFFFF);
+const Color _myButtonTextColor = Color(0xFFFFFFFF);
 
 const Color _myWhite = Color(0xFFFFFFFF);
 const Color _myLightBackgroundColor = Color(0xFFF5F5F5);
@@ -15,7 +15,19 @@ const Color _myLightBackgroundColorCard = Color(0xFFFFFFFF);
 const Color _myDarkBackgroundColorCard = Color(0xFF444444);
 const Color _myDarkBackgroundColor = Color(0xFF282828);
 const Color _myBlack = Color(0xFF000000);
-const Color myLockedBadgeColor = Colors.grey;
+const Color _myLockedBadgeColor = Colors.grey;
+
+Color myBluNeutral() {
+  return _myBluNeutral;
+}
+
+Color myLockedBadgeColor() {
+  return _myLockedBadgeColor;
+}
+
+Color myButtonTextColor() {
+  return _myButtonTextColor;
+}
 
 Color myBluLightDark() {
   return IremiTheme.isDarkTheme() ? _myBluDark : _myBluLight;
@@ -104,7 +116,7 @@ class IremiTheme with ChangeNotifier {
       scaffoldBackgroundColor: _myLightBackgroundColor,
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluLight,
-        foregroundColor: myButtonTextColor,
+        foregroundColor: _myButtonTextColor,
         elevation: 0,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -128,7 +140,7 @@ class IremiTheme with ChangeNotifier {
       buttonTheme: const ButtonThemeData(),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: _myBluLight,
-        foregroundColor: myButtonTextColor,
+        foregroundColor: _myButtonTextColor,
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: defaultLightButtonStyle(),
@@ -158,7 +170,7 @@ class IremiTheme with ChangeNotifier {
       scaffoldBackgroundColor: _myDarkBackgroundColor,
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluDark,
-        foregroundColor: myButtonTextColor,
+        foregroundColor: _myButtonTextColor,
         elevation: 0,
       ),
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -181,7 +193,7 @@ class IremiTheme with ChangeNotifier {
       dialogTheme: const DialogTheme(backgroundColor: _myDarkBackgroundColor),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: _myBluDark,
-        foregroundColor: myButtonTextColor,
+        foregroundColor: _myButtonTextColor,
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: defaultDarkButtonStyle(),
@@ -263,17 +275,17 @@ const TextStyle defaultDarkTextStyle =
 // TODO: Const everywhere and remove () {}
 TextStyle defaultButtonTextStyle() {
   return const TextStyle(
-      color: myButtonTextColor, fontSize: 20, fontFamily: 'Gotham');
+      color: _myButtonTextColor, fontSize: 20, fontFamily: 'Gotham');
 }
 
 TextStyle defaultSmallButtonTextStyle() {
   return const TextStyle(
-      color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
+      color: _myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
 }
 
 TextStyle defaultSmallerButtonTextStyle() {
   return const TextStyle(
-      color: myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
+      color: _myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
 }
 
 MaterialStateProperty<TextStyle> defaultLightMSPTextStyle() {

@@ -173,7 +173,7 @@ class Achievement {
       title: "New Achievement!",
       subTitle: badge.badgeName,
       icon: Icon(badge.icon, color: Colors.white),
-      color: myBluNeutral,
+      color: myBluNeutral(),
       isCircle: true,
     ).show();
   }

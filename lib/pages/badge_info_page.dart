@@ -29,7 +29,7 @@ Widget _showBadgeWidget(MyBadge badge) {
       Icon(
         badge.getBadge().icon,
         size: 100,
-        color: (badge.date != "") ? myBluLightDark() : myLockedBadgeColor,
+        color: (badge.date != "") ? myBluLightDark() : myLockedBadgeColor(),
       ),
       Padding(
         padding: const EdgeInsets.all(8.0),

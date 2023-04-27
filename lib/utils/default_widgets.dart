@@ -62,7 +62,7 @@ TabBar defaultExerciseTopBar(controller) {
       Tab(text: 'Details'),
       Tab(text: 'Steps'),
     ],
-    indicatorColor: myBluNeutral,
+    indicatorColor: myBluNeutral(),
   );
 }
 
@@ -133,8 +133,8 @@ Widget defaultLockedBadgeView(context, PossibleBadges badge) {
       child: Container(
         width: 100,
         height: 100,
-        decoration: const BoxDecoration(
-          color: myLockedBadgeColor,
+        decoration: BoxDecoration(
+          color: myLockedBadgeColor(),
           shape: BoxShape.circle,
         ),
         child: Column(
@@ -158,14 +158,14 @@ Text defaultButtonText(String message) {
   return Text(
     message,
     maxLines: null,
-    style: const TextStyle(color: myButtonTextColor),
+    style: TextStyle(color: myButtonTextColor()),
   );
 }
 
 Icon defaultButtonIcon(IconData iconData) {
   return Icon(
     iconData,
-    color: myButtonTextColor,
+    color: myButtonTextColor(),
   );
 }
 
@@ -349,8 +349,8 @@ Widget defaultDrawer(context) {
     child: Column(
       children: <Widget>[
         DrawerHeader(
-          decoration: const BoxDecoration(
-            color: myBluNeutral,
+          decoration: BoxDecoration(
+            color: myBluNeutral(),
           ),
           child: defaultLogoWidget(),
         ),

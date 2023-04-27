@@ -122,9 +122,9 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
             child: Container(
               width: defaultCircleSize(),
               height: defaultCircleSize(),
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: myBluNeutral,
+                color: myBluNeutral(),
               ),
             ),
           ),
