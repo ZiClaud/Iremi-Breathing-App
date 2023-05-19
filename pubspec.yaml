@@ -20,11 +20,12 @@ dependencies:
   provider: ^6.0.5
   path_provider: ^2.0.14
   file_picker: ^5.2.10
-  achievement_view: ^1.0.0
+  achievement_view: ^1.0.1
   syncfusion_flutter_charts: ^21.1.37
   flutter_tts: ^3.6.3
   permission_handler: ^10.2.0
   flutter_native_splash: ^2.2.19
+  shared_preferences: ^2.0.20
 
 # ON CHANGE: flutter pub run flutter_native_splash:create
 flutter_native_splash:
@@ -54,7 +55,6 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.0
-  shared_preferences: ^2.0.20
 
 flutter:
 

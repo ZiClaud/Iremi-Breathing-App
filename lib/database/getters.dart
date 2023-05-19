@@ -1,15 +1,16 @@
+import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/complex_exercises/exercise_wim_hof_method.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/basics/exercise_custom.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_478.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_box_breathing.dart';
+import 'package:iremibreathingapp/basics/exercises/exercise_deep_breathing_avanced.dart';
 import 'package:iremibreathingapp/basics/exercises/exercise_deep_breathing_beginner.dart';
+import 'package:iremibreathingapp/basics/exercises/exercise_deep_breathing_intermediate.dart';
 import 'package:iremibreathingapp/basics/user.dart';
+import 'package:iremibreathingapp/utils/my_utils.dart';
 
-import '../basics/badge.dart';
-import '../basics/exercises/exercise_deep_breathing_avanced.dart';
-import '../basics/exercises/exercise_deep_breathing_intermediate.dart';
 import 'database.dart';
 import 'database_dialogs.dart';
 
@@ -21,7 +22,7 @@ class Getters {
       DeepBreathingExerciseAvanced(),
       B478Exercise(),
       BoxBreathingExercise(),
-      WimHofMethodExercise(),
+      if (isDev) WimHofMethodExercise(),
     ];
     return ex;
   }

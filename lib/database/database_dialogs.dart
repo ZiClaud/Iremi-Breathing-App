@@ -44,13 +44,12 @@ Future _defaultDatabaseErrorDialog2(context, message) {
 void _notificationStyleDialog(
     BuildContext context, String title, String message) {
   AchievementView(
-    context,
     title: title,
     subTitle: message,
     icon: const Icon(Icons.cloud_circle, color: Colors.white),
     color: Colors.black,
     isCircle: true,
-  ).show();
+  ).show(context);
 }
 
 /// Default dialog

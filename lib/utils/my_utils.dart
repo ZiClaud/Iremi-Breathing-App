@@ -4,9 +4,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
+import 'package:iremibreathingapp/basics/exercise_history.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../basics/exercise_history.dart';
 
 // TODO IMPORTANT: Change to false when building for release
 const bool isDev = false;
@@ -163,7 +162,7 @@ int getDateStreak(List<DateTime> dates) {
   int streak = 0;
   DateTime? currDate;
   DateTime today =
-  DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
   DateTime yesterday = today.subtract(const Duration(days: 1));
   dates.sort((a, b) => b.compareTo(a));
 

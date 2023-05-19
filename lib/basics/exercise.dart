@@ -1,6 +1,5 @@
+import 'package:iremibreathingapp/utils/my_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../utils/my_utils.dart';
 
 abstract class MyExercise {
   String name();

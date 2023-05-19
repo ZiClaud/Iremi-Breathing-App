@@ -70,8 +70,7 @@ enum PossibleBadges {
       "Awarded for practicing deep breathing exercises for more than 5 minutes."),
 
   // awarded for trying out a all default breathing exercises offered in the app.
-  breathingExplorer(5, "Breathing Explorer", Icons.explore,
-      "Awarded for trying out a all default breathing exercises offered in the app."),
+//  breathingExplorer(5, "Breathing Explorer", Icons.explore, "Awarded for trying out a all default breathing exercises offered in the app."),
 
   /// awarded for creating a custom exercise
   customizer(6, "Customizer", Icons.handyman,
@@ -86,15 +85,13 @@ enum PossibleBadges {
       "Awarded for doing 5 exercises between 10PM and 12PM."),
 
   /// awarded for rating the app.
-  rater(9, "Rater", Icons.star, "Awarded for rating the app."),
+//  rater(9, "Rater", Icons.star, "Awarded for rating the app."),
 
   /// awarded for sharing the app with a friend.
-  sharingIsCaring(10, "Sharing is Caring", Icons.share,
-      "Awarded for sharing the app with a friend."),
+//  sharingIsCaring(10, "Sharing is Caring", Icons.share, "Awarded for sharing the app with a friend."),
 
   /// awarded for donating to the app.
-  supporter(11, "Generous Supporter", Icons.attach_money,
-      "Awarded for donating to the app."),
+//  supporter(11, "Generous Supporter", Icons.attach_money, "Awarded for donating to the app."),
 
   /// awarded for backing up your data.
   backupMaster(
@@ -159,23 +156,22 @@ class Achievement {
     }
   }
 
- static Future<void> backupAchievement(BuildContext context) async {
+  static Future<void> backupAchievement(BuildContext context) async {
     await Achievement.addAchievement(PossibleBadges.backupMaster, context);
   }
 
- static Future<void> secretAchievement(BuildContext context) async {
+  static Future<void> secretAchievement(BuildContext context) async {
     await Achievement.addAchievement(PossibleBadges.secret, context);
   }
 
   static void _showAchievementView(BuildContext context, PossibleBadges badge) {
     AchievementView(
-      context,
       title: "New Achievement!",
       subTitle: badge.badgeName,
       icon: Icon(badge.icon, color: Colors.white),
       color: myBluNeutral(),
       isCircle: true,
-    ).show();
+    ).show(context);
   }
 
   static void _addBadge(PossibleBadges badge) {

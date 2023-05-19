@@ -5,8 +5,6 @@ import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/database/database_dialogs.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
-
-
 import '../basics/badge.dart';
 
 /// TODO: Only works on android.
@@ -21,9 +19,7 @@ Future<File?> _saveFileToDocumentsDirectory(File file) async {
   final Directory directory = downloadDir;
 
   // Construct a file path in the Documents directory.
-  final String filePath = '${directory.path}/${file.path
-      .split('/')
-      .last}';
+  final String filePath = '${directory.path}/${file.path.split('/').last}';
 
   // Check if the file already exists in the directory.
   final File existingFile = File(filePath);
@@ -62,19 +58,19 @@ Future<void> backupDatabaseToInternalStorage(context) async {
     String dbPath = await MyDatabase.instance.getDBPath();
     final Directory directory = downloadDir;
     final newPath = '${directory.path}/${_getDBName()}_$dbName';
-  await File(dbPath).copy(newPath);
-  defaultDialog(context, "Backup successful",
-  "Saved database to internal storage: $newPath");
+    await File(dbPath).copy(newPath);
+    defaultDialog(context, "Backup successful",
+        "Saved database to internal storage: $newPath");
   } catch (e) {
-  printError('$e');
-  defaultDialog(context, "Backup failed",
-  'Error saving database to internal storage: $e');
+    printError('$e');
+    defaultDialog(context, "Backup failed",
+        'Error saving database to internal storage: $e');
   } finally {
-  try {
-  await MyDatabase.instance.open();
-  } catch (e) {
-  defaultDialog(context, "Backup failed", 'Error re-opening database: $e');
-  }
+    try {
+      await MyDatabase.instance.open();
+    } catch (e) {
+      defaultDialog(context, "Backup failed", 'Error re-opening database: $e');
+    }
   }
 }
 

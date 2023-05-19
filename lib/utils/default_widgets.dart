@@ -169,7 +169,8 @@ Icon defaultButtonIcon(IconData iconData) {
   );
 }
 
-Widget defaultOutlinedButton(BuildContext context, String message, IconData iconData,
+Widget defaultOutlinedButton(
+    BuildContext context, String message, IconData iconData,
     {required void Function() onPressed, void Function()? onLongPress}) {
   return Padding(
     padding: const EdgeInsets.only(bottom: 8.0, right: 8.0, left: 8.0),
@@ -223,8 +224,37 @@ RoundedRectangleBorder defaultRoundedRectangleBorder() {
 }
 
 /// CHART
-Widget defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
-  return _defaultExerciseHistoryWidget(_filterExerciseHistory(exerciseHistory));
+class DefaultExerciseHistoryWidget extends StatelessWidget {
+  final List<ExerciseHistory> exerciseHistory;
+
+  const DefaultExerciseHistoryWidget(
+      {super.key, required this.exerciseHistory});
+
+  @override
+  Widget build(BuildContext context) {
+    _filterExerciseHistory(exerciseHistory);
+    return SfCartesianChart(
+      series: <ChartSeries<ExerciseHistory, String>>[
+        ColumnSeries<ExerciseHistory, String>(
+            dataSource: exerciseHistory,
+            xValueMapper: (ExerciseHistory sales, _) =>
+                getWeekLetter(sales.dateTime),
+            yValueMapper: (ExerciseHistory sales, _) =>
+                sales.exerciseDurationSeconds,
+            name: 'Exercise History',
+            color: myBluLightDark(),
+            dataLabelSettings: const DataLabelSettings(isVisible: false))
+      ],
+      primaryXAxis: CategoryAxis(
+          name: "Date",
+          isVisible: true,
+          majorGridLines: const MajorGridLines(width: 0)),
+      primaryYAxis: CategoryAxis(
+          name: "Seconds",
+          isVisible: true,
+          majorGridLines: const MajorGridLines(width: 0)),
+    );
+  }
 }
 
 List<ExerciseHistory> _filterExerciseHistory(
@@ -260,30 +290,6 @@ ExerciseHistory _sumDurationExerciseHistoryThisDay(
   }
   return ExerciseHistory(
       exerciseDurationSeconds: sumDuration, dateTime: dateTime);
-}
-
-Widget _defaultExerciseHistoryWidget(List<ExerciseHistory> exerciseHistory) {
-  return SfCartesianChart(
-    series: <ChartSeries<ExerciseHistory, String>>[
-      ColumnSeries<ExerciseHistory, String>(
-          dataSource: exerciseHistory,
-          xValueMapper: (ExerciseHistory sales, _) =>
-              getWeekLetter(sales.dateTime),
-          yValueMapper: (ExerciseHistory sales, _) =>
-              sales.exerciseDurationSeconds,
-          name: 'Exercise History',
-          color: myBluLightDark(),
-          dataLabelSettings: const DataLabelSettings(isVisible: false))
-    ],
-    primaryXAxis: CategoryAxis(
-        name: "Date",
-        isVisible: true,
-        majorGridLines: const MajorGridLines(width: 0)),
-    primaryYAxis: CategoryAxis(
-        name: "Seconds",
-        isVisible: true,
-        majorGridLines: const MajorGridLines(width: 0)),
-  );
 }
 
 /// Loading Screen
@@ -385,45 +391,48 @@ Widget defaultDrawer(context) {
           },
         ),
         const Spacer(),
-        ListTile(
-          title: Row(
-            children: [
-              Icon(Icons.star, color: myWhiteBlack()),
-              const Padding(padding: EdgeInsets.only(right: 10.0)),
-              const Text('Rate the App'),
-            ],
+        if (isDev)
+          ListTile(
+            title: Row(
+              children: [
+                Icon(Icons.star, color: myWhiteBlack()),
+                const Padding(padding: EdgeInsets.only(right: 10.0)),
+                const Text('Rate the App'),
+              ],
+            ),
+            onTap: () {
+              // TODO: Add link to rate the app
+              // TODO: Achievement.addAchievement(PossibleBadges.rater, context);
+            },
           ),
-          onTap: () {
-            // TODO: Add link to rate the app
-            Achievement.addAchievement(PossibleBadges.rater, context);
-          },
-        ),
-        ListTile(
-          title: Row(
-            children: [
-              Icon(Icons.share, color: myWhiteBlack()),
-              const Padding(padding: EdgeInsets.only(right: 10.0)),
-              const Text('Share'),
-            ],
+        if (isDev)
+          ListTile(
+            title: Row(
+              children: [
+                Icon(Icons.share, color: myWhiteBlack()),
+                const Padding(padding: EdgeInsets.only(right: 10.0)),
+                const Text('Share'),
+              ],
+            ),
+            onTap: () {
+              // TODO: Add link to share the app
+              // TODO: Achievement.addAchievement(PossibleBadges.sharingIsCaring, context);
+            },
           ),
-          onTap: () {
-            // TODO: Add link to share the app
-            Achievement.addAchievement(PossibleBadges.sharingIsCaring, context);
-          },
-        ),
-        ListTile(
-          title: Row(
-            children: [
-              Icon(Icons.attach_money, color: myWhiteBlack()),
-              const Padding(padding: EdgeInsets.only(right: 10.0)),
-              const Text('Support the Dev'),
-            ],
+        if (isDev)
+          ListTile(
+            title: Row(
+              children: [
+                Icon(Icons.attach_money, color: myWhiteBlack()),
+                const Padding(padding: EdgeInsets.only(right: 10.0)),
+                const Text('Support the Dev'),
+              ],
+            ),
+            onTap: () {
+              // TODO: Add link to support the developer
+              // TODO: Achievement.addAchievement(PossibleBadges.supporter, context);
+            },
           ),
-          onTap: () {
-            // TODO: Add link to support the developer
-            Achievement.addAchievement(PossibleBadges.supporter, context);
-          },
-        ),
       ],
     ),
   );

@@ -61,7 +61,7 @@ class _ProgressPageState extends State<ProgressPage> {
                   if (isDev)
                     Text(
                         "Evening: ${getExHistoryNightTimes(_exerciseHistory)}"),
-                  defaultExerciseHistoryWidget(_exerciseHistory),
+                  DefaultExerciseHistoryWidget(exerciseHistory: _exerciseHistory),
                 ],
               ),
             ),

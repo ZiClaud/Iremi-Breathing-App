@@ -10,7 +10,7 @@ import '../utils/theme.dart';
 import 'home_page.dart';
 
 class ExercisePage extends StatefulWidget {
- final MyExercise exercise;
+  final MyExercise exercise;
 
   const ExercisePage({Key? key, required this.exercise}) : super(key: key);
 
@@ -94,7 +94,8 @@ class _FourStageAnimationState extends State<_FourStageAnimation>
     _animation = _getAnimation(ex, _controller).animate(_controller);
 
     // Start the loop
-    if (ex is ComplexExercise) { //TODO: FIX
+    if (ex is ComplexExercise) {
+      //TODO: FIX
       _loopAnimation(ex.exercises().first);
     } else {
       _loopAnimation(ex);
