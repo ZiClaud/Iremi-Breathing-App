@@ -18,7 +18,8 @@ void main() {
       prefs.setBool('darkMode', false);
       //TODO: Change "true" to "isDefaultThemeDark()"
       prefs.setBool('music', true);
-      prefs.setBool('voice', true);
+      prefs.setBool('voice', false);
+      //TODO: Change when voice isn't in Beta
       prefs.setString('voiceType', getDefaultVoiceType2());
       prefs.setString('language', getDefaultLanguage());
       prefs.setBool('dev', false);
