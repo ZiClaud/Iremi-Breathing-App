@@ -272,7 +272,6 @@ const TextStyle defaultLightTextStyle =
 const TextStyle defaultDarkTextStyle =
     TextStyle(color: _myWhite, fontSize: 20, fontFamily: 'Gotham');
 
-// TODO: Const everywhere and remove () {}
 TextStyle defaultButtonTextStyle() {
   return const TextStyle(
       color: _myButtonTextColor, fontSize: 20, fontFamily: 'Gotham');

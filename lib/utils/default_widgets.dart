@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:iremibreathingapp/pages/badge_info_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -237,10 +238,10 @@ class DefaultExerciseHistoryWidget extends StatelessWidget {
     _filterExerciseHistory(exerciseHistory);
     return SfCartesianChart(
       series: <CartesianSeries>[
-        ColumnSeries<ExerciseHistory, String>(
+        ColumnSeries<ExerciseHistory, DateTime>(
           dataSource: exerciseHistory,
-          xValueMapper: (ExerciseHistory sales, _) =>
-              getWeekLetter(sales.dateTime),
+          xValueMapper: (e, _) =>
+              DateTime(e.dateTime.year, e.dateTime.month, e.dateTime.day),
           yValueMapper: (ExerciseHistory sales, _) =>
               sales.exerciseDurationSeconds,
           name: 'Exercise History',
@@ -248,9 +249,9 @@ class DefaultExerciseHistoryWidget extends StatelessWidget {
           dataLabelSettings: const DataLabelSettings(isVisible: false),
         )
       ],
-      primaryXAxis: CategoryAxis(
-          name: "Date",
-          isVisible: true,
+      primaryXAxis: DateTimeAxis(
+          intervalType: DateTimeIntervalType.days,
+          dateFormat: DateFormat.E(),
           majorGridLines: const MajorGridLines(width: 0)),
       primaryYAxis: CategoryAxis(
           name: "Seconds",
