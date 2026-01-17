@@ -70,7 +70,7 @@ class _DevPageState extends State<DevPage> {
   Widget _getUserListView(BuildContext context) {
     return ListView(
       children: [
-        defaultInputDecorator("Username", "DEV", Icons.person),
+        defaultInputDecorator("Username", "ZiClaud", Icons.person),
         defaultInputDecorator("Name", "Developer", Icons.badge_outlined),
         defaultInputDecorator("Sex", "No", Icons.search),
         defaultInputDecorator("Goal", "24h/day", Icons.ads_click),
