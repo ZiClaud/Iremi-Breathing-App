@@ -175,6 +175,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               trailing: Switch(
                 value: _darkMode,
+                activeThumbColor: Theme.of(context).primaryColor,
                 onChanged: (value) {
                   setState(() {
                     _darkMode = value;
@@ -192,6 +193,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 ),
                 trailing: Switch(
                   value: _music,
+                  activeThumbColor: Theme.of(context).primaryColor,
                   onChanged: (value) {
                     setState(() {
                       _music = value;
@@ -208,6 +210,7 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               trailing: Switch(
                 value: _voice,
+                activeThumbColor: Theme.of(context).primaryColor,
                 onChanged: (value) {
                   setState(() {
                     _voice = value;

@@ -87,7 +87,10 @@ const MaterialColor myBluLightMaterial =
 const MaterialColor myBluDarkMaterial =
     MaterialColor(0xFF3B44AC, myColorMapDark);
 
-//ColorScheme myLightColorScheme = ColorScheme(brightness: Brightness.light, primary: _myBluLight, onPrimary: _myBlack, secondary: _myBluLight, onSecondary: _myBlack, error: myBluNeutral, onError: _myBlack, background: _myBluLight, onBackground: _myBluLight, surface: _myBluLight, onSurface: _myBluLight);
+final ColorScheme myLightColorScheme = ColorScheme.fromSeed(
+  seedColor: _myBluLight,
+  brightness: Brightness.light,
+);
 
 /// ---------------------------
 
@@ -110,8 +113,64 @@ class IremiTheme with ChangeNotifier {
     return _isDarkTheme;
   }
 
+/*
+  static ThemeData get lightThemeBad {
+    return ThemeData(
+      useMaterial3: true,
+      // let Material 3 generate proper color variants
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: _myBluLight, // primary
+        secondary: _myBluNeutral, // secondary
+        brightness: Brightness.light,
+      ),
+      scaffoldBackgroundColor: _myLightBackgroundColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: _myBluLight,
+        foregroundColor: _myButtonTextColor,
+        elevation: 0,
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: _myBluLight,
+        selectedItemColor: _myLightBackgroundColor,
+        unselectedItemColor: _myBluDark,
+        elevation: 0,
+      ),
+      switchTheme: SwitchThemeData(
+        thumbColor: MaterialStateProperty.resolveWith((states) =>
+        states.contains(MaterialState.selected)
+            ? _myBluLight
+            : myWhiteBlack()),
+        trackColor: MaterialStateProperty.resolveWith((states) =>
+        states.contains(MaterialState.selected)
+            ? _myBluLight.withOpacity(0.5)
+            : myWhiteBlack().withOpacity(0.3)),
+      ),
+      tabBarTheme: TabBarThemeData(
+        indicatorColor: _myBluLight,
+        labelColor: _myBluLight,
+        unselectedLabelColor: _myBlack.withOpacity(0.6),
+        labelStyle: defaultLightTextStyle,
+        unselectedLabelStyle: defaultLightTextStyle.copyWith(
+          color: _myBlack.withOpacity(0.6),
+        ),
+      ),
+      floatingActionButtonTheme: FloatingActionButtonThemeData(
+        backgroundColor: _myBluLight,
+        foregroundColor: _myButtonTextColor,
+      ),
+      cardTheme: CardThemeData(color: _myLightBackgroundColorCard),
+      textTheme: defaultLightTextTheme(),
+    );
+  }
+*/
   static ThemeData get lightTheme {
     return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: _myBluLight,
+        secondary: _myBluNeutral,
+        brightness: Brightness.light,
+      ),
       primarySwatch: myBluLightMaterial,
       scaffoldBackgroundColor: _myLightBackgroundColor,
       appBarTheme: const AppBarTheme(
@@ -136,7 +195,8 @@ class IremiTheme with ChangeNotifier {
         fillColor: _myLightBackgroundColor,
         border: InputBorder.none,
       ),
-      dialogTheme: const DialogThemeData(backgroundColor: _myLightBackgroundColor),
+      dialogTheme:
+          const DialogThemeData(backgroundColor: _myLightBackgroundColor),
       buttonTheme: const ButtonThemeData(),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: _myBluLight,
@@ -162,11 +222,34 @@ class IremiTheme with ChangeNotifier {
         contentTextStyle: defaultLightTextStyle,
         closeIconColor: _myBlack,
       ),
+      switchTheme: SwitchThemeData(
+        thumbColor: MaterialStateProperty.resolveWith((states) =>
+            states.contains(MaterialState.selected)
+                ? _myBluLight
+                : myWhiteBlack()),
+        trackColor: MaterialStateProperty.resolveWith((states) =>
+            states.contains(MaterialState.selected)
+                ? _myBluLight.withOpacity(0.5)
+                : myWhiteBlack().withOpacity(0.3)),
+      ),
+      tabBarTheme: const TabBarThemeData(
+        indicatorColor: _myWhite,
+        labelColor: _myWhite,
+        // unselectedLabelColor: _myWhite,
+        labelStyle: defaultLightTextStyle,
+        // unselectedLabelStyle: defaultLightTextStyle,
+      ),
     );
   }
 
   static ThemeData get darkTheme {
     return ThemeData(
+      useMaterial3: true,
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: _myBluDark,
+        secondary: _myBluNeutral,
+        brightness: Brightness.dark,
+      ),
       scaffoldBackgroundColor: _myDarkBackgroundColor,
       appBarTheme: const AppBarTheme(
         backgroundColor: _myBluDark,
@@ -190,7 +273,8 @@ class IremiTheme with ChangeNotifier {
         fillColor: _myDarkBackgroundColor,
         border: InputBorder.none,
       ),
-      dialogTheme: const DialogThemeData(backgroundColor: _myDarkBackgroundColor),
+      dialogTheme:
+          const DialogThemeData(backgroundColor: _myDarkBackgroundColor),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: _myBluDark,
         foregroundColor: _myButtonTextColor,
@@ -216,6 +300,17 @@ class IremiTheme with ChangeNotifier {
         showCloseIcon: true,
         closeIconColor: _myWhite,
       ),
+      switchTheme: SwitchThemeData(
+        thumbColor: MaterialStateProperty.resolveWith((states) =>
+        states.contains(MaterialState.selected)
+            ? _myBluDark
+            : myWhiteBlack()),
+        trackColor: MaterialStateProperty.resolveWith((states) =>
+        states.contains(MaterialState.selected)
+            ? _myBluDark.withOpacity(0.5)
+            : myWhiteBlack().withOpacity(0.3)),
+      ),
+      tabBarTheme: TabBarThemeData(labelColor: _myWhite),
     );
   }
 }
