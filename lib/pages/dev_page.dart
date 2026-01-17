@@ -5,7 +5,7 @@ import 'package:iremibreathingapp/utils/my_utils.dart';
 import '../basics/badge.dart';
 
 class DevPage extends StatefulWidget {
-  const DevPage({Key? key}) : super(key: key);
+  const DevPage({super.key});
 
   @override
   State<DevPage> createState() => _DevPageState();

@@ -9,7 +9,7 @@ import 'main_page.dart';
 class HomePage extends StatefulWidget {
   int? currentIndex;
 
-  HomePage({Key? key, this.currentIndex}) : super(key: key);
+  HomePage({super.key, this.currentIndex});
 
   @override
   _HomePageState createState() => _HomePageState();

@@ -13,7 +13,7 @@ import 'home_page.dart';
 class ExerciseInfoPages extends StatefulWidget {
   MyExercise exercise;
 
-  ExerciseInfoPages({Key? key, required this.exercise}) : super(key: key);
+  ExerciseInfoPages({super.key, required this.exercise});
 
   @override
   State<ExerciseInfoPages> createState() => _ExerciseInfoPagesState();
@@ -75,7 +75,7 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
     );
   }
 
-  _deleteExerciseWarning() {
+  void _deleteExerciseWarning() {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -107,7 +107,7 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
 class _ExerciseDetailsPage extends StatefulWidget {
   MyExercise exercise;
 
-  _ExerciseDetailsPage({Key? key, required this.exercise}) : super(key: key);
+  _ExerciseDetailsPage({required this.exercise});
 
   @override
   State<_ExerciseDetailsPage> createState() => _ExerciseDetailsPageState();
@@ -145,7 +145,7 @@ class _ExerciseDetailsPageState extends State<_ExerciseDetailsPage> {
 class _ExerciseStepsPage extends StatefulWidget {
   MyExercise exercise;
 
-  _ExerciseStepsPage({Key? key, required this.exercise}) : super(key: key);
+  _ExerciseStepsPage({required this.exercise});
 
   @override
   State<_ExerciseStepsPage> createState() => _ExerciseStepsPageState();

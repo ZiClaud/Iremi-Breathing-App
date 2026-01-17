@@ -7,7 +7,7 @@ import '../database/getters.dart';
 import '../utils/default_widgets.dart';
 
 class UserPage extends StatefulWidget {
-  const UserPage({Key? key}) : super(key: key);
+  const UserPage({super.key});
 
   @override
   State<UserPage> createState() => _UserPageState();

@@ -7,7 +7,7 @@ import '../utils/default_widgets.dart';
 import 'exercise_info_pages.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({Key? key}) : super(key: key);
+  const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();

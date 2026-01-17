@@ -10,7 +10,7 @@ import 'home_page.dart';
 class RegisterPageDB extends StatefulWidget {
   final MyUser? user;
 
-  const RegisterPageDB({Key? key, this.user}) : super(key: key);
+  const RegisterPageDB({super.key, this.user});
 
   @override
   State<RegisterPageDB> createState() => _RegisterPageDBState();

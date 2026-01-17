@@ -25,7 +25,7 @@ final List<FocusNode> _stepsFocusNodes = [];
 
 class ExerciseAddPages extends StatefulWidget {
   CustomExercise? exercise; // TODO: Use it to modify the exercise
-  ExerciseAddPages({Key? key, this.exercise}) : super(key: key);
+  ExerciseAddPages({super.key, this.exercise});
 
   @override
   State<ExerciseAddPages> createState() => _ExerciseAddPagesState();
@@ -166,7 +166,7 @@ class _ExerciseAddDetailsPage extends StatefulWidget {
   bool showComplex = false;
   final ExerciseFormData formData;
 
-  _ExerciseAddDetailsPage({Key? key, required this.formData}) : super(key: key);
+  _ExerciseAddDetailsPage({required this.formData});
 
   @override
   State<_ExerciseAddDetailsPage> createState() =>
@@ -310,8 +310,7 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
 class _ExerciseAddStepsPage extends StatefulWidget {
   final ExerciseFormData formData;
 
-  const _ExerciseAddStepsPage({Key? key, required this.formData})
-      : super(key: key);
+  const _ExerciseAddStepsPage({required this.formData});
 
   @override
   State<_ExerciseAddStepsPage> createState() => _ExerciseAddStepsPageState();

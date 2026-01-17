@@ -12,7 +12,7 @@ import 'home_page.dart';
 class ExercisePage extends StatefulWidget {
   final MyExercise exercise;
 
-  const ExercisePage({Key? key, required this.exercise}) : super(key: key);
+  const ExercisePage({super.key, required this.exercise});
 
   @override
   State<ExercisePage> createState() => _ExercisePageState();

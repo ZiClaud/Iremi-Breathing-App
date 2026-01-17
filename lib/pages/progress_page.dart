@@ -7,7 +7,7 @@ import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
 
 class ProgressPage extends StatefulWidget {
-  const ProgressPage({Key? key}) : super(key: key);
+  const ProgressPage({super.key});
 
   @override
   State<ProgressPage> createState() => _ProgressPageState();

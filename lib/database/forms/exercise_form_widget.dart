@@ -23,11 +23,11 @@ class ExerciseFormWidget extends StatefulWidget {
   final Function(int) onRemoveStep;
 
   const ExerciseFormWidget({
-    Key? key,
+    super.key,
     required this.formData,
     required this.onAddStep,
     required this.onRemoveStep,
-  }) : super(key: key);
+  });
 
   @override
   _ExerciseFormWidgetState createState() => _ExerciseFormWidgetState();

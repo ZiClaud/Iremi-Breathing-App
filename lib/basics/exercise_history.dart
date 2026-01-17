@@ -20,7 +20,7 @@ class ExerciseHistory {
   ExerciseHistory(
       {this.id, required this.exerciseDurationSeconds, required this.dateTime});
 
-  copy({
+  ExerciseHistory copy({
     int? id,
     int? exerciseDurationSeconds,
     DateTime? dateTime,

@@ -11,7 +11,7 @@ class UserFormWidget extends StatelessWidget {
   final ValueChanged<String> onChangedGoal;
 
   const UserFormWidget({
-    Key? key,
+    super.key,
     this.username = '',
     this.name = '',
     this.sex = '',
@@ -20,7 +20,7 @@ class UserFormWidget extends StatelessWidget {
     required this.onChangedName,
     required this.onChangedSex,
     required this.onChangedGoal,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
