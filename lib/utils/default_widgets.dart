@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:iremibreathingapp/pages/badge_info_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../basics/badge.dart';
 import '../basics/exercise.dart';
@@ -19,8 +20,9 @@ double defaultCircleSize() {
 Widget showExerciseModel(MyExercise exercise) {
   return Card(
     elevation: 2.0,
+    shape: defaultRoundedRectangleBorder(),
     child: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
           Expanded(
@@ -96,7 +98,7 @@ Widget defaultUnlockedBadgeView(context, MyBadge badge) {
   String name = badge.getBadge().badgeName;
   IconData icon = badge.getBadge().icon;
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(16.0),
     child: GestureDetector(
       onTap: _onTapViewBadge(context, badge),
       child: Container(
@@ -127,7 +129,7 @@ Widget defaultLockedBadgeView(context, PossibleBadges badge) {
   String name = badge.badgeName;
   IconData icon = badge.icon;
   return Padding(
-    padding: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(16.0),
     child: GestureDetector(
       onTap: _onTapViewBadge(context, MyBadge(id: badge.id, date: "")),
       child: Container(
@@ -218,8 +220,8 @@ TextFormField defaultEditTextFormFieldNum(
 
 RoundedRectangleBorder defaultRoundedRectangleBorder() {
   return RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(10.0),
-    side: BorderSide(color: myBluLightDark(), width: 1.5),
+    borderRadius: BorderRadius.circular(24.0),
+    // side: BorderSide(color: myBluLightDark(), width: 1.5),
   );
 }
 
@@ -237,8 +239,10 @@ class DefaultExerciseHistoryWidget extends StatelessWidget {
       series: <CartesianSeries>[
         ColumnSeries<ExerciseHistory, String>(
           dataSource: exerciseHistory,
-          xValueMapper: (ExerciseHistory sales, _) => getWeekLetter(sales.dateTime),
-          yValueMapper: (ExerciseHistory sales, _) => sales.exerciseDurationSeconds,
+          xValueMapper: (ExerciseHistory sales, _) =>
+              getWeekLetter(sales.dateTime),
+          yValueMapper: (ExerciseHistory sales, _) =>
+              sales.exerciseDurationSeconds,
           name: 'Exercise History',
           color: myBluLightDark(),
           dataLabelSettings: const DataLabelSettings(isVisible: false),
@@ -350,6 +354,16 @@ class _DefaultLoadingScreen2State extends State<DefaultLoadingScreen2>
 
 /// Drawer
 Widget defaultDrawer(context) {
+  Future<void> openGitUrl(BuildContext context) async {
+    final Uri url = Uri.parse('https://github.com/ZiClaud/Iremi-Breathing-App');
+
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Could not open the link')),
+      );
+    }
+  }
+
   return Drawer(
     child: Column(
       children: <Widget>[
@@ -418,20 +432,19 @@ Widget defaultDrawer(context) {
               // TODO: Achievement.addAchievement(PossibleBadges.sharingIsCaring, context);
             },
           ),
-        if (isDev)
-          ListTile(
-            title: Row(
-              children: [
-                Icon(Icons.attach_money, color: myWhiteBlack()),
-                const Padding(padding: EdgeInsets.only(right: 10.0)),
-                const Text('Support the Dev'),
-              ],
-            ),
-            onTap: () {
-              // TODO: Add link to support the developer
-              // TODO: Achievement.addAchievement(PossibleBadges.supporter, context);
-            },
+        ListTile(
+          title: Row(
+            children: [
+              Icon(Icons.android, color: myWhiteBlack()),
+              const Padding(padding: EdgeInsets.only(right: 10.0)),
+              const Text('Star the Repo'),
+            ],
           ),
+          onTap: () {
+            Achievement.addAchievement(PossibleBadges.supporter, context);
+            openGitUrl(context);
+          },
+        ),
       ],
     ),
   );

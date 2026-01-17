@@ -29,17 +29,20 @@ class _DevPageState extends State<DevPage> {
             ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            flex: 3,
-            child: _getUserListView(context),
-          ),
-          Expanded(
-            flex: 1,
-            child: _getAchievementListView(context),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 3,
+              child: _getUserListView(context),
+            ),
+            Expanded(
+              flex: 1,
+              child: _getAchievementListView(context),
+            ),
+          ],
+        ),
       ),
     );
   }

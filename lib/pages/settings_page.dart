@@ -163,146 +163,151 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
         ],
       ),
-      body: Column(
-        children: [
-          ListTile(
-            title: defaultInputDecorator(
-              "Dark Mode",
-              _getValueAsString(_darkMode),
-              (_darkMode) ? Icons.dark_mode : Icons.light_mode,
-            ),
-            trailing: Switch(
-              value: _darkMode,
-              onChanged: (value) {
-                setState(() {
-                  _darkMode = value;
-                  _saveSettings();
-                });
-              },
-            ),
-          ),
-          if (isDev)
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
             ListTile(
               title: defaultInputDecorator(
-                "Music",
-                _getValueAsString(_music),
-                (_music) ? Icons.music_note : Icons.music_off,
+                "Dark Mode",
+                _getValueAsString(_darkMode),
+                (_darkMode) ? Icons.dark_mode : Icons.light_mode,
               ),
               trailing: Switch(
-                value: _music,
+                value: _darkMode,
                 onChanged: (value) {
                   setState(() {
-                    _music = value;
+                    _darkMode = value;
                     _saveSettings();
                   });
                 },
               ),
             ),
-          ListTile(
-            title: defaultInputDecorator(
-              "Voice (Beta)",
-              _getValueAsString(_voice),
-              (_voice) ? Icons.mic : Icons.mic_off,
-            ),
-            trailing: Switch(
-              value: _voice,
-              onChanged: (value) {
-                setState(() {
-                  _voice = value;
-                  _saveSettings();
-                });
-              },
-            ),
-          ),
-          if (isDev)
-            ListTile(
-              title: defaultInputDecorator('Voice Type (Beta)',
-                  _getValueAsString(_voiceType), Icons.person),
-              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
-              onTap: () async {
-                String? newVoiceType = await showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Choose a Voice Type'),
-                      content: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            for (String voiceType in voiceTypes)
-                              RadioListTile<String>(
-                                title: Text(voiceType),
-                                value: voiceType,
-                                groupValue: _voiceType,
-                                onChanged: (String? value) {
-                                  Navigator.of(context).pop(value);
-                                },
-                              ),
-                          ],
-                        ),
-                      ),
-                    );
+            if (isDev)
+              ListTile(
+                title: defaultInputDecorator(
+                  "Music",
+                  _getValueAsString(_music),
+                  (_music) ? Icons.music_note : Icons.music_off,
+                ),
+                trailing: Switch(
+                  value: _music,
+                  onChanged: (value) {
+                    setState(() {
+                      _music = value;
+                      _saveSettings();
+                    });
                   },
-                );
-                if (newVoiceType != null) {
-                  setState(() {
-                    _voiceType = newVoiceType;
-                    _saveSettings();
-                  });
-                }
-              },
-            ),
-          if (isDev)
+                ),
+              ),
             ListTile(
               title: defaultInputDecorator(
-                  'Language', _getValueAsString(_language), Icons.language),
-              trailing: Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
-              onTap: () async {
-                String? newLanguage = await showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Choose a Language'),
-                      content: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            for (String language in languages)
-                              RadioListTile<String>(
-                                title: Text(language),
-                                value: language,
-                                groupValue: _language,
-                                onChanged: (String? value) {
-                                  Navigator.of(context).pop(value);
-                                },
-                              ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                );
-                if (newLanguage != null) {
+                "Voice (Beta)",
+                _getValueAsString(_voice),
+                (_voice) ? Icons.mic : Icons.mic_off,
+              ),
+              trailing: Switch(
+                value: _voice,
+                onChanged: (value) {
                   setState(() {
-                    _language = newLanguage;
+                    _voice = value;
                     _saveSettings();
                   });
-                }
-              },
+                },
+              ),
             ),
-          const Spacer(),
-          defaultOutlinedButton(context, "Backup", Icons.backup,
-              onPressed: () => backupDatabaseToInternalStorage(context)),
-          defaultOutlinedButton(context, "Restore", Icons.restore,
-              onPressed: () => restoreDatabaseFromInternalStorage(context)),
-          if (_user != null)
-            defaultOutlinedButton(context, "Delete User", Icons.no_accounts,
-                onPressed: () => _warningUser(context, _deleteUser)),
-          defaultOutlinedButton(
-              context, "Delete Database", Icons.delete_forever,
-              onPressed: () => _warningDatabase(context, _deleteDatabase),
-              onLongPress: _becomeDev),
-        ],
+            if (isDev)
+              ListTile(
+                title: defaultInputDecorator('Voice Type (Beta)',
+                    _getValueAsString(_voiceType), Icons.person),
+                trailing:
+                    Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
+                onTap: () async {
+                  String? newVoiceType = await showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Choose a Voice Type'),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              for (String voiceType in voiceTypes)
+                                RadioListTile<String>(
+                                  title: Text(voiceType),
+                                  value: voiceType,
+                                  groupValue: _voiceType,
+                                  onChanged: (String? value) {
+                                    Navigator.of(context).pop(value);
+                                  },
+                                ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                  if (newVoiceType != null) {
+                    setState(() {
+                      _voiceType = newVoiceType;
+                      _saveSettings();
+                    });
+                  }
+                },
+              ),
+            if (isDev)
+              ListTile(
+                title: defaultInputDecorator(
+                    'Language', _getValueAsString(_language), Icons.language),
+                trailing:
+                    Icon(Icons.arrow_forward_ios, color: myBluLightDark()),
+                onTap: () async {
+                  String? newLanguage = await showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Choose a Language'),
+                        content: SingleChildScrollView(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              for (String language in languages)
+                                RadioListTile<String>(
+                                  title: Text(language),
+                                  value: language,
+                                  groupValue: _language,
+                                  onChanged: (String? value) {
+                                    Navigator.of(context).pop(value);
+                                  },
+                                ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                  if (newLanguage != null) {
+                    setState(() {
+                      _language = newLanguage;
+                      _saveSettings();
+                    });
+                  }
+                },
+              ),
+            const Spacer(),
+            defaultOutlinedButton(context, "Backup", Icons.backup,
+                onPressed: () => backupDatabaseToInternalStorage(context)),
+            defaultOutlinedButton(context, "Restore", Icons.restore,
+                onPressed: () => restoreDatabaseFromInternalStorage(context)),
+            if (_user != null)
+              defaultOutlinedButton(context, "Delete User", Icons.no_accounts,
+                  onPressed: () => _warningUser(context, _deleteUser)),
+            defaultOutlinedButton(
+                context, "Delete Database", Icons.delete_forever,
+                onPressed: () => _warningDatabase(context, _deleteDatabase),
+                onLongPress: _becomeDev),
+          ],
+        ),
       ),
     );
   }

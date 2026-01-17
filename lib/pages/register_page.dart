@@ -38,36 +38,39 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
     return Scaffold(
         appBar: AppBar(
             title: Text((widget.user == null) ? "Register" : "Edit user")),
-        body: Column(
-          children: [
-            Form(
-              key: _formKey,
-              child: UserFormWidget(
-                username: username,
-                name: name,
-                sex: sex,
-                goal: goal,
-                onChangedUsername: (username) =>
-                    setState(() => this.username = username),
-                onChangedName: (name) => setState(() => this.name = name),
-                onChangedSex: (sex) => setState(() => this.sex = sex),
-                onChangedGoal: (goal) => setState(() => this.goal = goal),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Form(
+                key: _formKey,
+                child: UserFormWidget(
+                  username: username,
+                  name: name,
+                  sex: sex,
+                  goal: goal,
+                  onChangedUsername: (username) =>
+                      setState(() => this.username = username),
+                  onChangedName: (name) => setState(() => this.name = name),
+                  onChangedSex: (sex) => setState(() => this.sex = sex),
+                  onChangedGoal: (goal) => setState(() => this.goal = goal),
+                ),
               ),
-            ),
-            if (widget.user == null && (username == ""))
-              defaultOutlinedButton(
-                context,
-                "Continue without account",
-                Icons.person_off,
-                onPressed: () {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                    (route) => false,
-                  );
-                },
-              ),
-          ],
+              if (widget.user == null && (username == ""))
+                defaultOutlinedButton(
+                  context,
+                  "Continue without account",
+                  Icons.person_off,
+                  onPressed: () {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                      (route) => false,
+                    );
+                  },
+                ),
+            ],
+          ),
         ),
         floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.navigate_next),

@@ -28,7 +28,7 @@ class _ExercisePageState extends State<ExercisePage> {
         appBar: AppBar(
           title: Text(exercise.name()),
         ),
-        body: _FourStageAnimation(exercise: exercise),
+        body: _FourStagesAnimation(exercise: exercise),
       ),
     );
   }
@@ -41,16 +41,16 @@ class _ExercisePageState extends State<ExercisePage> {
   }
 }
 
-class _FourStageAnimation extends StatefulWidget {
+class _FourStagesAnimation extends StatefulWidget {
   final MyExercise exercise;
 
-  const _FourStageAnimation({required this.exercise});
+  const _FourStagesAnimation({required this.exercise});
 
   @override
-  _FourStageAnimationState createState() => _FourStageAnimationState();
+  _FourStagesAnimationState createState() => _FourStagesAnimationState();
 }
 
-class _FourStageAnimationState extends State<_FourStageAnimation>
+class _FourStagesAnimationState extends State<_FourStagesAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Size> _animation;

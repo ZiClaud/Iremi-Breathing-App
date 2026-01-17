@@ -34,52 +34,55 @@ class _UserPageState extends State<UserPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: _showUserWidget(_user),
-          ),
-          (_user != null)
-              ? defaultOutlinedButton(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Expanded(
+              child: _showUserWidget(_user),
+            ),
+            (_user != null)
+                ? defaultOutlinedButton(
+                    context,
+                    "Edit User",
+                    Icons.edit,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterPageDB(user: _user),
+                        ),
+                      );
+                    },
+                  )
+                : defaultOutlinedButton(
+                    context,
+                    "Register User",
+                    Icons.person_add,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterPageDB(user: _user),
+                        ),
+                      );
+                    },
+                  ),
+            defaultOutlinedButton(
+              context,
+              "Settings",
+              Icons.settings,
+              onPressed: () {
+                Navigator.push(
                   context,
-                  "Edit User",
-                  Icons.edit,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegisterPageDB(user: _user),
-                      ),
-                    );
-                  },
-                )
-              : defaultOutlinedButton(
-                  context,
-                  "Register User",
-                  Icons.person_add,
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegisterPageDB(user: _user),
-                      ),
-                    );
-                  },
-                ),
-          defaultOutlinedButton(
-            context,
-            "Settings",
-            Icons.settings,
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SettingsPage(),
-                ),
-              );
-            },
-          ),
-        ],
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsPage(),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

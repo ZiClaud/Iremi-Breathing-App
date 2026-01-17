@@ -46,31 +46,35 @@ class _ProgressPageState extends State<ProgressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            flex: 2,
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              child: Column(
-                children: [
-                  Text("Streak: ${getExHistoryStreak(_exerciseHistory)}"),
-                  if (isDev)
-                    Text(
-                        "Morning: ${getExHistoryMorningTimes(_exerciseHistory)}"),
-                  if (isDev)
-                    Text(
-                        "Evening: ${getExHistoryNightTimes(_exerciseHistory)}"),
-                  DefaultExerciseHistoryWidget(exerciseHistory: _exerciseHistory),
-                ],
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Expanded(
+              flex: 2,
+              child: SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  children: [
+                    Text("Streak: ${getExHistoryStreak(_exerciseHistory)}"),
+                    if (isDev)
+                      Text(
+                          "Morning: ${getExHistoryMorningTimes(_exerciseHistory)}"),
+                    if (isDev)
+                      Text(
+                          "Evening: ${getExHistoryNightTimes(_exerciseHistory)}"),
+                    DefaultExerciseHistoryWidget(
+                        exerciseHistory: _exerciseHistory),
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 1,
-            child: _showBadgeWidget(_badges),
-          ),
-        ],
+            Expanded(
+              flex: 1,
+              child: _showBadgeWidget(_badges),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -29,6 +29,7 @@ dependencies:
 
 # ON CHANGE: flutter pub run flutter_native_splash:create
   path: any
+  url_launcher: ^6.3.2
 flutter_native_splash:
   color: "#01B3CA"
   image: "assets/icon/icon.png"

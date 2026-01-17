@@ -33,13 +33,16 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView.builder(
-        // TODO: Change with Wrap?
-        itemCount: exercises.length,
-        itemBuilder: (context, index) {
-          MyExercise exercise = exercises[index];
-          return _showExerciseWidget(exercise);
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView.builder(
+          // TODO: Change with Wrap?
+          itemCount: exercises.length,
+          itemBuilder: (context, index) {
+            MyExercise exercise = exercises[index];
+            return _showExerciseWidget(exercise);
+          },
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(

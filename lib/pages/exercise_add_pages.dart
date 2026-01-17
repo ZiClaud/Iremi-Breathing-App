@@ -79,9 +79,12 @@ class _ExerciseAddPagesState extends State<ExerciseAddPages>
         title: const Text("Add custom exercise"),
         bottom: defaultExerciseTopBar(_tabController),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: _pages,
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TabBarView(
+          controller: _tabController,
+          children: _pages,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.navigate_next),
@@ -174,128 +177,131 @@ class _ExerciseAddDetailsPageState extends State<_ExerciseAddDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
-        children: [
-          defaultEditTextFormField(
-            "Name",
-            Icons.keyboard_double_arrow_up,
-            _nameController,
-            onChanged: (value) {
-              widget.formData.name = value;
-            },
-          ),
-          defaultEditTextFormField(
-            "Description",
-            Icons.description,
-            _descriptionController,
-            onChanged: (value) {
-              widget.formData.description = value;
-            },
-          ),
-          defaultEditTextFormField(
-            "Notes",
-            Icons.note,
-            _notesController,
-            onChanged: (value) {
-              widget.formData.notes = value;
-            },
-          ),
-          defaultEditTextFormFieldNum(
-            "Times",
-            Icons.incomplete_circle,
-            _timesController,
-            onChanged: (value) {
-              widget.formData.times = int.tryParse(value!) ?? 0;
-            },
-          ),
-          defaultEditTextFormFieldNum(
-            "InhaleDuration",
-            Icons.circle,
-            _inhaleDrController,
-            onChanged: (value) {
-              widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
-            },
-          ),
-          defaultEditTextFormFieldNum(
-            "HoldMiddleDuration",
-            Icons.change_circle,
-            _holdMiddleDrController,
-            onChanged: (value) {
-              widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
-            },
-          ),
-          defaultEditTextFormFieldNum(
-            "ExhaleDuration",
-            Icons.circle_outlined,
-            _exhaleDrController,
-            onChanged: (value) {
-              widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
-            },
-          ),
-          defaultEditTextFormFieldNum(
-            "HoldEndDuration",
-            Icons.change_circle_outlined,
-            _holdEndDrController,
-            onChanged: (value) {
-              widget.formData.holdEndDuration = int.tryParse(value!) ?? 0;
-            },
-          ),
-          if (widget.showComplex)
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: ListView(
+          children: [
+            defaultEditTextFormField(
+              "Name",
+              Icons.keyboard_double_arrow_up,
+              _nameController,
+              onChanged: (value) {
+                widget.formData.name = value;
+              },
+            ),
+            defaultEditTextFormField(
+              "Description",
+              Icons.description,
+              _descriptionController,
+              onChanged: (value) {
+                widget.formData.description = value;
+              },
+            ),
+            defaultEditTextFormField(
+              "Notes",
+              Icons.note,
+              _notesController,
+              onChanged: (value) {
+                widget.formData.notes = value;
+              },
+            ),
             defaultEditTextFormFieldNum(
-              "InhaleDuration (ms)",
+              "Times",
+              Icons.incomplete_circle,
+              _timesController,
+              onChanged: (value) {
+                widget.formData.times = int.tryParse(value!) ?? 0;
+              },
+            ),
+            defaultEditTextFormFieldNum(
+              "InhaleDuration",
               Icons.circle,
-              _inhaleDrMsController,
+              _inhaleDrController,
               onChanged: (value) {
-                widget.formData.inhaleDurationMs = int.tryParse(value!) ?? 0;
+                widget.formData.inhaleDuration = int.tryParse(value!) ?? 0;
               },
             ),
-          if (widget.showComplex)
             defaultEditTextFormFieldNum(
-              "HoldMiddleDuration (ms)",
+              "HoldMiddleDuration",
               Icons.change_circle,
-              _holdMiddleDrMsController,
+              _holdMiddleDrController,
               onChanged: (value) {
-                widget.formData.holdMiddleDurationMs =
-                    int.tryParse(value!) ?? 0;
+                widget.formData.holdMiddleDuration = int.tryParse(value!) ?? 0;
               },
             ),
-          if (widget.showComplex)
             defaultEditTextFormFieldNum(
-              "ExhaleDuration (ms)",
+              "ExhaleDuration",
               Icons.circle_outlined,
-              _exhaleDrMsController,
+              _exhaleDrController,
               onChanged: (value) {
-                widget.formData.exhaleDurationMs = int.tryParse(value!) ?? 0;
+                widget.formData.exhaleDuration = int.tryParse(value!) ?? 0;
               },
             ),
-          if (widget.showComplex)
             defaultEditTextFormFieldNum(
-              "HoldEndDuration (ms)",
+              "HoldEndDuration",
               Icons.change_circle_outlined,
-              _holdEndDrMsController,
+              _holdEndDrController,
               onChanged: (value) {
-                widget.formData.holdEndDurationMs = int.tryParse(value!) ?? 0;
+                widget.formData.holdEndDuration = int.tryParse(value!) ?? 0;
               },
             ),
-          if (!widget.showComplex)
-            OutlinedButton(
-              onPressed: () {
-                setState(() {
-                  widget.showComplex = true;
-                });
-              },
-              child: defaultButtonText('Show More'),
-            ),
-          if (widget.showComplex)
-            OutlinedButton(
-              onPressed: () {
-                setState(() {
-                  widget.showComplex = false;
-                });
-              },
-              child: defaultButtonText('Show Less'),
-            ),
-        ],
+            if (widget.showComplex)
+              defaultEditTextFormFieldNum(
+                "InhaleDuration (ms)",
+                Icons.circle,
+                _inhaleDrMsController,
+                onChanged: (value) {
+                  widget.formData.inhaleDurationMs = int.tryParse(value!) ?? 0;
+                },
+              ),
+            if (widget.showComplex)
+              defaultEditTextFormFieldNum(
+                "HoldMiddleDuration (ms)",
+                Icons.change_circle,
+                _holdMiddleDrMsController,
+                onChanged: (value) {
+                  widget.formData.holdMiddleDurationMs =
+                      int.tryParse(value!) ?? 0;
+                },
+              ),
+            if (widget.showComplex)
+              defaultEditTextFormFieldNum(
+                "ExhaleDuration (ms)",
+                Icons.circle_outlined,
+                _exhaleDrMsController,
+                onChanged: (value) {
+                  widget.formData.exhaleDurationMs = int.tryParse(value!) ?? 0;
+                },
+              ),
+            if (widget.showComplex)
+              defaultEditTextFormFieldNum(
+                "HoldEndDuration (ms)",
+                Icons.change_circle_outlined,
+                _holdEndDrMsController,
+                onChanged: (value) {
+                  widget.formData.holdEndDurationMs = int.tryParse(value!) ?? 0;
+                },
+              ),
+            if (!widget.showComplex)
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    widget.showComplex = true;
+                  });
+                },
+                child: defaultButtonText('Show More'),
+              ),
+            if (widget.showComplex)
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    widget.showComplex = false;
+                  });
+                },
+                child: defaultButtonText('Show Less'),
+              ),
+          ],
+        ),
       ),
     );
   }
