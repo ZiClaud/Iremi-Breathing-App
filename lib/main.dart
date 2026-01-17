@@ -15,7 +15,7 @@ void main() {
 
     if (isFirstTime) {
       // Set default settings for the first time
-      prefs.setBool('darkMode', false);
+      prefs.setBool('darkMode', true);
       //TODO: Change "true" to "isDefaultThemeDark()"
       prefs.setBool('music', true);
       prefs.setBool('voice', false);

@@ -65,7 +65,7 @@ Future<SharedPreferences> getSharedPreferences() async {
 
 /// SharedPreferences default
 String _getDefaultLanguageLocale() {
-  return window.locale.languageCode;
+  return PlatformDispatcher.instance.locale.languageCode;
 }
 
 String getDefaultLanguage() {

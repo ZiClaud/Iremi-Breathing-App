@@ -21,7 +21,7 @@ abstract class DeepBreathingExercise extends MyExercise {
 
   @override
   String description() {
-    return "Also known as diaphragmatic breathing or belly breathing, involves taking slow, deep breaths through your nose and filling your lungs completely with air, allowing your abdomen to expand and contract with each inhale and exhale. It's a natural way of breathing that can help to calm the mind and body, reduce stress and anxiety, and promote relaxation.";
+    return "Also known as diaphragmatic or belly breathing, this technique focuses on slow, deep breaths through the nose, allowing the abdomen to expand and contract naturally. Deep breathing helps calm the nervous system, reduce stress and anxiety, and promote overall relaxation.";
   }
 
   @override

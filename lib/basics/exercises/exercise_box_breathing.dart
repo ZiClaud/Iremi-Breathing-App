@@ -13,7 +13,7 @@ class BoxBreathingExercise extends MyExercise {
 
   @override
   String notes() {
-    return "Box breathing can be a helpful tool for managing stress and anxiety, promoting relaxation, and improving focus and mental clarity. It can be practiced anywhere and anytime, and is often used by athletes, military personnel, and performers to manage nerves and maintain a sense of calm under pressure. However, if you experience any discomfort or dizziness while practicing box breathing, you should stop immediately and try a different breathing technique or seek medical attention if necessary.";
+    return "Box breathing is a structured technique where the inhale, hold, exhale, and second hold are all equal in length. This method supports focus, emotional control, and calm under pressure, and is commonly used in high-stress situations.";
   }
 
   @override

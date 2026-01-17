@@ -8,7 +8,7 @@ class B478Exercise extends MyExercise {
 
   @override
   String description() {
-    return "The 4-7-8 breathing technique can be helpful for reducing stress and promoting relaxation, but it's important to remember that it may not be effective for everyone and should not be used as a substitute for medical treatment for anxiety or other mental health conditions.";
+    return "The 4-7-8 breathing technique follows a simple rhythm: inhale for 4 seconds, hold for 7 seconds, and exhale for 8 seconds. This pattern helps slow the heart rate and quiet the mind, making it especially useful for winding down, managing stress, or preparing for sleep.";
   }
 
   @override

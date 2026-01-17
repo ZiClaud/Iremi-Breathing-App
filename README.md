@@ -1,72 +1,87 @@
-# Iremi - Breathing App
+# Iremi – Breathing App
 
-App against anxiety that gives breathing exercises
+![icon.png](assets/icon/icon.png)
 
-## Todo list:
+### App that gives breathing exercises to reduce anxiety
 
-# Bare minimum
+---
 
-- [x] Create basic classes
-- [x] Breathing exercises
-- [x] Add other breathing exercises
-- [ ] Add more breathing exercises
-- [x] Way to know for how long to inhale, exhale and hold
-- [x] Dot that fills when you need to inhale, and goes back to normal when you need to exhale
-- [x] Way to choose what exercise to do
-- [x] User friendly interface
-- [ ] Check that every breathing exercise has the right steps, description and timing
+## Breathing exercises
 
-# Database
+### Deep Breathing (Beginner / Intermediate / Advanced)
 
-- [x] Add profile page
-- [x] Database - SQLite
-- [x] Add user to database
-- [x] Add badges to database
-- [x] Save custom exercises
-- [x] Track progress
+Also known as diaphragmatic or belly breathing, this technique focuses on slow, deep breaths through the nose, allowing
+the abdomen to expand and contract naturally. Deep breathing helps calm the nervous system, reduce stress and anxiety,
+and promote overall relaxation.
 
-# Profile
+Different levels adjust the pacing and breath duration, making it suitable for beginners as well as more experienced
+users.
 
-- [x] Login/Register
-- [x] Add settings
-- [x] Add achievements
-- [x] Add badges
-- [x] Add statistics
+---
 
-# Theme
+### 4-7-8 Breathing
 
-- [x] Theme and logo
-- [x] Add darkmode
+The 4-7-8 breathing technique follows a simple rhythm: inhale for 4 seconds, hold for 7 seconds, and exhale for 8
+seconds. This pattern helps slow the heart rate and quiet the mind, making it especially useful for winding down,
+managing stress, or preparing for sleep.
 
-# Extras
+---
 
-- [ ] Add all the languages, translated using a translator API
-- [x] AI calming voice that reads the steps
-- [ ] Improve AI voice
-- [ ] Documentation, tips and tricks
-- [ ] Add a timer
-- [ ] Add chill music
-- [x] Logo showing on loading screen
-- [ ] Loading screen with tips
-- [ ] Insert "Quicksand" font or some other, better font
-- [x] Save database in download
-- [x] Restore database
-- [ ] Add Google Auth
-- [ ] Save database to google drive
+### Box Breathing
 
-#### Breathing exercises:
+Box breathing is a structured technique where the inhale, hold, exhale, and second hold are all equal in length. This
+method supports focus, emotional control, and calm under pressure, and is commonly used in high-stress situations.
 
-Pranayama: This is a traditional yogic breathing technique that involves controlling the breath in
-specific ways to promote physical, mental, and spiritual well-being. There are many different types
-of pranayama, each with its own benefits.
+It can be practiced anywhere and anytime.
 
-Kapalbhati: This is a traditional yogic breathing technique that involves forceful exhalations
-followed by passive inhalations. This technique is believed to stimulate the digestive system and
-improve lung function.
+---
 
-Alternate nostril breathing: This technique involves breathing through one nostril at a time while
-holding the other nostril closed with the fingers. This technique is believed to balance the energy
-flow in the body and promote relaxation.
+## Features
 
-Buteyko breathing: This technique involves slowing down the breathing rate and reducing the volume
-of each breath. It is often used to treat respiratory problems such as asthma and COPD.
+### Breathing Exercises
+
+- Multiple guided breathing exercises
+- Visual guidance showing when to inhale, exhale, and hold
+- Animated breathing indicator that expands and contracts with each breath
+- Ability to choose between different breathing techniques
+- Clean, user-friendly interface focused on calm and clarity
+
+---
+
+### User Profile & Progress
+
+- User accounts with login and registration
+- Personal profile page
+- Progress tracking and statistics
+- Achievements and badges to mark consistency and milestones
+- Custom breathing exercises saved per user
+
+---
+
+### Data & Storage
+
+- Local database powered by SQLite
+- Securely stores user profiles, progress, and custom exercises
+- Option to export and restore the database
+
+---
+
+### Customization
+
+- App settings for personalization
+- Light and dark mode support
+- Custom breathing routines
+
+---
+
+### Accessibility & Extras
+
+- Optional voice guidance that reads breathing steps aloud (Beta)
+- Minimal distractions, designed for ease of use
+
+---
+
+## Disclaimer
+
+Iremi is designed as a relaxation and mindfulness tool. It is not intended to replace medical or mental health
+treatment. If you experience discomfort while practicing breathing exercises, stop and consult a professional if needed.

@@ -136,7 +136,7 @@ class IremiTheme with ChangeNotifier {
         fillColor: _myLightBackgroundColor,
         border: InputBorder.none,
       ),
-      dialogTheme: const DialogTheme(backgroundColor: _myLightBackgroundColor),
+      dialogTheme: const DialogThemeData(backgroundColor: _myLightBackgroundColor),
       buttonTheme: const ButtonThemeData(),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: _myBluLight,
@@ -151,7 +151,7 @@ class IremiTheme with ChangeNotifier {
       textButtonTheme: TextButtonThemeData(
         style: defaultLightButtonStyle(),
       ),
-      cardTheme: const CardTheme(
+      cardTheme: const CardThemeData(
         color: _myLightBackgroundColorCard,
       ),
       drawerTheme: const DrawerThemeData(
@@ -190,7 +190,7 @@ class IremiTheme with ChangeNotifier {
         fillColor: _myDarkBackgroundColor,
         border: InputBorder.none,
       ),
-      dialogTheme: const DialogTheme(backgroundColor: _myDarkBackgroundColor),
+      dialogTheme: const DialogThemeData(backgroundColor: _myDarkBackgroundColor),
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         backgroundColor: _myBluDark,
         foregroundColor: _myButtonTextColor,
@@ -204,7 +204,7 @@ class IremiTheme with ChangeNotifier {
       textButtonTheme: TextButtonThemeData(
         style: defaultDarkButtonStyle(),
       ),
-      cardTheme: const CardTheme(
+      cardTheme: const CardThemeData(
         color: _myDarkBackgroundColorCard,
       ),
       drawerTheme: const DrawerThemeData(
@@ -288,16 +288,16 @@ TextStyle defaultSmallerButtonTextStyle() {
       color: _myButtonTextColor, fontSize: 10, fontFamily: 'Gotham');
 }
 
-MaterialStateProperty<TextStyle> defaultLightMSPTextStyle() {
-  return const MaterialStatePropertyAll(defaultLightTextStyle);
+WidgetStateProperty<TextStyle> defaultLightMSPTextStyle() {
+  return const WidgetStatePropertyAll(defaultLightTextStyle);
 }
 
-MaterialStateProperty<TextStyle> defaultDarkMSPTextStyle() {
-  return const MaterialStatePropertyAll(defaultDarkTextStyle);
+WidgetStateProperty<TextStyle> defaultDarkMSPTextStyle() {
+  return const WidgetStatePropertyAll(defaultDarkTextStyle);
 }
 
-MaterialStateProperty<TextStyle> defaultButtonMSPTextStyle() {
-  return const MaterialStatePropertyAll(defaultDarkTextStyle);
+WidgetStateProperty<TextStyle> defaultButtonMSPTextStyle() {
+  return const WidgetStatePropertyAll(defaultDarkTextStyle);
 }
 
 ButtonStyle defaultLightButtonStyle() {
@@ -316,18 +316,18 @@ ButtonStyle defaultDarkButtonStyle() {
   );
 }
 
-MaterialStateProperty<Color> defaultLightMSPTextColor() {
-  return const MaterialStatePropertyAll(Colors.black);
+WidgetStateProperty<Color> defaultLightMSPTextColor() {
+  return const WidgetStatePropertyAll(Colors.black);
 }
 
-MaterialStateProperty<Color> defaultDarkMSPTextColor() {
-  return const MaterialStatePropertyAll(Colors.white);
+WidgetStateProperty<Color> defaultDarkMSPTextColor() {
+  return const WidgetStatePropertyAll(Colors.white);
 }
 
-MaterialStateProperty<Color> defaultLightBluMSPColor() {
-  return const MaterialStatePropertyAll(_myBluLight);
+WidgetStateProperty<Color> defaultLightBluMSPColor() {
+  return const WidgetStatePropertyAll(_myBluLight);
 }
 
-MaterialStateProperty<Color> defaultDarkBluMSPColor() {
-  return const MaterialStatePropertyAll(_myBluDark);
+WidgetStateProperty<Color> defaultDarkBluMSPColor() {
+  return const WidgetStatePropertyAll(_myBluDark);
 }

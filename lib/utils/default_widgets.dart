@@ -234,16 +234,15 @@ class DefaultExerciseHistoryWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     _filterExerciseHistory(exerciseHistory);
     return SfCartesianChart(
-      series: <ChartSeries<ExerciseHistory, String>>[
+      series: <CartesianSeries>[
         ColumnSeries<ExerciseHistory, String>(
-            dataSource: exerciseHistory,
-            xValueMapper: (ExerciseHistory sales, _) =>
-                getWeekLetter(sales.dateTime),
-            yValueMapper: (ExerciseHistory sales, _) =>
-                sales.exerciseDurationSeconds,
-            name: 'Exercise History',
-            color: myBluLightDark(),
-            dataLabelSettings: const DataLabelSettings(isVisible: false))
+          dataSource: exerciseHistory,
+          xValueMapper: (ExerciseHistory sales, _) => getWeekLetter(sales.dateTime),
+          yValueMapper: (ExerciseHistory sales, _) => sales.exerciseDurationSeconds,
+          name: 'Exercise History',
+          color: myBluLightDark(),
+          dataLabelSettings: const DataLabelSettings(isVisible: false),
+        )
       ],
       primaryXAxis: CategoryAxis(
           name: "Date",
