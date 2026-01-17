@@ -48,3 +48,14 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Everything else
+/android/
+/ios/
+/linux/
+/macos/
+/test/
+/web/
+/windows/
+.metadata
+analysis_options.yaml
