@@ -253,7 +253,7 @@ class DefaultExerciseHistoryWidget extends StatelessWidget {
           intervalType: DateTimeIntervalType.days,
           dateFormat: DateFormat.E(),
           majorGridLines: const MajorGridLines(width: 0)),
-      primaryYAxis: CategoryAxis(
+      primaryYAxis: NumericAxis(
           name: "Seconds",
           isVisible: true,
           majorGridLines: const MajorGridLines(width: 0)),
