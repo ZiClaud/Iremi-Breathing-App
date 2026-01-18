@@ -1,4 +1,4 @@
-package com.example.iremibreathingapp
+package com.ziclaud.iremibreathingapp
 
 import io.flutter.embedding.android.FlutterActivity
 
