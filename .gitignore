@@ -50,7 +50,7 @@ app.*.map.json
 /android/app/release
 
 # Everything else
-/android/
+# /android/
 /ios/
 /linux/
 /macos/
