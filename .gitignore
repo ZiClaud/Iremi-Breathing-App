@@ -54,8 +54,6 @@ app.*.map.json
 /ios/
 /linux/
 /macos/
-/test/
 /web/
 /windows/
-.metadata
-analysis_options.yaml
+/test/
