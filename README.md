@@ -1,8 +1,11 @@
-# Iremi – Breathing App
+<div align="center">
 
-![icon.png](assets/icon/icon.png)
+<img alt="Telegram" width="150x" src="assets/icon/icon.png?raw=true">
 
-### App that gives breathing exercises to reduce anxiety
+<h1>Iremi<br/>Breathing App</h1>
+
+#### App that gives breathing exercises to reduce anxiety
+</div>
 
 ---
 
