@@ -1,0 +1,24 @@
+Iremi is a simple breathing app designed to help reduce stress and support relaxation through guided breathing exercises.
+
+Breathing Exercises
+- Deep Breathing with beginner to advanced pacing
+- 4-7-8 Breathing for calming and sleep preparation
+- Box Breathing for focus and emotional control
+
+Exercises include visual guidance and an animated breathing indicator to help maintain rhythm and focus.
+
+Features
+- Multiple guided breathing techniques
+- Visual inhale, hold, and exhale cues
+- Clean, distraction-free interface
+- Custom breathing routines
+- Optional voice guidance (beta)
+- Light and dark mode
+
+Data & Privacy
+- Local storage using SQLite
+- No ads
+- No tracking
+
+Disclaimer
+Iremi is a relaxation and mindfulness tool and is not a substitute for medical or mental health treatment.
