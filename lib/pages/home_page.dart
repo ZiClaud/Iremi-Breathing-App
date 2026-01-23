@@ -50,7 +50,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+          leading: defaultLogoWidgetOutlined(),
+          title: Text("Iremi")
+      ),
       body: RefreshIndicator(
         onRefresh: _pullRefresh,
         color: myBluLightDark(),

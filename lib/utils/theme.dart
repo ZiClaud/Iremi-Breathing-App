@@ -17,6 +17,8 @@ const Color _myDarkBackgroundColor = Color(0xFF282828);
 const Color _myBlack = Color(0xFF000000);
 const Color _myLockedBadgeColor = Colors.grey;
 
+const Color _myInvisibleColor = Color(0x00000000);
+
 Color myBluNeutral() {
   return _myBluNeutral;
 }
@@ -55,6 +57,12 @@ Color myBackgroundColorOpposite() {
   return IremiTheme.isDarkTheme()
       ? _myLightBackgroundColor
       : _myDarkBackgroundColor;
+}
+
+Color myInvisibleOrWhite() {
+  return IremiTheme.isDarkTheme()
+      ? _myInvisibleColor
+      : _myLightBackgroundColor;
 }
 
 const Map<int, Color> myColorMapLight = {

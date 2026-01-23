@@ -299,8 +299,29 @@ ExerciseHistory _sumDurationExerciseHistoryThisDay(
 /// Loading Screen
 Widget defaultLogoWidget() {
   return const Center(
-    child: Image(
-      image: AssetImage('assets/icon/icon.png'),
+    child: Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Image(
+        image: AssetImage('assets/icon/icon.png'),
+      ),
+    ),
+  );
+}
+
+Widget defaultLogoWidgetOutlined() {
+  return Padding(
+    padding: const EdgeInsets.all(8.0),
+    child: Container(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        border: Border.all(
+          color: myInvisibleOrWhite(),
+          width: 2.5,
+        ),
+      ),
+      child: Image(
+        image: AssetImage('assets/icon/icon.png'),
+      ),
     ),
   );
 }
@@ -383,10 +404,10 @@ Widget defaultDrawer(context) {
             ],
           ),
           onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+                (route) => false);
           },
         ),
         ListTile(
