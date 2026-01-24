@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/complex_exercises/exercise_wim_hof_method.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
@@ -27,7 +28,7 @@ class Getters {
     return ex;
   }
 
-  static Future<MyUser?> getUserDB(context) async {
+  static Future<MyUser?> getUserDB(BuildContext context) async {
     try {
       return await DBMyUser().getFirstUser();
     } catch (e) {
@@ -36,7 +37,7 @@ class Getters {
     }
   }
 
-  static Future<List<MyBadge>> getBadgesDB(context) async {
+  static Future<List<MyBadge>> getBadgesDB(BuildContext context) async {
     try {
       List<MyBadge?> val = await DBMyBadge().readAllBadges();
       List<MyBadge> ris = [];
@@ -49,12 +50,15 @@ class Getters {
 
       return ris;
     } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
+      if (context.mounted) {
+        defaultDatabaseErrorDialog(context, e.toString());
+      }
       rethrow;
     }
   }
 
-  static Future<List<CustomExercise>> getCustomExercisesDB(context) async {
+  static Future<List<CustomExercise>> getCustomExercisesDB(
+      BuildContext context) async {
     try {
       List<CustomExercise?> val = await DBCustomExercise().readAllExercises();
       List<CustomExercise> ris = [];
@@ -67,12 +71,15 @@ class Getters {
 
       return ris;
     } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
+      if (context.mounted) {
+        defaultDatabaseErrorDialog(context, e.toString());
+      }
       rethrow;
     }
   }
 
-  static Future<List<ExerciseHistory>> getExerciseHistoryDB(context) async {
+  static Future<List<ExerciseHistory>> getExerciseHistoryDB(
+      BuildContext context) async {
     try {
       List<ExerciseHistory?> val =
           await DBExerciseHistory().readAllExerciseHistory();
@@ -86,7 +93,9 @@ class Getters {
 
       return ris;
     } catch (e) {
-      defaultDatabaseErrorDialog(context, e.toString());
+      if (context.mounted) {
+        defaultDatabaseErrorDialog(context, e.toString());
+      }
       rethrow;
     }
   }

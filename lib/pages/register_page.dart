@@ -4,7 +4,7 @@ import 'package:iremibreathingapp/basics/user.dart';
 import '../database/database.dart';
 import '../database/database_dialogs.dart';
 import '../database/forms/user_form_widget.dart';
-import '../utils/default_widgets.dart';
+import '../widgets/buttons_widget.dart';
 import 'home_page.dart';
 
 class RegisterPageDB extends StatefulWidget {
@@ -102,6 +102,7 @@ class _RegisterPageDBState extends State<RegisterPageDB> {
             goal: goal,
           ));
         }
+        if (!mounted) return;
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => HomePage()),

@@ -5,8 +5,10 @@ import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
 
 import '../basics/exercise_custom.dart';
-import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
+import '../widgets/buttons_widget.dart';
+import '../widgets/exercise_widget.dart';
+import '../widgets/text_field_widget.dart';
 import 'exercise_page.dart';
 import 'home_page.dart';
 
@@ -91,11 +93,14 @@ class _ExerciseInfoPagesState extends State<ExerciseInfoPages>
             onPressed: () async => {
               await DBCustomExercise()
                   .deleteExercise((widget.exercise as CustomExercise).id!),
-              Navigator.pushAndRemoveUntil(
-                context,
-                MaterialPageRoute(builder: (context) => HomePage()),
-                (route) => false,
-              ),
+              if (context.mounted)
+                {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                    (route) => false,
+                  ),
+                }
             },
           ),
         ],

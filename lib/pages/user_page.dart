@@ -4,7 +4,8 @@ import 'package:iremibreathingapp/pages/settings_page.dart';
 
 import '../basics/user.dart';
 import '../database/getters.dart';
-import '../utils/default_widgets.dart';
+import '../widgets/buttons_widget.dart';
+import '../widgets/text_field_widget.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});

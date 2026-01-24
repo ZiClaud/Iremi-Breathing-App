@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iremibreathingapp/utils/default_widgets.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
+import 'package:iremibreathingapp/widgets/text_field_widget.dart';
 
 import '../basics/badge.dart';
+import '../widgets/badge_widget.dart';
 
 class DevPage extends StatefulWidget {
   const DevPage({super.key});

@@ -60,9 +60,7 @@ Color myBackgroundColorOpposite() {
 }
 
 Color myInvisibleOrWhite() {
-  return IremiTheme.isDarkTheme()
-      ? _myInvisibleColor
-      : _myLightBackgroundColor;
+  return IremiTheme.isDarkTheme() ? _myInvisibleColor : _myLightBackgroundColor;
 }
 
 const Map<int, Color> myColorMapLight = {
@@ -310,13 +308,13 @@ class IremiTheme with ChangeNotifier {
       ),
       switchTheme: SwitchThemeData(
         thumbColor: MaterialStateProperty.resolveWith((states) =>
-        states.contains(MaterialState.selected)
-            ? _myBluDark
-            : myWhiteBlack()),
+            states.contains(MaterialState.selected)
+                ? _myBluDark
+                : myWhiteBlack()),
         trackColor: MaterialStateProperty.resolveWith((states) =>
-        states.contains(MaterialState.selected)
-            ? _myBluDark.withOpacity(0.5)
-            : myWhiteBlack().withOpacity(0.3)),
+            states.contains(MaterialState.selected)
+                ? _myBluDark.withOpacity(0.5)
+                : myWhiteBlack().withOpacity(0.3)),
       ),
       tabBarTheme: TabBarThemeData(labelColor: _myWhite),
     );

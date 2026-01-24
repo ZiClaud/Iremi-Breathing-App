@@ -3,7 +3,8 @@ import 'package:iremibreathingapp/pages/progress_page.dart';
 import 'package:iremibreathingapp/pages/user_page.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
 
-import '../utils/default_widgets.dart';
+import '../widgets/drawer_widget.dart';
+import '../widgets/loading_screen_widget.dart';
 import 'main_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,7 +13,7 @@ class HomePage extends StatefulWidget {
   HomePage({super.key, this.currentIndex});
 
   @override
-  _HomePageState createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
@@ -50,10 +51,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          leading: defaultLogoWidgetOutlined(),
-          title: Text("Iremi")
-      ),
+      appBar:
+          AppBar(leading: defaultLogoWidgetOutlined(), title: Text("Iremi")),
       body: RefreshIndicator(
         onRefresh: _pullRefresh,
         color: myBluLightDark(),

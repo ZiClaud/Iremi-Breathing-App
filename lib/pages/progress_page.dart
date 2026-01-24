@@ -3,8 +3,9 @@ import 'package:iremibreathingapp/basics/badge.dart';
 import 'package:iremibreathingapp/basics/exercise_history.dart';
 
 import '../database/getters.dart';
-import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
+import '../widgets/badge_widget.dart';
+import '../widgets/chart_widget.dart';
 
 class ProgressPage extends StatefulWidget {
   const ProgressPage({super.key});

@@ -6,7 +6,9 @@ import '../basics/badge.dart';
 import '../basics/exercise_custom.dart';
 import '../database/database_dialogs.dart';
 import '../database/forms/exercise_form_widget.dart';
-import '../utils/default_widgets.dart';
+import '../widgets/buttons_widget.dart';
+import '../widgets/exercise_widget.dart';
+import '../widgets/text_field_widget.dart';
 
 final TextEditingController _nameController = TextEditingController();
 final TextEditingController _descriptionController = TextEditingController();

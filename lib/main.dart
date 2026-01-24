@@ -1,9 +1,10 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:iremibreathingapp/pages/home_page.dart';
 import 'package:iremibreathingapp/pages/register_page.dart';
-import 'package:iremibreathingapp/utils/default_widgets.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
 import 'package:iremibreathingapp/utils/theme.dart';
+import 'package:iremibreathingapp/widgets/loading_screen_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'database/database.dart';
@@ -92,7 +93,9 @@ Future<StatefulWidget> _getFutureFirstPage() async {
       return const RegisterPageDB();
     }
   } catch (e) {
-    print(e.toString());
+    if (kDebugMode) {
+      print(e.toString());
+    }
 //    defaultDatabaseErrorDialog(context, "Error connecting to database");
     return const RegisterPageDB(); // TODO: Maybe change this to MainPage, telling the user that the database is not connected
   }

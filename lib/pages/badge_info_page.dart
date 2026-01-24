@@ -3,7 +3,7 @@ import 'package:iremibreathingapp/utils/theme.dart';
 
 import '../basics/badge.dart';
 
-Future<dynamic> showBadgeDialog(context, MyBadge badge) {
+Future<dynamic> showBadgeDialog(BuildContext context, MyBadge badge) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {

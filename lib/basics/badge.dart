@@ -132,7 +132,8 @@ class Achievement {
     }
   }
 
-  static Future<void> checkExerciseHistoryAchievement(context) async {
+  static Future<void> checkExerciseHistoryAchievement(
+      BuildContext context) async {
     List<ExerciseHistory> exerciseHistory =
         await Getters.getExerciseHistoryDB(context);
 
@@ -140,20 +141,22 @@ class Achievement {
     int morningPerson = getExHistoryMorningTimes(exerciseHistory);
     int nightOwl = getExHistoryNightTimes(exerciseHistory);
 
-    if (streak >= 7) {
-      addAchievement(PossibleBadges.serenitySeeker, context);
-    }
-    if (streak >= 30) {
-      addAchievement(PossibleBadges.wellnessWarrior, context);
-    }
-    if (streak >= 90) {
-      addAchievement(PossibleBadges.rockSolid, context);
-    }
-    if (morningPerson >= 5) {
-      addAchievement(PossibleBadges.morningPerson, context);
-    }
-    if (nightOwl >= 5) {
-      addAchievement(PossibleBadges.nightOwl, context);
+    if (context.mounted) {
+      if (streak >= 7) {
+        addAchievement(PossibleBadges.serenitySeeker, context);
+      }
+      if (streak >= 30) {
+        addAchievement(PossibleBadges.wellnessWarrior, context);
+      }
+      if (streak >= 90) {
+        addAchievement(PossibleBadges.rockSolid, context);
+      }
+      if (morningPerson >= 5) {
+        addAchievement(PossibleBadges.morningPerson, context);
+      }
+      if (nightOwl >= 5) {
+        addAchievement(PossibleBadges.nightOwl, context);
+      }
     }
   }
 

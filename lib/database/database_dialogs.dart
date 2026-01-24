@@ -1,16 +1,16 @@
 import 'package:achievement_view/achievement_view.dart';
 import 'package:flutter/material.dart';
 
-import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
+import '../widgets/buttons_widget.dart';
 
 /// Database errors
-Future? defaultDatabaseErrorDialog(context, String message) {
+Future? defaultDatabaseErrorDialog(BuildContext context, String message) {
   printWarning("Database error: $message");
   return _showSnackbar(context, "Database error: $message");
 }
 
-Future? defaultDatabaseErrorDialog3(context, String message) {
+Future? defaultDatabaseErrorDialog3(BuildContext context, String message) {
   printWarning("Database error: $message");
   if (isDev) {
     return defaultDialog(context, "Database error", message);
@@ -20,7 +20,7 @@ Future? defaultDatabaseErrorDialog3(context, String message) {
   }
 }
 
-Future _defaultDatabaseErrorDialog2(context, message) {
+Future _defaultDatabaseErrorDialog2(BuildContext context, message) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -53,7 +53,7 @@ void _notificationStyleDialog(
 }
 
 /// Default dialog
-Future defaultDialog(context, String title, String message) {
+Future defaultDialog(BuildContext context, String title, String message) {
   return showDialog(
     context: context,
     builder: (BuildContext context) {

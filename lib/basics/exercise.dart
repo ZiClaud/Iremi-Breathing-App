@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -22,7 +23,9 @@ abstract class MyExercise {
 
   void tellSteps() {
     for (String step in steps()) {
-      print(step);
+      if (kDebugMode) {
+        print(step);
+      }
     }
   }
 

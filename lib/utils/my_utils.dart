@@ -1,6 +1,6 @@
 import 'dart:math' as math;
-import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:iremibreathingapp/basics/exercise.dart';
@@ -24,13 +24,19 @@ void setTTS(String language) {
   flutterTts.setVolume(0.5);
 
   flutterTts.setStartHandler(() {
-    print("Playing");
+    if (kDebugMode) {
+      print("Playing");
+    }
   });
   flutterTts.setCompletionHandler(() {
-    print("Complete");
+    if (kDebugMode) {
+      print("Complete");
+    }
   });
   flutterTts.setErrorHandler((msg) {
-    print("error: $msg");
+    if (kDebugMode) {
+      print("error: $msg");
+    }
   });
 }
 
@@ -251,22 +257,32 @@ int getExHistoryNightTimes(List<ExerciseHistory> exerciseHistory) {
 }
 
 /// Min window size
-double getMinWindowSize(context) {
+double getMinWindowSize(BuildContext context) {
   return math.min((MediaQuery.of(context).size.height),
       (MediaQuery.of(context).size.width) / 2);
 }
 
 /// Debug
 void printWarning(String text) {
-  print('\x1B[33m$text\x1B[0m');
+  if (kDebugMode) {
+    print('\x1B[33m$text\x1B[0m');
+  }
 }
 
 void printError(String text) {
-  print('\x1B[31m$text\x1B[0m');
+  if (kDebugMode) {
+    print('\x1B[31m$text\x1B[0m');
+  }
 }
 
 /// Refresh
 void _refreshPage(BuildContext context, Widget page) {
   Navigator.pushReplacement(
       context, MaterialPageRoute(builder: (context) => page));
+}
+
+/// Get size of the circle
+double defaultCircleSize() {
+//  return getMinWindowSize(context) * 2 / 3;
+  return 200;
 }

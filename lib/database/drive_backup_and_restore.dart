@@ -1,10 +1,13 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:iremibreathingapp/database/database.dart';
 import 'package:iremibreathingapp/database/database_dialogs.dart';
 import 'package:iremibreathingapp/utils/my_utils.dart';
 import 'package:permission_handler/permission_handler.dart';
+
 import '../basics/badge.dart';
 
 /// TODO: Only works on android.
@@ -33,7 +36,9 @@ Future<File?> _saveFileToDocumentsDirectory(File file) async {
     await file.copy(filePath);
     return File(filePath);
   } catch (e) {
-    print('Error saving file to Documents directory: $e');
+    if (kDebugMode) {
+      print('Error saving file to Documents directory: $e');
+    }
     return null;
   }
 }
@@ -45,11 +50,13 @@ Future<File> _getDatabaseFileCopy() async {
   return File(dbPath).copy(newPath);
 }
 
-Future<void> backupDatabaseToInternalStorage(context) async {
+Future<void> backupDatabaseToInternalStorage(BuildContext context) async {
   await Achievement.backupAchievement(context);
 
   if ((await _askPermission()) == false) {
-    defaultDialog(context, "Backup failed", 'Permissions not granted');
+    if (context.mounted) {
+      defaultDialog(context, "Backup failed", 'Permissions not granted');
+    }
     return;
   }
 
@@ -59,17 +66,24 @@ Future<void> backupDatabaseToInternalStorage(context) async {
     final Directory directory = downloadDir;
     final newPath = '${directory.path}/${_getDBName()}_$dbName';
     await File(dbPath).copy(newPath);
-    defaultDialog(context, "Backup successful",
-        "Saved database to internal storage: $newPath");
+    if (context.mounted) {
+      defaultDialog(context, "Backup successful",
+          "Saved database to internal storage: $newPath");
+    }
   } catch (e) {
     printError('$e');
-    defaultDialog(context, "Backup failed",
-        'Error saving database to internal storage: $e');
+    if (context.mounted) {
+      defaultDialog(context, "Backup failed",
+          'Error saving database to internal storage: $e');
+    }
   } finally {
     try {
       await MyDatabase.instance.open();
     } catch (e) {
-      defaultDialog(context, "Backup failed", 'Error re-opening database: $e');
+      if (context.mounted) {
+        defaultDialog(
+            context, "Backup failed", 'Error re-opening database: $e');
+      }
     }
   }
 }
@@ -89,7 +103,7 @@ Future<bool> _askPermission() async {
   }
 }
 
-Future<void> restoreDatabaseFromInternalStorage(context) async {
+Future<void> restoreDatabaseFromInternalStorage(BuildContext context) async {
   try {
     // Get the app's documents directory
     String dbPath = await MyDatabase.instance.getDBPath();
@@ -99,7 +113,9 @@ Future<void> restoreDatabaseFromInternalStorage(context) async {
     final file = await FilePicker.platform.pickFiles();
 
     if (file == null) {
-      defaultDialog(context, "Restore failed", 'User cancelled the action');
+      if (context.mounted) {
+        defaultDialog(context, "Restore failed", 'User cancelled the action');
+      }
       // User cancelled the file picker
       return;
     }
@@ -108,7 +124,10 @@ Future<void> restoreDatabaseFromInternalStorage(context) async {
     final filePath = file.files.single.path!;
 
     if (!filePath.endsWith('.db')) {
-      defaultDialog(context, "Restore failed", 'File chosen is not a database');
+      if (context.mounted) {
+        defaultDialog(
+            context, "Restore failed", 'File chosen is not a database');
+      }
       throw Exception("File chosen is not a database");
     }
 
@@ -120,10 +139,14 @@ Future<void> restoreDatabaseFromInternalStorage(context) async {
     await newFile.writeAsBytes(await File(filePath).readAsBytes());
 
     // Show a message to the user indicating that the database was restored
-    await defaultDialog(context, 'Database restored',
-        'The database was restored from internal storage.');
+    if (context.mounted) {
+      await defaultDialog(context, 'Database restored',
+          'The database was restored from internal storage.');
+    }
   } catch (e) {
-    defaultDialog(context, "Restore failed",
-        'Error restoring database from internal storage: \n$e');
+    if (context.mounted) {
+      defaultDialog(context, "Restore failed",
+          'Error restoring database from internal storage: \n$e');
+    }
   }
 }

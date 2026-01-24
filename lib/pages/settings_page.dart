@@ -8,8 +8,9 @@ import '../basics/user.dart';
 import '../database/database.dart';
 import '../database/database_dialogs.dart';
 import '../database/getters.dart';
-import '../utils/default_widgets.dart';
 import '../utils/my_utils.dart';
+import '../widgets/buttons_widget.dart';
+import '../widgets/text_field_widget.dart';
 import 'dev_page.dart';
 import 'home_page.dart';
 
@@ -73,7 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
     _loadSettings();
   }
 
-  String _getValueAsString(value) {
+  String _getValueAsString(dynamic value) {
     return (value is bool) ? (value == true ? "On" : "Off") : value.toString();
   }
 
@@ -87,7 +88,7 @@ class _SettingsPageState extends State<SettingsPage> {
         "Are you sure you want to delete the database? This action cannot be undone.");
   }
 
-  //TODO: Put this in default_widgets.dart
+  //TODO: Put this in text_field_widget.dart
   void _warning(
       BuildContext context, Function() onDelete, String title, String content) {
     showDialog(

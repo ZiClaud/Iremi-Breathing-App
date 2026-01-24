@@ -5,7 +5,7 @@ import 'package:iremibreathingapp/basics/exercise_history.dart';
 import 'package:iremibreathingapp/database/database.dart';
 
 import '../basics/badge.dart';
-import '../utils/default_widgets.dart';
+import '../utils/my_utils.dart';
 import '../utils/theme.dart';
 import 'home_page.dart';
 

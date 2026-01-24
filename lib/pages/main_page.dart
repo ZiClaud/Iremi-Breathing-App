@@ -3,7 +3,7 @@ import 'package:iremibreathingapp/basics/exercise.dart';
 import 'package:iremibreathingapp/pages/exercise_add_pages.dart';
 
 import '../database/getters.dart';
-import '../utils/default_widgets.dart';
+import '../widgets/exercise_widget.dart';
 import 'exercise_info_pages.dart';
 
 class MainPage extends StatefulWidget {
