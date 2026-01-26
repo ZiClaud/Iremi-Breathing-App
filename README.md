@@ -1,12 +1,18 @@
 <div align="center">
 
-<img alt="Telegram" width="150x" src="assets/icon/icon.png?raw=true">
+<img alt="Logo" width="150" src="assets/icon/icon.png?raw=true">
 
 <h1>Iremi<br/>Breathing App</h1>
 
 #### App that gives breathing exercises to reduce anxiety
 
 </div>
+
+---
+
+## App Screeshots:
+
+<img alt="Screenshot" src="https://i.imgur.com/eoEx6Tt.png?1?raw=true">
 
 ---
 
@@ -82,6 +88,14 @@ It can be practiced anywhere and anytime.
 
 - Optional voice guidance that reads breathing steps aloud (Beta)
 - Minimal distractions, designed for ease of use
+
+---
+
+## Build
+
+```bash
+flutter build apk --release
+```
 
 ---
 
