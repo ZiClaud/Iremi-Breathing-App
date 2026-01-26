@@ -300,9 +300,9 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
             const Spacer(),
             defaultOutlinedButton(context, "Backup", Icons.backup,
-                onPressed: () => backupDatabaseToInternalStorage(context)),
+                onPressed: () => backupDatabase(context)),
             defaultOutlinedButton(context, "Restore", Icons.restore,
-                onPressed: () => restoreDatabaseFromInternalStorage(context)),
+                onPressed: () => restoreDatabase(context)),
             if (_user != null)
               defaultOutlinedButton(context, "Delete User", Icons.no_accounts,
                   onPressed: () => _warningUser(context, _deleteUser)),

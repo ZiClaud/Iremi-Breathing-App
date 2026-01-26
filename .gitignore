@@ -57,3 +57,5 @@ app.*.map.json
 /web/
 /windows/
 /test/
+fastlane/README.md
+fastlane/report.xml

@@ -229,12 +229,12 @@ class IremiTheme with ChangeNotifier {
         closeIconColor: _myBlack,
       ),
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.selected)
+        thumbColor: WidgetStateProperty.resolveWith((states) =>
+            states.contains(WidgetState.selected)
                 ? _myBluLight
                 : myWhiteBlack()),
-        trackColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.selected)
+        trackColor: WidgetStateProperty.resolveWith((states) =>
+            states.contains(WidgetState.selected)
                 ? _myBluLight.withOpacity(0.5)
                 : myWhiteBlack().withOpacity(0.3)),
       ),
@@ -307,12 +307,12 @@ class IremiTheme with ChangeNotifier {
         closeIconColor: _myWhite,
       ),
       switchTheme: SwitchThemeData(
-        thumbColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.selected)
+        thumbColor: WidgetStateProperty.resolveWith((states) =>
+            states.contains(WidgetState.selected)
                 ? _myBluDark
                 : myWhiteBlack()),
-        trackColor: MaterialStateProperty.resolveWith((states) =>
-            states.contains(MaterialState.selected)
+        trackColor: WidgetStateProperty.resolveWith((states) =>
+            states.contains(WidgetState.selected)
                 ? _myBluDark.withOpacity(0.5)
                 : myWhiteBlack().withOpacity(0.3)),
       ),
