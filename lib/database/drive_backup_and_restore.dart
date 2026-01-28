@@ -15,12 +15,19 @@ String _getTimeNameDB() {
 Future<void> backupDatabase(BuildContext context) async {
   try {
     await Achievement.backupAchievement(context);
+
+    // Close database
+    await MyDatabase.instance.close();
+
+    final dbPath = await MyDatabase.instance.getDBPath();
+
     // Ask user where to save
     final String? outputFile = await FilePicker.platform.saveFile(
       dialogTitle: 'Save database backup',
       fileName: '${dbName}_${_getTimeNameDB()}.db',
       type: FileType.custom,
       allowedExtensions: ['db'],
+      bytes: File(dbPath).readAsBytesSync()
     );
 
     if (outputFile == null) {
@@ -29,11 +36,6 @@ Future<void> backupDatabase(BuildContext context) async {
       }
       return;
     }
-
-    await MyDatabase.instance.close();
-
-    final dbPath = await MyDatabase.instance.getDBPath();
-    await File(dbPath).copy(outputFile);
 
     if (context.mounted) {
       defaultDialog(context, "Backup successful", "Saved database to internal storage: $outputFile");
