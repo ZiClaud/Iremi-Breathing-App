@@ -9,7 +9,7 @@ import 'package:iremibreathingapp/utils/my_utils.dart';
 import '../basics/badge.dart';
 
 String _getTimeNameDB() {
-  return "${DateTime.now().year}${DateTime.now().month}${DateTime.now().day}_${DateTime.now().millisecondsSinceEpoch}";
+  return "${DateTime.now().year}-${DateTime.now().month}-${DateTime.now().day}";
 }
 
 Future<void> backupDatabase(BuildContext context) async {
@@ -23,12 +23,11 @@ Future<void> backupDatabase(BuildContext context) async {
 
     // Ask user where to save
     final String? outputFile = await FilePicker.platform.saveFile(
-      dialogTitle: 'Save database backup',
-      fileName: '${dbName}_${_getTimeNameDB()}.db',
-      type: FileType.custom,
-      allowedExtensions: ['db'],
-      bytes: File(dbPath).readAsBytesSync()
-    );
+        dialogTitle: 'Save database backup',
+        fileName: 'IremiDatabase_${_getTimeNameDB()}.db',
+        type: FileType.custom,
+        allowedExtensions: ['db'],
+        bytes: File(dbPath).readAsBytesSync());
 
     if (outputFile == null) {
       if (context.mounted) {
@@ -38,12 +37,14 @@ Future<void> backupDatabase(BuildContext context) async {
     }
 
     if (context.mounted) {
-      defaultDialog(context, "Backup successful", "Saved database to internal storage: $outputFile");
+      defaultDialog(context, "Backup successful",
+          "Saved database to internal storage: $outputFile");
     }
   } catch (e) {
     printError('$e');
     if (context.mounted) {
-      defaultDialog(context, "Backup failed", "Error saving database to internal storage: $e");
+      defaultDialog(context, "Backup failed",
+          "Error saving database to internal storage: $e");
     }
   } finally {
     try {
