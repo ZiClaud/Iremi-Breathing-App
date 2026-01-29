@@ -10,39 +10,9 @@
 
 ---
 
-## App Screeshots:
+## App Screenshots:
 
 <img alt="Screenshot" src="https://i.imgur.com/eoEx6Tt.png?1?raw=true">
-
----
-
-## Breathing exercises
-
-### Deep Breathing (Beginner / Intermediate / Advanced)
-
-Also known as diaphragmatic or belly breathing, this technique focuses on slow, deep breaths through the nose, allowing
-the abdomen to expand and contract naturally. Deep breathing helps calm the nervous system, reduce stress and anxiety,
-and promote overall relaxation.
-
-Different levels adjust the pacing and breath duration, making it suitable for beginners as well as more experienced
-users.
-
----
-
-### 4-7-8 Breathing
-
-The 4-7-8 breathing technique follows a simple rhythm: inhale for 4 seconds, hold for 7 seconds, and exhale for 8
-seconds. This pattern helps slow the heart rate and quiet the mind, making it especially useful for winding down,
-managing stress, or preparing for sleep.
-
----
-
-### Box Breathing
-
-Box breathing is a structured technique where the inhale, hold, exhale, and second hold are all equal in length. This
-method supports focus, emotional control, and calm under pressure, and is commonly used in high-stress situations.
-
-It can be practiced anywhere and anytime.
 
 ---
 
@@ -88,6 +58,36 @@ It can be practiced anywhere and anytime.
 
 - Optional voice guidance that reads breathing steps aloud (Beta)
 - Minimal distractions, designed for ease of use
+
+---
+
+## Breathing exercises
+
+### Deep Breathing (Beginner / Intermediate / Advanced)
+
+Also known as diaphragmatic or belly breathing, this technique focuses on slow, deep breaths through the nose, allowing
+the abdomen to expand and contract naturally. Deep breathing helps calm the nervous system, reduce stress and anxiety,
+and promote overall relaxation.
+
+Different levels adjust the pacing and breath duration, making it suitable for beginners as well as more experienced
+users.
+
+---
+
+### 4-7-8 Breathing
+
+The 4-7-8 breathing technique follows a simple rhythm: inhale for 4 seconds, hold for 7 seconds, and exhale for 8
+seconds. This pattern helps slow the heart rate and quiet the mind, making it especially useful for winding down,
+managing stress, or preparing for sleep.
+
+---
+
+### Box Breathing
+
+Box breathing is a structured technique where the inhale, hold, exhale, and second hold are all equal in length. This
+method supports focus, emotional control, and calm under pressure, and is commonly used in high-stress situations.
+
+It can be practiced anywhere and anytime.
 
 ---
 
