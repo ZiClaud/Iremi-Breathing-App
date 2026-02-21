@@ -24,10 +24,10 @@ dependencies:
   flutter_tts: ^4.2.5
   flutter_native_splash: ^2.2.19
   shared_preferences: ^2.0.20
-
-# ON CHANGE: flutter pub run flutter_native_splash:create
   path: any
   url_launcher: ^6.3.2
+
+# ON CHANGE: flutter pub run flutter_native_splash:create
 flutter_native_splash:
   color: "#01B3CA"
   image: "assets/icon/icon.png"
