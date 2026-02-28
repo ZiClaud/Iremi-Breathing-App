@@ -27,7 +27,7 @@ Widget showExerciseModel(MyExercise exercise) {
                 const SizedBox(height: 4.0),
                 Row(
                   children: [
-                    Icon(Icons.timer, size: 16.0, color: myWhiteBlack()),
+                    Icon(Icons.timer_outlined, size: 16.0, color: myWhiteBlack()),
                     // TODO: Fix the color, of the icon it doesn't update on dark mode change
                     const SizedBox(width: 4.0),
                     Text(
