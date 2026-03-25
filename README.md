@@ -1,6 +1,6 @@
 <div align="center">
 
-<img alt="Logo" width="150" src="assets/icon/icon.png?raw=true">
+<img alt="Logo" width="150" src="fastlane/metadata/android/en-US/images/icon.png?raw=true">
 
 <h1>Iremi<br/>Breathing App</h1>
 
