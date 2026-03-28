@@ -85,7 +85,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _warningDatabase(BuildContext context, Function() onDelete) {
     _warning(context, onDelete, "Delete Database?",
-        "Are you sure you want to delete the database? This action cannot be undone.");
+        "Are you sure you want to delete the database? This action cannot be undone. \n\nIf you're trying to find the achievement, cancel this and try long pressing the button.");
   }
 
   //TODO: Put this in text_field_widget.dart

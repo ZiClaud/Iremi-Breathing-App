@@ -68,22 +68,14 @@ Future<void> restoreDatabase(BuildContext context) async {
     final file = await FilePicker.platform.pickFiles();
 
     if (file == null) {
-      if (context.mounted) {
-        defaultDialog(context, "Restore failed", 'User cancelled the action');
-      }
-      // User cancelled the file picker
-      return;
+      throw Exception("User cancelled the action.");
     }
 
     // Get the chosen file path
     final filePath = file.files.single.path!;
 
     if (!filePath.endsWith('.db')) {
-      if (context.mounted) {
-        defaultDialog(
-            context, "Restore failed", 'File chosen is not a database');
-      }
-      throw Exception("File chosen is not a database");
+      throw Exception("File chosen is not a database, make sure it ends in '.db'.");
     }
 
     // Delete the existing database
