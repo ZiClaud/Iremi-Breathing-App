@@ -21,6 +21,13 @@
 
 <img alt="Screenshot" src="https://i.imgur.com/eoEx6Tt.png?1?raw=true">
 
+
+<div align="center">
+    <img src="https://raw.githubusercontent.com/ZiClaud/Iremi-Breathing-App/refs/heads/master/fastlane/metadata/android/en-US/images/phoneScreenshots/1.jpg" width="19.2%"/>
+    <img src="https://raw.githubusercontent.com/ZiClaud/Iremi-Breathing-App/refs/heads/master/fastlane/metadata/android/en-US/images/phoneScreenshots/2.jpg" width="19.2%" />
+    <img src="https://raw.githubusercontent.com/ZiClaud/Iremi-Breathing-App/refs/heads/master/fastlane/metadata/android/en-US/images/phoneScreenshots/3.jpg" width="19.2%" />
+</div>
+
 ---
 
 ## Features
